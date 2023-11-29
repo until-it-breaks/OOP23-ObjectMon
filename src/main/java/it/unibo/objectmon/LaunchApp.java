@@ -9,7 +9,6 @@ public class LaunchApp {
         GameView gameView = new GameView();
         GameController gameController = new GameController();
         GameModel gameModel = new GameModel();
-        gameView.setController(gameController);
         gameController.setView(gameView);
         gameController.setModel(gameModel);
         gameController.startGame();

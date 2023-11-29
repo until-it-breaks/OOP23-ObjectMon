@@ -4,23 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.objectmon.api.Manager;
+import it.unibo.objectmon.model.managers.NPCManager;
+import it.unibo.objectmon.model.managers.PlayerManager;
 
 public class GameModel {
+    /*Only handles the player. For now.... */
     private final List<Manager> managers = new ArrayList<>();
-    private final EntityManager entityManager = new EntityManager();
+    private final NPCManager entityManager = new NPCManager();
+    private final PlayerManager playerManager = new PlayerManager();
 
     public GameModel() {
+        managers.add(playerManager);
         managers.add(entityManager);
-        for (Manager manager : managers) {
-            manager.start();
-        }
+        playerManager.start();
     }
 
-    public int getPlayerX() {
-        return entityManager.getEntityPosition("Player").getLeft();
-    }
-
-    public int getPlayerY() {
-        return entityManager.getEntityPosition("Player").getRight();
+    public PlayerManager getPlayerManager() {
+        return this.playerManager;
     }
 }

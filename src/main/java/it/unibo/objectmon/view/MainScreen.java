@@ -8,11 +8,11 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-public class GameMainScreen extends JPanel {
+public class MainScreen extends JPanel {
     private static final int PROPORTION = 5;
     final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 
-    public GameMainScreen() {
+    public MainScreen() {
         this.setSize((int)screenDimension.getWidth()/PROPORTION, (int)screenDimension.getHeight()/PROPORTION);
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
@@ -22,8 +22,7 @@ public class GameMainScreen extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
-        g2.setColor(Color.RED);
-        g2.fillRect(0, 0, 40, 40);
+        /*TODO*/
         g2.dispose();
     }
 }
