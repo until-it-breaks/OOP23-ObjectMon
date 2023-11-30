@@ -1,17 +1,20 @@
 package it.unibo.objectmon.view;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
+import it.unibo.objectmon.controller.GameController;
 
 public class GameView {
     private static final String GAME_NAME = "Objectmon";
     private final JFrame frame = new JFrame(GAME_NAME);
+    public MainScreen gameMainScreen;
+    private GameController controller;
 
-    public GameView() {
+    public GameView(GameController controller) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-
-        JPanel gameMainScreen = new MainScreen();
+        this.controller = controller;
+        gameMainScreen = new MainScreen(controller);
         frame.add(gameMainScreen);
         frame.pack();
         frame.setLocationByPlatform(true);

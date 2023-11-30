@@ -8,21 +8,33 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
+import it.unibo.objectmon.controller.GameController;
+
 public class MainScreen extends JPanel {
     private static final int PROPORTION = 5;
-    final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+    private final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+    private final KeyHandler keyhandler = new KeyHandler();
+    private GameController controller;
 
-    public MainScreen() {
+    public MainScreen(GameController controller) {
         this.setSize((int)screenDimension.getWidth()/PROPORTION, (int)screenDimension.getHeight()/PROPORTION);
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
+        this.addKeyListener(keyhandler);
         this.setFocusable(true);
+
+        this.controller = controller;
+    }
+
+    public KeyHandler getKeyHandler() {
+        return this.keyhandler;
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
-        /*TODO*/
+        g2.setColor(Color.RED);
+        g2.fillRect(controller.getPlayerX(), controller.getPlayerY(), 48, 48);
         g2.dispose();
     }
 }

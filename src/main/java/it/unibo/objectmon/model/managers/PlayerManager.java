@@ -1,21 +1,14 @@
 package it.unibo.objectmon.model.managers;
 
-import org.apache.commons.lang3.tuple.Pair;
-
-import it.unibo.objectmon.api.Manager;
 import it.unibo.objectmon.model.entities.Player;
 
-public class PlayerManager implements Manager {
+public class PlayerManager {
 
-    private final Player player = new Player("Player1", 0, 0);
+    private Player player;
 
     public void start() {
-
+        player = new Player("Player1", 0, 0);
     }
-
-    public Pair<Integer, Integer> getPlayerPosition() {
-        return Pair.of(player.getX(), player.getY());
-    } 
 
     public Player getPlayer() {
         return this.player;

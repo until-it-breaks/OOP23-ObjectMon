@@ -48,7 +48,26 @@ public class GameController implements Runnable {
     }
 
     public void update() {
-        /*TODO*/
+        if (view.gameMainScreen.getKeyHandler().isUpPressed() == true) {
+            model.getPlayerManager().getPlayer().moveUp();
+        }
+        if (view.gameMainScreen.getKeyHandler().isDownPressed() == true) {
+            model.getPlayerManager().getPlayer().moveDown();
+        }
+        if (view.gameMainScreen.getKeyHandler().isLeftPressed() == true) {
+            model.getPlayerManager().getPlayer().moveLeft();
+        }
+        if (view.gameMainScreen.getKeyHandler().isRightPressed() == true) {
+            model.getPlayerManager().getPlayer().moveRight();
+        }
+    }
+
+    public int getPlayerX() {
+        return this.model.getPlayerManager().getPlayer().getX();
+    }
+
+    public int getPlayerY() {
+        return this.model.getPlayerManager().getPlayer().getY();
     }
 
     public void startGame() {
