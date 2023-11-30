@@ -1,6 +1,4 @@
-package it.unibo.objectmon.model.managers;
-
-import it.unibo.objectmon.model.entities.Player;
+package it.unibo.objectmon.model.entities;
 
 public class PlayerManager {
 

@@ -12,27 +12,25 @@ public class Player implements Entity{
         this.x = x;
         this.y = y;
     }
-    @Override
+
     public int getX() {
         return this.x;
     }
 
-    @Override
     public int getY() {
         return this.y;
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
     
     public void moveUp() {
-        this.y++;
+        this.y--;
     }
 
     public void moveDown() {
-        this.y--;
+        this.y++;
     }
 
     public void moveLeft() {
