@@ -35,11 +35,11 @@ public final class PlayerImpl implements Player {
     }
     @Override
     public void moveUp() {
-        this.y--;
+        this.y++;
     }
     @Override
     public void moveDown() {
-        this.y++;
+        this.y--;
     }
     @Override
     public void moveLeft() {
