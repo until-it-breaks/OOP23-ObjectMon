@@ -6,7 +6,7 @@ import it.unibo.objectmon.api.data.statistics.StatId;
 import it.unibo.objectmon.api.data.statistics.Stats;
 
 /**
- *
+ *  Implementation of the class Stats.
  */
 public class StatsImpl implements Stats {
     /**
@@ -41,7 +41,7 @@ public class StatsImpl implements Stats {
 
     /**
      *
-     * @return Returns the Map of the stats.
+     * @return Returns the Map of the Stats.
      */
     @Override
     public Map<StatId, Integer> getStats() {

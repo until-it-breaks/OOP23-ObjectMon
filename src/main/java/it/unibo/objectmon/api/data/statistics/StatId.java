@@ -1,7 +1,7 @@
 package it.unibo.objectmon.api.data.statistics;
 
 /**
- * Enum of the Statistics of an Objectmon.
+ * Enum of the id of Statistics of an Objectmon.
  */
 public enum StatId {
     /**
