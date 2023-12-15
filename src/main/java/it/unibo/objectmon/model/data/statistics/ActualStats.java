@@ -9,7 +9,7 @@ import it.unibo.objectmon.api.data.statistics.StatId;
  * This implementation is used to store the change of stats of the Objectmon
  * (through evolution, an item or level up).
  */
-public class ActualStats extends StatsImpl {
+public class ActualStats extends StatsImmutableImpl {
 
     /**
      * Constructor of the class.
