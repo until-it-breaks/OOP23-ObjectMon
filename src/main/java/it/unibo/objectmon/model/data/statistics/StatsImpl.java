@@ -3,12 +3,12 @@ package it.unibo.objectmon.model.data.statistics;
 import java.util.HashMap;
 import java.util.Map;
 import it.unibo.objectmon.api.data.statistics.StatId;
-import it.unibo.objectmon.api.data.statistics.StatisticsImpl;
+import it.unibo.objectmon.api.data.statistics.Stats;
 
 /**
  *
  */
-public class Statistics implements StatisticsImpl {
+public class StatsImpl implements Stats {
     /**
      *  A Map containing all the battle relevant stats of the Objectmon.
      */
@@ -23,7 +23,7 @@ public class Statistics implements StatisticsImpl {
      * @param spDef {@see #it.unibo.objectmon.api.data.statistics.StatId}.
      * @param spd {@see #it.unibo.objectmon.api.data.statistics.StatId}.
      */
-    public Statistics(
+    public StatsImpl(
         final int hp,
         final int atk,
         final int def,

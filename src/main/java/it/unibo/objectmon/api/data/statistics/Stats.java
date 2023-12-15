@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Interface of Statistics.
  */
-public interface StatisticsImpl {
+public interface Stats {
 
     /**
      *
