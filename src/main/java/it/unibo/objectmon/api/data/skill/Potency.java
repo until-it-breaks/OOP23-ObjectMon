@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This is the effectiveness that a Skill can can have. A Skill can be:
+ * This is the potency that a Skill can can have. A Skill can be:
  * <pre>
  *{@link #EFFECTIVE} Effective, where the Skill damage is unchanged.
  *{@link #SUPEREFFECTIVE} Super Effective, where the Skill damage is doubled.
@@ -12,7 +12,7 @@ import java.util.Map;
  *{@link #IMMUNE} Immune, where the Skill fails (does no damage).
  * </pre>
  */
-public enum SkillStrenght {
+public enum Potency {
     /**
      *Effective, where the Skill damage is unchanged.
      */
@@ -35,7 +35,7 @@ public enum SkillStrenght {
      */
     private final Map<String, Double> strenght = new HashMap<>();
 
-    SkillStrenght(final String name, final double value) {
+    Potency(final String name, final double value) {
         this.strenght.put(name, value);
     }
 
