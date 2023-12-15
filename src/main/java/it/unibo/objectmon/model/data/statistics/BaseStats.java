@@ -8,7 +8,7 @@ import it.unibo.objectmon.api.data.statistics.Stats;
 /**
  *  Implementation of the class Stats.
  */
-public class StatsImpl implements Stats {
+public class BaseStats implements Stats {
     /**
      *  A Map containing all the battle relevant stats of the Objectmon.
      */
@@ -23,7 +23,7 @@ public class StatsImpl implements Stats {
      * @param spDef {@see #it.unibo.objectmon.api.data.statistics.StatId}.
      * @param spd {@see #it.unibo.objectmon.api.data.statistics.StatId}.
      */
-    public StatsImpl(
+    public BaseStats(
         final int hp,
         final int atk,
         final int def,
