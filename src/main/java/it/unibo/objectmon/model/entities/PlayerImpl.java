@@ -1,7 +1,5 @@
 package it.unibo.objectmon.model.entities;
 
-import it.unibo.objectmon.api.Player;
-
 /**
  * This will be the implementation of {@link Player}.
  */

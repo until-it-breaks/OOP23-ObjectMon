@@ -1,4 +1,4 @@
-package it.unibo.objectmon.api;
+package it.unibo.objectmon.model.entities;
 
 /**
  * Represents a player with basic movement functions.
