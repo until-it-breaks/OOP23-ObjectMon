@@ -5,11 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +18,8 @@ public final class WorldLoader {
     /**
      * @return a LinkedHashSet that containts every coordinates paired with its tile type.
      */
-    public Set<Pair<Coord, TileType>> getWorld() {
-        final Set<Pair<Coord, TileType>> out = new LinkedHashSet<>();
+    public World getWorld() {
+        final World out = new World();
         try (
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("world/world1.txt");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
@@ -47,7 +42,7 @@ public final class WorldLoader {
                             tileType = TileType.VOID;
                             break;
                     }
-                    out.add(new ImmutablePair<Coord, TileType>(new Coord(i, j), tileType));
+                    out.setTileAt(new Coord(i, j), new Tile(tileType));
                 }
                 string = bufferedReader.readLine();
                 i++;
@@ -58,4 +53,14 @@ public final class WorldLoader {
         }
         return out;
     }
+
+    /*  TEST
+    public static void main(String[] args) {
+
+        WorldLoader wl = new WorldLoader();
+        var world = wl.getWorld();
+        System.out.println(world.getTileAt(new Coord(2, 0)).toString());
+        //expects grass
+    }
+    */
 }
