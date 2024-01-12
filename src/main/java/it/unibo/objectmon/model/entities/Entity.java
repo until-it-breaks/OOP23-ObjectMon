@@ -1,17 +1,15 @@
 package it.unibo.objectmon.model.entities;
 
+import it.unibo.objectmon.model.world.Coord;
+
 /**
  * Represents an entity that could be the player or an NPC.
  */
 public interface Entity {
     /**
-     * @return entity x position.
+     * @return entity position.
      */
-    int getX();
-    /**
-     * @return entity y position.
-     */
-    int getY();
+    Coord getPosition();
 
     /**
      * @return entity's name.

@@ -49,7 +49,7 @@ public final class WorldLoader {
             }
         } catch (final IOException e) {
             logger.log(Level.SEVERE, e.getMessage());
-            //TODO Could be improved bu also printing stacktrace
+            e.printStackTrace();
         }
         return out;
     }

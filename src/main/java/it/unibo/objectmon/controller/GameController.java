@@ -1,6 +1,7 @@
 package it.unibo.objectmon.controller;
 
 import it.unibo.objectmon.model.GameModel;
+import it.unibo.objectmon.model.entities.Player;
 import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.view.GameView;
 
@@ -49,5 +50,9 @@ public class GameController {
 
     public void render() {
         this.view.render();
+    }
+
+    public Player getPlayer() {
+        return model.getPlayer();
     }
 }

@@ -1,8 +1,8 @@
 package it.unibo.objectmon.model.world;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 public class World {
     private Map<Coord, Tile> tiles;

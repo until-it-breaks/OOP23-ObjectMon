@@ -1,12 +1,13 @@
 package it.unibo.objectmon.model.entities;
 
+import it.unibo.objectmon.model.world.Coord;
+
 /**
  * This will be the implementation of {@link Player}.
  */
 public final class PlayerImpl implements Player {
     private final String name;
-    private int x;
-    private int y;
+    private Coord position;
     /**
      * Builds a basic player character.
      * 
@@ -16,16 +17,11 @@ public final class PlayerImpl implements Player {
      */
     public PlayerImpl(final String name, final int x, final int y) {
         this.name = name;
-        this.x = x;
-        this.y = y;
+        this.position = new Coord(x, y);
     }
     @Override
-    public int getX() {
-        return this.x;
-    }
-    @Override
-    public int getY() {
-        return this.y;
+    public Coord getPosition() {
+        return this.position;
     }
     @Override
     public String getName() {
@@ -33,18 +29,20 @@ public final class PlayerImpl implements Player {
     }
     @Override
     public void moveUp() {
-        this.y++;
+        this.position = new Coord(this.position.x(), this.position.y() + 1);
     }
     @Override
     public void moveDown() {
-        this.y--;
+        this.position = new Coord(this.position.x(), this.position.y() - 1);
     }
     @Override
     public void moveLeft() {
-        this.x--;
+        this.position = new Coord(this.position.x() - 1, this.position.y());
     }
     @Override
     public void moveRight() {
-        this.x++;
+        this.position = new Coord(this.position.x() + 1, this.position.y());
     }
+
+
 }
