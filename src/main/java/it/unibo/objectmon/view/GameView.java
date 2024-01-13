@@ -9,7 +9,7 @@ public class GameView {
     private static final String GAME_NAME = "Objectmon";
     private final JFrame frame = new JFrame(GAME_NAME);
     private GameController controller;
-    private GameRenderer gamePanel;
+    private MainScreen mainScreen;
     private final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 
     public GameView() {
@@ -23,11 +23,15 @@ public class GameView {
 
     public void setController(final GameController controller) {
         this.controller = controller;
-        gamePanel = new GameRenderer(controller);
-        frame.add(gamePanel);
+        mainScreen = new MainScreen(controller);
+        frame.add(mainScreen);
     }
 
     public void render() {
-        this.gamePanel.repaint();
+        this.mainScreen.repaint();
+    }
+
+    public MainScreen getMainScreen() {
+        return this.mainScreen;
     }
 }

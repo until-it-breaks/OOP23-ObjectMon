@@ -29,19 +29,19 @@ public final class PlayerImpl implements Player {
     }
     @Override
     public void moveUp() {
-        this.position = new Coord(this.position.x(), this.position.y() + 1);
+        this.position = new Coord(this.position.x() + 1, this.position.y());
     }
     @Override
     public void moveDown() {
-        this.position = new Coord(this.position.x(), this.position.y() - 1);
-    }
-    @Override
-    public void moveLeft() {
         this.position = new Coord(this.position.x() - 1, this.position.y());
     }
     @Override
+    public void moveLeft() {
+        this.position = new Coord(this.position.x(), this.position.y() - 1);
+    }
+    @Override
     public void moveRight() {
-        this.position = new Coord(this.position.x() + 1, this.position.y());
+        this.position = new Coord(this.position.x(), this.position.y() + 1);
     }
 
 
