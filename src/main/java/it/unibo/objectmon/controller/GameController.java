@@ -1,15 +1,20 @@
 package it.unibo.objectmon.controller;
 
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import it.unibo.objectmon.model.GameModel;
 import it.unibo.objectmon.model.entities.Player;
 import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.view.GameView;
-import it.unibo.objectmon.view.PlayerControls;
 
-public class GameController {
+public final class GameController {
 
     private static final int FPS = 30;
     private static final long SECOND_IN_MILLIS = 1_000_000_000;
+
+    private static final int COMMAND_LIMIT = 64;
+    private Queue<Command> commandQueue;
 
     private GameModel model;
     private GameView view;
@@ -17,6 +22,7 @@ public class GameController {
     public GameController(final GameModel model, final GameView view) {
         this.model = model;
         this.view = view;
+        commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
     }
 
     public void startGame() {
@@ -39,29 +45,23 @@ public class GameController {
         }
     }
 
-    //Currently inputs are polled way too often, it has to be slowed down
     public void processInput() {
-        PlayerControls playerControls = (PlayerControls) view.getMainScreen().getKeyListeners()[0]; //hardcoded
-        //Move up and move down are inverted in order to comply with swings x axis representation
-        if (playerControls.isDownPressed()) {
-            model.getPlayer().moveUp();
-        }
-        if (playerControls.isUpPressed()) {
-            model.getPlayer().moveDown();
-        }
-        if (playerControls.isLeftPressed()) {
-            model.getPlayer().moveLeft();
-        }
-        if (playerControls.isRightPressed()) {
-            model.getPlayer().moveRight();
+        Command command = commandQueue.poll();
+        if (command != null) {
+            command.execute(model.getGameState());
         }
     }
 
     public void update() {
+        //To be implemented to avoid giving an advantage to fast PCs
+    }
+
+    public void notifyCommand(final Command command) {
+        this.commandQueue.add(command);
     }
 
     public World getWorld() {
-        return model.getWorld();
+        return model.getGameState().getWorld();
     }
 
     public void render() {
@@ -69,6 +69,6 @@ public class GameController {
     }
 
     public Player getPlayer() {
-        return model.getPlayer();
+        return model.getGameState().getPlayer();
     }
 }

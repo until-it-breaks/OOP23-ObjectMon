@@ -1,10 +1,10 @@
 package it.unibo.objectmon.model.world;
 
-public class Tile {
-    private TileType type;
-    private boolean passable;
+public final class Tile {
+    private final TileType type;
+    private final boolean passable;
 
-    public Tile(TileType type) {
+    public Tile(final TileType type) {
         this.type = type;
         this.passable = true;
     }

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TextureLoader {
+public final class TextureLoader {
     private final Map<String, Image> textures;
     private final Logger logger = Logger.getLogger("TextureLoader");
     public TextureLoader() {

@@ -7,22 +7,24 @@ public enum TileType {
     /**
      * A water tile.
      */
-    WATER("water", 0),
+    WATER("water"),
     /**
      * A grass tile.
      */
-    GRASS("grass", 1),
+    GRASS("grass"),
+    /**
+     * A stone tile.
+     */
+    STONE("stone"),
     /**
      * The default tile.
      */
-    VOID("void", -1);
+    VOID("void");
 
     private final String tileName;
-    private final int tileId;
 
-    TileType(final String tileName, final int tileId) {
+    TileType(final String tileName) {
         this.tileName = tileName;
-        this.tileId = tileId;
     }
     /**
      * @return the tile name.
@@ -30,10 +32,5 @@ public enum TileType {
     public String getName() {
         return this.tileName;
     }
-    /**
-     * @return the tile id.
-     */
-    public int getId() {
-        return this.tileId;
-    }
 }
+

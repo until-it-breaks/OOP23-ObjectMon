@@ -4,8 +4,12 @@ import it.unibo.objectmon.controller.GameController;
 import it.unibo.objectmon.model.GameModel;
 import it.unibo.objectmon.view.GameView;
 
-public class LaunchGame {
-    public static void main(String[] args) {
+public final class LaunchGame {
+
+    private LaunchGame() {
+    }
+
+    public static void main(final String[] args) {
         GameModel model = new GameModel();
 
         GameView view = new GameView();

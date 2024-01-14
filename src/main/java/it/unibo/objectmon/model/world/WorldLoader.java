@@ -38,11 +38,14 @@ public final class WorldLoader {
                         case "1":
                             tileType = TileType.GRASS;
                             break;
+                        case "2":
+                            tileType = TileType.STONE;
+                            break;
                         default:
                             tileType = TileType.VOID;
                             break;
                     }
-                    out.setTileAt(new Coord(i, j), new Tile(tileType));
+                    out.addTile(new Coord(i, j), new Tile(tileType));
                 }
                 string = bufferedReader.readLine();
                 i++;

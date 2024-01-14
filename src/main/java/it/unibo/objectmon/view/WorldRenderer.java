@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.JPanel;
 
-public class WorldRenderer extends JPanel implements Renderer{
+public final class WorldRenderer extends JPanel implements Renderer {
     private final World world;
     private final TextureLoader textureLoader;
     private final int blocksize;
@@ -27,7 +27,7 @@ public class WorldRenderer extends JPanel implements Renderer{
             final int scaledX = coord.x() * blocksize;
             final int scaledY = coord.y() * blocksize;
             Image img;
-            switch (world.getTileAt(coord).getType()) {
+            switch (world.getTiles().get(coord).getType()) {
                 case WATER:
                     img = textureLoader.getTexture("/textures/water.png");
                     g2.drawImage(img, scaledY, scaledX, null);
@@ -36,6 +36,10 @@ public class WorldRenderer extends JPanel implements Renderer{
                     img = textureLoader.getTexture("/textures/grass.png");
                     g2.drawImage(img, scaledY, scaledX, null);
                     break;
+                case STONE:
+                img = textureLoader.getTexture("/textures/stone.png");
+                g2.drawImage(img, scaledY, scaledX, null);
+                break;
                 default:
                     break;
             }

@@ -3,66 +3,39 @@ package it.unibo.objectmon.view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class PlayerControls implements KeyListener {
+import it.unibo.objectmon.controller.GameController;
+import it.unibo.objectmon.controller.MoveDown;
+import it.unibo.objectmon.controller.MoveLeft;
+import it.unibo.objectmon.controller.MoveRight;
+import it.unibo.objectmon.controller.MoveUp;
 
-    private boolean upPressed, downPressed, leftPressed, rightPressed;
+public final class PlayerControls implements KeyListener {
 
-    public boolean isUpPressed() {
-        return this.upPressed;
-    }
+    private GameController controller;
 
-    public boolean isDownPressed() {
-        return this.downPressed;
-    }
-
-    public boolean isLeftPressed() {
-        return this.leftPressed;
-    }
-
-    public boolean isRightPressed() {
-        return this.rightPressed;
+    public PlayerControls(final GameController controller) {
+        this.controller = controller;
     }
 
     @Override
     public void keyTyped(final KeyEvent e) {
-        /*Nothing happens*/
     }
 
     @Override
     public void keyPressed(final KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_W) {
-            System.out.println("Moved up");
-            this.upPressed = true;
-        }
-        if (keyCode == KeyEvent.VK_A) {
-            System.out.println("Moved left");
-            this.leftPressed = true;
-        }
-        if (keyCode == KeyEvent.VK_S) {
-            System.out.println("Moved down");
-            this.downPressed = true;
-        }
-        if (keyCode == KeyEvent.VK_D) {
-            System.out.println("Moved right");
-            this.rightPressed = true;
+            controller.notifyCommand(new MoveUp());
+        } else if (keyCode == KeyEvent.VK_A) {
+            controller.notifyCommand(new MoveLeft());
+        } else if (keyCode == KeyEvent.VK_S) {
+            controller.notifyCommand(new MoveDown());
+        } else if (keyCode == KeyEvent.VK_D) {
+            controller.notifyCommand(new MoveRight());
         }
     }
 
     @Override
     public void keyReleased(final KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_W) {
-            this.upPressed = false;
-        }
-        if (keyCode == KeyEvent.VK_A) {
-            this.leftPressed = false;
-        }
-        if (keyCode == KeyEvent.VK_S) {
-            this.downPressed = false;
-        }
-        if (keyCode == KeyEvent.VK_D) {
-            this.rightPressed = false;
-        }
     }
 }

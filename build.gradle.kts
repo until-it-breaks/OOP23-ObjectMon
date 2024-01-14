@@ -27,6 +27,7 @@ dependencies {
     implementation("com.omertron:API-OMDB:1.5")
     implementation("org.jooq:jool:0.9.15")
 
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.apache.commons:commons-collections4:4.4")
 
     /*
@@ -47,7 +48,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("it.unibo.sampleapp.RateAMovie")
+    mainClass.set("it.unibo.objectmon.LaunchGame")
 }
 
 tasks.test {

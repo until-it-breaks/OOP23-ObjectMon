@@ -7,20 +7,22 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 
-public class MainScreen extends JPanel {
+public final class MainScreen extends JPanel {
     private static final int BLOCKSIZE = 48;
     private final Renderer worldView;
     private final Renderer playerView;
     private final KeyListener playerControls;
+    private final GameController controller;
 
     public MainScreen(final GameController controller) {
+        this.controller = controller;
         this.setBackground(Color.BLACK);
         //this.setDoubleBuffered(true); experimental settings
         this.worldView = new WorldRenderer(controller.getWorld(), BLOCKSIZE);
-        this.playerView = new PlayerRenderer(controller.getPlayer(), BLOCKSIZE);
-        this.playerControls = new PlayerControls();
+        this.playerView = new PlayerRenderer(controller.getPlayer());
+        this.playerControls = new PlayerControls(controller);
         this.addKeyListener(playerControls);
-        //THe following two seem to help with controls
+        //The following two seem to help with controls
         this.setFocusable(true);
         this.requestFocusInWindow();
     }
