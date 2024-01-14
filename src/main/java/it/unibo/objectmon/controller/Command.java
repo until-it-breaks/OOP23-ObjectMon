@@ -1,6 +1,5 @@
 package it.unibo.objectmon.controller;
 
-import it.unibo.objectmon.model.GameModel;
 import it.unibo.objectmon.model.GameState;
 
 public interface Command {

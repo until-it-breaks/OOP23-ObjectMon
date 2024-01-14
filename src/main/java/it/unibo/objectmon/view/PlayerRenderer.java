@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 import it.unibo.objectmon.model.entities.Player;
+import it.unibo.objectmon.view.api.Renderer;
 
 public final class PlayerRenderer extends JPanel implements Renderer {
     private final Player player;

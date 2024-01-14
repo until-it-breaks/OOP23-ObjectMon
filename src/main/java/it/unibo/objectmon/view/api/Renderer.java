@@ -1,4 +1,4 @@
-package it.unibo.objectmon.view;
+package it.unibo.objectmon.view.api;
 
 import java.awt.Graphics;
 

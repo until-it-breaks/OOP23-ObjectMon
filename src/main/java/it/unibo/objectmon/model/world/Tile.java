@@ -1,24 +1,36 @@
 package it.unibo.objectmon.model.world;
 
-public final class Tile {
-    private final TileType type;
-    private final boolean passable;
+import java.util.List;
 
-    public Tile(final TileType type) {
-        this.type = type;
-        this.passable = true;
+public class Tile {
+    private int id;
+    private List<Property> properties;
+    
+    public List<Property> getProperties() {
+        return properties;
+    }
+    public void setProperties(final List<Property> properties) {
+        this.properties = properties;
+    }
+    private String type;
+    
+    public int getId() {
+        return id;
+    }
+    public void setId(final int id) {
+        this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Tile [type=" + type + ", passable=" + passable + "]";
-    }
-
-    public TileType getType() {
+    public String getType() {
         return type;
     }
-
-    public boolean isPassable() {
-        return passable;
+    public void setType(final String type) {
+        this.type = type;
     }
+    
+    @Override
+    public String toString() {
+        return "Tile [id=" + id + ", type=" + type + ", " + "properties=" + properties +"]";
+    }
+    
 }

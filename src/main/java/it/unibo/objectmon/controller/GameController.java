@@ -4,13 +4,12 @@ import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import it.unibo.objectmon.model.GameModel;
-import it.unibo.objectmon.model.entities.Player;
-import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.model.GameState;
 import it.unibo.objectmon.view.GameView;
 
 public final class GameController {
 
-    private static final int FPS = 30;
+    private static final int FPS = 60;
     private static final long SECOND_IN_MILLIS = 1_000_000_000;
 
     private static final int COMMAND_LIMIT = 64;
@@ -60,15 +59,11 @@ public final class GameController {
         this.commandQueue.add(command);
     }
 
-    public World getWorld() {
-        return model.getGameState().getWorld();
-    }
-
     public void render() {
         this.view.render();
     }
 
-    public Player getPlayer() {
-        return model.getGameState().getPlayer();
+    public GameState gameState() {
+        return this.model.getGameState();
     }
 }

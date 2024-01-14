@@ -1,6 +1,8 @@
 package it.unibo.objectmon.view;
 
 import it.unibo.objectmon.controller.GameController;
+import it.unibo.objectmon.view.api.Renderer;
+
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,8 +20,8 @@ public final class MainScreen extends JPanel {
         this.controller = controller;
         this.setBackground(Color.BLACK);
         //this.setDoubleBuffered(true); experimental settings
-        this.worldView = new WorldRenderer(controller.getWorld(), BLOCKSIZE);
-        this.playerView = new PlayerRenderer(controller.getPlayer());
+        this.worldView = new WorldRenderer(controller.gameState().getWorld(), BLOCKSIZE);
+        this.playerView = new PlayerRenderer(controller.gameState().getPlayer());
         this.playerControls = new PlayerControls(controller);
         this.addKeyListener(playerControls);
         //The following two seem to help with controls

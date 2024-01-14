@@ -2,6 +2,7 @@ package it.unibo.objectmon.view;
 
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.view.api.Renderer;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -21,6 +22,7 @@ public final class WorldRenderer extends JPanel implements Renderer {
 
     @Override
     public void draw(final Graphics g) {
+        /*
         super.paintComponent(g);
         final Graphics g2 = (Graphics2D) g;
         for (final Coord coord : world.getTiles().keySet()) {
@@ -44,6 +46,7 @@ public final class WorldRenderer extends JPanel implements Renderer {
                     break;
             }
         }
+        */
     }
 
 }
