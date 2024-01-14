@@ -9,7 +9,7 @@ import it.unibo.objectmon.view.GameView;
 
 public final class GameController {
 
-    private static final int FPS = 60;
+    private static final int FPS = 30;
     private static final long SECOND_IN_MILLIS = 1_000_000_000;
 
     private static final int COMMAND_LIMIT = 64;
@@ -65,5 +65,9 @@ public final class GameController {
 
     public GameState gameState() {
         return this.model.getGameState();
+    }
+
+    public GameModel getModel() {
+        return this.model;
     }
 }

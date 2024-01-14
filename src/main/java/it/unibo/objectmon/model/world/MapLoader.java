@@ -10,8 +10,8 @@ public class MapLoader {
 
     private static final String PATH = "/world/world.json.tmj";
 
-    public MapLoader.MapData loadFromJson() {
-        InputStream inputStream = this.getClass().getResourceAsStream(PATH);
+    public static MapLoader.MapData loadFromJson() {
+        InputStream inputStream = MapLoader.class.getResourceAsStream(PATH);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         final Gson gson = new Gson();
         return gson.fromJson(reader, MapData.class);
@@ -34,21 +34,13 @@ public class MapLoader {
             return width;
         }
 
-        public static class Layer {
-            private List<Integer> data;
-    
-            public List<Integer> getData() {
-                return data;
-            }
+
+    }
+    public static class Layer {
+        private List<Integer> data;
+
+        public List<Integer> getData() {
+            return data;
         }
     }
-
-    /*
-        public static void main(String[] args) {
-        MapData mapData = new MapLoader().loadFromJson();
-        System.out.println(mapData.getHeight());
-        System.out.println(mapData.getWidth());
-    }
-     */
-
 }

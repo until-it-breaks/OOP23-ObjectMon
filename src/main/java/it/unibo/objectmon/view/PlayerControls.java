@@ -24,6 +24,7 @@ public final class PlayerControls implements KeyListener {
     @Override
     public void keyPressed(final KeyEvent e) {
         int keyCode = e.getKeyCode();
+        System.err.println("keypress");
         if (keyCode == KeyEvent.VK_W) {
             controller.notifyCommand(new MoveUp());
         } else if (keyCode == KeyEvent.VK_A) {

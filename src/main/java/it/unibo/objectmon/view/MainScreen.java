@@ -19,8 +19,8 @@ public final class MainScreen extends JPanel {
     public MainScreen(final GameController controller) {
         this.controller = controller;
         this.setBackground(Color.BLACK);
-        //this.setDoubleBuffered(true); experimental settings
-        this.worldView = new WorldRenderer(controller.gameState().getWorld(), BLOCKSIZE);
+        this.setDoubleBuffered(true);
+        this.worldView = new WorldRenderer(this, controller.gameState().getWorld());
         this.playerView = new PlayerRenderer(controller.gameState().getPlayer());
         this.playerControls = new PlayerControls(controller);
         this.addKeyListener(playerControls);
@@ -32,7 +32,6 @@ public final class MainScreen extends JPanel {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics g2 = (Graphics2D) g;
-        worldView.draw(g2);
         playerView.draw(g2);
         g2.dispose();
     }
@@ -43,5 +42,9 @@ public final class MainScreen extends JPanel {
 
     public Renderer getWorldView() {
         return worldView;
+    }
+
+    public GameController getController() {
+        return this.controller;
     }
 }

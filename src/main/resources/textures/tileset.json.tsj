@@ -1,9 +1,10 @@
 { "columns":20,
- "image":"..\/..\/Downloads\/Spritesheet\/tilesheet.png",
+ "image":"..\/..\/Downloads\/Spritesheet\/RPGpack_sheet.png",
  "imageheight":832,
  "imagewidth":1280,
  "margin":0,
- "name":"tilesheet",
+ "name":"RPGpack_sheet",
+ "rows":13;
  "spacing":0,
  "tilecount":260,
  "tiledversion":"1.10.2",
@@ -13,9 +14,9 @@
          "id":0,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -23,9 +24,9 @@
          "id":1,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -33,9 +34,9 @@
          "id":2,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -43,9 +44,9 @@
          "id":3,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -53,9 +54,9 @@
          "id":4,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -63,9 +64,9 @@
          "id":5,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -73,9 +74,9 @@
          "id":6,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -83,9 +84,9 @@
          "id":7,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -93,9 +94,9 @@
          "id":8,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -103,9 +104,9 @@
          "id":9,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -113,9 +114,9 @@
          "id":10,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -123,9 +124,9 @@
          "id":11,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -133,9 +134,9 @@
          "id":12,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -143,9 +144,9 @@
          "id":13,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -153,9 +154,9 @@
          "id":14,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -163,54 +164,54 @@
          "id":15,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":16,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":17,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":18,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":19,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":20,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -218,9 +219,9 @@
          "id":21,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -228,9 +229,9 @@
          "id":22,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -238,9 +239,9 @@
          "id":23,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -248,9 +249,9 @@
          "id":24,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -258,9 +259,9 @@
          "id":25,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -268,9 +269,9 @@
          "id":26,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -278,9 +279,9 @@
          "id":27,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -288,9 +289,9 @@
          "id":28,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -298,9 +299,9 @@
          "id":29,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -308,9 +309,9 @@
          "id":30,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -318,9 +319,9 @@
          "id":31,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -328,9 +329,9 @@
          "id":32,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -338,9 +339,9 @@
          "id":33,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -348,9 +349,9 @@
          "id":34,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -358,54 +359,54 @@
          "id":35,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":36,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":37,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":38,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":39,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":40,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -413,9 +414,9 @@
          "id":41,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -423,9 +424,9 @@
          "id":42,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -433,9 +434,9 @@
          "id":43,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -443,9 +444,9 @@
          "id":44,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"grass"
         }, 
@@ -453,9 +454,9 @@
          "id":45,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -463,9 +464,9 @@
          "id":46,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -473,9 +474,9 @@
          "id":47,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"dirt"
         }, 
@@ -483,27 +484,27 @@
          "id":48,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":49,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":50,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -511,9 +512,9 @@
          "id":51,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -521,9 +522,9 @@
          "id":52,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"water"
         }, 
@@ -531,72 +532,72 @@
          "id":53,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":54,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":55,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":56,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":57,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":58,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":59,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":60,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -604,9 +605,9 @@
          "id":61,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -614,9 +615,9 @@
          "id":62,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -624,9 +625,9 @@
          "id":63,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -634,9 +635,9 @@
          "id":64,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -644,9 +645,9 @@
          "id":65,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -654,9 +655,9 @@
          "id":66,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -664,9 +665,9 @@
          "id":67,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -674,9 +675,9 @@
          "id":68,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -684,9 +685,9 @@
          "id":69,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -694,9 +695,9 @@
          "id":70,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -704,9 +705,9 @@
          "id":71,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -714,9 +715,9 @@
          "id":72,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -724,9 +725,9 @@
          "id":73,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -734,9 +735,9 @@
          "id":74,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -744,9 +745,9 @@
          "id":75,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -754,9 +755,9 @@
          "id":76,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -764,9 +765,9 @@
          "id":77,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -774,27 +775,27 @@
          "id":78,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":79,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":80,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -802,9 +803,9 @@
          "id":81,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -812,9 +813,9 @@
          "id":82,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -822,9 +823,9 @@
          "id":83,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -832,9 +833,9 @@
          "id":84,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -842,9 +843,9 @@
          "id":85,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -852,9 +853,9 @@
          "id":86,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -862,9 +863,9 @@
          "id":87,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -872,9 +873,9 @@
          "id":88,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -882,9 +883,9 @@
          "id":89,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -892,9 +893,9 @@
          "id":90,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -902,9 +903,9 @@
          "id":91,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -912,9 +913,9 @@
          "id":92,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -922,9 +923,9 @@
          "id":93,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -932,9 +933,9 @@
          "id":94,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -942,9 +943,9 @@
          "id":95,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -952,9 +953,9 @@
          "id":96,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -962,9 +963,9 @@
          "id":97,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -972,27 +973,27 @@
          "id":98,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":99,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":100,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1000,9 +1001,9 @@
          "id":101,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1010,9 +1011,9 @@
          "id":102,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1020,9 +1021,9 @@
          "id":103,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1030,9 +1031,9 @@
          "id":104,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1040,9 +1041,9 @@
          "id":105,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1050,9 +1051,9 @@
          "id":106,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1060,9 +1061,9 @@
          "id":107,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1070,9 +1071,9 @@
          "id":108,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1080,9 +1081,9 @@
          "id":109,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1090,9 +1091,9 @@
          "id":110,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1100,9 +1101,9 @@
          "id":111,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1110,9 +1111,9 @@
          "id":112,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1120,9 +1121,9 @@
          "id":113,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1130,9 +1131,9 @@
          "id":114,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1140,9 +1141,9 @@
          "id":115,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1150,9 +1151,9 @@
          "id":116,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1160,9 +1161,9 @@
          "id":117,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"wall"
         }, 
@@ -1170,27 +1171,27 @@
          "id":118,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":119,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":120,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1198,9 +1199,9 @@
          "id":121,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1208,9 +1209,9 @@
          "id":122,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1218,9 +1219,9 @@
          "id":123,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1228,9 +1229,9 @@
          "id":124,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1238,9 +1239,9 @@
          "id":125,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1248,9 +1249,9 @@
          "id":126,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1258,9 +1259,9 @@
          "id":127,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1268,9 +1269,9 @@
          "id":128,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1278,9 +1279,9 @@
          "id":129,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1288,9 +1289,9 @@
          "id":130,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1298,9 +1299,9 @@
          "id":131,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1308,9 +1309,9 @@
          "id":132,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1318,9 +1319,9 @@
          "id":133,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1328,9 +1329,9 @@
          "id":134,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1338,9 +1339,9 @@
          "id":135,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1348,9 +1349,9 @@
          "id":136,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1358,9 +1359,9 @@
          "id":137,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1368,27 +1369,27 @@
          "id":138,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":139,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":140,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1396,9 +1397,9 @@
          "id":141,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1406,9 +1407,9 @@
          "id":142,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1416,9 +1417,9 @@
          "id":143,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1426,9 +1427,9 @@
          "id":144,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1436,9 +1437,9 @@
          "id":145,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1446,9 +1447,9 @@
          "id":146,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1456,9 +1457,9 @@
          "id":147,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1466,9 +1467,9 @@
          "id":148,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1476,9 +1477,9 @@
          "id":149,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1486,9 +1487,9 @@
          "id":150,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1496,9 +1497,9 @@
          "id":151,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1506,9 +1507,9 @@
          "id":152,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1516,9 +1517,9 @@
          "id":153,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1526,9 +1527,9 @@
          "id":154,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1536,9 +1537,9 @@
          "id":155,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1546,9 +1547,9 @@
          "id":156,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1556,9 +1557,9 @@
          "id":157,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1566,27 +1567,27 @@
          "id":158,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":159,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":160,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1594,9 +1595,9 @@
          "id":161,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1604,9 +1605,9 @@
          "id":162,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1614,9 +1615,9 @@
          "id":163,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1624,9 +1625,9 @@
          "id":164,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1634,9 +1635,9 @@
          "id":165,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1644,9 +1645,9 @@
          "id":166,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1654,9 +1655,9 @@
          "id":167,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1664,9 +1665,9 @@
          "id":168,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1674,9 +1675,9 @@
          "id":169,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1684,9 +1685,9 @@
          "id":170,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1694,9 +1695,9 @@
          "id":171,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1704,9 +1705,9 @@
          "id":172,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1714,9 +1715,9 @@
          "id":173,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1724,9 +1725,9 @@
          "id":174,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1734,9 +1735,9 @@
          "id":175,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"roof"
         }, 
@@ -1744,9 +1745,9 @@
          "id":176,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1754,9 +1755,9 @@
          "id":177,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"staircase"
         }, 
@@ -1764,27 +1765,27 @@
          "id":178,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":179,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":180,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"bush"
         }, 
@@ -1792,9 +1793,9 @@
          "id":181,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"bush"
         }, 
@@ -1802,9 +1803,9 @@
          "id":182,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"bush"
         }, 
@@ -1812,9 +1813,9 @@
          "id":183,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"bush"
         }, 
@@ -1822,9 +1823,9 @@
          "id":184,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"bush"
         }, 
@@ -1832,9 +1833,9 @@
          "id":185,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"bush"
         }, 
@@ -1842,9 +1843,9 @@
          "id":186,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -1852,9 +1853,9 @@
          "id":187,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -1862,9 +1863,9 @@
          "id":188,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -1872,9 +1873,9 @@
          "id":189,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -1882,9 +1883,9 @@
          "id":190,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1892,9 +1893,9 @@
          "id":191,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1902,9 +1903,9 @@
          "id":192,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1912,9 +1913,9 @@
          "id":193,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1922,9 +1923,9 @@
          "id":194,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }, 
@@ -1932,9 +1933,9 @@
          "id":195,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1942,9 +1943,9 @@
          "id":196,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1952,9 +1953,9 @@
          "id":197,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1962,9 +1963,9 @@
          "id":198,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -1972,9 +1973,9 @@
          "id":199,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }, 
@@ -1982,9 +1983,9 @@
          "id":200,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -1992,9 +1993,9 @@
          "id":201,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2002,9 +2003,9 @@
          "id":202,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2012,9 +2013,9 @@
          "id":203,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2022,9 +2023,9 @@
          "id":204,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2032,9 +2033,9 @@
          "id":205,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2042,9 +2043,9 @@
          "id":206,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2052,9 +2053,9 @@
          "id":207,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2062,9 +2063,9 @@
          "id":208,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2072,9 +2073,9 @@
          "id":209,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2082,9 +2083,9 @@
          "id":210,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2092,9 +2093,9 @@
          "id":211,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2102,9 +2103,9 @@
          "id":212,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2112,9 +2113,9 @@
          "id":213,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2122,9 +2123,9 @@
          "id":214,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }, 
@@ -2132,9 +2133,9 @@
          "id":215,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2142,9 +2143,9 @@
          "id":216,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2152,9 +2153,9 @@
          "id":217,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2162,9 +2163,9 @@
          "id":218,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2172,9 +2173,9 @@
          "id":219,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }, 
@@ -2182,9 +2183,9 @@
          "id":220,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2192,9 +2193,9 @@
          "id":221,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2202,9 +2203,9 @@
          "id":222,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2212,9 +2213,9 @@
          "id":223,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2222,9 +2223,9 @@
          "id":224,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2232,9 +2233,9 @@
          "id":225,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"tree"
         }, 
@@ -2242,9 +2243,9 @@
          "id":226,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2252,9 +2253,9 @@
          "id":227,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2262,9 +2263,9 @@
          "id":228,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2272,9 +2273,9 @@
          "id":229,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2282,9 +2283,9 @@
          "id":230,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2292,9 +2293,9 @@
          "id":231,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2302,9 +2303,9 @@
          "id":232,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2312,9 +2313,9 @@
          "id":233,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2322,9 +2323,9 @@
          "id":234,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }, 
@@ -2332,9 +2333,9 @@
          "id":235,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2342,9 +2343,9 @@
          "id":236,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2352,9 +2353,9 @@
          "id":237,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2362,9 +2363,9 @@
          "id":238,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2372,9 +2373,9 @@
          "id":239,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }, 
@@ -2382,63 +2383,63 @@
          "id":240,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":241,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":242,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":243,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":244,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":245,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }]
         }, 
         {
          "id":246,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2446,9 +2447,9 @@
          "id":247,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2456,9 +2457,9 @@
          "id":248,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2466,9 +2467,9 @@
          "id":249,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"prop"
         }, 
@@ -2476,9 +2477,9 @@
          "id":250,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2486,9 +2487,9 @@
          "id":251,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2496,9 +2497,9 @@
          "id":252,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2506,9 +2507,9 @@
          "id":253,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2516,9 +2517,9 @@
          "id":254,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }, 
@@ -2526,9 +2527,9 @@
          "id":255,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2536,9 +2537,9 @@
          "id":256,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2546,9 +2547,9 @@
          "id":257,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2556,9 +2557,9 @@
          "id":258,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":false
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"true"
                 }],
          "type":"window"
         }, 
@@ -2566,9 +2567,9 @@
          "id":259,
          "properties":[
                 {
-                 "name":"passable",
-                 "type":"bool",
-                 "value":true
+                 "name":"impassable",
+                 "type":"string",
+                 "value":"false"
                 }],
          "type":"door"
         }],

@@ -18,7 +18,7 @@ public class GameState {
 
     private void init() {
         this.world = new World();
-        this.player = new PlayerImpl("spy", 0, 0, 5);
+        this.player = new PlayerImpl("spy", 0, 0, 1);
     }
 
     public World getWorld() {
