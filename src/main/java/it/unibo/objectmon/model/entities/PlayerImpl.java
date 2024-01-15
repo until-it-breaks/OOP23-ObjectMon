@@ -6,9 +6,11 @@ import it.unibo.objectmon.model.world.Coord;
  * This will be the implementation of {@link Player}.
  */
 public final class PlayerImpl implements Player {
+    private static final int DEFAULT_SPEED = 5;
+
     private final String name;
     private Coord position;
-    private int speed;
+    private final int speed;
     /**
      * Builds a basic player character.
      * 
@@ -19,7 +21,7 @@ public final class PlayerImpl implements Player {
     public PlayerImpl(final String name, final int x, final int y) {
         this.name = name;
         this.position = new Coord(x, y);
-        this.speed = 5;
+        this.speed = DEFAULT_SPEED;
     }
     @Override
     public Coord getPosition() {

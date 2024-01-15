@@ -9,10 +9,18 @@ import it.unibo.objectmon.controller.MoveLeft;
 import it.unibo.objectmon.controller.MoveRight;
 import it.unibo.objectmon.controller.MoveUp;
 
+/**
+ * Key controls for the player character.
+ */
 public final class PlayerControls implements KeyListener {
 
-    private MainController controller;
+    private final MainController controller;
 
+    /**
+     * Hooks the key controls to controller.
+     * 
+     * @param controller the target controller.
+     */
     public PlayerControls(final MainController controller) {
         this.controller = controller;
     }
@@ -23,7 +31,7 @@ public final class PlayerControls implements KeyListener {
 
     @Override
     public void keyPressed(final KeyEvent e) {
-        int keyCode = e.getKeyCode();
+        final int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_W) {
             controller.notifyCommand(new MoveUp());
         } else if (keyCode == KeyEvent.VK_A) {

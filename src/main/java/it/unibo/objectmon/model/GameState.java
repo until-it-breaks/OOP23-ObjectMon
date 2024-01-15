@@ -1,17 +1,17 @@
 package it.unibo.objectmon.model;
 
-import java.util.Set;
-
-import it.unibo.objectmon.model.entities.Entity;
 import it.unibo.objectmon.model.entities.Player;
 import it.unibo.objectmon.model.entities.PlayerImpl;
 import it.unibo.objectmon.model.world.World;
-
-public class GameState {
+/**
+ * Models the status of the game details.
+ */
+public final class GameState {
     private World world;
-    private Set<Entity> entities;
     private Player player;
-
+    /**
+     * Creates a world with entities and environment.
+     */
     public GameState() {
         init();
     }
@@ -20,15 +20,17 @@ public class GameState {
         this.world = new World();
         this.player = new PlayerImpl("Player1", 0, 0);
     }
-
+    /**
+     * 
+     * @return the world.
+     */
     public World getWorld() {
         return world;
     }
-
-    public Set<Entity> getEntities() {
-        return entities;
-    }
-
+    /**
+     * 
+     * @return the player.
+     */
     public Player getPlayer() {
         return player;
     }
