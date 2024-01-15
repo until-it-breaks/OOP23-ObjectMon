@@ -3,7 +3,7 @@ package it.unibo.objectmon.view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import it.unibo.objectmon.controller.GameController;
+import it.unibo.objectmon.controller.MainController;
 import it.unibo.objectmon.controller.MoveDown;
 import it.unibo.objectmon.controller.MoveLeft;
 import it.unibo.objectmon.controller.MoveRight;
@@ -11,9 +11,9 @@ import it.unibo.objectmon.controller.MoveUp;
 
 public final class PlayerControls implements KeyListener {
 
-    private GameController controller;
+    private MainController controller;
 
-    public PlayerControls(final GameController controller) {
+    public PlayerControls(final MainController controller) {
         this.controller = controller;
     }
 
@@ -24,7 +24,6 @@ public final class PlayerControls implements KeyListener {
     @Override
     public void keyPressed(final KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.err.println("keypress");
         if (keyCode == KeyEvent.VK_W) {
             controller.notifyCommand(new MoveUp());
         } else if (keyCode == KeyEvent.VK_A) {

@@ -16,10 +16,10 @@ public final class PlayerImpl implements Player {
      * @param x the player's x position
      * @param y the player's y position
      */
-    public PlayerImpl(final String name, final int x, final int y, final int speed) {
+    public PlayerImpl(final String name, final int x, final int y) {
         this.name = name;
         this.position = new Coord(x, y);
-        this.speed = speed;
+        this.speed = 5;
     }
     @Override
     public Coord getPosition() {
@@ -45,6 +45,4 @@ public final class PlayerImpl implements Player {
     public void moveRight() {
         this.position = new Coord(this.position.x(), this.position.y() + speed);
     }
-
-
 }

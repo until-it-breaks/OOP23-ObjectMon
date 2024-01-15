@@ -1,8 +1,8 @@
 package it.unibo.objectmon;
 
-import it.unibo.objectmon.controller.GameController;
-import it.unibo.objectmon.model.GameModel;
-import it.unibo.objectmon.view.GameView;
+import it.unibo.objectmon.controller.MainController;
+import it.unibo.objectmon.model.MainModel;
+import it.unibo.objectmon.view.MainView;
 
 public final class LaunchGame {
 
@@ -10,13 +10,9 @@ public final class LaunchGame {
     }
 
     public static void main(final String[] args) {
-        GameModel model = new GameModel();
-
-        GameView view = new GameView();
-
-        GameController controller = new GameController(model, view);
-
-        view.setController(controller);
+        MainModel model = new MainModel();
+        MainView view = new MainView();
+        MainController controller = new MainController(model, view);
 
         controller.startGame();
     }
