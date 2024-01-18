@@ -13,7 +13,7 @@ public final class LaunchGame {
     }
     /**
      * Sets up and starts the game.
-     * @param args
+     * @param args does nothing
      */
     public static void main(final String[] args) {
         final MainModel model = new MainModel();
