@@ -1,13 +1,16 @@
 package it.unibo.objectmon.model.data.statistics;
 
 import java.util.Map;
-
+import java.util.HashMap;
 import it.unibo.objectmon.api.data.statistics.StatId;
 
 /**
  * Extension of the class StatsImpl.
  * This implementation is used to store the change of stats of the Objectmon
- * (through evolution, an item or level up).
+ * (through evolution or level up).
+ * The changes need to be saved in a new Map of Stats,
+ * because leveling should be an action that rarely happens and
+ * so creating a new object shouldn't be too taxing on the program.
  */
 public class ActualStats extends StatsImpl {
 
@@ -19,46 +22,28 @@ public class ActualStats extends StatsImpl {
         super(stats);
     }
 
-    /**
-     * Sets one stat to the new value.
-     * Should never be called directly by a user.
-     * @param id Id of the Statistic to be replaced.
-     * @param value New value of the Statistic.
-     */
-    protected void setSingleStat(final StatId id, final int value) {
-        getStats().replace(id, value);
-    }
-
-    /**
-     * Sets all the Stats to their new values.
-     * Should only be used when an Objectmon evolves.
-     * @param newStats A Map containing the new Stats to replace the current ones.
-     */
-    public void setAllStats(final Map<StatId, Integer> newStats) {
-        getStats().forEach((id, stat) -> {
-            setSingleStat(id, newStats.get(id));
-        });
-    }
-
-    /**
+     /**
      * Grows a single stat by adding it to the previous value.
-     * Can be called directly by the user,
-     * but only when using an Item that permits it.
-     * @param id Id of the statistic to increase
-     * @param growth Value to which increase the Statistic
+     * It's an utility method.
+     * @param id Id of the statistic to increase.
+     * @param growth Value to which increase the Statistic.
+     * @return Returns the new singleStat, which is the sum of the base and the growth.
      */
-    public void growSingleStat(final StatId id, final int growth) {
-        getStats().replace(id, getSingleStat(id) + growth);
+    public int growSingleStat(final StatId id, final int growth) {
+        return getSingleStat(id) + growth;
     }
 
     /**
      * Grows all the Stats.
      * Should only be called when an Objectmon levels up.
      * @param growths A Map containing the Stats that are going to be added.
+     * @return Returns the new Stats of the Objectmon after level up.
      */
-    public void growAllStats(final Map<StatId, Integer> growths) {
+    public ActualStats growAllStats(final Map<StatId, Integer> growths) {
+        final Map<StatId, Integer> newStats = new HashMap<>();
         getStats().forEach((id, stat) -> {
-            growSingleStat(id, growths.get(id));
+            newStats.put(id, growSingleStat(id, growths.get(id)));
         });
+        return new ActualStats(newStats);
     }
 }
