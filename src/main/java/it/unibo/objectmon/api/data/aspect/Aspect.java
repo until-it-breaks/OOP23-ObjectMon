@@ -35,19 +35,19 @@ public enum Aspect {
     /**
      * Aspect of Ground.
      */
-    GROUND(0, "Ground"),
+    GROUND(6, "Ground"),
     /**
      * Aspect of Rock.
      */
-    ROCK(0, "Rock"),
+    ROCK(7, "Rock"),
     /**
      * Aspect of Fighting.
      */
-    FIGHTING(0, "Fighting"),
+    FIGHTING(8, "Fighting"),
     /**
      * Aspect of Bug.
      */
-    BUG(0, "Bug");
+    BUG(9, "Bug");
 
     private final Map<Integer, String> aspect = new HashMap<>();
     /*
