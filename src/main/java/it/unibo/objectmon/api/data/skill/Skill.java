@@ -52,7 +52,7 @@ public abstract class Skill {
      *  Determines how many times the move can be used.
      *  Can be 0, can't go negative.
      */
-    private final int currentUses;
+    private int currentUses;
     /**
      *  Category of a skill {@see #it.unibo.objectmon.api.data.skill.SkillCategory}.
      */
@@ -105,5 +105,9 @@ public abstract class Skill {
 
     public int getCurrentUses() {
         return currentUses;
+    }
+
+    public void setCurrentUses(int currentUses) {
+        this.currentUses = currentUses;
     }
 }
