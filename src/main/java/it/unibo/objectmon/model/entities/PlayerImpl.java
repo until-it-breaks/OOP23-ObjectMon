@@ -6,7 +6,7 @@ import it.unibo.objectmon.model.world.Coord;
  * This will be the implementation of {@link Player}.
  */
 public final class PlayerImpl implements Player {
-    private static final int DEFAULT_SPEED = 5;
+    private static final int DEFAULT_SPEED = 1;
 
     private final String name;
     private Coord position;

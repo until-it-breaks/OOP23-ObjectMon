@@ -1,34 +1,23 @@
 package it.unibo.objectmon.model.world;
 
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Models a single map unit.
  */
 public final class Tile {
     private final int id;
-    private final List<Property> properties;
-    private final String name;
+    private final String type;
+    private final String imagePath;
     /**
+     * Creates a basic tile.
      * 
-     * @param id the tile identifier.
-     * 
-     * @param properties a list of tile properties.
-     * 
-     * @param name the tile name.
+     * @param id the tile id.
+     * @param type the tile name.
+     * @param imagePath the tile image path.
      */
-    public Tile(final int id, final List<Property> properties, final String name) {
+    public Tile(final int id, final String type, final String imagePath) {
         this.id = id;
-        this.properties = Collections.unmodifiableList(properties);
-        this.name = name;
-    }
-    /**
-     * 
-     * @return an immutable list of properties.
-     */
-    public List<Property> getProperties() {
-        return Collections.unmodifiableList(properties);
+        this.type = type;
+        this.imagePath = imagePath;
     }
     /**
      *
@@ -41,46 +30,18 @@ public final class Tile {
      * 
      * @return the tile name.
      */
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
+    }
+    /**
+     * 
+     * @return the tile image path.
+     */
+    public String getImagePath() {
+        return imagePath;
     }
     @Override
     public String toString() {
-        return "Tile [id=" + id + ", type=" + name + ", " + "properties=" + properties + "]";
-    }
-    /**
-     * Models a tile property.
-     */
-    public static final class Property {
-        private final String name;
-        private final boolean value;
-        /**
-         * Creates a property.
-         * 
-         * @param name the name of the property.
-         * @param value whether the property is true.
-         */
-        public Property(final String name, final boolean value) {
-            this.name = name;
-            this.value = value;
-        }
-        /**
-         * 
-         * @return the property name.
-         */
-        public String getName() {
-            return name;
-        }
-        /**
-         * 
-         * @return whether the property is true.
-         */
-        public boolean isValue() {
-            return value;
-        }
-        @Override
-        public String toString() {
-            return name + "=" + value;
-        }
+        return "Tile [id=" + id + ", type=" + type + ", imagePath=" + imagePath + "]";
     }
 }

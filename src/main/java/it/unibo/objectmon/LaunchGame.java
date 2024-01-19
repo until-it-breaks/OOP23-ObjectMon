@@ -1,9 +1,8 @@
 package it.unibo.objectmon;
 
-import it.unibo.objectmon.controller.MainController;
-import it.unibo.objectmon.model.MainModel;
-import it.unibo.objectmon.view.MainViewImpl;
-import it.unibo.objectmon.view.api.View;
+import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.view.View;
 /**
  * The entry point of the game.
  */
@@ -16,10 +15,11 @@ public final class LaunchGame {
      * @param args does nothing
      */
     public static void main(final String[] args) {
-        final MainModel model = new MainModel();
-        final View view = new MainViewImpl();
-        final MainController controller = new MainController(model, view);
 
+        final Model model = new Model();
+        final View view = new View();
+        final Controller controller = new Controller(model, view);
+        view.build(controller);
         controller.startGame();
     }
 }
