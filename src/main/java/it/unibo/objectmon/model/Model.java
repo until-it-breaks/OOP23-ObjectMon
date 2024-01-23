@@ -1,7 +1,14 @@
 package it.unibo.objectmon.model;
 
-import it.unibo.objectmon.model.entities.Player;
-import it.unibo.objectmon.model.entities.PlayerImpl;
+import java.util.HashSet;
+import java.util.Set;
+
+import it.unibo.objectmon.model.entities.Entity;
+import it.unibo.objectmon.model.entities.medic.MedicImpl;
+import it.unibo.objectmon.model.entities.player.PlayerImpl;
+import it.unibo.objectmon.model.entities.trader.TraderImpl;
+import it.unibo.objectmon.model.entities.trainer.TrainerImpl;
+import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.World;
 
 /**
@@ -9,7 +16,8 @@ import it.unibo.objectmon.model.world.World;
  */
 public final class Model {
     private World world;
-    private Player player;
+    private PlayerImpl player;
+    private Set<Entity> npcs;
     /**
      * Creates a world with entities and environment.
      */
@@ -19,7 +27,11 @@ public final class Model {
 
     private void init() {
         this.world = new World();
-        this.player = new PlayerImpl("Player", world.getWidth() / 2, world.getHeight() / 2);
+        this.player = new PlayerImpl("Player", new Coord(world.getWidth() / 2, world.getHeight() / 2));
+        this.npcs = new HashSet<>();
+        this.npcs.add(new MedicImpl("medic1", new Coord(1, 4)));
+        this.npcs.add(new TrainerImpl("trainer1", new Coord(10, 10)));
+        this.npcs.add(new TraderImpl("trader1", new Coord(0, 0)));
     }
     /**
      * 
@@ -32,8 +44,11 @@ public final class Model {
      * 
      * @return the player.
      */
-    public Player getPlayer() {
+    public PlayerImpl getPlayer() {
         return player;
     }
 
+    public Set<Entity> getEntities() {
+        return this.npcs;
+    }
 }

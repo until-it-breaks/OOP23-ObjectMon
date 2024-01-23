@@ -1,20 +1,21 @@
 package it.unibo.objectmon.controller;
 
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.Map;
 
 import it.unibo.objectmon.controller.commands.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.entities.Player;
+import it.unibo.objectmon.model.entities.Entity;
+import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.Tile;
 import it.unibo.objectmon.view.View;
 /**
  * Models the controller of the application.
  */
-@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "No mutable state exposed")
 public final class Controller {
 
     private static final int COMMAND_LIMIT = 64;
@@ -40,11 +41,14 @@ public final class Controller {
     public void notifyCommand(final Command command) {
         this.commandQueue.add(command);
     }
+    public Set<Entity> getEntities() {
+        return model.getEntities();
+    }
     /**
      * Returns the {@Player}.
      * @return the player.
      */
-    public Player getPlayer() {
+    public PlayerImpl getPlayer() {
         return model.getPlayer();
     }
     /**

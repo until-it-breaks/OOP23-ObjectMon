@@ -7,11 +7,11 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.model.entities.Entity;
 import it.unibo.objectmon.model.world.Coord;
 /**
  * The panel responsible for drawing the world in exploration mode.
  */
-@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "No mutable state exposed")
 public final class ExploreModeView extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
@@ -32,8 +32,16 @@ public final class ExploreModeView extends JPanel {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         drawWorld(g);
+        drawNPCs(g);
         drawPlayer(g);
         g.dispose();
+    }
+
+    private void drawNPCs(Graphics g) {
+        final BufferedImage image = textureLoader.getImage("/npc/medic.png");
+        for (Entity npc : controller.getEntities()) {
+            g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
+        }
     }
 
     private void drawPlayer(final Graphics g) {

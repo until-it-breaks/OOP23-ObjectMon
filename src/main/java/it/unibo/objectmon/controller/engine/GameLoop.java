@@ -10,7 +10,6 @@ import it.unibo.objectmon.view.View;
 /**
  * A basic implementation of a game loop.
  */
-@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "No mutable state exposed")
 public class GameLoop {
     private static final long PERIOD = 20;
 
@@ -60,7 +59,7 @@ public class GameLoop {
 
     private void printFPS(final long elapsed) {
         if (elapsed > 0) {
-            logger.log(Level.INFO, "FPS: " + 1_000 / elapsed);
+            logger.log(Level.FINE, "FPS: " + 1_000 / elapsed);
         }
     }
 

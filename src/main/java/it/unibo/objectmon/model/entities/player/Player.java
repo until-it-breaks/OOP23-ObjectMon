@@ -1,9 +1,9 @@
-package it.unibo.objectmon.model.entities;
+package it.unibo.objectmon.model.entities.player;
 
 /**
  * Represents a player with basic movement functions.
  */
-public interface Player extends Entity {
+public interface Player {
     /**
      * Moves the player up.
      */
@@ -20,4 +20,6 @@ public interface Player extends Entity {
      * Moves the player right.
      */
     void moveRight();
+    
+    boolean interact();
 }
