@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entities.player;
+package it.unibo.objectmon.model.entity.api;
 
 /**
  * Represents a player with basic movement functions.
@@ -21,5 +21,5 @@ public interface Player {
      */
     void moveRight();
     
-    boolean interact();
+    void interact();
 }
