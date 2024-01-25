@@ -2,7 +2,6 @@ package it.unibo.objectmon.api.data.skill;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  *
@@ -30,32 +29,24 @@ public enum SkillCategory {
 
     /**
      *
-     * @param id Id of the DamageType
-     * @param name Name of the DamageType
+     * @param id Id of the DamageType.
+     * @param name Name of the DamageType.
      */
     SkillCategory(final int id, final String name) {
-        category.put(id, name);
-    }
-
-    /**
-     * 
-     * @return Returns the category
-     */
-    public Map<Integer, String> getCategory() {
-        return category;
+        this.category.put(id, name);
     }
 
     /**
      *
-     * @return Returns the id of the DamageType of the Skill
+     * @return Returns the category.
      */
-    public Set<Integer> getId() {
-        return getCategory().keySet();
+    public Map<Integer, String> getCategory() {
+        return Map.copyOf(this.category);
     }
 
     /**
-     * @param key Id of the category
-     * @return Returns the name of the DamageType of the Skill
+     * @param key Id of the category.
+     * @return Returns the name of the DamageType of the Skill.
      */
     public String getName(final int key) {
         return getCategory().get(key);
