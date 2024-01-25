@@ -1,8 +1,5 @@
 package it.unibo.objectmon.api.data.skill;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * This is the potency that a Skill can can have. A Skill can be:
  * <pre>
@@ -33,18 +30,27 @@ public enum Potency {
     /**
      *A map containing each effectiveness.
      */
-    private final Map<String, Double> strenght = new HashMap<>();
+    private final String name;
+    private final double multiplier;
 
-    Potency(final String name, final double value) {
-        this.strenght.put(name, value);
+    Potency(final String name, final double multiplier) {
+        this.name = name;
+        this.multiplier = multiplier;
     }
 
     /**
-     * 
-     * @param key Name of the multiplier
-     * @return Returns the multiplier
+     *
+     * @return Returns the name of the Potency.
      */
-    protected final double getMultiplier(final String key) {
-        return this.strenght.get(key);
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     *
+     * @return Returns the multiplier of the Potency.
+     */
+    protected final double getMultiplier() {
+        return this.multiplier;
     }
 }

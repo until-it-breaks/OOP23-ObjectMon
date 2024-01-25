@@ -1,8 +1,5 @@
 package it.unibo.objectmon.api.data.aspect;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *Aspect correspond to Pokémon's Type. Each aspect has an id and a name
  */
@@ -31,7 +28,7 @@ public enum Aspect {
     /**
      * Aspect of Poison.
      */
-    POISON(5, "Posion"),
+    POISON(5, "Poison"),
     /**
      * Aspect of Ground.
      */
@@ -49,12 +46,32 @@ public enum Aspect {
      */
     BUG(9, "Bug");
 
-    private final Map<Integer, String> aspect = new HashMap<>();
-    /*
-    private static final double NEUTRAL_VALUE = 1.0;
-    private static final double SAME_ASPECT_BONUS = 1.5;
-    */
+    private final int aspectId;
+    private final String aspectName;
+
+    /**
+     *
+     * @param id Id of the aspect.
+     * @param name Name of the aspect.
+     */
     Aspect(final int id, final String name) {
-        this.aspect.put(id, name);
+        this.aspectId = id;
+        this.aspectName = name;
+    }
+
+    /**
+     *
+     * @return Returns the id of the Aspect.
+     */
+    public int getAspectId() {
+        return this.aspectId;
+    }
+
+    /**
+     *
+     * @return Returns the name of the Aspect.
+     */
+    public String getAspectName() {
+        return this.aspectName;
     }
 }
