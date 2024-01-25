@@ -3,7 +3,6 @@ package it.unibo.objectmon.view;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -15,7 +14,6 @@ import java.util.logging.Logger;
 public final class ImageLoader {
     private final Map<String, BufferedImage> images;
     private final Logger logger = Logger.getLogger("TextureLoader");
-
     /**
      * Creates a new texture loader.
      */

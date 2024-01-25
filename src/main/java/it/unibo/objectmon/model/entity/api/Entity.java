@@ -17,4 +17,14 @@ public interface Entity {
      * @return entity's name.
      */
     String getName();
+    /**
+     * 
+     * @return the direction the entity is facing.
+     */
+    Direction getFacingDirection();
+    /**
+     * 
+     * @param facingDirection the direction towards which the entity is looking.
+     */
+    void setFacingDirection(Direction facingDirection);
 }

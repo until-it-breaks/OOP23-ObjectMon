@@ -6,6 +6,7 @@ public class EntityImpl implements Entity {
 
     private final String name;
     private Coord position;
+    private Direction facingDirection;
     /**
      * Builds a basic player character.
      * 
@@ -16,6 +17,7 @@ public class EntityImpl implements Entity {
     public EntityImpl(final String name, final Coord coord) {
         this.name = name;
         this.position = coord;
+        this.facingDirection = Direction.DOWN;
     }
     @Override
     public void setPosition(final Coord coord) {
@@ -28,5 +30,13 @@ public class EntityImpl implements Entity {
     @Override
     public String getName() {
         return this.name;
+    }
+    @Override
+    public Direction getFacingDirection() {
+        return facingDirection;
+    }
+    @Override
+    public void setFacingDirection(Direction facingDirection) {
+        this.facingDirection = facingDirection;
     }
 }

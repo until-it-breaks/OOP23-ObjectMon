@@ -1,13 +1,14 @@
 package it.unibo.objectmon.view;
 
-
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
-
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.Npc;
+import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.world.Coord;
 /**
  * The panel responsible for drawing the world in exploration mode.
@@ -31,13 +32,16 @@ public final class OverWorldView extends JPanel {
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        drawWorld(g);
-        drawNPCs(g);
-        drawPlayer(g);
+        Graphics2D graphics2d = (Graphics2D) g;
+        RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+        graphics2d.setRenderingHints(renderingHints);
+        drawWorld(graphics2d);
+        drawNPCs(graphics2d);
+        drawPlayer(graphics2d);
         g.dispose();
     }
 
-    private void drawNPCs(Graphics g) {
+    private void drawNPCs(Graphics2D g) {
         for (Npc npc : controller.getEntities()) {
             BufferedImage image;
             switch (npc.getNpcType()) {
@@ -58,13 +62,31 @@ public final class OverWorldView extends JPanel {
         }
     }
 
-    private void drawPlayer(final Graphics g) {
-        final BufferedImage image = textureLoader.getImage("/player/player1.png");
-        final Coord playerPosition = controller.getPlayer().getPosition();
+    private void drawPlayer(final Graphics2D g) {
+        final BufferedImage image;
+        final Player player = controller.getPlayer();
+        final Coord playerPosition = player.getPosition();
+        final Direction playerDirection = player.getFacingDirection();
+        switch (playerDirection) {
+            case UP:
+                image = textureLoader.getImage("/player/playerUp.png");
+                break;
+            case DOWN:
+                image = textureLoader.getImage("/player/playerDown.png");
+                break;
+            case LEFT:
+                image = textureLoader.getImage("/player/playerLeft.png");
+                break;
+            case RIGHT:
+                image = textureLoader.getImage("/player/playerRight.png");
+                break;
+            default:
+                throw new IllegalStateException();
+        }
         g.drawImage(image, playerPosition.y() * TILE_SIZE, playerPosition.x() * TILE_SIZE, null);
     }
 
-    private void drawWorld(final Graphics g) {
+    private void drawWorld(final Graphics2D g) {
         for (final var entry : controller.getMap().entrySet()) {
             final BufferedImage image = textureLoader.getImage(entry.getValue().getImagePath());
             g.drawImage(image, entry.getKey().y() * TILE_SIZE, entry.getKey().x() * TILE_SIZE, null);

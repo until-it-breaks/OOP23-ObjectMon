@@ -1,5 +1,4 @@
 package it.unibo.objectmon.model.entity.api;
-
 /**
  * Represents a player with basic movement functions.
  */
@@ -20,6 +19,4 @@ public interface Player extends Entity {
      * Moves the player right.
      */
     void moveRight();
-    
-    void interact();
 }

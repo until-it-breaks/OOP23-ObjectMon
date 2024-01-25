@@ -4,11 +4,9 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.Map;
-
 import it.unibo.objectmon.controller.commands.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.entity.api.Entity;
 import it.unibo.objectmon.model.entity.api.Npc;
 import it.unibo.objectmon.model.entity.player.PlayerImpl;
 import it.unibo.objectmon.model.world.Coord;
@@ -19,12 +17,10 @@ import it.unibo.objectmon.view.View;
  */
 public final class Controller {
 
-    private static final int COMMAND_LIMIT = 64;
-
+    private static final int COMMAND_LIMIT = 16;
     private final Queue<Command> commandQueue;
     private final Model model;
     private final View view;
-
     /**
      * 
      * @param model the model from which information is retrieved.
@@ -66,7 +62,6 @@ public final class Controller {
     public Command pollCommand() {
         return this.commandQueue.poll();
     }
-
     /**
      * Starts the game.
      */

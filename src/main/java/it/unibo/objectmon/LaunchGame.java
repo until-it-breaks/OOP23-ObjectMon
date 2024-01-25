@@ -15,7 +15,6 @@ public final class LaunchGame {
      * @param args does nothing
      */
     public static void main(final String[] args) {
-
         final Model model = new Model();
         final View view = new View();
         final Controller controller = new Controller(model, view);

@@ -2,7 +2,6 @@ package it.unibo.objectmon.view;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
-
 import it.unibo.objectmon.controller.Controller;
 
 /**

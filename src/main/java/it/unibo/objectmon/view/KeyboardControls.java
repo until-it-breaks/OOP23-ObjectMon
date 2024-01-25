@@ -2,7 +2,6 @@ package it.unibo.objectmon.view;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.Interact;
 import it.unibo.objectmon.controller.commands.MoveDown;
