@@ -8,8 +8,9 @@ import java.util.Map;
 import it.unibo.objectmon.controller.commands.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.entities.Entity;
-import it.unibo.objectmon.model.entities.player.PlayerImpl;
+import it.unibo.objectmon.model.entity.api.Entity;
+import it.unibo.objectmon.model.entity.api.Npc;
+import it.unibo.objectmon.model.entity.player.PlayerImpl;
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.Tile;
 import it.unibo.objectmon.view.View;
@@ -41,7 +42,7 @@ public final class Controller {
     public void notifyCommand(final Command command) {
         this.commandQueue.add(command);
     }
-    public Set<Entity> getEntities() {
+    public Set<Npc> getEntities() {
         return model.getEntities();
     }
     /**

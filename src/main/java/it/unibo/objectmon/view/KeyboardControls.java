@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.controller.commands.Interact;
 import it.unibo.objectmon.controller.commands.MoveDown;
 import it.unibo.objectmon.controller.commands.MoveLeft;
 import it.unibo.objectmon.controller.commands.MoveRight;
@@ -40,6 +41,8 @@ public final class KeyboardControls implements KeyListener {
             controller.notifyCommand(new MoveDown());
         } else if (keyCode == KeyEvent.VK_D) {
             controller.notifyCommand(new MoveRight());
+        } else if (keyCode == KeyEvent.VK_J) {
+            controller.notifyCommand(new Interact());
         }
     }
 

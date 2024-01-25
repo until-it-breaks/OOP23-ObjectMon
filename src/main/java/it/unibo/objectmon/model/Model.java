@@ -1,9 +1,12 @@
 package it.unibo.objectmon.model;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import it.unibo.objectmon.model.entity.api.Entity;
+import it.unibo.objectmon.model.entity.api.Npc;
+import it.unibo.objectmon.model.entity.api.NpcType;
+import it.unibo.objectmon.model.entity.npc.NpcImpl;
 import it.unibo.objectmon.model.entity.player.PlayerImpl;
+import it.unibo.objectmon.model.interaction.InteractionManager;
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.World;
 
@@ -13,7 +16,8 @@ import it.unibo.objectmon.model.world.World;
 public final class Model {
     private World world;
     private PlayerImpl player;
-    private Set<Entity> npcs;
+    private Set<Npc> npcs;
+    private InteractionManager interactionManager;
     /**
      * Creates a world with entities and environment.
      */
@@ -24,10 +28,11 @@ public final class Model {
     private void init() {
         this.world = new World();
         this.player = new PlayerImpl("Player", new Coord(world.getWidth() / 2, world.getHeight() / 2));
-        // this.npcs = new HashSet<>();
-        // this.npcs.add(new MedicImpl("medic1", new Coord(1, 4)));
-        // this.npcs.add(new TrainerImpl("trainer1", new Coord(10, 10)));
-        // this.npcs.add(new TraderImpl("trader1", new Coord(0, 0)));
+        this.npcs = new HashSet<>();
+        this.npcs.add(new NpcImpl("Bob", NpcType.TRADER, new Coord(5, 5)));
+        this.npcs.add(new NpcImpl("Madness", NpcType.HEALER, new Coord(8,8)));
+        this.npcs.add(new NpcImpl("Frenchman", NpcType.TRAINER, new Coord(1, 1)));
+        this.interactionManager = new InteractionManager();
     }
     /**
      * 
@@ -44,7 +49,11 @@ public final class Model {
         return player;
     }
 
-    public Set<Entity> getEntities() {
+    public Set<Npc> getEntities() {
         return this.npcs;
+    }
+
+    public InteractionManager getInteractionManager() {
+        return this.interactionManager;
     }
 }

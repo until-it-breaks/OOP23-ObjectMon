@@ -1,7 +1,7 @@
 package it.unibo.objectmon.controller.commands;
 
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.entities.player.Player;
+import it.unibo.objectmon.model.entity.api.Player;
 
 /**
  * Moves the player right by one unit.

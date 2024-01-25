@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.interaction;
 
-import it.unibo.objectmon.model.entity.player.PlayerImpl;
+import it.unibo.objectmon.model.entity.api.Player;
 
 public interface InteractionHandler {
-    void handleInteraction(PlayerImpl player);
+    void handleInteraction(Player player);
 }

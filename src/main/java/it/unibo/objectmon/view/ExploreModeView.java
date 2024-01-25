@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.model.entities.Entity;
+import it.unibo.objectmon.model.entity.api.Npc;
 import it.unibo.objectmon.model.world.Coord;
 /**
  * The panel responsible for drawing the world in exploration mode.
@@ -38,8 +38,22 @@ public final class ExploreModeView extends JPanel {
     }
 
     private void drawNPCs(Graphics g) {
-        final BufferedImage image = textureLoader.getImage("/npc/medic.png");
-        for (Entity npc : controller.getEntities()) {
+        for (Npc npc : controller.getEntities()) {
+            BufferedImage image;
+            switch (npc.getNpcType()) {
+                case TRADER:
+                    image = textureLoader.getImage("/npc/vendor.png");
+                    break;
+                case HEALER:
+                    image = textureLoader.getImage("/npc/medic.png");
+                    break;
+                case TRAINER:
+                    image = textureLoader.getImage("/npc/trainer.png");
+                break;
+                default:
+                    image = textureLoader.getImage("lol");
+                    break;
+            }
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
         }
     }

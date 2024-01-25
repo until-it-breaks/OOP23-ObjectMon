@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entities;
+package it.unibo.objectmon.model.entity.api;
 
 import it.unibo.objectmon.model.world.Coord;
 

@@ -1,9 +1,8 @@
 package it.unibo.objectmon.model.entity.api;
 
-import it.unibo.objectmon.model.entity.player.PlayerImpl;
+public interface Npc extends Entity{
 
-public interface Npc {
+    void handleInteraction(Player player);
 
-    void handleInteraction(PlayerImpl player);
-
+    NpcType getNpcType();
 }

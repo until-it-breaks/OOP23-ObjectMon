@@ -3,7 +3,7 @@ package it.unibo.objectmon.model.entity.api;
 /**
  * Represents a player with basic movement functions.
  */
-public interface Player {
+public interface Player extends Entity {
     /**
      * Moves the player up.
      */
