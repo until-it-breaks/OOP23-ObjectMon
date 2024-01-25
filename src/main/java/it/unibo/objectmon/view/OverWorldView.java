@@ -12,7 +12,7 @@ import it.unibo.objectmon.model.world.Coord;
 /**
  * The panel responsible for drawing the world in exploration mode.
  */
-public final class ExploreModeView extends JPanel {
+public final class OverWorldView extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
@@ -22,7 +22,7 @@ public final class ExploreModeView extends JPanel {
      * 
      * @param controller the controller to be attached.
      */
-    public ExploreModeView(final Controller controller) {
+    public OverWorldView(final Controller controller) {
         this.controller = controller;
         this.textureLoader = new ImageLoader();
         this.addKeyListener(new KeyboardControls(controller));
@@ -45,13 +45,13 @@ public final class ExploreModeView extends JPanel {
                     image = textureLoader.getImage("/npc/vendor.png");
                     break;
                 case HEALER:
-                    image = textureLoader.getImage("/npc/medic.png");
+                    image = textureLoader.getImage("/npc/doctor.png");
                     break;
                 case TRAINER:
                     image = textureLoader.getImage("/npc/trainer.png");
                 break;
                 default:
-                    image = textureLoader.getImage("lol");
+                    image = textureLoader.getImage("/npc/default.png");
                     break;
             }
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);

@@ -34,6 +34,6 @@ public final class View {
      * @param controller the controller that will receive inputs
      */
     public void build(final Controller controller) {
-        this.frame.add(new ExploreModeView(controller));
+        this.frame.add(new OverWorldView(controller));
     }
 }

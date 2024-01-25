@@ -32,6 +32,7 @@ public final class Model {
         this.npcs.add(new NpcImpl("Bob", NpcType.TRADER, new Coord(5, 5)));
         this.npcs.add(new NpcImpl("Madness", NpcType.HEALER, new Coord(8,8)));
         this.npcs.add(new NpcImpl("Frenchman", NpcType.TRAINER, new Coord(1, 1)));
+        this.npcs.add(new NpcImpl("Mr.Generic", NpcType.GENERIC, new Coord(1, 2)));
         this.interactionManager = new InteractionManager();
     }
     /**
