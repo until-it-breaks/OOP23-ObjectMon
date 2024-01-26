@@ -9,7 +9,5 @@ public class RunAway implements Move {
 
     @Override
     public void action() {
-        
     }
-    
 }
