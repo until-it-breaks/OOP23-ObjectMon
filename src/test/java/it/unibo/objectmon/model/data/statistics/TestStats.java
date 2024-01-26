@@ -22,14 +22,15 @@ class TestStats {
         StatId.SPD, 50
     );
 
-    private static final Map<StatId, Integer> GROWSTATS = Map.of(
-        StatId.HP, 10,
-        StatId.ATK, 20,
-        StatId.DEF, 30,
-        StatId.SPATK, 40,
-        StatId.SPDEF, 50,
+    private static final Map<StatId, Integer> NEWSTATS = Map.of(
+        StatId.HP, 60,
+        StatId.ATK, 60,
+        StatId.DEF, 60,
+        StatId.SPATK, 60,
+        StatId.SPDEF, 60,
         StatId.SPD, 60
     );
+
     private final BaseStats base = new BaseStats(STATS);
 
     /**
@@ -47,9 +48,9 @@ class TestStats {
 
         //ActualStats test
         ActualStats growStats = new ActualStats(STATS);
-        growStats = growStats.growAllStats(GROWSTATS);
+        growStats = growStats.growAllStats();
         growStats.getStats().forEach((id, stat) -> {
-            assertEquals(STATS.get(id) + GROWSTATS.get(id), stat);
+            assertEquals(NEWSTATS.get(id), stat);
         });
     }
 }

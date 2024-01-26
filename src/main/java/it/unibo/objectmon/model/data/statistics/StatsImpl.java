@@ -9,7 +9,7 @@ import it.unibo.objectmon.api.data.statistics.Stats;
 /**
  * Abstract class that implements Stats. Used because the classes BaseStats and ActualStats share a lot of similarities.
  */
-public abstract class StatsImmutableImpl implements Stats {
+public abstract class StatsImpl implements Stats {
 
     /**
      *  A Map containing all the battle relevant stats of the Objectmon.
@@ -20,7 +20,7 @@ public abstract class StatsImmutableImpl implements Stats {
      * Constructor of the class.
      * @param stats Map of all the stats.
      */
-    public StatsImmutableImpl(final Map<StatId, Integer> stats) {
+    public StatsImpl(final Map<StatId, Integer> stats) {
         this.stats.put(StatId.HP, stats.get(StatId.HP));
         this.stats.put(StatId.ATK, stats.get(StatId.ATK));
         this.stats.put(StatId.DEF, stats.get(StatId.DEF));
