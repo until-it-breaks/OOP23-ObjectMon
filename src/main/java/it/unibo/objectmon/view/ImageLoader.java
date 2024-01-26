@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 public final class ImageLoader {
     private final Map<String, BufferedImage> images;
-    private final Logger logger = Logger.getLogger("TextureLoader");
+    private final Logger logger = Logger.getLogger(ImageLoader.class.getName());
     /**
      * Creates a new texture loader.
      */

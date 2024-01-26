@@ -6,39 +6,47 @@ import it.unibo.objectmon.model.entity.api.NpcType;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.interaction.BattleHandler;
 import it.unibo.objectmon.model.interaction.HealHandler;
-import it.unibo.objectmon.model.interaction.InteractionHandler;
 import it.unibo.objectmon.model.interaction.TradeHandler;
+import it.unibo.objectmon.model.interaction.api.InteractionHandler;
 import it.unibo.objectmon.model.world.Coord;
-
-public class NpcImpl extends EntityImpl implements Npc {
-    private NpcType npcType;
-    private InteractionHandler interactionHandler;
-
-    public NpcImpl(String name, NpcType npcType, Coord coord) {
+import java.util.Optional;
+/**
+ * Models an npc with a behaviour that can be triggered on interaction.
+ */
+public final class NpcImpl extends EntityImpl implements Npc {
+    private final NpcType npcType;
+    private final Optional<InteractionHandler> interactionHandler;
+    /**
+     * Creates an npc and assigns its {@link InteractionHandler} based on its {@link npcType}.
+     * @param name
+     * @param npcType
+     * @param coord
+     */
+    public NpcImpl(final String name, final Coord coord, final NpcType npcType) {
         super(name, coord);
         this.npcType = npcType;
         switch (npcType) {
             case TRADER:
-                this.interactionHandler = new TradeHandler();
+                this.interactionHandler = Optional.of(new TradeHandler());
                 break;
             case HEALER:
-                this.interactionHandler = new HealHandler();
+                this.interactionHandler = Optional.of(new HealHandler());
                 break;
             case TRAINER:
-                this.interactionHandler = new BattleHandler();
+                this.interactionHandler = Optional.of(new BattleHandler());
                 break;
             default:
+                this.interactionHandler = Optional.empty();
                 break;
         }
     }
-    
     @Override
-    public void handleInteraction(Player player) {
-        if (this.interactionHandler != null) {
-            interactionHandler.handleInteraction(player);
+    public void handleInteraction(final Player player) {
+        if (this.interactionHandler.isPresent()) {
+            this.interactionHandler.get().handleInteraction(player);
         }
     }
-
+    @Override
     public NpcType getNpcType() {
         return this.npcType;
     }

@@ -8,7 +8,7 @@ import it.unibo.objectmon.controller.commands.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.entity.api.Npc;
-import it.unibo.objectmon.model.entity.player.PlayerImpl;
+import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.Tile;
 import it.unibo.objectmon.view.View;
@@ -38,14 +38,17 @@ public final class Controller {
     public void notifyCommand(final Command command) {
         this.commandQueue.add(command);
     }
-    public Set<Npc> getEntities() {
-        return model.getEntities();
+    /**
+     * @return the a set of npcs in the game.
+     */
+    public Set<Npc> getNpcs() {
+        return model.getNpcs();
     }
     /**
      * Returns the {@Player}.
      * @return the player.
      */
-    public PlayerImpl getPlayer() {
+    public Player getPlayer() {
         return model.getPlayer();
     }
     /**

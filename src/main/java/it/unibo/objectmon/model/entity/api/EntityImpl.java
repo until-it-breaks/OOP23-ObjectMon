@@ -1,18 +1,18 @@
 package it.unibo.objectmon.model.entity.api;
 
 import it.unibo.objectmon.model.world.Coord;
-
+/**
+ * A basic implementation of a game entity.
+ */
 public class EntityImpl implements Entity {
 
     private final String name;
     private Coord position;
     private Direction facingDirection;
     /**
-     * Builds a basic player character.
-     * 
-     * @param name the player's name
-     * @param x the player's x position
-     * @param y the player's y position
+     * Builds a simple entity.
+     * @param name the name of the entity.
+     * @param coord the starting position of the entity.
      */
     public EntityImpl(final String name, final Coord coord) {
         this.name = name;
@@ -20,23 +20,23 @@ public class EntityImpl implements Entity {
         this.facingDirection = Direction.DOWN;
     }
     @Override
-    public void setPosition(final Coord coord) {
+    public final void setPosition(final Coord coord) {
         this.position = coord;
     }
     @Override
-    public Coord getPosition() {
+    public final Coord getPosition() {
         return this.position;
     }
     @Override
-    public String getName() {
+    public final String getName() {
         return this.name;
     }
     @Override
-    public Direction getFacingDirection() {
+    public final Direction getDirection() {
         return facingDirection;
     }
     @Override
-    public void setFacingDirection(Direction facingDirection) {
+    public final void setDirection(final Direction facingDirection) {
         this.facingDirection = facingDirection;
     }
 }

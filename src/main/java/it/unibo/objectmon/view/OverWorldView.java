@@ -32,17 +32,22 @@ public final class OverWorldView extends JPanel {
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        Graphics2D graphics2d = (Graphics2D) g;
-        RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
-        graphics2d.setRenderingHints(renderingHints);
-        drawWorld(graphics2d);
-        drawNPCs(graphics2d);
-        drawPlayer(graphics2d);
-        g.dispose();
+        if (g instanceof Graphics2D) {
+            final Graphics2D graphics2d = (Graphics2D) g;
+            final RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_RENDERING, 
+            RenderingHints.VALUE_RENDER_SPEED);
+            graphics2d.setRenderingHints(renderingHints);
+            drawWorld(graphics2d);
+            drawNPCs(graphics2d);
+            drawPlayer(graphics2d);
+            graphics2d.dispose();
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private void drawNPCs(Graphics2D g) {
-        for (Npc npc : controller.getEntities()) {
+    private void drawNPCs(final Graphics2D g) {
+        for (final Npc npc : controller.getNpcs()) {
             BufferedImage image;
             switch (npc.getNpcType()) {
                 case TRADER:
@@ -65,8 +70,7 @@ public final class OverWorldView extends JPanel {
     private void drawPlayer(final Graphics2D g) {
         final BufferedImage image;
         final Player player = controller.getPlayer();
-        final Coord playerPosition = player.getPosition();
-        final Direction playerDirection = player.getFacingDirection();
+        final Direction playerDirection = player.getDirection();
         switch (playerDirection) {
             case UP:
                 image = textureLoader.getImage("/player/playerUp.png");
@@ -83,6 +87,7 @@ public final class OverWorldView extends JPanel {
             default:
                 throw new IllegalStateException();
         }
+        final Coord playerPosition = player.getPosition();
         g.drawImage(image, playerPosition.y() * TILE_SIZE, playerPosition.x() * TILE_SIZE, null);
     }
 

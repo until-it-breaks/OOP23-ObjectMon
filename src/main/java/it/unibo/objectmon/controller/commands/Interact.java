@@ -1,12 +1,12 @@
 package it.unibo.objectmon.controller.commands;
 
 import it.unibo.objectmon.model.Model;
-
-public class Interact implements Command {
-
+/**
+ * Calls for an interaction check.
+ */
+public final class Interact implements Command {
     @Override
-    public void execute(Model model) {
-        model.getInteractionManager().triggerInteraction(model.getEntities(), model.getPlayer());
+    public void execute(final Model model) {
+        model.getInteractionManager().triggerInteraction(model.getNpcs(), model.getPlayer());
     }
-    
 }

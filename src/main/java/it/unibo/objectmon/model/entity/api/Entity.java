@@ -6,25 +6,25 @@ import it.unibo.objectmon.model.world.Coord;
  */
 public interface Entity {
     /**
-     * Sets the entity position.
+     * Sets the entity's position.
+     * @param coord the next position.
      */
-    void setPosition(final Coord coord);
+    void setPosition(Coord coord);
     /**
-     * @return entity position.
+     * @return the entity's current position.
      */
     Coord getPosition();
     /**
-     * @return entity's name.
+     * @return the entity's name.
      */
     String getName();
     /**
-     * 
-     * @return the direction the entity is facing.
+     * @return the direction the entity is currently facing at.
      */
-    Direction getFacingDirection();
+    Direction getDirection();
     /**
-     * 
-     * @param facingDirection the direction towards which the entity is looking.
+     * Sets the position the entity is facing towards.
+     * @param direction the next direction towards which the entity is facing at.
      */
-    void setFacingDirection(Direction facingDirection);
+    void setDirection(Direction direction);
 }
