@@ -1,4 +1,4 @@
-package it.unibo.objectmon.api.data;
+package it.unibo.objectmon.api.data.objectmon;
 
 import it.unibo.objectmon.api.data.aspect.Aspect;
 import it.unibo.objectmon.api.data.skill.Skill;
