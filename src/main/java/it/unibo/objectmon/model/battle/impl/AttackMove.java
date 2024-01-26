@@ -1,6 +1,7 @@
 package it.unibo.objectmon.model.battle.impl;
 
-import it.unibo.objectmon.api.data.Objectmon;
+
+import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.api.data.skill.PotencyChart;
 import it.unibo.objectmon.api.data.skill.Skill;
 import it.unibo.objectmon.model.battle.api.Move;
