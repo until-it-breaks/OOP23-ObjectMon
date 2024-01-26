@@ -50,7 +50,7 @@ public enum Potency {
      *
      * @return Returns the multiplier of the Potency.
      */
-    protected final double getMultiplier() {
+    public final double getMultiplier() {
         return this.multiplier;
     }
 }

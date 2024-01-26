@@ -42,8 +42,6 @@ public class Skill {
      *  the Skill will fail.
      * @param maxUses   Determines how many times the move can be used it total.
      *  Can't be 0 or negative.
-     * @param currentUses   Determines how many times the move can be used.
-     *  Can be 0, can't go negative.
      * @param category Category of a skill {@see SkillCategory#getCategory()}.
      */
     public Skill(
@@ -53,7 +51,6 @@ public class Skill {
         final int basePower,
         final int accuracy,
         final int maxUses,
-        final int currentUses,
         final SkillCategory category
         ) {
         this.name = name;
@@ -62,7 +59,7 @@ public class Skill {
         this.basePower = basePower;
         this.accuracy = accuracy;
         this.maxUses = maxUses;
-        this.currentUses = currentUses;
+        this.currentUses = this.maxUses;
         this.category = category;
     }
 
@@ -74,7 +71,7 @@ public class Skill {
         return this.id;
     }
 
-    /** 
+    /**
      * @return Returns the Aspect of an Objectmon.
      * {@see #it.unibo.objectmon.data.skill.SkillStrenght}
      */
@@ -93,7 +90,7 @@ public class Skill {
     /**
      *
      * @return Returns the Base power of the Skill.
-     * The base power is the damage a Skill would do before 
+     * The base power is the damage a Skill would do before
      * adding the user's Atk/SpAtk against
      * the opposing Objectmon's Def/SpDef.
      */
@@ -134,7 +131,7 @@ public class Skill {
      * If it's PHYS then :
      * Skill will use the user's Atk and the Def of the target Objectmon.
      * If it's SPEC then:
-     * Skill will use the user's SpAtk and the SpDef of the target Objectmon. 
+     * Skill will use the user's SpAtk and the SpDef of the target Objectmon.
      * {@see #it.unibo.objectmon.api.data.skill.SkillCategory}
      */
     public SkillCategory getCategory() {
@@ -150,9 +147,10 @@ public class Skill {
 
     /**
      *  Subtracts from Current uses one use.
-     *  A check (CurrentUses > 0) needs to be done before using this method. 
      */
     public void subtractCurrentUses() {
-        this.currentUses--;
+        if (getCurrentUses() > 0) {
+            this.currentUses--;
+        }
     }
 }

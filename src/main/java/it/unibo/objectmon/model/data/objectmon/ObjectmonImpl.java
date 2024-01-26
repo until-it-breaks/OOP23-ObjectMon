@@ -1,9 +1,9 @@
-package it.unibo.objectmon.model.data;
+package it.unibo.objectmon.model.data.objectmon;
 
 import java.util.List;
 
-import it.unibo.objectmon.api.data.Objectmon;
 import it.unibo.objectmon.api.data.aspect.Aspect;
+import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.api.data.skill.Skill;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 
