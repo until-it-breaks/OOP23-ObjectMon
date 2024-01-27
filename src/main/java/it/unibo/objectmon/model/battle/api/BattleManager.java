@@ -41,6 +41,11 @@ public interface BattleManager<T, O> {
      */
     Result getResult();
     /**
+     * 
+     * @return current stats of the battle
+     */
+    BattleState<T, O> getBattleState();
+    /**
      * @return true if the battle isOver
      */
     boolean isOver();

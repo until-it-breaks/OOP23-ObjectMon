@@ -1,11 +1,14 @@
 package it.unibo.objectmon.model.battle.api;
+
+import it.unibo.objectmon.api.data.objectmon.Objectmon;
 /**
  * A battle between a player and a npc fighter or wild ObjectMon.
+ * @param <T> is an entity of fighter.
  */
-public interface Battle { 
+public interface Battle<T> { 
     /**
      * 
-     * @return if fighter win the battle or not.
+     * @return if player win the battle or not.
      */
     boolean isWin();
 
@@ -15,8 +18,18 @@ public interface Battle {
      */
     Move getMove();
     /**
-     * 
+     * @param fighter a fighter who execute the move
      * @param move a move that going to be executed.
      */
-    void setMove(Move move);
+    void setMove(T fighter, Move move);
+    /**
+     * 
+     * @return get current objectmon 
+     */
+    Objectmon getCurrentObjectmon();
+    /**
+     * 
+     * @return get current enemy objectmon 
+     */
+    Objectmon getEnemyObjectmon();
 }
