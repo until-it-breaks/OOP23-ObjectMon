@@ -14,7 +14,6 @@ public interface Battle {
      * @return get the last move of the battle
      */
     Move getMove();
-
     /**
      * 
      * @param move a move that going to be executed.

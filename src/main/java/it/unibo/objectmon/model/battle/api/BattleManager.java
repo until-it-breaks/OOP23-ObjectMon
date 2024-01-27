@@ -32,7 +32,10 @@ public interface BattleManager<T, O> {
      * @param objectMon it is wild objectMon, if player meet a fighter, then objectMon should be empty
      */
     void startBattle(T player, Optional<T> enemy, Optional<O> objectMon);
-
+    /**
+     * start a new turn.
+     */
+    void startTurn();
     /**
      * @return the result of the battle
      */
