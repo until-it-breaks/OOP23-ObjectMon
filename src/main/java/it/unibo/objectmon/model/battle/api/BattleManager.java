@@ -18,7 +18,11 @@ public interface BattleManager<T, O> {
         /**
          * Represents the result of losing the battle.
          */
-        LOSE
+        LOSE,
+        /**
+         * Represents the battle has not finished.
+         */
+        IN_BATTLE
     }
 
     /**
@@ -33,4 +37,8 @@ public interface BattleManager<T, O> {
      * @return the result of the battle
      */
     Result getResult();
+    /**
+     * @return true if the battle isOver
+     */
+    boolean isOver();
 }
