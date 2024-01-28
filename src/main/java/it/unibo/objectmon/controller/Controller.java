@@ -1,16 +1,11 @@
 package it.unibo.objectmon.controller;
 
 import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.Map;
 import it.unibo.objectmon.controller.commands.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
+import it.unibo.objectmon.model.GameManager;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.entity.api.Npc;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.world.Coord;
-import it.unibo.objectmon.model.world.Tile;
 import it.unibo.objectmon.view.View;
 /**
  * Models the controller of the application.
@@ -39,24 +34,11 @@ public final class Controller {
         this.commandQueue.add(command);
     }
     /**
-     * @return the a set of npcs in the game.
+     * 
+     * @return the game manager.
      */
-    public Set<Npc> getNpcs() {
-        return model.getNpcs();
-    }
-    /**
-     * Returns the {@Player}.
-     * @return the player.
-     */
-    public Player getPlayer() {
-        return model.getPlayer();
-    }
-    /**
-     * Returns the world map.
-     * @return the world map.
-     */
-    public Map<Coord, Tile> getMap() {
-        return model.getWorld().getMap();
+    public GameManager getGameManager() {
+        return model.getGameManager();
     }
     /**
      * Polls a command.

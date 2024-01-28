@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.Npc;
-import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.world.Coord;
 /**
  * The panel responsible for drawing the world in exploration mode.
@@ -47,7 +46,7 @@ public final class OverWorldView extends JPanel {
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final Npc npc : controller.getNpcs()) {
+        for (final Npc npc : controller.getGameManager().getNpcs()) {
             BufferedImage image;
             switch (npc.getNpcType()) {
                 case TRADER:
@@ -69,8 +68,7 @@ public final class OverWorldView extends JPanel {
 
     private void drawPlayer(final Graphics2D g) {
         final BufferedImage image;
-        final Player player = controller.getPlayer();
-        final Direction playerDirection = player.getDirection();
+        final Direction playerDirection = controller.getGameManager().getPlayerManager().getDirection();
         switch (playerDirection) {
             case UP:
                 image = textureLoader.getImage("/player/playerUp.png");
@@ -87,12 +85,12 @@ public final class OverWorldView extends JPanel {
             default:
                 throw new IllegalStateException();
         }
-        final Coord playerPosition = player.getPosition();
+        final Coord playerPosition = controller.getGameManager().getPlayerManager().getPosition();
         g.drawImage(image, playerPosition.y() * TILE_SIZE, playerPosition.x() * TILE_SIZE, null);
     }
 
     private void drawWorld(final Graphics2D g) {
-        for (final var entry : controller.getMap().entrySet()) {
+        for (final var entry : controller.getGameManager().getWorld().getMap().entrySet()) {
             final BufferedImage image = textureLoader.getImage(entry.getValue().getImagePath());
             g.drawImage(image, entry.getKey().y() * TILE_SIZE, entry.getKey().x() * TILE_SIZE, null);
         }
