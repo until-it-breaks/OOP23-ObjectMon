@@ -11,7 +11,7 @@ import it.unibo.objectmon.view.View;
  * A basic implementation of a game loop.
  */
 public class GameLoop {
-    private static final long PERIOD = 20;
+    private static final long PERIOD = 16;
 
     private final Logger logger = Logger.getLogger("GameLoop");
     private final Model model;

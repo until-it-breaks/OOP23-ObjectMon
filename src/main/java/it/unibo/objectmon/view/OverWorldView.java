@@ -1,5 +1,6 @@
 package it.unibo.objectmon.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -8,7 +9,6 @@ import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.Npc;
-import it.unibo.objectmon.model.world.Coord;
 /**
  * The panel responsible for drawing the world in exploration mode.
  */
@@ -18,11 +18,12 @@ public final class OverWorldView extends JPanel {
     private final transient Controller controller;
     private final transient ImageLoader textureLoader;
     /**
-     * Creates a new ExplorerView.
-     * 
+     * Creates a new OverWorld view.
      * @param controller the controller to be attached.
      */
     public OverWorldView(final Controller controller) {
+        this.setDoubleBuffered(true);
+        this.setBackground(Color.BLACK);
         this.controller = controller;
         this.textureLoader = new ImageLoader();
         this.addKeyListener(new KeyboardControls(controller));
@@ -36,6 +37,13 @@ public final class OverWorldView extends JPanel {
             final RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_RENDERING, 
             RenderingHints.VALUE_RENDER_SPEED);
             graphics2d.setRenderingHints(renderingHints);
+
+            final int playerX = controller.getGameManager().getPlayerManager().getPosition().x() * TILE_SIZE;
+            final int playerY = controller.getGameManager().getPlayerManager().getPosition().y() * TILE_SIZE;
+            final double cameraX = RenderingHelper.getScreenCenter().getWidth() - playerX;
+            final double cameraY = RenderingHelper.getScreenCenter().getHeight() - playerY;
+            graphics2d.translate(cameraX, cameraY);
+
             drawWorld(graphics2d);
             drawNPCs(graphics2d);
             drawPlayer(graphics2d);
@@ -62,7 +70,9 @@ public final class OverWorldView extends JPanel {
                     image = textureLoader.getImage("/npc/default.png");
                     break;
             }
-            g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
+            final int npcX = npc.getPosition().x();
+            final int npcY = npc.getPosition().y();
+            g.drawImage(image, npcX * TILE_SIZE, npcY * TILE_SIZE, null);
         }
     }
 
@@ -85,14 +95,17 @@ public final class OverWorldView extends JPanel {
             default:
                 throw new IllegalStateException();
         }
-        final Coord playerPosition = controller.getGameManager().getPlayerManager().getPosition();
-        g.drawImage(image, playerPosition.y() * TILE_SIZE, playerPosition.x() * TILE_SIZE, null);
+        final int x = controller.getGameManager().getPlayerManager().getPosition().x();
+        final int y = controller.getGameManager().getPlayerManager().getPosition().y();
+        g.drawImage(image, x * TILE_SIZE, y * TILE_SIZE, null);
     }
 
     private void drawWorld(final Graphics2D g) {
         for (final var entry : controller.getGameManager().getWorld().getMap().entrySet()) {
             final BufferedImage image = textureLoader.getImage(entry.getValue().getImagePath());
-            g.drawImage(image, entry.getKey().y() * TILE_SIZE, entry.getKey().x() * TILE_SIZE, null);
+            final int tileX = entry.getKey().x();
+            final int tileY = entry.getKey().y();
+            g.drawImage(image, tileX  * TILE_SIZE, tileY * TILE_SIZE, null);
         }
     }
 }

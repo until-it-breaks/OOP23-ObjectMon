@@ -13,7 +13,7 @@ public final class PlayerManager {
      * Creates a new player.
      */
     public PlayerManager() {
-        this.player = new PlayerImpl("player1", new Coord(1, 1));
+        this.player = new PlayerImpl("player1", new Coord(0, 0));
     }
     /**
      * Moves up.

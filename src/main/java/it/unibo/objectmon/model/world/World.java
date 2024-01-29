@@ -29,7 +29,7 @@ public final class World {
             for (int j = 0; j < mapData.getHeight(); j++) {
                 for (final Tile tile : tileSet.getTileAtlas()) {
                     if (tile.getId() == mapData.getData().get(i).get(j)) {
-                        map.put(new Coord(i, j), tile);
+                        map.put(new Coord(j, i), tile);
                         break;
                     }
                 }
