@@ -35,10 +35,10 @@ public enum AspectId {
     /**
      * Id of a Rock Aspect.
      */
-    ROCK
+    ROCK,
     /**
      * Id of a Fighting Aspect.
-     */,
+     */
     FIGHTING,
     /**
      * Id of a Bug Aspect.

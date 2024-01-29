@@ -3,7 +3,6 @@ package it.unibo.objectmon.model;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Collections;
-
 import it.unibo.objectmon.model.entity.api.Npc;
 import it.unibo.objectmon.model.entity.api.NpcType;
 import it.unibo.objectmon.model.entity.npc.NpcImpl;

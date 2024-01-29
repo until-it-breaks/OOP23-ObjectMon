@@ -1,13 +1,15 @@
-package it.unibo.objectmon.view;
+package it.unibo.objectmon.view.utility;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 /**
  * A helper class providing methods for rendering tasks.
  */
 public final class RenderingHelper {
     private RenderingHelper() {
     }
+
     /**
      * Retrieves the resolution of the default screen.
      * This method returns a Dimension object representing the width and height of the default screen in pixels.
@@ -16,6 +18,7 @@ public final class RenderingHelper {
     public static Dimension getResolution() {
         return Toolkit.getDefaultToolkit().getScreenSize();
     }
+
     /**
      * Retrieves the center coordinates of the default screen.
      * 

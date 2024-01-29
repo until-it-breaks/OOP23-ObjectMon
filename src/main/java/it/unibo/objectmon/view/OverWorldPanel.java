@@ -9,26 +9,41 @@ import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.Npc;
+import it.unibo.objectmon.view.controls.OverWorldControls;
+import it.unibo.objectmon.view.utility.ImageLoader;
+import it.unibo.objectmon.view.utility.ImageLoaderImpl;
+import it.unibo.objectmon.view.utility.RenderingHelper;
+
 /**
- * The panel responsible for drawing the world in exploration mode.
+ * A JPanel responsible for rendering the overworld environment and entities during exploration mode.
+ * This panel displays the game world, including the player character, NPCs, and terrain tiles,
+ * providing a visual representation of the game state to the user.
  */
-public final class OverWorldView extends JPanel {
+public final class OverWorldPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
     private final transient ImageLoader textureLoader;
+
     /**
-     * Creates a new OverWorld view.
-     * @param controller the controller to be attached.
+     * Constructs a new OverWorld panel, initializing its properties and attaching it to the provided controller.
+     * 
+     * @param controller the controller responsible for managing inputs and retrieving game data.
      */
-    public OverWorldView(final Controller controller) {
+    public OverWorldPanel(final Controller controller) {
         this.setDoubleBuffered(true);
         this.setBackground(Color.BLACK);
         this.controller = controller;
-        this.textureLoader = new ImageLoader();
-        this.addKeyListener(new KeyboardControls(controller));
+        this.textureLoader = new ImageLoaderImpl();
+        this.addKeyListener(new OverWorldControls(controller));
         this.setFocusable(true);
     }
+
+    /**
+     * This method is automatically invoked by Swing to redraw the panel when necessary.
+     * 
+     * @param g the Graphics context in which to paint.
+     */
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);

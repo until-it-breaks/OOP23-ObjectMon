@@ -18,9 +18,9 @@ public final class NpcImpl extends EntityImpl implements Npc {
     private final Optional<InteractionHandler> interactionHandler;
     /**
      * Creates an npc and assigns its {@link InteractionHandler} based on its {@link npcType}.
-     * @param name
-     * @param npcType
-     * @param coord
+     * @param name the npc name
+     * @param npcType the npc type
+     * @param coord the npc position
      */
     public NpcImpl(final String name, final Coord coord, final NpcType npcType) {
         super(name, coord);

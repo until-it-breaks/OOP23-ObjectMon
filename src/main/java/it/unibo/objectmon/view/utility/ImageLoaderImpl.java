@@ -1,4 +1,4 @@
-package it.unibo.objectmon.view;
+package it.unibo.objectmon.view.utility;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,22 +9,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Models a caching image loader.
+ * A class modeling a caching image loader.
  */
-public final class ImageLoader {
+public final class ImageLoaderImpl implements ImageLoader {
     private final Map<String, BufferedImage> images;
-    private final Logger logger = Logger.getLogger(ImageLoader.class.getName());
+    private final Logger logger = Logger.getLogger(ImageLoaderImpl.class.getName());
+
     /**
      * Creates a new texture loader.
      */
-    public ImageLoader() {
+    public ImageLoaderImpl() {
         this.images = new HashMap<>();
     }
+
     /**
-     * 
-     * @param path the path of the image to be loaded.
-     * @return the corresponding image.
+     * Retrieves an image from the cache or loads it from the resource folder.
+     * @param path The path of the image file to be loaded.
+     * @return The loaded image if successful, or null if the image could not be loaded.
      */
+    @Override
     public BufferedImage getImage(final String path) {
         if (images.containsKey(path)) {
             return images.get(path);

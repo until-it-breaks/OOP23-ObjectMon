@@ -6,7 +6,7 @@ import it.unibo.objectmon.controller.commands.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.model.GameManager;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.view.View;
+import it.unibo.objectmon.view.api.View;
 /**
  * Models the controller of the application.
  */
