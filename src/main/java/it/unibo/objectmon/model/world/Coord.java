@@ -1,13 +1,12 @@
 package it.unibo.objectmon.model.world;
 
 /**
- * A basic representation of a 2 dimensional coord.
- * 
- * @param x the x coordinate.
- * 
- * @param y the y coordinate.
+ * A basic representation of a two dimensional coordinate.
+ * @param x The x coordinate.
+ * @param y The y coordinate.
  */
 public record Coord(int x, int y) {
+
     @Override
     public int hashCode() {
         final int prime = 31;

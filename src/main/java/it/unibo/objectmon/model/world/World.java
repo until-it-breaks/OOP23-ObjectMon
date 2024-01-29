@@ -5,15 +5,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * A basic representation of the game environment.
+ * Represents the game environment, consisting of a grid of tiles.
+ * The World class initializes itself by loading tiles from a default file.
  */
 public final class World {
+
     private int width;
     private int height;
-
     private final Map<Coord, Tile> map;
+
     /**
-     * Creates a world with its tiles loaded from a default file.
+     * Constructs a new World object and initializes it by loading tiles from a default file.
      */
     public World() {
         map = new LinkedHashMap<>();
@@ -27,33 +29,34 @@ public final class World {
         this.height = mapData.getHeight();
         for (int i = 0; i < mapData.getWidth(); i++) {
             for (int j = 0; j < mapData.getHeight(); j++) {
-                for (final Tile tile : tileSet.getTileAtlas()) {
-                    if (tile.getId() == mapData.getData().get(i).get(j)) {
-                        map.put(new Coord(j, i), tile);
-                        break;
-                    }
+                final int tileId = mapData.getData().get(i).get(j);
+                final Tile tile = tileSet.getTileById(tileId);
+                if (tile != null) {
+                    map.put(new Coord(j, i), tile);
                 }
             }
         }
     }
 
     /**
-     * 
-     * @return an immutable list of tiles.
+     * Retrieves an immutable mapping of coordinates to tiles, representing the game world.
+     * @return An immutable map of coordinates to tiles.
      */
     public Map<Coord, Tile> getMap() {
         return Collections.unmodifiableMap(this.map);
     }
+
     /**
-     * 
-     * @return the world width.
+     * Retrieves the width of the game world grid.
+     * @return The width of the game world.
      */
     public int getWidth() {
         return width;
     }
+
     /**
-     * 
-     * @return the world height
+     * Retrieves the height of the game world grid.
+     * @return The height of the game world.
      */
     public int getHeight() {
         return height;
