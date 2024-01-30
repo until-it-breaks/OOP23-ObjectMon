@@ -18,7 +18,11 @@ public interface BattleManager<T, O> {
         /**
          * Represents the result of losing the battle.
          */
-        LOSE
+        LOSE,
+        /**
+         * Represents the battle has not finished.
+         */
+        IN_BATTLE
     }
 
     /**
@@ -28,9 +32,21 @@ public interface BattleManager<T, O> {
      * @param objectMon it is wild objectMon, if player meet a fighter, then objectMon should be empty
      */
     void startBattle(T player, Optional<T> enemy, Optional<O> objectMon);
-
+    /**
+     * start a new turn.
+     */
+    void startTurn();
     /**
      * @return the result of the battle
      */
     Result getResult();
+    /**
+     * 
+     * @return current stats of the battle
+     */
+    BattleState<T, O> getBattleState();
+    /**
+     * @return true if the battle isOver
+     */
+    boolean isOver();
 }

@@ -19,22 +19,22 @@ public final class PlayerImpl extends EntityImpl implements Player {
     }
     @Override
     public void moveUp() {
-        super.setPosition(new Coord(super.getPosition().x() - 1, super.getPosition().y()));
+        super.setPosition(new Coord(super.getPosition().x(), super.getPosition().y() - 1));
         this.setDirection(Direction.UP);
     }
     @Override
     public void moveDown() {
-        super.setPosition(new Coord(super.getPosition().x() + 1, super.getPosition().y()));
+        super.setPosition(new Coord(super.getPosition().x(), super.getPosition().y() + 1));
         this.setDirection(Direction.DOWN);
     }
     @Override
     public void moveLeft() {
-        super.setPosition(new Coord(super.getPosition().x(), super.getPosition().y() - 1));
+        super.setPosition(new Coord(super.getPosition().x() - 1, super.getPosition().y()));
         this.setDirection(Direction.LEFT);
     }
     @Override
     public void moveRight() {
-        super.setPosition(new Coord(super.getPosition().x(), super.getPosition().y() + 1));
+        super.setPosition(new Coord(super.getPosition().x() + 1, super.getPosition().y()));
         this.setDirection(Direction.RIGHT);
     }
 }

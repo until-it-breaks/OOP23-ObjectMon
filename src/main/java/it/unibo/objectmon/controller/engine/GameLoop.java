@@ -5,13 +5,13 @@ import java.util.logging.Logger;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.Command;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.view.View;
+import it.unibo.objectmon.view.api.View;
 
 /**
  * A basic implementation of a game loop.
  */
 public class GameLoop {
-    private static final long PERIOD = 20;
+    private static final long PERIOD = 16;
 
     private final Logger logger = Logger.getLogger("GameLoop");
     private final Model model;

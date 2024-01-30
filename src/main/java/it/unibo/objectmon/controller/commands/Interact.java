@@ -1,5 +1,6 @@
 package it.unibo.objectmon.controller.commands;
 
+import it.unibo.objectmon.model.GameManager;
 import it.unibo.objectmon.model.Model;
 /**
  * Calls for an interaction check.
@@ -7,6 +8,7 @@ import it.unibo.objectmon.model.Model;
 public final class Interact implements Command {
     @Override
     public void execute(final Model model) {
-        model.getInteractionManager().triggerInteraction(model.getNpcs(), model.getPlayer());
+        final GameManager gameManager = model.getGameManager();
+        gameManager.getInteractionManager().triggerInteraction(gameManager.getNpcs(), gameManager.getPlayerManager());
     }
 }

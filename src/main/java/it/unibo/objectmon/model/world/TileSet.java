@@ -9,31 +9,40 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 /**
- * A temporary class used as lookup to initialize World.
+ * Represents a set of tiles used within the game environment.
+ * The TileSet class loads tile data from a JSON file and provides methods
+ * for accessing individual tiles by their IDs.
  */
 public final class TileSet {
-    private static final String ATLAS_PATH = "/world/atlas.json";
 
+    private static final String ATLAS_PATH = "/world/atlas.json";
     private final Set<Tile> tileAtlas;
-    private final Logger logger = Logger.getLogger("TileManager");
+    private final Map<Integer, Tile> tileIdMap;
+    private final Logger logger = Logger.getLogger(TileSet.class.getName());
+
     /**
-     * Creates the tileset with data deserialized already.
+     * Creates the tileset by loading data from JSON.
      */
     public TileSet() {
         this.tileAtlas = loadFromJson();
+        this.tileIdMap = createTileIdMap();
     }
+
     /**
-     * 
-     * @return an immutable Set of tiles.
+     * Retrieves a Tile object by its ID.
+     * @param id The ID of the tile to retrieve.
+     * @return The Tile object corresponding to the given ID, or null if not found.
      */
-    public Set<Tile> getTileAtlas() {
-        return Collections.unmodifiableSet(tileAtlas);
+    public Tile getTileById(final int id) {
+        return tileIdMap.get(id);
     }
 
     private Set<Tile> loadFromJson() {
@@ -41,10 +50,22 @@ public final class TileSet {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Type setOfTiles = new TypeToken<LinkedHashSet<Tile>>() { }.getType();
             final Gson gson = new Gson();
-            return gson.fromJson(reader, setOfTiles);
+            final Set<Tile> tileSet = gson.fromJson(reader, setOfTiles);
+            if (tileSet == null) {
+                throw new IllegalStateException("No tile data found in: " + ATLAS_PATH);
+            }
+            return tileSet;
         } catch (final IOException e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
+            throw new IllegalStateException("Error loading tile data from: " + ATLAS_PATH, e);
         }
-        return Set.of();
+    }
+
+    private Map<Integer, Tile> createTileIdMap() {
+        final Map<Integer, Tile> idMap = new HashMap<>();
+        for (final Tile tile : tileAtlas) {
+            idMap.put(tile.getId(), tile);
+        }
+        return Collections.unmodifiableMap(idMap);
     }
 }

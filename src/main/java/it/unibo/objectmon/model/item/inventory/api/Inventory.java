@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.inventory.api;
+package it.unibo.objectmon.model.item.inventory.api;
 
 public interface Inventory {
 

@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.interaction;
 
-import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.PlayerManager;
 import it.unibo.objectmon.model.interaction.api.InteractionHandler;
 import java.util.logging.Logger;
 /**
@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public final class BattleHandler implements InteractionHandler {
     private final Logger logger = Logger.getLogger(BattleHandler.class.getName());
     @Override
-    public void handleInteraction(final Player player) {
+    public void handleInteraction(final PlayerManager player) {
         logger.info("Battle starts for " + player.getName());
     }
 }

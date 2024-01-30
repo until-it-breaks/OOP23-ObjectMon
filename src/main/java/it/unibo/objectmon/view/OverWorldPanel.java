@@ -1,5 +1,6 @@
 package it.unibo.objectmon.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -8,27 +9,41 @@ import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.Npc;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.view.controls.OverWorldControls;
+import it.unibo.objectmon.view.utility.ImageLoader;
+import it.unibo.objectmon.view.utility.ImageLoaderImpl;
+import it.unibo.objectmon.view.utility.RenderingHelper;
+
 /**
- * The panel responsible for drawing the world in exploration mode.
+ * A JPanel responsible for rendering the overworld environment and entities during exploration mode.
+ * This panel displays the game world, including the player character, NPCs, and terrain tiles,
+ * providing a visual representation of the game state to the user.
  */
-public final class OverWorldView extends JPanel {
+public final class OverWorldPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
     private final transient ImageLoader textureLoader;
+
     /**
-     * Creates a new ExplorerView.
+     * Constructs a new OverWorld panel, initializing its properties and attaching it to the provided controller.
      * 
-     * @param controller the controller to be attached.
+     * @param controller the controller responsible for managing inputs and retrieving game data.
      */
-    public OverWorldView(final Controller controller) {
+    public OverWorldPanel(final Controller controller) {
+        this.setDoubleBuffered(true);
+        this.setBackground(Color.BLACK);
         this.controller = controller;
-        this.textureLoader = new ImageLoader();
-        this.addKeyListener(new KeyboardControls(controller));
+        this.textureLoader = new ImageLoaderImpl();
+        this.addKeyListener(new OverWorldControls(controller));
         this.setFocusable(true);
     }
+
+    /**
+     * This method is automatically invoked by Swing to redraw the panel when necessary.
+     * 
+     * @param g the Graphics context in which to paint.
+     */
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
@@ -37,6 +52,13 @@ public final class OverWorldView extends JPanel {
             final RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_RENDERING, 
             RenderingHints.VALUE_RENDER_SPEED);
             graphics2d.setRenderingHints(renderingHints);
+
+            final int playerX = controller.getGameManager().getPlayerManager().getPosition().x() * TILE_SIZE;
+            final int playerY = controller.getGameManager().getPlayerManager().getPosition().y() * TILE_SIZE;
+            final double cameraX = RenderingHelper.getScreenCenter().getWidth() - playerX;
+            final double cameraY = RenderingHelper.getScreenCenter().getHeight() - playerY;
+            graphics2d.translate(cameraX, cameraY);
+
             drawWorld(graphics2d);
             drawNPCs(graphics2d);
             drawPlayer(graphics2d);
@@ -47,7 +69,7 @@ public final class OverWorldView extends JPanel {
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final Npc npc : controller.getNpcs()) {
+        for (final Npc npc : controller.getGameManager().getNpcs()) {
             BufferedImage image;
             switch (npc.getNpcType()) {
                 case TRADER:
@@ -63,14 +85,15 @@ public final class OverWorldView extends JPanel {
                     image = textureLoader.getImage("/npc/default.png");
                     break;
             }
-            g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
+            final int npcX = npc.getPosition().x();
+            final int npcY = npc.getPosition().y();
+            g.drawImage(image, npcX * TILE_SIZE, npcY * TILE_SIZE, null);
         }
     }
 
     private void drawPlayer(final Graphics2D g) {
         final BufferedImage image;
-        final Player player = controller.getPlayer();
-        final Direction playerDirection = player.getDirection();
+        final Direction playerDirection = controller.getGameManager().getPlayerManager().getDirection();
         switch (playerDirection) {
             case UP:
                 image = textureLoader.getImage("/player/playerUp.png");
@@ -87,14 +110,17 @@ public final class OverWorldView extends JPanel {
             default:
                 throw new IllegalStateException();
         }
-        final Coord playerPosition = player.getPosition();
-        g.drawImage(image, playerPosition.y() * TILE_SIZE, playerPosition.x() * TILE_SIZE, null);
+        final int x = controller.getGameManager().getPlayerManager().getPosition().x();
+        final int y = controller.getGameManager().getPlayerManager().getPosition().y();
+        g.drawImage(image, x * TILE_SIZE, y * TILE_SIZE, null);
     }
 
     private void drawWorld(final Graphics2D g) {
-        for (final var entry : controller.getMap().entrySet()) {
+        for (final var entry : controller.getGameManager().getWorld().getMap().entrySet()) {
             final BufferedImage image = textureLoader.getImage(entry.getValue().getImagePath());
-            g.drawImage(image, entry.getKey().y() * TILE_SIZE, entry.getKey().x() * TILE_SIZE, null);
+            final int tileX = entry.getKey().x();
+            final int tileY = entry.getKey().y();
+            g.drawImage(image, tileX  * TILE_SIZE, tileY * TILE_SIZE, null);
         }
     }
 }
