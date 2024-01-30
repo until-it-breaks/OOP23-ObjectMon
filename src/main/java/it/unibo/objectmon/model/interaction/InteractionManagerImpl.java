@@ -2,7 +2,7 @@ package it.unibo.objectmon.model.interaction;
 
 import java.util.Set;
 
-import it.unibo.objectmon.model.PlayerManager;
+import it.unibo.objectmon.model.PlayerController;
 import it.unibo.objectmon.model.entity.api.Npc;
 import it.unibo.objectmon.model.interaction.api.InteractionManager;
 /**
@@ -10,7 +10,7 @@ import it.unibo.objectmon.model.interaction.api.InteractionManager;
  */
 public final class InteractionManagerImpl implements InteractionManager {
     @Override
-    public void triggerInteraction(final Set<Npc> npcs, final PlayerManager player) {
+    public void triggerInteraction(final Set<Npc> npcs, final PlayerController player) {
         for (final Npc npc : npcs) {
             if (npc.getPosition().equals(player.getPosition())) {
                 npc.handleInteraction(player);

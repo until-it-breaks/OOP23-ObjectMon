@@ -53,8 +53,8 @@ public final class OverWorldPanel extends JPanel {
             RenderingHints.VALUE_RENDER_SPEED);
             graphics2d.setRenderingHints(renderingHints);
 
-            final int playerX = controller.getGameManager().getPlayerManager().getPosition().x() * TILE_SIZE;
-            final int playerY = controller.getGameManager().getPlayerManager().getPosition().y() * TILE_SIZE;
+            final int playerX = controller.getGameManager().getPlayerController().getPosition().x() * TILE_SIZE;
+            final int playerY = controller.getGameManager().getPlayerController().getPosition().y() * TILE_SIZE;
             final double cameraX = RenderingHelper.getScreenCenter().getWidth() - playerX;
             final double cameraY = RenderingHelper.getScreenCenter().getHeight() - playerY;
             graphics2d.translate(cameraX, cameraY);
@@ -93,7 +93,7 @@ public final class OverWorldPanel extends JPanel {
 
     private void drawPlayer(final Graphics2D g) {
         final BufferedImage image;
-        final Direction playerDirection = controller.getGameManager().getPlayerManager().getDirection();
+        final Direction playerDirection = controller.getGameManager().getPlayerController().getDirection();
         switch (playerDirection) {
             case UP:
                 image = textureLoader.getImage("/player/playerUp.png");
@@ -110,8 +110,8 @@ public final class OverWorldPanel extends JPanel {
             default:
                 throw new IllegalStateException();
         }
-        final int x = controller.getGameManager().getPlayerManager().getPosition().x();
-        final int y = controller.getGameManager().getPlayerManager().getPosition().y();
+        final int x = controller.getGameManager().getPlayerController().getPosition().x();
+        final int y = controller.getGameManager().getPlayerController().getPosition().y();
         g.drawImage(image, x * TILE_SIZE, y * TILE_SIZE, null);
     }
 

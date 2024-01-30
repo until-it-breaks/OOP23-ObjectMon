@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.entity.npc;
 
-import it.unibo.objectmon.model.PlayerManager;
+import it.unibo.objectmon.model.PlayerController;
 import it.unibo.objectmon.model.entity.api.EntityImpl;
 import it.unibo.objectmon.model.entity.api.Npc;
 import it.unibo.objectmon.model.entity.api.NpcType;
@@ -41,7 +41,7 @@ public final class NpcImpl extends EntityImpl implements Npc {
         }
     }
     @Override
-    public void handleInteraction(final PlayerManager player) {
+    public void handleInteraction(final PlayerController player) {
         if (this.interactionHandler.isPresent()) {
             this.interactionHandler.get().handleInteraction(player);
         }
