@@ -25,7 +25,6 @@ public final class ViewImpl implements View {
         this.frame.setResizable(true);
         this.frame.setLocationByPlatform(true);
         this.frame.pack();
-        this.frame.setVisible(true);
     }
 
     /**
@@ -43,5 +42,6 @@ public final class ViewImpl implements View {
     @Override
     public void build(final Controller controller) {
         this.frame.add(new OverWorldPanel(controller));
+        this.frame.setVisible(true);
     }
 }
