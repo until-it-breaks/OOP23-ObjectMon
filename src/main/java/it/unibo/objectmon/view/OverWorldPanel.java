@@ -8,7 +8,10 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.entity.api.Direction;
-import it.unibo.objectmon.model.entity.api.Npc;
+import it.unibo.objectmon.model.entity.npc.AbstractNPC;
+import it.unibo.objectmon.model.entity.npc.api.Healer;
+import it.unibo.objectmon.model.entity.npc.api.Seller;
+import it.unibo.objectmon.model.entity.npc.api.Trainer;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
@@ -69,21 +72,16 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final Npc npc : controller.getGameManager().getNpcs()) {
+        for (final AbstractNPC npc : controller.getGameManager().getNpcManager().getNpcs()) {
             BufferedImage image;
-            switch (npc.getNpcType()) {
-                case TRADER:
-                    image = textureLoader.getImage("/npc/vendor.png");
-                    break;
-                case HEALER:
-                    image = textureLoader.getImage("/npc/doctor.png");
-                    break;
-                case TRAINER:
-                    image = textureLoader.getImage("/npc/trainer.png");
-                break;
-                default:
-                    image = textureLoader.getImage("/npc/default.png");
-                    break;
+            if (npc instanceof Seller) {
+                image = textureLoader.getImage("/npc/vendor.png");
+            } else if (npc instanceof Healer) {
+                image = textureLoader.getImage("/npc/doctor.png");
+            } else if (npc instanceof Trainer) {
+                image = textureLoader.getImage("/npc/trainer.png");
+            } else {
+                image = textureLoader.getImage("/npc/default.png");
             }
             final int npcX = npc.getPosition().x();
             final int npcY = npc.getPosition().y();

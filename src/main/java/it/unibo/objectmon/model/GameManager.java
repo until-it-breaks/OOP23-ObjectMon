@@ -1,47 +1,37 @@
 package it.unibo.objectmon.model;
 
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Collections;
 
-import it.unibo.objectmon.model.collision.CollisionChecker;
-import it.unibo.objectmon.model.entity.api.Npc;
-import it.unibo.objectmon.model.entity.api.NpcType;
-import it.unibo.objectmon.model.entity.npc.NpcImpl;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.collision.CollisionCheckerImpl;
+import it.unibo.objectmon.model.collision.api.CollisionChecker;
+import it.unibo.objectmon.model.entity.NpcManager;
+import it.unibo.objectmon.model.entity.PlayerManager;
 import it.unibo.objectmon.model.interaction.InteractionManagerImpl;
 import it.unibo.objectmon.model.interaction.api.InteractionManager;
-import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.World;
+
 /**
  * Manages the model logic.
  */
-public class GameManager {
-    private World world;
-    private PlayerController playerManager;
-    private Set<Npc> npcs;
-    private InteractionManager interactionManager;
-    private CollisionChecker collisionManager;
-
-    private static final Coord TRADER_POSITION = new Coord(5, 5);
-    private static final Coord HEALER_POSITION = new Coord(8, 8);
-    private static final Coord TRAINER_POSITION = new Coord(1, 1);
-    private static final Coord GENERIC_POSITION = new Coord(1, 2);
+public final class GameManager {
+    private final World world;
+    private final PlayerManager playerManager;
+    private final NpcManager npcManager;
+    private final InteractionManager interactionManager;
+    private final CollisionChecker collisionManager;
 
     /**
      * Creates a world with entities and environment.
      */
     public GameManager() {
         this.world = new World();
-        this.playerManager = new PlayerController(this);
-        this.npcs = new HashSet<>();
-        this.npcs.add(new NpcImpl("Bob", TRADER_POSITION, NpcType.TRADER));
-        this.npcs.add(new NpcImpl("Madness", HEALER_POSITION, NpcType.HEALER));
-        this.npcs.add(new NpcImpl("Frenchman", TRAINER_POSITION, NpcType.TRAINER));
-        this.npcs.add(new NpcImpl("Mr.Generic", GENERIC_POSITION, NpcType.GENERIC));
+        this.playerManager = new PlayerManager(this);
+        this.npcManager = new NpcManager();
         this.interactionManager = new InteractionManagerImpl();
-        this.collisionManager = new CollisionChecker(world, npcs);
+        this.collisionManager = new CollisionCheckerImpl(world, Collections.unmodifiableSet(npcManager.getNpcs()));
     }
-    
+
     /**
      * 
      * @return the world.
@@ -49,20 +39,24 @@ public class GameManager {
     public World getWorld() {
         return world;
     }
+
     /**
      * 
      * @return the player.
      */
-    public PlayerController getPlayerController() {
+    @SuppressFBWarnings("EI_EXPOSE_REP") //TEMPORARY!!!!!
+    public PlayerManager getPlayerController() {
         return this.playerManager;
     }
+
     /**
      * 
      * @return an immutable set of all the current npcs.
      */
-    public Set<Npc> getNpcs() {
-        return Collections.unmodifiableSet(this.npcs);
+    public NpcManager getNpcManager() {
+        return this.npcManager;
     }
+
     /**
      * 
      * @return the interaction manager.
@@ -71,6 +65,10 @@ public class GameManager {
         return this.interactionManager;
     }
 
+    /**
+     * 
+     * @return the collision checker.
+     */
     public CollisionChecker getCollisionManager() {
         return collisionManager;
     }

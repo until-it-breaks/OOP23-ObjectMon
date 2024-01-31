@@ -20,7 +20,8 @@ public final class Tile {
      * @param passable The ability of preventing movement.
      * @param imagePath The file path to the image representing the tile.
      */
-    public Tile(final int id, final String type, final boolean triggersEncounters, final boolean passable, final String imagePath) {
+    public Tile(final int id, final String type, final boolean triggersEncounters,
+                final boolean passable, final String imagePath) {
         this.id = id;
         this.type = type;
         this.triggersEncounters = triggersEncounters;

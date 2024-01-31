@@ -3,7 +3,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.controller.commands.Command;
+import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.view.api.View;
 
