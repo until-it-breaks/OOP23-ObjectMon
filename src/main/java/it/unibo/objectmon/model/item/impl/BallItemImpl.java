@@ -26,7 +26,7 @@ public final class BallItemImpl implements BallItem {
 
     /**
      * Constructs a new Ball based on information from BallEnum.
-     * @param ball enumation name
+     * @param ball enum name
      */
     public BallItemImpl(final BallEnum ball) {
         this.name = ball.getName();

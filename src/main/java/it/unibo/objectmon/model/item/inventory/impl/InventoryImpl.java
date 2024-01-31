@@ -3,9 +3,7 @@ package it.unibo.objectmon.model.item.inventory.impl;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import it.unibo.objectmon.model.item.BallEnum;
 import it.unibo.objectmon.model.item.api.Item;
-import it.unibo.objectmon.model.item.impl.BallItemImpl;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
 /**
@@ -38,5 +36,3 @@ public final class InventoryImpl implements Inventory {
         return items.get(item);
     }
 }
-
-

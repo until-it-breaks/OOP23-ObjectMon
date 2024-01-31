@@ -5,15 +5,15 @@ package it.unibo.objectmon.model.item;
  */
 public enum BallEnum {
     /**
-     * 
+     * The less powerful ball.
      */
     OBJECTBALL("Object Ball", 100, 1.0),
     /**
-     * 
+     * The medium ball.
      */
     MEGABALL("Mega Ball", 200, 1.5),
     /**
-     * 
+     * The most powerful ball.
      */
     ULTRABALL("Ultra Ball", 400, 2.0);
 
