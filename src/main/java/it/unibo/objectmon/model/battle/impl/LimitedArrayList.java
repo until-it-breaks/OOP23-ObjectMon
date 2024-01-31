@@ -20,4 +20,13 @@ public class LimitedArrayList<E> extends ArrayList<E> {
         }
         return false;
     }
+    @Override
+    /**
+     * add element only if the size is less than max size.
+     */
+    public final void add(final int index, final E e) {
+        if (this.size() < LimitedArrayList.PARTY_SIZE) {
+            super.add(index, e);
+        }
+    }
 }
