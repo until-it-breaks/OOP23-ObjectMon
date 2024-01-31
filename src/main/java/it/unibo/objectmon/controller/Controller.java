@@ -2,7 +2,8 @@ package it.unibo.objectmon.controller;
 
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
-import it.unibo.objectmon.controller.commands.Command;
+
+import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.model.GameManager;
 import it.unibo.objectmon.model.Model;

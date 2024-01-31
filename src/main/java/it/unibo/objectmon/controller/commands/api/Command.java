@@ -1,4 +1,4 @@
-package it.unibo.objectmon.controller.commands;
+package it.unibo.objectmon.controller.commands.api;
 
 import it.unibo.objectmon.model.Model;
 
