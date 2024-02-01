@@ -18,10 +18,10 @@ class TestObjectmonParty {
 		party = new ObjectmonPartyImpl();
 	}
     /**
-     * test basic function of objectmon party
+     * test add Method
      */
     @Test
-    public void testBasic() {
+    public void testAdd() {
         Objectmon pikatchu = new ObjectmonImpl(0, "p", null, null, null, 0);
         Objectmon alfa = new ObjectmonImpl(1, "a", null, null, null, 0);
         Objectmon beta = new ObjectmonImpl(2, "b", null, null, null, 0);
@@ -30,11 +30,27 @@ class TestObjectmonParty {
         Objectmon yipsilon = new ObjectmonImpl(5, "yi", null, null, null, 0);
         Objectmon yota = new ObjectmonImpl(6, "yo", null, null, null, 0);
         assertTrue(party.add(pikatchu));
+        assertFalse(party.add(pikatchu));
         assertTrue(party.add(alfa));
         assertTrue(party.add(beta));
         assertTrue(party.add(gamma));
         assertTrue(party.add(delta));
         assertTrue(party.add(yipsilon));
         assertFalse(party.add(yota));
+    }
+    /**
+     * test remove pokemon from party
+     */
+    @Test
+    public void testRemoveObjecmon() {
+        assertTrue(party.remove(new ObjectmonImpl(0, "p", null, null, null, 0)));
+        assertFalse(party.remove(new ObjectmonImpl(8, "aaa", null, null, null, 0)));
+    }
+    /**
+     * test switch position
+     */
+    @Test
+    public void testSwitchPosition() {
+        
     }
 }
