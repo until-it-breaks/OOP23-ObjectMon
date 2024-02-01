@@ -1,11 +1,13 @@
 package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
+
+import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entity.npc.api.Trainer;
 /**
  * A manager of battle which can start a battle between the player and a fighter.
- * @param <T> is an entity of fighter
- * @param <O> is an ObjectMon 
  */
-public interface BattleManager<T, O> {
+public interface BattleManager {
     /**
      * Enum representing the result of a battle.
      * It can be either WIN or LOSE.
@@ -31,7 +33,7 @@ public interface BattleManager<T, O> {
      * @param enemy it is enemy because if the player meet a wild ObjectMon, the  enemy should be empty
      * @param objectMon it is wild objectMon, if player meet a fighter, then objectMon should be empty
      */
-    void startBattle(T player, Optional<T> enemy, Optional<O> objectMon);
+    void startBattle(Player player, Optional<Trainer> enemy, Optional<Objectmon> objectMon);
     /**
      * start a new turn.
      */
@@ -44,7 +46,7 @@ public interface BattleManager<T, O> {
      * 
      * @return current stats of the battle
      */
-    BattleState<T, O> getBattleState();
+    BattleState getBattleState();
     /**
      * @return true if the battle isOver
      */
