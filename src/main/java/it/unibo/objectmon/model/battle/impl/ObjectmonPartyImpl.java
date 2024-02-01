@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+
+import org.apache.commons.collections4.list.UnmodifiableList;
 /**
  * a simple objecmon party.
  */
@@ -16,6 +18,13 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
      */
     public ObjectmonPartyImpl() {
         this.party = new ArrayList<>();
+    }
+    /**
+     * constructor which has party already stabilished.
+     * @param party a undifiableList party with objectmon
+     */
+    public ObjectmonPartyImpl(final UnmodifiableList<Objectmon> party) {
+        this.party = List.copyOf(party);
     }
     @Override
     public boolean add(final Objectmon objectmon) {
@@ -36,5 +45,10 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
             throw new NoSuchElementException();
         }
         Collections.swap(party, party.indexOf(objectmon2), party.indexOf(objectmon1));
+    }
+
+    @Override
+    public UnmodifiableList<Objectmon> getParty() {
+        return new UnmodifiableList<>(this.party);
     }
 }
