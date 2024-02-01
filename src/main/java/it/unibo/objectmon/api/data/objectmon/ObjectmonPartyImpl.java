@@ -1,6 +1,5 @@
-package it.unibo.objectmon.model.battle.impl;
+package it.unibo.objectmon.api.data.objectmon;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import java.util.List;
 import java.util.Collections;
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
-package it.unibo.objectmon.model.battle.impl;
+package it.unibo.objectmon.api.data.objectmon;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import org.apache.commons.collections4.list.UnmodifiableList;
 /**
  * An Objectmon party to be used by player and trainer in the battle.
