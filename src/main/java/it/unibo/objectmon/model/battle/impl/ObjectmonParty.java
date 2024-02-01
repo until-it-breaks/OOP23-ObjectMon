@@ -18,9 +18,9 @@ public interface ObjectmonParty {
      */
     boolean remove(Objectmon objectmon);
     /**
-     * change position of 2 objecmon in the party
-     * @param objecmon1 an objectmon in the party
+     * change position of 2 objecmon in the party.
+     * @param objectmon1 an objectmon in the party
      * @param objectmon2 another objectmon in the party
      */
-    void switchPosition(Objectmon objecmon1, Objectmon objectmon2);
+    void switchPosition(Objectmon objectmon1, Objectmon objectmon2);
 }
