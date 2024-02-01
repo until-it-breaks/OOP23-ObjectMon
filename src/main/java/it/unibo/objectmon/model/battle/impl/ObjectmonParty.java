@@ -18,9 +18,9 @@ public interface ObjectmonParty {
      */
     boolean remove(Objectmon objectmon);
     /**
-     * switch from new objectmon to the position of old Objectmon in the party.
-     * @param newObjectmon objectmon to be swap-in in the party
-     * @param oldObjectmon objectmon to be swap-out from the party 
+     * change position of 2 objecmon in the party
+     * @param objecmon1 an objectmon in the party
+     * @param objectmon2 another objectmon in the party
      */
-    void replace(Objectmon newObjectmon, Objectmon oldObjectmon);
+    void switchPosition(Objectmon objecmon1, Objectmon objectmon2);
 }
