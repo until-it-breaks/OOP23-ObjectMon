@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.entity.npc.api;
 
-import java.util.Set;
+import java.util.List;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 
 /**
@@ -24,5 +24,5 @@ public interface Trainer {
      * Returns the Trainer's team of Objectmons.
      * @return The Trainer's team of Objectmons.
      */
-    Set<Objectmon> getTeam();
+    List<Objectmon> getTeam();
 }

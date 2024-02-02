@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.entity;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import it.unibo.objectmon.model.entity.npc.AbstractNPC;
@@ -30,12 +31,12 @@ public final class NpcManager {
      */
     public NpcManager() {
         this.npcs = new HashSet<>();
-        this.npcs.add(new TrainerNpc("Trainer1", TRAINER1_COORD, Set.of()));
-        this.npcs.add(new TrainerNpc("Trainer2", TRAINER2_COORD, Set.of()));
-        this.npcs.add(new TrainerNpc("Trainer3", TRAINER3_COORD, Set.of()));
-        this.npcs.add(new TrainerNpc("Trainer4", TRAINER4_COORD, Set.of()));
-        this.npcs.add(new TrainerNpc("Trainer5", TRAINER5_COORD, Set.of()));
-        this.npcs.add(new TrainerNpc("Trainer6", TRAINER6_COORD, Set.of()));
+        this.npcs.add(new TrainerNpc("Trainer1", TRAINER1_COORD, List.of()));
+        this.npcs.add(new TrainerNpc("Trainer2", TRAINER2_COORD, List.of()));
+        this.npcs.add(new TrainerNpc("Trainer3", TRAINER3_COORD, List.of()));
+        this.npcs.add(new TrainerNpc("Trainer4", TRAINER4_COORD, List.of()));
+        this.npcs.add(new TrainerNpc("Trainer5", TRAINER5_COORD, List.of()));
+        this.npcs.add(new TrainerNpc("Trainer6", TRAINER6_COORD, List.of()));
         this.npcs.add(new HealerNPC("Healer1", HEALER1_COORD));
         this.npcs.add(new SellerNPC("Seller1", SELLER1_COORD, Set.of()));
     }

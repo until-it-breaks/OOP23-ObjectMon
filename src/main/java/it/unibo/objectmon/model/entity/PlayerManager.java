@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.entity;
 
 import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.GameManager;
@@ -25,7 +25,7 @@ public final class PlayerManager {
      */
     public PlayerManager(final GameManager gameManager) {
         this.gameManager = gameManager;
-        this.player = new PlayerImpl("Player1", new Coord(0, 0), Set.of());
+        this.player = new PlayerImpl("Player1", new Coord(0, 0), List.of());
     }
 
     /**
@@ -119,7 +119,7 @@ public final class PlayerManager {
      * 
      * @return the player's team.
      */
-    public Set<Objectmon> getTeam() {
-        return Collections.unmodifiableSet(player.getTeam());
+    public List<Objectmon> getTeam() {
+        return Collections.unmodifiableList(player.getTeam());
     }
 }

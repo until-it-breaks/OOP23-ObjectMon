@@ -22,7 +22,7 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
      * constructor which has party already stabilished.
      * @param party a undifiableList party with objectmon
      */
-    public ObjectmonPartyImpl(final UnmodifiableList<Objectmon> party) {
+    public ObjectmonPartyImpl(final List<Objectmon> party) {
         this.party = List.copyOf(party);
     }
     @Override
@@ -47,7 +47,7 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
     }
 
     @Override
-    public UnmodifiableList<Objectmon> getParty() {
+    public List<Objectmon> getParty() {
         return new UnmodifiableList<>(this.party);
     }
 }
