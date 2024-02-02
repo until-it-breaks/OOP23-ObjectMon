@@ -44,6 +44,11 @@ public interface BattleManager {
     Result getResult();
     /**
      * 
+     * @param result set the result of the battle.
+     */
+    void setResult(Result result);
+    /**
+     * 
      * @return current stats of the battle
      */
     BattleState getBattleState();
