@@ -76,7 +76,7 @@ public class BattleImpl implements Battle {
         : this.trainer.get().getTeam().get(0);
     }
     @Override
-    public Optional<Trainer> getTrainer() {
+    public final Optional<Trainer> getTrainer() {
         return this.trainer;
     }
 }

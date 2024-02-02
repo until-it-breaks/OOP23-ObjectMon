@@ -44,8 +44,8 @@ public interface Battle {
      */
     Objectmon getEnemyObjectmon();
     /**
-     * get enemy trainer
-     * @return
+     * get enemy trainer.
+     * @return optional of trainer
      */
     Optional<Trainer> getTrainer();
 }
