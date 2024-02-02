@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.battle.api;
+package it.unibo.objectmon.model.battle.damageCalculator;
 
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 /**
