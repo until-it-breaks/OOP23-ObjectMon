@@ -1,6 +1,7 @@
 package it.unibo.objectmon.model.battle.api;
 
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.model.battle.moves.api.Move;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.npc.api.Trainer;
 

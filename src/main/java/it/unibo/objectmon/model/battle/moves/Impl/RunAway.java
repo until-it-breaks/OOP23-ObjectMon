@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.battle.moves.Impl;
+package it.unibo.objectmon.model.battle.moves.impl;
 
 import it.unibo.objectmon.model.battle.moves.api.Move;
 
