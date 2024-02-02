@@ -2,7 +2,8 @@ package it.unibo.objectmon.model.battle.api;
 
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.npc.TrainerNpc;
+import it.unibo.objectmon.model.entity.npc.api.Trainer;
+
 import java.util.Optional;
 /**
  * A battle between a player and a npc trainer or wild ObjectMon.
@@ -27,7 +28,7 @@ public interface Battle {
      * @param enemy enemy (trainer or wild Objectmon) set the move.
      * @param move a move that going to be executed.
      */
-    void setEnemyMove(Optional<TrainerNpc> enemy, Move move);
+    void setEnemyMove(Optional<Trainer> enemy, Move move);
     /**
      * 
      * @return get the move of player
