@@ -1,6 +1,6 @@
-package it.unibo.objectmon.model.battle.impl;
+package it.unibo.objectmon.model.battle.moves.Impl;
 
-import it.unibo.objectmon.model.battle.api.Move;
+import it.unibo.objectmon.model.battle.moves.api.Move;
 
 /**
  * Player leave the battle.
