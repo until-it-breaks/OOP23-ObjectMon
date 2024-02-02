@@ -1,7 +1,10 @@
 package it.unibo.objectmon.model.battle.api;
 
+import java.util.Optional;
+
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.battle.moves.api.Move;
+import it.unibo.objectmon.model.entity.npc.api.Trainer;
 
 /**
  * A battle between a player and a npc trainer or wild ObjectMon.
@@ -40,4 +43,9 @@ public interface Battle {
      * @return get current enemy objectmon 
      */
     Objectmon getEnemyObjectmon();
+    /**
+     * get enemy trainer
+     * @return
+     */
+    Optional<Trainer> getTrainer();
 }

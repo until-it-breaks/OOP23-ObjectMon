@@ -75,4 +75,8 @@ public class BattleImpl implements Battle {
         ? this.objectmon.get() 
         : this.trainer.get().getTeam().get(0);
     }
+    @Override
+    public Optional<Trainer> getTrainer() {
+        return this.trainer;
+    }
 }
