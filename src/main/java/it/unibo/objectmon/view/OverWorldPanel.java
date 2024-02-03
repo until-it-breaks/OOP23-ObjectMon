@@ -7,11 +7,11 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.npc.AbstractNPC;
 import it.unibo.objectmon.model.entity.npc.api.Healer;
 import it.unibo.objectmon.model.entity.npc.api.Seller;
 import it.unibo.objectmon.model.entity.npc.api.Trainer;
+import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
@@ -73,16 +73,7 @@ public final class OverWorldPanel extends JPanel {
 
     private void drawNPCs(final Graphics2D g) {
         for (final AbstractNPC npc : controller.getGameManager().getNpcManager().getNpcs()) {
-            BufferedImage image;
-            if (npc instanceof Seller) {
-                image = textureLoader.getImage("/npc/vendor.png");
-            } else if (npc instanceof Healer) {
-                image = textureLoader.getImage("/npc/doctor.png");
-            } else if (npc instanceof Trainer) {
-                image = textureLoader.getImage("/npc/trainer.png");
-            } else {
-                image = textureLoader.getImage("/npc/default.png");
-            }
+            final BufferedImage image = getNPCImage(npc);
             final int npcX = npc.getPosition().x();
             final int npcY = npc.getPosition().y();
             g.drawImage(image, npcX * TILE_SIZE, npcY * TILE_SIZE, null);
@@ -90,27 +81,9 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawPlayer(final Graphics2D g) {
-        final BufferedImage image;
-        final Direction playerDirection = controller.getGameManager().getPlayerController().getDirection();
-        switch (playerDirection) {
-            case UP:
-                image = textureLoader.getImage("/player/playerUp.png");
-                break;
-            case DOWN:
-                image = textureLoader.getImage("/player/playerDown.png");
-                break;
-            case LEFT:
-                image = textureLoader.getImage("/player/playerLeft.png");
-                break;
-            case RIGHT:
-                image = textureLoader.getImage("/player/playerRight.png");
-                break;
-            default:
-                throw new IllegalStateException();
-        }
-        final int x = controller.getGameManager().getPlayerController().getPosition().x();
-        final int y = controller.getGameManager().getPlayerController().getPosition().y();
-        g.drawImage(image, x * TILE_SIZE, y * TILE_SIZE, null);
+        final BufferedImage image = getPlayerImage();
+        final Coord playerPosition = controller.getGameManager().getPlayerController().getPosition();
+        g.drawImage(image, playerPosition.x() * TILE_SIZE, playerPosition.y() * TILE_SIZE, null);
     }
 
     private void drawWorld(final Graphics2D g) {
@@ -120,5 +93,38 @@ public final class OverWorldPanel extends JPanel {
             final int tileY = entry.getKey().y();
             g.drawImage(image, tileX  * TILE_SIZE, tileY * TILE_SIZE, null);
         }
+    }
+
+    private BufferedImage getNPCImage(final AbstractNPC npc) {
+        if (npc instanceof Seller) {
+            return textureLoader.getImage("/npc/vendor.png");
+        } else if (npc instanceof Healer) {
+            return textureLoader.getImage("/npc/doctor.png");
+        } else if (npc instanceof Trainer) {
+            return textureLoader.getImage("/npc/trainer.png");
+        } else {
+            return textureLoader.getImage("/npc/default.png");
+        }
+    }
+
+    private BufferedImage getPlayerImage() {
+        final String imagePath; // Declare imagePath outside the switch
+        switch (controller.getGameManager().getPlayerController().getDirection()) {
+            case UP:
+                imagePath = "/player/playerUp.png";
+                break;
+            case DOWN:
+                imagePath = "/player/playerDown.png";
+                break;
+            case LEFT:
+                imagePath = "/player/playerLeft.png";
+                break;
+            case RIGHT:
+                imagePath = "/player/playerRight.png";
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        return textureLoader.getImage(imagePath);
     }
 }
