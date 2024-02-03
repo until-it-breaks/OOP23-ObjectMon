@@ -1,5 +1,6 @@
 package it.unibo.objectmon.model.battle.moves.api;
 
+import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 
 /**
@@ -8,7 +9,8 @@ import it.unibo.objectmon.model.battle.api.BattleManager;
 public interface Move {
     /**
      * start the action of move selected.
+     * @param battle the current battle.
      * @param battleManager which is managing the battle
      */
-    void action(BattleManager battleManager);
+    void action(Battle battle, BattleManager battleManager);
 }

@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
@@ -11,8 +12,9 @@ import it.unibo.objectmon.model.entity.npc.api.Trainer;
  * an implementation of battle manager.
  */
 public class BattleManagerImpl implements BattleManager {
+    @SuppressFBWarnings
     private Battle battle;
-    private Result result;
+    private Result result = Result.IN_BATTLE;
 
     @Override
     public final void startBattle(final Player player, final Optional<Trainer> enemy, final Optional<Objectmon> objectMon) {
@@ -25,12 +27,7 @@ public class BattleManagerImpl implements BattleManager {
     }
 
     @Override
-    public final Battle getBattle() {
-        return this.battle;
-    }
-
-    @Override
-    public void startTurn() {
+    public final void startTurn() {
     }
 
     @Override

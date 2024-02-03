@@ -1,5 +1,6 @@
 package it.unibo.objectmon.controller.moves;
 
+import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 
 /**
@@ -9,6 +10,7 @@ public interface BattleController {
     /**
      * when player choose run away the battle.
      * @param battleManager manager of the current battle
+     * @param battle the current battle
      */
-    void handleRunAway(BattleManager battleManager);
+    void handleRunAway(BattleManager battleManager, Battle battle);
 }

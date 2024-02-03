@@ -12,8 +12,8 @@ import it.unibo.objectmon.model.battle.moves.api.Move;
  */
 public class RunAway implements Move {
     @Override
-    public final void action(final BattleManager battleManager) {
-        if (this.runnable(battleManager.getBattle())) {
+    public final void action(final Battle battle, final BattleManager battleManager) {
+        if (this.runnable(battle)) {
             battleManager.setResult(Result.LOSE);
         }
     }

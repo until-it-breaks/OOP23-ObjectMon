@@ -35,11 +35,6 @@ public interface BattleManager {
      */
     void startBattle(Player player, Optional<Trainer> enemy, Optional<Objectmon> objectMon);
     /**
-     * current battle which manager is managing .
-     * @return current battle
-     */
-    Battle getBattle();
-    /**
      * start a new turn.
      */
     void startTurn();
