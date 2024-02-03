@@ -10,9 +10,12 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * A singleton that represents a class able to log messages and return a number of them on demand.
  */
 public final class EventLogger {
+    /**
+     * The maximum amount of messages the logger can hold.
+     */
+    public static final int LIMIT = 4;
     private static final EventLogger LOGGER = new EventLogger();
     private final Queue<String> events;
-    public static final int LIMIT = 4;
 
     private EventLogger() {
         this.events = new ArrayBlockingQueue<>(LIMIT);
@@ -22,6 +25,7 @@ public final class EventLogger {
      * Returns the only instance of {@link EventLogger}.
      * @return The instance of {@link EventLogger}.
      */
+    @SuppressFBWarnings(value = "MS_EXPOSE_REP", justification = "The class is supposed to be a singleton")
     public static EventLogger getLogger() {
         return LOGGER;
     }
@@ -39,6 +43,14 @@ public final class EventLogger {
         this.events.add(string);
 
     }
+
+    /**
+     * Clears the current logged messages.
+     */
+    public void clear() {
+        this.events.clear();
+    }
+
     /**
      * Returns a list-like representation of the latest {@link EventLogger#LIMIT} strings logged.
      * @return An unmodifiable list of string.
