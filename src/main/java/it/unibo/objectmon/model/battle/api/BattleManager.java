@@ -53,11 +53,6 @@ public interface BattleManager {
      */
     void setResult(Result result);
     /**
-     * 
-     * @return current stats of the battle
-     */
-    BattleState getBattleState();
-    /**
      * @return true if the battle isOver
      */
     boolean isOver();
