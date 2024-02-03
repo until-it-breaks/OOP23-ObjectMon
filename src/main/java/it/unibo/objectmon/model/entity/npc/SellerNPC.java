@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.entity.npc;
 
 import it.unibo.objectmon.model.entity.PlayerManager;
 import it.unibo.objectmon.model.entity.npc.api.Seller;
+import it.unibo.objectmon.model.eventlog.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 /**
  * Models an NPC capable of selling its own wares.
@@ -19,13 +20,11 @@ public final class SellerNPC extends AbstractNPC implements Seller {
 
     @Override
     public void handleInteraction(final PlayerManager player) {
-        //Says something like "Trading started".
-        //Calls a trade manager
+        EventLogger.getLogger().log("Trade started with player");
+        this.trade();
     }
 
     @Override
     public void trade() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'trade'");
     }
 }

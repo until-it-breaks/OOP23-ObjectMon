@@ -4,12 +4,13 @@ import java.util.Set;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.PlayerManager;
 import it.unibo.objectmon.model.entity.npc.api.Healer;
+import it.unibo.objectmon.model.eventlog.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
  * Models an NPC capable of healing the Player's team.
  */
-public class HealerNPC extends AbstractNPC implements Healer {
+public final class HealerNPC extends AbstractNPC implements Healer {
 
     /**
      * Constructs a new Healer NPC.
@@ -22,8 +23,8 @@ public class HealerNPC extends AbstractNPC implements Healer {
 
     @Override
     public void handleInteraction(final PlayerManager player) {
-        //Says "performed heal".
-        //Heals all the objectmons in the player party.
+        EventLogger.getLogger().log("Player's team has been healed");
+        this.healTeam(player.getTeam());
     }
 
     @Override
