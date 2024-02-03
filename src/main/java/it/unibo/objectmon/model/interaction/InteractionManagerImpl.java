@@ -1,7 +1,6 @@
 package it.unibo.objectmon.model.interaction;
 
 import java.util.Set;
-
 import it.unibo.objectmon.model.entity.PlayerManager;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.npc.AbstractNPC;
