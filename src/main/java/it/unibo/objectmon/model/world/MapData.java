@@ -22,6 +22,8 @@ public final class MapData {
     private final int height;
     private final int width;
     private final List<List<Integer>> data;
+    private final int startingX;
+    private final int startingY;
 
     /**
      * Constructs a MapData object with the given map dimensions and data.
@@ -30,11 +32,15 @@ public final class MapData {
      * @param height The height of the map.
      * @param width The width of the map.
      * @param data A matrix-like representation of the map data.
+     * @param startingX The starting X coordinate of the player.
+     * @param startingY The starting Y coordinate of the player.
      */
-    private MapData(final int height, final int width, final List<List<Integer>> data) {
+    private MapData(final int height, final int width, final List<List<Integer>> data, final int startingX, final int startingY) {
         this.height = height;
         this.width = width;
         this.data = data;
+        this.startingX = startingX;
+        this.startingY = startingY;
     }
 
     /**
@@ -51,6 +57,22 @@ public final class MapData {
      */
     public int getWidth() {
         return width;
+    }
+
+    /**
+     * Retrieves the starting X coordinate of the player.
+     * @return The starting X coordinate of the player.
+     */
+    public int getStartingX() {
+        return startingX;
+    }
+
+    /**
+     * Retrieves the starting Y coordinate of the player.
+     * @return The starting Y coordinate of the player.
+     */
+    public int getStartingY() {
+        return startingY;
     }
 
     /**

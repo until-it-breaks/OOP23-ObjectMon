@@ -41,10 +41,11 @@ public final class GameManager {
     }
 
     /**
-     * 
-     * @return the player.
+     * Returns an object responsible for controlling the {@link Player}.
+     * @return The {@link PlayerManager}
      */
-    @SuppressFBWarnings("EI_EXPOSE_REP") //TEMPORARY!!!!!
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Could not find a better way to avoid exposing the setters inside the controller")
     public PlayerManager getPlayerController() {
         return this.playerManager;
     }

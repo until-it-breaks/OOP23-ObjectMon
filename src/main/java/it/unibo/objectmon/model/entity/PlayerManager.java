@@ -25,7 +25,8 @@ public final class PlayerManager {
      */
     public PlayerManager(final GameManager gameManager) {
         this.gameManager = gameManager;
-        this.player = new PlayerImpl("Player1", new Coord(0, 0), Set.of());
+        this.player = new PlayerImpl("Player", new Coord(gameManager.getWorld().getStartingPosition().x(),
+        gameManager.getWorld().getStartingPosition().y()), Set.of());
     }
 
     /**
