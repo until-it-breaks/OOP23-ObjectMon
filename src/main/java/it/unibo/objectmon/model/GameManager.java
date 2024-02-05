@@ -81,6 +81,7 @@ public final class GameManager {
      * 
      * @return the battle manager
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public BattleManager getBattleManager() {
         return this.battleManager;
     }

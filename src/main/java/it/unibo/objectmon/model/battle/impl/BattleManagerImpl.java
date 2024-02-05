@@ -11,55 +11,59 @@ import it.unibo.objectmon.model.entity.npc.api.Trainer;
 /**
  * an implementation of battle manager.
  */
-public class BattleManagerImpl implements BattleManager {
+public final class BattleManagerImpl implements BattleManager {
     @SuppressFBWarnings
-    private Battle battle;
-    private Result result = Result.IN_BATTLE;
+    private Optional<Battle> battle;
+    private Optional<Result> result;
+    /**
+     * Constructor of BattleManagerImpl.
+     */
+    public BattleManagerImpl() {
+        this.battle = Optional.empty();
+        this.result = Optional.empty();
+    }
 
     @Override
-    public final void startBattle(final Player player, final Optional<Trainer> enemy, final Optional<Objectmon> objectMon) {
+    public void startBattle(final Player player, final Optional<Trainer> enemy, final Optional<Objectmon> objectMon) {
         if (enemy.isEmpty()) {
-            this.battle = new BattleImpl(player, objectMon.get());
+            this.battle = Optional.of(new BattleImpl(player, objectMon.get()));
         }
         if (objectMon.isEmpty()) {
-            this.battle = new BattleImpl(player, enemy.get());
+            this.battle = Optional.of(new BattleImpl(player, enemy.get()));
         }
     }
 
     @Override
-    public final void startTurn() {
+    public void startTurn() {
     }
 
     @Override
-    public final Result getResult() {
-        return this.result;
+    public Result getResult() {
+        return this.result.get();
     }
 
     @Override
-    public final void setResult(final Result result) {
-        this.result = result;
+    public void setResult(final Result result) {
+        this.result = Optional.of(result);
     }
 
     @Override
-    public final boolean isOver() {
-        return !this.result.equals(Result.IN_BATTLE);
+    public boolean isOver() {
+        return !this.result.get().equals(Result.IN_BATTLE);
     }
 
     @Override
     public void runAway() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runAway'");
+        if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
+            setResult(Result.LOSE);
+        }
     }
 
     @Override
-    public void useSkill(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'useSkill'");
+    public void useSkill(final int index) {
     }
 
     @Override
-    public void switchObjectmon(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'switchObjectmon'");
+    public void switchObjectmon(final int index) {
     }
 }
