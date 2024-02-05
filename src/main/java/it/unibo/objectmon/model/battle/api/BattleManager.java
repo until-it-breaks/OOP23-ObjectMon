@@ -51,4 +51,18 @@ public interface BattleManager {
      * @return true if the battle isOver
      */
     boolean isOver();
+    /**
+     * leave the battle.
+     */
+    void runAway();
+    /**
+     * use a skill of objectmon given an index.
+     * @param index index of the skill of objectmon.
+     */
+    void useSkill(int index);
+    /**
+     * switch current objectmon with given index.
+     * @param index index of the objectmon in the team
+     */
+    void switchObjectmon(int index);
 }

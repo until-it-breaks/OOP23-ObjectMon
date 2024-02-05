@@ -44,4 +44,22 @@ public class BattleManagerImpl implements BattleManager {
     public final boolean isOver() {
         return !this.result.equals(Result.IN_BATTLE);
     }
+
+    @Override
+    public void runAway() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'runAway'");
+    }
+
+    @Override
+    public void useSkill(int index) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'useSkill'");
+    }
+
+    @Override
+    public void switchObjectmon(int index) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'switchObjectmon'");
+    }
 }
