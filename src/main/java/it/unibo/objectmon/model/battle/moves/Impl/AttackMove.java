@@ -30,7 +30,7 @@ public class AttackMove {
             final DamageCalculator calculator = new DamageCalculatorImpl(skill);
             final Double hp = target.getStats().getSingleStat(StatId.HP)
                     - calculator.damage(objectmon, target);
-            target.getStats().getStats().put(StatId.HP, hp.intValue());
+            target.getStats().getStats().put(StatId.HP, hp.intValue()); //TO MODIFY!!!!
         }
     }
     /**

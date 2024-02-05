@@ -6,6 +6,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.npc.api.Trainer;
 /**
@@ -61,6 +62,8 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void useSkill(final int index) {
+        final AttackMove attack = new AttackMove(this.battle.get().getCurrentObjectmon().getSkill(index));
+        attack.action(this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
     }
 
     @Override
