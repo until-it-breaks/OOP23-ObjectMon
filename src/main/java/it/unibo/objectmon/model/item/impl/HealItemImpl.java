@@ -60,17 +60,17 @@ public final class HealItemImpl implements HealItem {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
-        }    
+        }
         if (obj == null) {
             return false;
         }
         if (getClass() != obj.getClass()) {
             return false;
         }
-        HealItemImpl other = (HealItemImpl) obj;
+        final HealItemImpl other = (HealItemImpl) obj;
         if (name == null) {
             if (other.name != null) {
                 return false;
@@ -86,6 +86,4 @@ public final class HealItemImpl implements HealItem {
         }
         return true;
     }
-    
-
 }
