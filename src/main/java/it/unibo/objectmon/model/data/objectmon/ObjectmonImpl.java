@@ -48,6 +48,20 @@ public class ObjectmonImpl implements Objectmon {
     }
 
     /**
+     * Constructor of the class ObjectmonImpl with a builder.
+     * @param builder The builder.
+     */
+    private ObjectmonImpl(final Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.aspects = List.copyOf(builder.aspects);
+        this.skills = List.copyOf(builder.skills);
+        this.stats = builder.stats;
+        this.level = builder.level;
+        this.exp = builder.exp;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -141,4 +155,51 @@ public class ObjectmonImpl implements Objectmon {
         this.stats = getStats().calcNewStats(1);
     }
 
+    /**
+     * Builder of ObjectmonImpl.
+     * Used to generate an Objectmon.
+     */
+    public static class Builder {
+        private final int id;
+        private final String name;
+        private final List<Aspect> aspects;
+        private final List<Skill> skills;
+        private final ActualStats stats;
+        private final int level;
+        private final int exp;
+
+        /**
+         * Constructor of the class ObjectmonImpl.java.
+         * @param id The id of the Objectmon.
+         * @param name The name of the Objectmon.
+         * @param aspects The aspects of the Objectmon.
+         * @param skills The skills of the Objectmon.
+         * @param stats The stats of the Objectmon.
+         * @param level The level of the Objectmon.
+         */
+        public Builder(
+            final int id,
+            final String name,
+            final List<Aspect> aspects,
+            final List<Skill> skills,
+            final ActualStats stats,
+            final int level
+            ) {
+            this.id = id;
+            this.name = name;
+            this.aspects = List.copyOf(aspects);
+            this.skills = List.copyOf(skills);
+            this.stats = stats;
+            this.level = level;
+            this.exp = 0;
+        }
+
+        /**
+         * Method that builds the Objectmon.
+         * @return Returns the ObjectmonImpl that was built.
+         */
+        public ObjectmonImpl build() {
+            return new ObjectmonImpl(this);
+        }
+    }
 }
