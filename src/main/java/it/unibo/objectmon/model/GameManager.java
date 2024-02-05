@@ -3,6 +3,8 @@ package it.unibo.objectmon.model;
 import java.util.Collections;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
 import it.unibo.objectmon.model.collision.CollisionCheckerImpl;
 import it.unibo.objectmon.model.collision.api.CollisionChecker;
 import it.unibo.objectmon.model.entity.NpcManager;
@@ -20,6 +22,7 @@ public final class GameManager {
     private final NpcManager npcManager;
     private final InteractionManager interactionManager;
     private final CollisionChecker collisionManager;
+    private final BattleManager battleManager;
 
     /**
      * Creates a world with entities and environment.
@@ -30,6 +33,7 @@ public final class GameManager {
         this.npcManager = new NpcManager();
         this.interactionManager = new InteractionManagerImpl();
         this.collisionManager = new CollisionCheckerImpl(world, Collections.unmodifiableSet(npcManager.getNpcs()));
+        this.battleManager = new BattleManagerImpl();
     }
 
     /**
@@ -71,5 +75,13 @@ public final class GameManager {
      */
     public CollisionChecker getCollisionManager() {
         return collisionManager;
+    }
+
+    /**
+     * 
+     * @return the battle manager
+     */
+    public BattleManager getBattleManager() {
+        return this.battleManager;
     }
 }
