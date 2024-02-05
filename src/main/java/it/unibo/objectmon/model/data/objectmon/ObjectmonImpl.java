@@ -6,6 +6,7 @@ import it.unibo.objectmon.api.data.aspect.Aspect;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.api.data.skill.Skill;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
+import it.unibo.objectmon.model.data.statistics.BaseStats;
 
 /**
  * Implementation of Objectmon.
@@ -35,7 +36,7 @@ public class ObjectmonImpl implements Objectmon {
         final String name,
         final List<Aspect> aspects,
         final List<Skill> skills,
-        final ActualStats stats,
+        final BaseStats stats,
         final int level
         ) {
         this.id = id;
