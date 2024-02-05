@@ -3,6 +3,7 @@ package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
 
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.battle.moves.api.Move;
 import it.unibo.objectmon.model.entity.npc.api.Trainer;
 
@@ -48,4 +49,9 @@ public interface Battle {
      * @return optional of trainer
      */
     Optional<Trainer> getTrainer();
+    /**
+     * 
+     * @return team of player.
+     */
+    ObjectmonParty getTeam();
 }

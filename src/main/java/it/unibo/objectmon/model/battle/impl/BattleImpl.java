@@ -3,6 +3,8 @@ package it.unibo.objectmon.model.battle.impl;
 import java.util.Optional;
 
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
+import it.unibo.objectmon.api.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.api.data.statistics.StatId;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.api.Move;
@@ -11,7 +13,7 @@ import it.unibo.objectmon.model.entity.npc.api.Trainer;
 /**
  * A simple battle that implements Battle.
  */
-public class BattleImpl implements Battle {
+public final class BattleImpl implements Battle {
     private final Player player;
     private final Optional<Trainer> trainer;
     private final Optional<Objectmon> objectmon;
@@ -39,44 +41,48 @@ public class BattleImpl implements Battle {
     }
 
     @Override
-    public final boolean isWin() {
+    public boolean isWin() {
         return this.trainer.get().isDefeated() && !this.player.isDefeated() 
         || this.objectmon.get().getStats().getSingleStat(StatId.HP) <= 0;
     }
 
     @Override
-    public final Move getPlayerMove() {
+    public Move getPlayerMove() {
         return this.playerMove;
     }
 
     @Override
-    public final void setPlayerMove(final Move move) {
+    public void setPlayerMove(final Move move) {
         this.playerMove = move;
     }
 
     @Override
-    public final void setEnemyMove(final Move move) {
+    public void setEnemyMove(final Move move) {
         this.enemyMove = move;
     }
 
     @Override
-    public final Move getEnemyMove() {
+    public Move getEnemyMove() {
         return this.enemyMove;
     }
 
     @Override
-    public final Objectmon getCurrentObjectmon() {
+    public Objectmon getCurrentObjectmon() {
         return this.player.getTeam().get(0);
     }
 
     @Override
-    public final Objectmon getEnemyObjectmon() {
+    public Objectmon getEnemyObjectmon() {
         return this.trainer.isEmpty() 
         ? this.objectmon.get() 
         : this.trainer.get().getTeam().get(0);
     }
     @Override
-    public final Optional<Trainer> getTrainer() {
+    public Optional<Trainer> getTrainer() {
         return this.trainer;
+    }
+    @Override
+    public ObjectmonParty getTeam() {
+        return new ObjectmonPartyImpl(this.player.getTeam());
     }
 }
