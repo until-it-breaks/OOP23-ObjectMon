@@ -5,13 +5,16 @@ import java.util.Optional;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.api.BattleManager.Result;
-import it.unibo.objectmon.model.battle.moves.api.Move;
 
 /**
  * Player leave the battle.
  */
-public class RunAway implements Move {
-    @Override
+public class RunAway {
+    /**
+     * .
+     * @param battle
+     * @param battleManager
+     */
     public final void action(final Battle battle, final BattleManager battleManager) {
         if (this.runnable(battle)) {
             battleManager.setResult(Result.LOSE);

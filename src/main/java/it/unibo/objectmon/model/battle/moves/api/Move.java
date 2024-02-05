@@ -1,16 +1,19 @@
 package it.unibo.objectmon.model.battle.moves.api;
 
-import it.unibo.objectmon.model.battle.api.Battle;
-import it.unibo.objectmon.model.battle.api.BattleManager;
-
 /**
- * Move represents a possible move in the battle.
+ * Move represents a type of move in the battle.
  */
-public interface Move {
+public enum Move {
     /**
-     * start the action of move selected.
-     * @param battle the current battle.
-     * @param battleManager which is managing the battle
+     * type of attack move.
      */
-    void action(Battle battle, BattleManager battleManager);
+    ATTACK,
+    /**
+     * type of use item move.
+     */
+    USE_ITEM,
+    /**
+     * type of run away.
+     */
+    RUN_AWAY
 }
