@@ -13,6 +13,7 @@ public final class World {
     private int width;
     private int height;
     private final Map<Coord, Tile> map;
+    private Coord startingPosition;
 
     /**
      * Constructs a new World object and initializes it by loading tiles from a default file.
@@ -27,6 +28,7 @@ public final class World {
         final TileSet tileSet = new TileSet();
         this.width = mapData.getWidth();
         this.height = mapData.getHeight();
+        this.startingPosition = new Coord(mapData.getStartingX(), mapData.getStartingY());
         for (int i = 0; i < mapData.getWidth(); i++) {
             for (int j = 0; j < mapData.getHeight(); j++) {
                 final int tileId = mapData.getData().get(i).get(j);
@@ -60,5 +62,13 @@ public final class World {
      */
     public int getHeight() {
         return height;
+    }
+
+    /**
+     * Retrives the starting position of the player.
+     * @return A coord representing the starting position of the player.
+     */
+    public Coord getStartingPosition() {
+        return startingPosition;
     }
 }

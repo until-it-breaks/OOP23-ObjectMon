@@ -27,18 +27,11 @@ public final class ViewImpl implements View {
         this.frame.pack();
     }
 
-    /**
-     * Tells the child panels to render information from the model.
-     */
     @Override
     public void render() {
         frame.repaint();
     }
 
-    /**
-     * Builds the view panel.
-     * @param controller the controller that will receive inputs
-     */
     @Override
     public void build(final Controller controller) {
         this.frame.add(new OverWorldPanel(controller));

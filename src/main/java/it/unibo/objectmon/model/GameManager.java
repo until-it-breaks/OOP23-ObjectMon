@@ -1,7 +1,5 @@
 package it.unibo.objectmon.model;
 
-import java.util.Collections;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
@@ -21,7 +19,7 @@ public final class GameManager {
     private final PlayerManager playerManager;
     private final NpcManager npcManager;
     private final InteractionManager interactionManager;
-    private final CollisionChecker collisionManager;
+    private final CollisionChecker collisionChecker;
     private final BattleManager battleManager;
 
     /**
@@ -32,8 +30,8 @@ public final class GameManager {
         this.playerManager = new PlayerManager(this);
         this.npcManager = new NpcManager();
         this.interactionManager = new InteractionManagerImpl();
-        this.collisionManager = new CollisionCheckerImpl(world, Collections.unmodifiableSet(npcManager.getNpcs()));
         this.battleManager = new BattleManagerImpl();
+        this.collisionChecker = new CollisionCheckerImpl(world, npcManager.getNpcs());
     }
 
     /**
@@ -45,43 +43,45 @@ public final class GameManager {
     }
 
     /**
-     * 
-     * @return the player.
+     * Returns an object responsible for controlling the {@link Player}.
+     * @return The {@link PlayerManager}
      */
-    @SuppressFBWarnings("EI_EXPOSE_REP") //TEMPORARY!!!!!
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Could not find a better way to avoid exposing the setters inside the controller")
     public PlayerManager getPlayerController() {
         return this.playerManager;
     }
 
     /**
-     * 
-     * @return an immutable set of all the current npcs.
+     * Retrieves the NPC manager.
+     * @return An NPC manager.
      */
     public NpcManager getNpcManager() {
         return this.npcManager;
     }
 
     /**
-     * 
-     * @return the interaction manager.
+     * Retrieves the interaction manager.
+     * @return The interaction manager.
      */
     public InteractionManager getInteractionManager() {
         return this.interactionManager;
     }
 
     /**
-     * 
-     * @return the collision checker.
+     * Retrieves the collision checker.
+     * @return The collision checker.
      */
-    public CollisionChecker getCollisionManager() {
-        return collisionManager;
+    public CollisionChecker getCollisionChecker() {
+        return this.collisionChecker;
     }
 
     /**
      * 
      * @return the battle manager
      */
-    @SuppressFBWarnings("EI_EXPOSE_REP")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Could not find a better way to avoid exposing the setters inside the controller")
     public BattleManager getBattleManager() {
         return this.battleManager;
     }
