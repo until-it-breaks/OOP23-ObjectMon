@@ -12,7 +12,6 @@ import it.unibo.objectmon.view.api.View;
  */
 public class GameLoop {
     private static final long PERIOD = 16;
-
     private final Logger logger = Logger.getLogger("GameLoop");
     private final Model model;
     private final View view;

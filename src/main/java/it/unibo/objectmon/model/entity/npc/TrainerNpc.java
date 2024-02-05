@@ -6,6 +6,7 @@ import java.util.Set;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.PlayerManager;
 import it.unibo.objectmon.model.entity.npc.api.Trainer;
+import it.unibo.objectmon.model.eventlog.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -44,8 +45,11 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
 
     @Override
     public void handleInteraction(final PlayerManager player) {
-        //System.out.println("I challenge you!");
-        //If undefeated says "I challenge you!".
-        //Calls battle manager to start battle between him and the player.
+        if (!isDefeated) {
+            EventLogger.getLogger().log(this.getName() + " challenges " + player.getName());
+            //Calls battle manager.
+        } else {
+            EventLogger.getLogger().log(this.getName() + "has already been defeated");
+        }
     }
 }

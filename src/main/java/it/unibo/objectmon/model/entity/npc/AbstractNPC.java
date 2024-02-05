@@ -10,7 +10,7 @@ import it.unibo.objectmon.model.world.Coord;
 public abstract class AbstractNPC extends EntityImpl {
 
     /**
-     *...
+     * Constructs an incomplete NPC.
      * @param name the npc name
      * @param coord the npc position
      */

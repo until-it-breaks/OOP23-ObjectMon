@@ -2,7 +2,6 @@ package it.unibo.objectmon.model.entity;
 
 import java.util.Collections;
 import java.util.Set;
-
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.GameManager;
 import it.unibo.objectmon.model.entity.api.Direction;
@@ -21,11 +20,12 @@ public final class PlayerManager {
 
     /**
      * Creates a new {@link PlayerManager}.
-     * @param gameManager
+     * @param gameManager The gameManager that it will be attached to.
      */
     public PlayerManager(final GameManager gameManager) {
         this.gameManager = gameManager;
-        this.player = new PlayerImpl("Player1", new Coord(0, 0), Set.of());
+        this.player = new PlayerImpl("Player", new Coord(gameManager.getWorld().getStartingPosition().x(),
+        gameManager.getWorld().getStartingPosition().y()), Set.of());
     }
 
     /**
@@ -33,7 +33,7 @@ public final class PlayerManager {
      */
     public void moveUp() {
         final Coord nextPosition = new Coord(getPosition().x(), getPosition().y() - 1);
-        if (this.gameManager.getCollisionManager().isCollision(nextPosition)) {
+        if (this.gameManager.getCollisionChecker().isCollision(nextPosition)) {
             this.player.setDirection(Direction.UP);
         } else {
             this.player.moveUp();
@@ -45,7 +45,7 @@ public final class PlayerManager {
      */
     public void moveDown() {
         final Coord nextPosition = new Coord(getPosition().x(), getPosition().y() + 1);
-        if (this.gameManager.getCollisionManager().isCollision(nextPosition)) {
+        if (this.gameManager.getCollisionChecker().isCollision(nextPosition)) {
             this.player.setDirection(Direction.DOWN);
         } else {
             this.player.moveDown();
@@ -56,7 +56,7 @@ public final class PlayerManager {
      */
     public void moveLeft() {
         final Coord nextPosition = new Coord(getPosition().x() - 1, getPosition().y());
-        if (this.gameManager.getCollisionManager().isCollision(nextPosition)) {
+        if (this.gameManager.getCollisionChecker().isCollision(nextPosition)) {
             this.player.setDirection(Direction.LEFT);
         } else {
             this.player.moveLeft();
@@ -68,7 +68,7 @@ public final class PlayerManager {
      */
     public void moveRight() {
         final Coord nextPosition = new Coord(getPosition().x() + 1, getPosition().y());
-        if (this.gameManager.getCollisionManager().isCollision(nextPosition)) {
+        if (this.gameManager.getCollisionChecker().isCollision(nextPosition)) {
             this.player.setDirection(Direction.RIGHT);
         } else {
             this.player.moveRight();

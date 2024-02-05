@@ -5,12 +5,14 @@ package it.unibo.objectmon.model;
  */
 public final class Model {
     private final GameManager gameManager;
+
     /**
      * Creates a world with entities and environment.
      */
     public Model() {
         this.gameManager = new GameManager();
     }
+
     /**
      * 
      * @return the game manager.
