@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import it.unibo.objectmon.api.data.aspect.Aspect;
 import it.unibo.objectmon.api.data.skill.Skill;
 import it.unibo.objectmon.api.data.statistics.StatId;
 import it.unibo.objectmon.model.data.skill.SkillFactory;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
-
+import com.google.gson.Gson;
 /**
  * A factory of Skills.
  */
@@ -139,5 +138,14 @@ public final class ObjectmonFactory {
         );
 
         return objectmonSet;
+    }
+
+    /**
+     * Converts a set of ObjectmonImpl to a json file.
+     * @return Returns a json of the set of ObjectmonImpl.
+     */
+    public static String toJson() {
+        final Gson gson = new Gson();
+        return gson.toJson(createObjectmon());
     }
 }
