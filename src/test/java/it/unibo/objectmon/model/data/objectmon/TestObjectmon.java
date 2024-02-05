@@ -14,7 +14,7 @@ import it.unibo.objectmon.api.data.skill.PotencyChart;
 import it.unibo.objectmon.api.data.skill.Skill;
 import it.unibo.objectmon.api.data.skill.SkillCategory;
 import it.unibo.objectmon.api.data.statistics.StatId;
-import it.unibo.objectmon.model.data.statistics.ActualStats;
+import it.unibo.objectmon.model.data.statistics.BaseStats;
 /**
  *  Test of Objectmon.
  */
@@ -32,7 +32,7 @@ class TestObjectmon {
         final int sKill1BasePower = 120;
         final int skill1MaxUses = 8;
         skills.add(new Skill("Close Combat", 1, Aspect.FIGHTING, sKill1BasePower, 100, skill1MaxUses, SkillCategory.PHYS));
-        final ActualStats stats = new ActualStats(
+        final BaseStats stats = new BaseStats(
             Map.of(
             StatId.HP, 60,
             StatId.ATK, 60,
