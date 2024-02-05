@@ -138,7 +138,7 @@ public class ObjectmonImpl implements Objectmon {
      */
     public void levelUp() {
         addLevel();
-        this.stats = getStats().growAllStats();
+        this.stats = getStats().calcNewStats(1);
     }
 
 }
