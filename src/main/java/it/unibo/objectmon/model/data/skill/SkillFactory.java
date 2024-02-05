@@ -3,6 +3,8 @@ package it.unibo.objectmon.model.data.skill;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import it.unibo.objectmon.api.data.aspect.Aspect;
 import it.unibo.objectmon.api.data.skill.Skill;
 import it.unibo.objectmon.api.data.skill.SkillCategory;
@@ -55,5 +57,14 @@ public final class SkillFactory {
         }
 
         return skillList;
+    }
+
+    /**
+     * Converts a list of Skill to a json file.
+     * @return Returns a json of the list of Skill.
+     */
+    public static String toJson() {
+        final Gson gson = new Gson();
+        return gson.toJson(createSkills());
     }
 }
