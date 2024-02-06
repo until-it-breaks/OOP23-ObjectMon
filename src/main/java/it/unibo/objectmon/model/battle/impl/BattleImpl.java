@@ -17,6 +17,8 @@ public final class BattleImpl implements Battle {
     private final Player player;
     private final Optional<Trainer> trainer;
     private final Optional<Objectmon> objectmon;
+    private int objectmonHP;
+    private int enemyHP;
     private Move playerMove;
     private Move enemyMove;
     /**
@@ -28,6 +30,8 @@ public final class BattleImpl implements Battle {
         this.player = player;
         this.trainer = Optional.of(trainer);
         this.objectmon = Optional.of(trainer.getTeam().get(0));
+        this.objectmonHP = player.getTeam().get(0).getStats().getSingleStat(StatId.HP);
+        this.enemyHP = trainer.getTeam().get(0).getStats().getSingleStat(StatId.HP);
     }
     /**
      * constructor of battle between the player and wild objectmon.
@@ -84,5 +88,21 @@ public final class BattleImpl implements Battle {
     @Override
     public ObjectmonParty getTeam() {
         return new ObjectmonPartyImpl(this.player.getTeam());
+    }
+    @Override
+    public int getObjectmonHP() {
+        return this.objectmonHP;
+    }
+    @Override
+    public int getEnemyHP() {
+        return this.enemyHP;
+    }
+    @Override
+    public void setObjectomHP(final int hp) {
+        this.objectmonHP = hp;
+    }
+    @Override
+    public void setEnemyHP(final int hp) {
+        this.enemyHP = hp;
     }
 }

@@ -51,7 +51,27 @@ public interface Battle {
     Optional<Trainer> getTrainer();
     /**
      * 
-     * @return team of player.
+     * @return team of player
      */
     ObjectmonParty getTeam();
+    /**
+     * 
+     * @return HP of our current objectmon.
+     */
+    int getObjectmonHP();
+    /**
+     * 
+     * @return HP of enemy current objectmon.
+     */
+    int getEnemyHP();
+    /**
+     * set our current Objectmon HP.
+     * @param hp HP to set of current objectmon
+     */
+    void setObjectomHP(int hp);
+    /**
+     * set enemy current objectom HP.
+     * @param hp HP to set of current objectmon
+     */
+    void setEnemyHP(int hp);
 }
