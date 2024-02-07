@@ -5,6 +5,7 @@ import java.util.List;
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 
@@ -18,6 +19,7 @@ public class ObjectmonImpl implements Objectmon {
     private final List<Aspect> aspects;
     private final List<Skill> skills;
     private ActualStats stats;
+    private int currentHp;
     private int level;
     private int exp;
     private static final int MAXEXP = 100;
@@ -44,6 +46,7 @@ public class ObjectmonImpl implements Objectmon {
         this.aspects = List.copyOf(aspects);
         this.skills = List.copyOf(skills);
         this.stats = stats;
+        this.currentHp = this.stats.getSingleStat(StatId.HP);
         this.level = level;
         this.exp = 0;
     }
@@ -58,6 +61,7 @@ public class ObjectmonImpl implements Objectmon {
         this.aspects = List.copyOf(builder.aspects);
         this.skills = List.copyOf(builder.skills);
         this.stats = builder.stats;
+        this.currentHp = this.stats.getSingleStat(StatId.HP);
         this.level = builder.level;
         this.exp = builder.exp;
     }
@@ -130,7 +134,7 @@ public class ObjectmonImpl implements Objectmon {
 
     /**
      *
-     * @param exp
+     * @param exp New quantity of exp.
      */
     private void setExp(final int exp) {
         this.exp = exp;
@@ -154,6 +158,32 @@ public class ObjectmonImpl implements Objectmon {
     public void levelUp() {
         addLevel();
         this.stats = getStats().calcNewStats(1);
+    }
+
+    /**
+     *
+     * @return Returns the currentHp of the Objectmon.
+     */
+    public int getCurrentHp() {
+        return this.currentHp;
+    }
+
+    /**
+     *
+     * @param quantity Quantity of the Hp to be added to currentHp.
+     */
+    public void setCurrentHp(final int quantity) {
+        final int value = this.currentHp + quantity;
+        final int maxHp = getStats().getSingleStat(StatId.HP);
+
+        if (value > maxHp) {
+            this.currentHp = maxHp;
+        } else if (value < 0) {
+            this.currentHp = 0;
+        } else {
+            this.currentHp = value;
+        }
+
     }
 
     /**
