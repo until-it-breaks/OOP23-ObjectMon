@@ -1,19 +1,22 @@
 package it.unibo.objectmon.model.entity.npc;
 
 import java.util.List;
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonPartyImpl;
-import it.unibo.objectmon.model.entity.PlayerManager;
-import it.unibo.objectmon.model.entity.npc.api.Trainer;
-import it.unibo.objectmon.model.eventlog.EventLogger;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entity.api.npc.Trainer;
+import it.unibo.objectmon.model.entity.player.PlayerManager;
+import it.unibo.objectmon.model.misc.eventlog.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
  * Models an NPC capable of fighting.
  */
 public final class TrainerNpc extends AbstractNPC implements Trainer {
-    private final ObjectmonParty team;
+    private final ObjectmonParty objectmonParty;
     private boolean isDefeated;
 
     /**
@@ -24,7 +27,7 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
      */
     public TrainerNpc(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
-        this.team = new ObjectmonPartyImpl(team);
+        this.objectmonParty = new ObjectmonPartyImpl(team);
         this.isDefeated = false;
     }
 
@@ -38,9 +41,11 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
         return this.isDefeated;
     }
 
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "TEMPORARY")
     @Override
-    public List<Objectmon> getTeam() {
-        return this.team.getParty();
+    public ObjectmonParty getObjectmonParty() {
+        return this.objectmonParty;
     }
 
     @Override

@@ -1,9 +1,10 @@
 package it.unibo.objectmon.model.ai;
 import java.util.List;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
+
 import it.unibo.objectmon.model.ai.api.AiTrainer;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 /**
  * an implementation of ai trainer, 
  * which change the objectmon only if the current fighting objectmon is dead.

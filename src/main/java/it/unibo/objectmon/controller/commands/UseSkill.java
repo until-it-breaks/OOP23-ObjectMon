@@ -16,6 +16,6 @@ public final class UseSkill implements Command {
     }
     @Override
     public void execute(final Model model) {
-        model.getGameManager().getBattleManager().useSkill(this.index);
+        model.getBattleManager().useSkill(this.index);
     }
 }

@@ -1,9 +1,11 @@
 package it.unibo.objectmon.model.entity.npc;
 
 import java.util.Set;
-import java.util.List;
+
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.world.Coord;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * A factory of NPC sets.

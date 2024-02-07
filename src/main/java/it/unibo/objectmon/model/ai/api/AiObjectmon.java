@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.ai.api;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 
 /**
  * objectmon control by AI.

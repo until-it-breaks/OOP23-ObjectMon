@@ -2,10 +2,10 @@ package it.unibo.objectmon.model.battle.api;
 
 import java.util.Optional;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.entity.api.npc.Trainer;
 import it.unibo.objectmon.model.battle.moves.type.Move;
-import it.unibo.objectmon.model.entity.npc.api.Trainer;
 
 /**
  * A battle between a player and a npc trainer or wild ObjectMon.

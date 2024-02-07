@@ -2,8 +2,10 @@ package it.unibo.objectmon.model.ai.api;
 
 import java.util.List;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+
+
 /**
  * AI controls trainer in the battle with player.
  */

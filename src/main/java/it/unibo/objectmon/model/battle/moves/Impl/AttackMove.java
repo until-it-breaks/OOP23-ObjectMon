@@ -1,10 +1,12 @@
 package it.unibo.objectmon.model.battle.moves.impl;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.skill.Skill;
-import it.unibo.objectmon.api.data.statistics.StatId;
+
 import it.unibo.objectmon.model.battle.damage.DamageCalculator;
 import it.unibo.objectmon.model.battle.damage.DamageCalculatorImpl;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+
 import java.util.Random;
 /**
  * an attack move using a skill of pokemon. 

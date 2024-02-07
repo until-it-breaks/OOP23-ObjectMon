@@ -9,11 +9,11 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import it.unibo.objectmon.api.data.aspect.Aspect;
-import it.unibo.objectmon.api.data.skill.PotencyChart;
-import it.unibo.objectmon.api.data.skill.Skill;
-import it.unibo.objectmon.api.data.skill.SkillCategory;
-import it.unibo.objectmon.api.data.statistics.StatId;
+import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.skill.PotencyChart;
+import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.skill.SkillCategory;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 /**
  *  Test of Objectmon.

@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.npc.TrainerNpc;
 /**

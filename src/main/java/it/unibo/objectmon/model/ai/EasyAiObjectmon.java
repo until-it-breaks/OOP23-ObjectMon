@@ -2,8 +2,9 @@ package it.unibo.objectmon.model.ai;
 
 import java.util.Random;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
+
 import it.unibo.objectmon.model.ai.api.AiObjectmon;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 
 /**
  * an easy AI implementation of objecmon, which skills are chosen randomly.

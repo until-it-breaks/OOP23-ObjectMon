@@ -1,7 +1,6 @@
 package it.unibo.objectmon.model.battle.api;
-
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.battle.moves.type.Move;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 
 /**
  * turn should choose in the battle who has the priority to use an move.

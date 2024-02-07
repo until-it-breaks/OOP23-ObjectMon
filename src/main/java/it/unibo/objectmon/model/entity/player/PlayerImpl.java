@@ -2,9 +2,10 @@ package it.unibo.objectmon.model.entity.player;
 
 import java.util.List;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonPartyImpl;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.EntityImpl;
 import it.unibo.objectmon.model.entity.api.Player;
@@ -15,7 +16,7 @@ import it.unibo.objectmon.model.world.Coord;
  */
 public final class PlayerImpl extends EntityImpl implements Player {
 
-    private final ObjectmonParty team;
+    private final ObjectmonParty objectmonParty;
     private boolean isDefeated;
 
     /**
@@ -26,7 +27,7 @@ public final class PlayerImpl extends EntityImpl implements Player {
      */
     public PlayerImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
-        this.team = new ObjectmonPartyImpl(team);
+        this.objectmonParty = new ObjectmonPartyImpl(team);
         this.isDefeated = false;
     }
 
@@ -64,8 +65,10 @@ public final class PlayerImpl extends EntityImpl implements Player {
         return this.isDefeated;
     }
 
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "TEMPORARY")
     @Override
-    public List<Objectmon> getTeam() {
-        return this.team.getParty();
+    public ObjectmonParty getObjectmonParty() {
+        return this.objectmonParty;
     }
 }

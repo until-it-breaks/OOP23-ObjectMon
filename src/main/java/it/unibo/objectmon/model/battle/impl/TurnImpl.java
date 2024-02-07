@@ -1,9 +1,10 @@
 package it.unibo.objectmon.model.battle.impl;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.statistics.StatId;
+
 import it.unibo.objectmon.model.battle.api.Turn;
 import it.unibo.objectmon.model.battle.moves.type.Move;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 /**
  * implementation of turn.
  */

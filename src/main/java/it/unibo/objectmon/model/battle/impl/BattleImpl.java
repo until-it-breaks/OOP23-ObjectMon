@@ -2,14 +2,14 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
-import it.unibo.objectmon.api.data.objectmon.ObjectmonPartyImpl;
-import it.unibo.objectmon.api.data.statistics.StatId;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.npc.api.Trainer;
+import it.unibo.objectmon.model.entity.api.npc.Trainer;
 /**
  * A simple battle that implements Battle.
  */
@@ -29,9 +29,9 @@ public final class BattleImpl implements Battle {
     public BattleImpl(final Player player, final Trainer trainer) {
         this.player = player;
         this.trainer = Optional.of(trainer);
-        this.objectmon = Optional.of(trainer.getTeam().get(0));
-        this.objectmonHP = player.getTeam().get(0).getStats().getSingleStat(StatId.HP);
-        this.enemyHP = trainer.getTeam().get(0).getStats().getSingleStat(StatId.HP);
+        this.objectmon = Optional.of(trainer.getObjectmonParty().getParty().get(0));
+        this.objectmonHP = player.getObjectmonParty().getParty().get(0).getStats().getSingleStat(StatId.HP);
+        this.enemyHP = trainer.getObjectmonParty().getParty().get(0).getStats().getSingleStat(StatId.HP);
     }
     /**
      * constructor of battle between the player and wild objectmon.
@@ -72,14 +72,14 @@ public final class BattleImpl implements Battle {
 
     @Override
     public Objectmon getCurrentObjectmon() {
-        return this.player.getTeam().get(0);
+        return this.player.getObjectmonParty().getParty().get(0);
     }
 
     @Override
     public Objectmon getEnemyObjectmon() {
         return this.trainer.isEmpty() 
         ? this.objectmon.get() 
-        : this.trainer.get().getTeam().get(0);
+        : this.trainer.get().getObjectmonParty().getParty().get(0);
     }
     @Override
     public Optional<Trainer> getTrainer() {
@@ -87,7 +87,7 @@ public final class BattleImpl implements Battle {
     }
     @Override
     public ObjectmonParty getTeam() {
-        return new ObjectmonPartyImpl(this.player.getTeam());
+        return new ObjectmonPartyImpl(this.player.getObjectmonParty().getParty());
     }
     @Override
     public int getObjectmonHP() {

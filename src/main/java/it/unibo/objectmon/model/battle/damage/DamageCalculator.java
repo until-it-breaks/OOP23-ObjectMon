@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.battle.damage;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 /**
  * A Calculator that given a skill, it calculate the damage to the target, 
  * considering statics of Objectmon.

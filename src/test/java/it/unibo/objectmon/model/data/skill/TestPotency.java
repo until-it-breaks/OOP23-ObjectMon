@@ -1,8 +1,8 @@
 package it.unibo.objectmon.model.data.skill;
 
-import it.unibo.objectmon.api.data.skill.PotencyChart;
-import it.unibo.objectmon.api.data.aspect.Aspect;
-import it.unibo.objectmon.api.data.skill.Potency;
+import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.skill.Potency;
+import it.unibo.objectmon.model.data.api.skill.PotencyChart;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;

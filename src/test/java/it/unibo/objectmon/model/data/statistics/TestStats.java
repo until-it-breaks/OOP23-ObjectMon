@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.objectmon.api.data.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 
 /**
  * Tests on the class BaseStats.
