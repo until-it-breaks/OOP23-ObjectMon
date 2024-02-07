@@ -2,11 +2,12 @@ package it.unibo.objectmon.controller;
 
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
-
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
-import it.unibo.objectmon.model.GameManager;
 import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.model.entity.NpcManager;
+import it.unibo.objectmon.model.entity.PlayerManager;
+import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.view.api.View;
 /**
  * Models the controller of the application.
@@ -35,13 +36,6 @@ public final class Controller {
         this.commandQueue.add(command);
     }
     /**
-     * 
-     * @return the game manager.
-     */
-    public GameManager getGameManager() {
-        return model.getGameManager();
-    }
-    /**
      * Polls a command.
      * @return a command from the queue.
      */
@@ -54,5 +48,17 @@ public final class Controller {
     public void startGame() {
         final GameLoop gameLoop = new GameLoop(model, view, this);
         gameLoop.startLoop();
+    }
+
+    public World getWorld() {
+        return model.getWorld();
+    }
+
+    public PlayerManager getPlayerController() {
+        return model.getPlayerController();
+    }
+
+    public NpcManager getNpcManager() {
+        return model.getNpcManager();
     }
 }

@@ -9,6 +9,6 @@ import it.unibo.objectmon.model.Model;
 public final class MoveUp implements Command {
     @Override
     public void execute(final Model model) {
-        model.getGameManager().getPlayerController().moveUp();
+        model.getPlayerController().moveUp();
     }
 }
