@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import it.unibo.objectmon.api.data.aspect.Aspect;
-import it.unibo.objectmon.api.data.skill.Skill;
-import it.unibo.objectmon.api.data.skill.SkillCategory;
+import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.skill.SkillCategory;
 
 /**
  * A factory of Skills.

@@ -1,12 +1,12 @@
 package it.unibo.objectmon.model;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.objectmon.model.collision.CollisionCheckerImpl;
-import it.unibo.objectmon.model.collision.api.CollisionChecker;
-import it.unibo.objectmon.model.entity.NpcManager;
-import it.unibo.objectmon.model.entity.PlayerManager;
-import it.unibo.objectmon.model.interaction.InteractionManagerImpl;
-import it.unibo.objectmon.model.interaction.api.InteractionManager;
+import it.unibo.objectmon.model.entity.npc.NpcManager;
+import it.unibo.objectmon.model.entity.player.PlayerManager;
+import it.unibo.objectmon.model.misc.collision.CollisionCheckerImpl;
+import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
+import it.unibo.objectmon.model.misc.interaction.InteractionManagerImpl;
+import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 import it.unibo.objectmon.model.world.World;
 
 /**
@@ -43,7 +43,7 @@ public final class Model {
      * @return The {@link PlayerManager}
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "Could not find a better way to avoid exposing the setters inside the controller")
+    justification = "Temporary")
     public PlayerManager getPlayerController() {
         return this.playerManager;
     }

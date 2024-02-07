@@ -1,8 +1,11 @@
 package it.unibo.objectmon.model.entity.npc;
 
 import java.util.Set;
+
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.world.Coord;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * A factory of NPC sets.
@@ -25,10 +28,10 @@ public final class NPCFactory {
      */
     public static Set<AbstractNPC> createDefaultNPCs() {
         final Set<AbstractNPC> npcs = new HashSet<>();
-        npcs.add(new TrainerNpc("Trainer 1", TRAINER1_COORD, Set.of()));
-        npcs.add(new TrainerNpc("Trainer 2", TRAINER2_COORD, Set.of()));
-        npcs.add(new TrainerNpc("Trainer 3", TRAINER3_COORD, Set.of()));
-        npcs.add(new TrainerNpc("Trainer 4", TRAINER4_COORD, Set.of()));
+        npcs.add(new TrainerNpc("Trainer 1", TRAINER1_COORD, List.of()));
+        npcs.add(new TrainerNpc("Trainer 2", TRAINER2_COORD, List.of()));
+        npcs.add(new TrainerNpc("Trainer 3", TRAINER3_COORD, List.of()));
+        npcs.add(new TrainerNpc("Trainer 4", TRAINER4_COORD, List.of()));
         npcs.add(new HealerNPC("Healer 1", HEALER1_COORD));
         npcs.add(new SellerNPC("Seller 1", SELLER1_COORD));
         return npcs;

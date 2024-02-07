@@ -2,7 +2,7 @@ package it.unibo.objectmon.model.data.statistics;
 
 import java.util.Map;
 
-import it.unibo.objectmon.api.data.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 
 /**
  * Extension of the class StatsImpl.

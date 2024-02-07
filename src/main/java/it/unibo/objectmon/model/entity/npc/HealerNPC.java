@@ -1,10 +1,10 @@
 package it.unibo.objectmon.model.entity.npc;
 
-import java.util.Set;
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.model.entity.PlayerManager;
-import it.unibo.objectmon.model.entity.npc.api.Healer;
-import it.unibo.objectmon.model.eventlog.EventLogger;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entity.api.npc.Healer;
+import it.unibo.objectmon.model.entity.player.PlayerManager;
+import it.unibo.objectmon.model.misc.eventlog.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -24,11 +24,11 @@ public final class HealerNPC extends AbstractNPC implements Healer {
     @Override
     public void handleInteraction(final PlayerManager player) {
         EventLogger.getLogger().log("Player's team has been healed");
-        this.healTeam(player.getTeam());
+        this.healTeam(player.getObjectmonParty());
     }
 
     @Override
-    public void healTeam(final Set<Objectmon> team) {
+    public void healTeam(final ObjectmonParty team) {
         //Heals all the objectmons in the player party.
     }
 }

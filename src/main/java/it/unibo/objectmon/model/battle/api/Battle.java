@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.battle.api;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 /**
  * A battle between a player and a npc fighter or wild ObjectMon.
  * @param <T> is an entity of fighter.

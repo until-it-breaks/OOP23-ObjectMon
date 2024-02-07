@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.entity.api;
 
-import it.unibo.objectmon.model.entity.npc.api.Trainer;
+import it.unibo.objectmon.model.entity.api.npc.Trainer;
 
 /**
  * Represents a player with basic movement functions.

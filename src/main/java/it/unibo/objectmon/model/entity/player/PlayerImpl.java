@@ -1,10 +1,11 @@
 package it.unibo.objectmon.model.entity.player;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.EntityImpl;
 import it.unibo.objectmon.model.entity.api.Player;
@@ -15,7 +16,7 @@ import it.unibo.objectmon.model.world.Coord;
  */
 public final class PlayerImpl extends EntityImpl implements Player {
 
-    private final Set<Objectmon> team;
+    private final ObjectmonParty objectmonParty;
     private boolean isDefeated;
 
     /**
@@ -24,9 +25,9 @@ public final class PlayerImpl extends EntityImpl implements Player {
      * @param coord The starting position of the player.
      * @param team The starting team of Objectmons.
      */
-    public PlayerImpl(final String name, final Coord coord, final Set<Objectmon> team) {
+    public PlayerImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
-        this.team = new LinkedHashSet<>(Collections.unmodifiableSet(team));
+        this.objectmonParty = new ObjectmonPartyImpl(team);
         this.isDefeated = false;
     }
 
@@ -64,8 +65,10 @@ public final class PlayerImpl extends EntityImpl implements Player {
         return this.isDefeated;
     }
 
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "TEMPORARY")
     @Override
-    public Set<Objectmon> getTeam() {
-        return Collections.unmodifiableSet(this.team);
+    public ObjectmonParty getObjectmonParty() {
+        return this.objectmonParty;
     }
 }

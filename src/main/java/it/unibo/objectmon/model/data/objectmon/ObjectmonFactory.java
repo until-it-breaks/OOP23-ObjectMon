@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import it.unibo.objectmon.api.data.aspect.Aspect;
-import it.unibo.objectmon.api.data.skill.Skill;
-import it.unibo.objectmon.api.data.statistics.StatId;
+
+import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.skill.SkillFactory;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 import com.google.gson.Gson;

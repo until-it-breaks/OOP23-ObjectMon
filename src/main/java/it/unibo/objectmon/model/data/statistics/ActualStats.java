@@ -1,8 +1,10 @@
 package it.unibo.objectmon.model.data.statistics;
 
 import java.util.Map;
+
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+
 import java.util.HashMap;
-import it.unibo.objectmon.api.data.statistics.StatId;
 /**
  * Extension of the class StatsImpl.
  * This implementation is used to store the change of stats of the Objectmon

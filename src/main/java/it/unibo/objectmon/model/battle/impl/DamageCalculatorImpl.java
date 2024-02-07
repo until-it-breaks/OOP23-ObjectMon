@@ -1,11 +1,11 @@
 package it.unibo.objectmon.model.battle.impl;
 
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.skill.PotencyChart;
-import it.unibo.objectmon.api.data.skill.Skill;
-import it.unibo.objectmon.api.data.skill.SkillCategory;
-import it.unibo.objectmon.api.data.statistics.StatId;
 import it.unibo.objectmon.model.battle.api.DamageCalculator;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.skill.PotencyChart;
+import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.skill.SkillCategory;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 /**
  * a damage calculator calculate the damage in a simple way.
  */
