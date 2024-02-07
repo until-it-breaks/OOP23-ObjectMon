@@ -3,7 +3,7 @@ package it.unibo.objectmon.model.battle.impl;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.api.data.statistics.StatId;
 import it.unibo.objectmon.model.battle.api.Turn;
-import it.unibo.objectmon.model.battle.moves.api.Move;
+import it.unibo.objectmon.model.battle.moves.type.Move;
 /**
  * implementation of turn.
  */

@@ -6,8 +6,8 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.api.data.objectmon.Objectmon;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
-import it.unibo.objectmon.model.battle.moves.api.Move;
 import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
+import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.npc.api.Trainer;
 /**

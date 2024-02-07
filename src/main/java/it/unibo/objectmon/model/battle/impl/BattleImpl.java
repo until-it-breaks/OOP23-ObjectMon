@@ -7,7 +7,7 @@ import it.unibo.objectmon.api.data.objectmon.ObjectmonParty;
 import it.unibo.objectmon.api.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.api.data.statistics.StatId;
 import it.unibo.objectmon.model.battle.api.Battle;
-import it.unibo.objectmon.model.battle.moves.api.Move;
+import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.npc.api.Trainer;
 /**

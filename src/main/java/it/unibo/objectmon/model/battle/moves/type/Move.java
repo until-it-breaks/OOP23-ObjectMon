@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.battle.moves.api;
+package it.unibo.objectmon.model.battle.moves.type;
 
 /**
  * Move represents a type of move in the battle.
