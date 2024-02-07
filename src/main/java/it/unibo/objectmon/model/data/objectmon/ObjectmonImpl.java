@@ -134,7 +134,7 @@ public class ObjectmonImpl implements Objectmon {
 
     /**
      *
-     * @param exp New quantity of exp. 
+     * @param exp New quantity of exp.
      */
     private void setExp(final int exp) {
         this.exp = exp;
