@@ -72,12 +72,12 @@ public final class BattleImpl implements Battle {
 
     @Override
     public void setEnemyMove() {
-        if (this.wildObjectmon.get().getCurrentHp() <= 0) {
-            this.trainer.ifPresent(t -> {
+        this.trainer.ifPresent(t -> {
+            if (t.getObjectmonParty().getParty().get(0).getCurrentHp() <= 0) {
                 this.aiTrainer.switchObjectmon(t.getObjectmonParty());
                 this.enemyMove = Move.SWITCH_OBJECTMON;
-            });
-        }
+            }
+        });
         this.aiTrainer.useSkill(getEnemyObjectmon());
         this.enemyMove = Move.ATTACK;
     }
