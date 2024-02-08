@@ -75,8 +75,8 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void switchObjectmon(final int index) {
-        final var team = this.battle.get().getTeam().getParty();
-        this.battle.get().getTeam().switchPosition(team.get(0), team.get(index));
+        final var team = this.battle.get().getPlayerTeam().getParty();
+        this.battle.get().getPlayerTeam().switchPosition(team.get(0), team.get(index));
     }
 
     @Override

@@ -18,24 +18,31 @@ import it.unibo.objectmon.model.entity.api.npc.Trainer;
 public final class BattleImpl implements Battle {
     private final Player player;
     private final Optional<Trainer> trainer;
-    private final Optional<Objectmon> objectmon;
+    private final Optional<Objectmon> wildObjectmon;
     private final AiTrainer aiTrainer;
-    private int objectmonHP;
-    private int enemyHP;
     private Move playerMove;
     private Move enemyMove;
+    /**
+     * 
+     * @param player player in the battle.
+     * @param trainer trainer to be defeated by player
+     * @param objectmon wild objectmon
+     */
+    public BattleImpl(final Player player, final Optional<Trainer> trainer, final Optional<Objectmon> objectmon) {
+        this.player = player;
+        this.trainer = trainer;
+        this.wildObjectmon = objectmon;
+        this.aiTrainer = new EasyAiTrainer();
+        this.playerMove = Move.NOT_IN_FIGHT;
+        this.enemyMove = Move.NOT_IN_FIGHT;
+    }
     /**
      * constructor of battle between the player and trainer.
      * @param player player in the battle
      * @param trainer trainer to be defeated by player
      */
     public BattleImpl(final Player player, final Trainer trainer) {
-        this.player = player;
-        this.trainer = Optional.of(trainer);
-        this.objectmon = Optional.of(trainer.getObjectmonParty().getParty().get(0));
-        this.objectmonHP = player.getObjectmonParty().getParty().get(0).getStats().getSingleStat(StatId.HP);
-        this.enemyHP = trainer.getObjectmonParty().getParty().get(0).getStats().getSingleStat(StatId.HP);
-        this.aiTrainer = new EasyAiTrainer();
+        this(player, Optional.of(trainer), Optional.empty());
     }
     /**
      * constructor of battle between the player and wild objectmon.
@@ -43,16 +50,13 @@ public final class BattleImpl implements Battle {
      * @param objectmon wild objectmon
      */
     public BattleImpl(final Player player, final Objectmon objectmon) {
-        this.player = player;
-        this.objectmon = Optional.of(objectmon);
-        this.trainer = Optional.empty();
-        this.aiTrainer = new EasyAiTrainer();
+        this(player, Optional.empty(), Optional.of(objectmon));
     }
 
     @Override
     public boolean isWin() {
         return this.trainer.get().isDefeated() && !this.player.isDefeated() 
-        || this.objectmon.get().getStats().getSingleStat(StatId.HP) <= 0;
+        || this.wildObjectmon.get().getStats().getSingleStat(StatId.HP) <= 0;
     }
 
     @Override
@@ -67,7 +71,7 @@ public final class BattleImpl implements Battle {
 
     @Override
     public void setEnemyMove() {
-        if (this.getEnemyHP() <= 0) {
+        if (this.wildObjectmon.get().getCurrentHp() <= 0) {
             this.trainer.ifPresent(t -> {
                 this.aiTrainer.switchObjectmon(t.getObjectmonParty());
                 this.enemyMove = Move.SWITCH_OBJECTMON;
@@ -90,7 +94,7 @@ public final class BattleImpl implements Battle {
     @Override
     public Objectmon getEnemyObjectmon() {
         return this.trainer.isEmpty() 
-        ? this.objectmon.get() 
+        ? this.wildObjectmon.get() 
         : this.trainer.get().getObjectmonParty().getParty().get(0);
     }
     @Override
@@ -105,23 +109,7 @@ public final class BattleImpl implements Battle {
     }
 
     @Override
-    public ObjectmonParty getTeam() {
+    public ObjectmonParty getPlayerTeam() {
         return new ObjectmonPartyImpl(this.player.getObjectmonParty().getParty());
-    }
-    @Override
-    public int getObjectmonHP() {
-        return this.objectmonHP;
-    }
-    @Override
-    public int getEnemyHP() {
-        return this.enemyHP;
-    }
-    @Override
-    public void setObjectomHP(final int hp) {
-        this.objectmonHP = hp;
-    }
-    @Override
-    public void setEnemyHP(final int hp) {
-        this.enemyHP = hp;
     }
 }

@@ -19,5 +19,9 @@ public enum Move {
     /**
      * type of switch objectmon.
      */
-    SWITCH_OBJECTMON
+    SWITCH_OBJECTMON,
+    /**
+     * when there is no move.
+     */
+    NOT_IN_FIGHT
 }
