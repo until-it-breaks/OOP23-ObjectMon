@@ -4,11 +4,13 @@ import java.util.Optional;
 
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.api.Turn;
 import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
+import it.unibo.objectmon.model.battle.api.StatTurn;
 
 /**
  * an implementation of battle manager.
@@ -17,12 +19,14 @@ public final class BattleManagerImpl implements BattleManager {
 
     private Optional<Battle> battle;
     private Optional<Result> result;
+    private final Turn turn;
     /**
      * Constructor of BattleManagerImpl.
      */
     public BattleManagerImpl() {
         this.battle = Optional.empty();
         this.result = Optional.empty();
+        this.turn = new TurnImpl();
     }
 
     @Override
@@ -73,5 +77,12 @@ public final class BattleManagerImpl implements BattleManager {
     public void switchObjectmon(final int index) {
         final var team = this.battle.get().getTeam().getParty();
         this.battle.get().getTeam().switchPosition(team.get(0), team.get(index));
+    }
+
+    @Override
+    public void bufferCommand(final Move type, final int index) {
+        if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE)) {
+            this.startTurn();
+        }
     }
 }

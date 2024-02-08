@@ -1,6 +1,7 @@
 package it.unibo.objectmon.model.battle.impl;
 
 
+import it.unibo.objectmon.model.battle.api.StatTurn;
 import it.unibo.objectmon.model.battle.api.Turn;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;

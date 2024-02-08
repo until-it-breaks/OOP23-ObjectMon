@@ -1,6 +1,7 @@
 package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
 
+import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
@@ -52,6 +53,12 @@ public interface BattleManager {
      * @return true if the battle isOver
      */
     boolean isOver();
+    /**
+     * receive commands from player and give it to turn when it is necessary.
+     * @param type type of move
+     * @param index index of the e-th element in the list.
+     */
+    void bufferCommand(Move type, int index);
     /**
      * leave the battle.
      */
