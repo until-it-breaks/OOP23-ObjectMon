@@ -121,6 +121,25 @@ public class ObjectmonImpl implements Objectmon {
         return this.exp;
     }
 
+    @Override
+    public int getCurrentHp() {
+        return this.currentHp;
+    }
+
+    @Override
+    public void setCurrentHp(final int quantity) {
+        final int value = this.currentHp + quantity;
+        final int maxHp = getStats().getSingleStat(StatId.HP);
+
+        if (value > maxHp) {
+            this.currentHp = maxHp;
+        } else if (value < 0) {
+            this.currentHp = 0;
+        } else {
+            this.currentHp = value;
+        }
+    }
+    
     /**
      * Adds a level to Objectmon.
      * Max 100
@@ -157,32 +176,6 @@ public class ObjectmonImpl implements Objectmon {
     public void levelUp() {
         addLevel();
         this.stats = getStats().calcNewStats(1);
-    }
-
-    /**
-     *
-     * @return Returns the currentHp of the Objectmon.
-     */
-    public int getCurrentHp() {
-        return this.currentHp;
-    }
-
-    /**
-     *
-     * @param quantity Quantity of the Hp to be added to currentHp.
-     */
-    public void setCurrentHp(final int quantity) {
-        final int value = this.currentHp + quantity;
-        final int maxHp = getStats().getSingleStat(StatId.HP);
-
-        if (value > maxHp) {
-            this.currentHp = maxHp;
-        } else if (value < 0) {
-            this.currentHp = 0;
-        } else {
-            this.currentHp = value;
-        }
-
     }
 
     /**
