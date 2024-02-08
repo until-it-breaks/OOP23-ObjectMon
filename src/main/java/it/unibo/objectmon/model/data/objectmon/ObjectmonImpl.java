@@ -120,12 +120,16 @@ public class ObjectmonImpl implements Objectmon {
     public int getExp() {
         return this.exp;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getCurrentHp() {
         return this.currentHp;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setCurrentHp(final int quantity) {
         final int value = this.currentHp + quantity;
