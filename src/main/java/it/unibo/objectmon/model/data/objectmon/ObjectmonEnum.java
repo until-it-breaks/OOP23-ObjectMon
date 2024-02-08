@@ -88,9 +88,9 @@ public enum ObjectmonEnum {
     /**
      * Information of the Objectmon Treeko.
      */
-    TREEKO(
+    TREECKO(
         4,
-        "Treeko",
+        "Treecko",
         List.of(Aspect.GRASS),
         new BaseStats(
             Map.of(
