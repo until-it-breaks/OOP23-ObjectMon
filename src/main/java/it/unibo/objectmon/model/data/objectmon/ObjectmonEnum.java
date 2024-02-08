@@ -34,9 +34,9 @@ public enum ObjectmonEnum {
     /**
      * Information of the Objectmon Tailow.
      */
-    TAILOW(
+    TAILLOW(
         1,
-        "Tailow",
+        "Taillow",
         List.of(Aspect.NORMAL, Aspect.FLYING),
         new BaseStats(
             Map.of(
