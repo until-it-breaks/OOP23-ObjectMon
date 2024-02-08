@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.battle.api;
+package it.unibo.objectmon.model.battle.turn;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 

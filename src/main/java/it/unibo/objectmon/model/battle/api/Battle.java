@@ -26,9 +26,9 @@ public interface Battle {
      */
     void setPlayerMove(Move move);
     /**
-     * @param move a move that going to be executed.
+     * set enemy move by AI.
      */
-    void setEnemyMove(Move move);
+    void setEnemyMove();
     /**
      * 
      * @return get the move of player
@@ -74,4 +74,9 @@ public interface Battle {
      * @param hp HP to set of current objectmon
      */
     void setEnemyHP(int hp);
+    /**
+     * 
+     * @return get trainer team if trainer is present.
+     */
+    Optional<ObjectmonParty> getTrainerTeam();
 }

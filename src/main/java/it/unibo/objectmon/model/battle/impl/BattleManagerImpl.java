@@ -4,13 +4,14 @@ import java.util.Optional;
 
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
-import it.unibo.objectmon.model.battle.api.Turn;
 import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
 import it.unibo.objectmon.model.battle.moves.type.Move;
+import it.unibo.objectmon.model.battle.turn.StatTurn;
+import it.unibo.objectmon.model.battle.turn.Turn;
+import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
-import it.unibo.objectmon.model.battle.api.StatTurn;
 
 /**
  * an implementation of battle manager.
@@ -40,7 +41,8 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     @Override
-    public void startTurn() {
+    public void startTurn(final Move type, final int index) {
+        this.battle.get().setPlayerMove(type); 
     }
 
     @Override
@@ -61,14 +63,12 @@ public final class BattleManagerImpl implements BattleManager {
     @Override
     public void runAway() {
         if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
-            this.battle.get().setPlayerMove(Move.RUN_AWAY);
             setResult(Result.LOSE);
         }
     }
 
     @Override
     public void useSkill(final int index) {
-        this.battle.get().setPlayerMove(Move.ATTACK);
         final AttackMove attack = new AttackMove(this.battle.get().getCurrentObjectmon().getSkill(index));
         attack.action(this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
     }
@@ -82,7 +82,7 @@ public final class BattleManagerImpl implements BattleManager {
     @Override
     public void bufferCommand(final Move type, final int index) {
         if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE)) {
-            this.startTurn();
+            this.startTurn(type, index);
         }
     }
 }
