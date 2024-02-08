@@ -60,5 +60,5 @@ import java.util.List;
      *
      * @param quantity Quantity of the Hp to be added to currentHp.
      */
-    void setCurrentHp(final int quantity);
+    void setCurrentHp(int quantity);
 }

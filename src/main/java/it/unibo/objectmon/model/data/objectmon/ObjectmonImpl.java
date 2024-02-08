@@ -139,7 +139,7 @@ public class ObjectmonImpl implements Objectmon {
             this.currentHp = value;
         }
     }
-    
+
     /**
      * Adds a level to Objectmon.
      * Max 100
