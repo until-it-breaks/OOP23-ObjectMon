@@ -59,8 +59,8 @@ public final class OverWorldPanel extends JPanel {
             RenderingHints.VALUE_RENDER_SPEED);
             graphics2d.setRenderingHints(renderingHints);
             //Computes the offset needed to center the camera.
-            final int playerX = controller.getPlayerController().getPosition().x() * TILE_SIZE;
-            final int playerY = controller.getPlayerController().getPosition().y() * TILE_SIZE;
+            final int playerX = controller.getPlayer().getPosition().x() * TILE_SIZE;
+            final int playerY = controller.getPlayer().getPosition().y() * TILE_SIZE;
             final double cameraX = getWidth() / 2 - playerX;
             final double cameraY = getHeight() / 2 - playerY;
             //In this section the camera is always centered on the player.
@@ -86,7 +86,7 @@ public final class OverWorldPanel extends JPanel {
 
     private void drawPlayer(final Graphics2D g) {
         final BufferedImage image = getPlayerImage();
-        final Coord playerPosition = controller.getPlayerController().getPosition();
+        final Coord playerPosition = controller.getPlayer().getPosition();
         g.drawImage(image, playerPosition.x() * TILE_SIZE, playerPosition.y() * TILE_SIZE, null);
     }
 
@@ -140,7 +140,7 @@ public final class OverWorldPanel extends JPanel {
 
     private BufferedImage getPlayerImage() {
         final String imagePath;
-        switch (controller.getPlayerController().getDirection()) {
+        switch (controller.getPlayer().getDirection()) {
             case UP:
                 imagePath = "/player/playerUp.png";
                 break;

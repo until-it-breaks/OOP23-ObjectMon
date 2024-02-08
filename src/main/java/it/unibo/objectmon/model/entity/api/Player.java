@@ -1,29 +1,18 @@
 package it.unibo.objectmon.model.entity.api;
 
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
+import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 
 /**
- * Represents a player with basic movement functions.
+ * Represents a playable entity able to move.
  */
 public interface Player extends Entity, Trainer {
 
     /**
-     * Moves the player up.
+     * Attempts to move the player towards a certain direction.
+     * 
+     * @param direction the direction to move towards.
+     * @param collisionChecker the collision checker that will determine whether the player is able to move.
      */
-    void moveUp();
-
-    /**
-     * Moves the player down.
-     */
-    void moveDown();
-
-    /**
-     * Moves the player left.
-     */
-    void moveLeft();
-
-    /**
-     * Moves the player right.
-     */
-    void moveRight();
+    void move(Direction direction, CollisionChecker collisionChecker);
 }

@@ -17,7 +17,6 @@ import com.google.gson.Gson;
  */
 public final class MapData {
 
-    private static final String MAP_PATH = "/world/map.json";
     private static final Logger LOGGER = Logger.getLogger(MapData.class.getName());
     private final int height;
     private final int width;
@@ -85,19 +84,20 @@ public final class MapData {
     }
 
     /**
-     * Loads map data from the JSON file specified by {@code MAP_PATH}.
-     *
+     * Loads map data from a JSON file.
+     * 
+     * @param path the path that points to the map file.
      * @return A MapData object representing the loaded map data.
      * @throws IllegalStateException If an error occurs while loading map data.
      */
-    public static MapData loadFromJson() {
-        try (InputStream inputStream = MapData.class.getResourceAsStream(MAP_PATH);
+    public static MapData loadFromJson(final String path) {
+        try (InputStream inputStream = MapData.class.getResourceAsStream(path);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Gson gson = new Gson();
             return gson.fromJson(reader, MapData.class);
         } catch (final IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
-            throw new IllegalStateException("Error loading map data from: " + MAP_PATH, e);
+            throw new IllegalStateException("Error loading map data from: " + path, e);
         }
     }
 }

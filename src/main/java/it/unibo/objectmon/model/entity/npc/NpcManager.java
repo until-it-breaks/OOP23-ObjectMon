@@ -2,7 +2,6 @@ package it.unibo.objectmon.model.entity.npc;
 
 import java.util.Collections;
 import java.util.Set;
-
 import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 
 /**
@@ -15,7 +14,7 @@ public final class NpcManager {
      * Initializes the manager and creates the in game NPCs.
      */
     public NpcManager() {
-        this.npcs = NPCFactory.createDefaultNPCs();
+        this.npcs = NPCFactory.createDemoNPCs();
     }
 
     /**
