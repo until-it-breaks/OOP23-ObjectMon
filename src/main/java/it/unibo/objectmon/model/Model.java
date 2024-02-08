@@ -3,7 +3,6 @@ package it.unibo.objectmon.model;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
-import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.npc.NpcManager;
 import it.unibo.objectmon.model.entity.player.PlayerImpl;
@@ -13,6 +12,7 @@ import it.unibo.objectmon.model.misc.interaction.InteractionManagerImpl;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.model.world.Worlds;
+import java.util.List;
 
 /**
  * Manages the model logic.
@@ -40,7 +40,7 @@ public final class Model {
         this.npcManager = new NpcManager();
         this.collisionChecker = new CollisionCheckerImpl(this.world, npcManager.getNpcs());
         this.interactionManager = new InteractionManagerImpl();
-        this.player = new PlayerImpl("Player", world.getStartingPosition(), ObjectmonFactory.createObjectmon());
+        this.player = new PlayerImpl("Player", world.getStartingPosition(), List.of());
         this.battleManager = new BattleManagerImpl();
     }
 
