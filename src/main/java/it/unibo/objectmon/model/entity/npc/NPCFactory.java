@@ -4,6 +4,7 @@ import java.util.Set;
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonImpl;
 import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.world.Coord;
 import java.util.HashSet;
@@ -42,11 +43,11 @@ public final class NPCFactory {
      */
     public static Set<AbstractNPC> createJustTrainers() {
         final Set<AbstractNPC> npcs = new HashSet<>();
-        final List<Objectmon> objList = ObjectmonFactory.createObjectmon();
-        npcs.add(new TrainerNpc("Trainer Bob", POSITION_1, List.of(objList.get(0), objList.get(1))));
-        npcs.add(new TrainerNpc("Trainer Alex", POSITION_2, List.of(objList.get(1), objList.get(1))));
-        npcs.add(new TrainerNpc("Trainer Delta", POSITION_3, List.of(objList.get(3), objList.get(1), objList.get(4))));
-        npcs.add(new TrainerNpc("Trainer Alpha", POSITION_4, List.of(objList.get(2), objList.get(1))));
+        final Set<ObjectmonImpl> objList = ObjectmonFactory.createObjectmonSet(List.of("Taillow", "Zigzagoon"), 0);
+        npcs.add(new TrainerNpc("Trainer Bob", POSITION_1, List.of()));
+        npcs.add(new TrainerNpc("Trainer Alex", POSITION_2, List.of()));
+        npcs.add(new TrainerNpc("Trainer Delta", POSITION_3, List.of()));
+        npcs.add(new TrainerNpc("Trainer Alpha", POSITION_4, List.of()));
         return npcs;
     }
 
