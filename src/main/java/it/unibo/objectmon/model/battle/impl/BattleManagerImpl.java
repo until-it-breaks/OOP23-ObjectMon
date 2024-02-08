@@ -4,13 +4,14 @@ import java.util.Optional;
 
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
-import it.unibo.objectmon.model.battle.api.Turn;
 import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
 import it.unibo.objectmon.model.battle.moves.type.Move;
+import it.unibo.objectmon.model.battle.turn.StatTurn;
+import it.unibo.objectmon.model.battle.turn.Turn;
+import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
-import it.unibo.objectmon.model.battle.api.StatTurn;
 
 /**
  * an implementation of battle manager.
