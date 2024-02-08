@@ -15,5 +15,9 @@ public enum Move {
     /**
      * type of run away.
      */
-    RUN_AWAY
+    RUN_AWAY,
+    /**
+     * type of switch objectmon.
+     */
+    SWITCH_OBJECTMON
 }
