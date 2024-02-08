@@ -2,8 +2,6 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
@@ -16,7 +14,7 @@ import it.unibo.objectmon.model.entity.api.npc.Trainer;
  * an implementation of battle manager.
  */
 public final class BattleManagerImpl implements BattleManager {
-    @SuppressFBWarnings
+
     private Optional<Battle> battle;
     private Optional<Result> result;
     /**
