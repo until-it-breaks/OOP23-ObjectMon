@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.unibo.objectmon.model.misc.eventlog.EventLogger;
+
 /**
  * Unit tests for the {@link EventLogger} class.
  * These tests cover various aspects of the EventLogger functionality.

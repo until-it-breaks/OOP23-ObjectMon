@@ -1,20 +1,22 @@
 package it.unibo.objectmon.model.entity.npc;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.model.entity.PlayerManager;
-import it.unibo.objectmon.model.entity.npc.api.Trainer;
-import it.unibo.objectmon.model.eventlog.EventLogger;
+import java.util.List;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
+import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entity.api.npc.Trainer;
+import it.unibo.objectmon.model.misc.eventlog.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
  * Models an NPC capable of fighting.
  */
 public final class TrainerNpc extends AbstractNPC implements Trainer {
-    private final Set<Objectmon> team;
-    private boolean isDefeated;
+    private final ObjectmonParty objectmonParty;
 
     /**
      * Constructs a new Trainer.
@@ -22,30 +24,26 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
      * @param coord The starting position of the Trainer.
      * @param team The team of Objectmons of the Trainer.
      */
-    public TrainerNpc(final String name, final Coord coord, final Set<Objectmon> team) {
+    public TrainerNpc(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
-        this.team = new LinkedHashSet<>(Collections.unmodifiableSet(team));
-        this.isDefeated = false;
-    }
-
-    @Override
-    public void setDefeated(final boolean isDefeated) {
-        this.isDefeated = isDefeated;
+        this.objectmonParty = new ObjectmonPartyImpl(team);
     }
 
     @Override
     public boolean isDefeated() {
-        return this.isDefeated;
+        return false; //TODO
+    }
+
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "TEMPORARY")
+    @Override
+    public ObjectmonParty getObjectmonParty() {
+        return this.objectmonParty;
     }
 
     @Override
-    public Set<Objectmon> getTeam() {
-        return Collections.unmodifiableSet(team);
-    }
-
-    @Override
-    public void handleInteraction(final PlayerManager player) {
-        if (!isDefeated) {
+    public void handleInteraction(final Player player) {
+        if (!isDefeated()) {
             EventLogger.getLogger().log(this.getName() + " challenges " + player.getName());
             //Calls battle manager.
         } else {

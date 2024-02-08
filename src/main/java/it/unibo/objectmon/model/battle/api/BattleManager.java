@@ -1,11 +1,14 @@
 package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
+
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entity.api.npc.Trainer;
+
 /**
  * A manager of battle which can start a battle between the player and a fighter.
- * @param <T> is an entity of fighter
- * @param <O> is an ObjectMon 
  */
-public interface BattleManager<T, O> {
+public interface BattleManager {
     /**
      * Enum representing the result of a battle.
      * It can be either WIN or LOSE.
@@ -31,7 +34,7 @@ public interface BattleManager<T, O> {
      * @param enemy it is enemy because if the player meet a wild ObjectMon, the  enemy should be empty
      * @param objectMon it is wild objectMon, if player meet a fighter, then objectMon should be empty
      */
-    void startBattle(T player, Optional<T> enemy, Optional<O> objectMon);
+    void startBattle(Player player, Optional<Trainer> enemy, Optional<Objectmon> objectMon);
     /**
      * start a new turn.
      */
@@ -42,11 +45,25 @@ public interface BattleManager<T, O> {
     Result getResult();
     /**
      * 
-     * @return current stats of the battle
+     * @param result set the result of the battle.
      */
-    BattleState<T, O> getBattleState();
+    void setResult(Result result);
     /**
      * @return true if the battle isOver
      */
     boolean isOver();
+    /**
+     * leave the battle.
+     */
+    void runAway();
+    /**
+     * use a skill of objectmon given an index.
+     * @param index index of the skill of objectmon.
+     */
+    void useSkill(int index);
+    /**
+     * switch current objectmon with given index.
+     * @param index index of the objectmon in the team
+     */
+    void switchObjectmon(int index);
 }

@@ -23,16 +23,16 @@ import com.google.gson.reflect.TypeToken;
  */
 public final class TileSet {
 
-    private static final String ATLAS_PATH = "/world/atlas.json";
     private final Set<Tile> tileAtlas;
     private final Map<Integer, Tile> tileIdMap;
     private final Logger logger = Logger.getLogger(TileSet.class.getName());
 
     /**
      * Creates the tileset by loading data from JSON.
+     * @param path the path to the atlas file.
      */
-    public TileSet() {
-        this.tileAtlas = loadFromJson();
+    public TileSet(final String path) {
+        this.tileAtlas = loadFromJson(path);
         this.tileIdMap = createTileIdMap();
     }
 
@@ -45,27 +45,27 @@ public final class TileSet {
         return tileIdMap.get(id);
     }
 
-    private Set<Tile> loadFromJson() {
-        try (InputStream inputStream = this.getClass().getResourceAsStream(ATLAS_PATH);
+    private Set<Tile> loadFromJson(final String path) {
+        try (InputStream inputStream = this.getClass().getResourceAsStream(path);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Type setOfTiles = new TypeToken<LinkedHashSet<Tile>>() { }.getType();
             final Gson gson = new Gson();
             final Set<Tile> tileSet = gson.fromJson(reader, setOfTiles);
             if (tileSet == null) {
-                throw new IllegalStateException("No tile data found in: " + ATLAS_PATH);
+                throw new IllegalStateException("No tile data found in: " + path);
             }
             return tileSet;
         } catch (final IOException e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
-            throw new IllegalStateException("Error loading tile data from: " + ATLAS_PATH, e);
+            throw new IllegalStateException("Error loading tile data from: " + path, e);
         }
     }
 
     private Map<Integer, Tile> createTileIdMap() {
-        final Map<Integer, Tile> idMap = new HashMap<>();
+        final Map<Integer, Tile> out = new HashMap<>();
         for (final Tile tile : tileAtlas) {
-            idMap.put(tile.getId(), tile);
+            out.put(tile.getId(), tile);
         }
-        return Collections.unmodifiableMap(idMap);
+        return Collections.unmodifiableMap(out);
     }
 }

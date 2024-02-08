@@ -3,11 +3,11 @@ package it.unibo.objectmon.model.data.statistics;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.objectmon.api.data.statistics.StatId;
-import it.unibo.objectmon.api.data.statistics.Stats;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.Stats;
 
 /**
- * Abstract class that implements Stats. Used because the classes BaseStats and ActualStats share a lot of similarities.
+ * Abstract class that implements Stats.
  */
 public abstract class StatsImpl implements Stats {
 

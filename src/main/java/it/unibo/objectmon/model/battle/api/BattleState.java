@@ -1,28 +1,30 @@
 package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
+
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entity.npc.TrainerNpc;
 /**
  * current state of the battle.
- * @param <T> is an entity of fighter
- * @param <O> is an ObjectMon 
  */
-public interface BattleState<T, O> {
+public interface BattleState {
     /**
      * @return current stats of the player.
      */
-    T getPlayerStats();
+    Player getPlayerStats();
     /**
      * get objectmon actualstats in fight.
      * @return current stats of the objectmon in fight of player
      */
-    O getPlayerObjctmonStats();
+    Objectmon getPlayerObjectmonStats();
     /**
      * 
      * @return current stats of trainer.
      */
-    Optional<T> getTrainerStats();
+    Optional<TrainerNpc> getTrainerStats();
     /**
      * 
      * @return current stats of the objectmon as enemy.
      */
-    O getEnemyObjectmonStats();
+    Objectmon getEnemyObjectmonStats();
 }

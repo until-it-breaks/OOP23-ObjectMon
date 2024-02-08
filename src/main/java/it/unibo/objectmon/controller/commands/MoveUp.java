@@ -2,6 +2,7 @@ package it.unibo.objectmon.controller.commands;
 
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.model.entity.api.Direction;
 
 /**
  * Attempts to move the player up by one unit.
@@ -9,6 +10,6 @@ import it.unibo.objectmon.model.Model;
 public final class MoveUp implements Command {
     @Override
     public void execute(final Model model) {
-        model.getGameManager().getPlayerController().moveUp();
+        model.getPlayer().move(Direction.UP, model.getCollisionChecker());
     }
 }

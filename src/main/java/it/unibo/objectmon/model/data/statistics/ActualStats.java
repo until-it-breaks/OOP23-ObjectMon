@@ -1,8 +1,10 @@
 package it.unibo.objectmon.model.data.statistics;
 
 import java.util.Map;
+
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+
 import java.util.HashMap;
-import it.unibo.objectmon.api.data.statistics.StatId;
 /**
  * Extension of the class StatsImpl.
  * This implementation is used to store the change of stats of the Objectmon
@@ -23,33 +25,37 @@ public class ActualStats extends StatsImpl {
     }
 
      /**
-     * Grows a single stat by adding it to the previous value.
+     * Calculates the new single stat.
      * It's an utility method.
      * @param id Id of the statistic to increase.
-     * @param growth Value to which increase the Statistic.
+     * @param level How many level ups are done in a row.
      * @return Returns the new singleStat, which is the sum of the base and the growth.
      */
-    public int growSingleStat(final StatId id, final int growth) {
-        return getSingleStat(id) + growth;
+    private int calcSingleStat(final StatId id, final int level) {
+        int newSingleStat = getSingleStat(id);
+            for (int i = level; i > 0; i--) {
+                 newSingleStat += (int) Math.ceil(newSingleStat * STATGROWTHVARIATION);
+            }
+        return newSingleStat;
     }
 
     /**
-     * Grows all the Stats.
+     * Calculates all the new stats of an Objectmon after level up.
      * Should only be called when an Objectmon levels up.
      * @return Returns the new Stats of the Objectmon after level up.
+     * @param level How many level ups are done in a row.
      */
-    public ActualStats growAllStats() {
+    public ActualStats calcNewStats(final int level) {
         final Map<StatId, Integer> newStats = new HashMap<>();
-        final Map<StatId, Integer> growths = new HashMap<>();
 
-        for (final StatId singleStatId : StatId.values()) {
-            final int singleGrowth = (int) Math.ceil(getSingleStat(singleStatId) * STATGROWTHVARIATION);
-            growths.put(singleStatId, singleGrowth);
-        }
 
-        getStats().forEach((id, stat) -> {
-            newStats.put(id, growSingleStat(id, growths.get(id)));
-        });
+            for (final StatId singleStatId : StatId.values()) {
+
+                final int newSingleStat = calcSingleStat(singleStatId, level);
+                newStats.put(singleStatId, newSingleStat);
+            }
+
         return new ActualStats(newStats);
     }
+
 }

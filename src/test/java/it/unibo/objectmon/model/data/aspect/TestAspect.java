@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import it.unibo.objectmon.api.data.aspect.Aspect;
+
+import it.unibo.objectmon.model.data.api.aspect.Aspect;
 
 /**
  * Test of Aspects.
