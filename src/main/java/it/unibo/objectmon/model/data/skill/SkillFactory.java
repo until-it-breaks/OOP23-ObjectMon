@@ -2,9 +2,7 @@ package it.unibo.objectmon.model.data.skill;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import com.google.gson.Gson;
-
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.skill.SkillCategory;
@@ -15,14 +13,11 @@ import it.unibo.objectmon.model.data.api.skill.SkillCategory;
 public final class SkillFactory {
     private static final int BASE40 = 40;
     private static final int BASE60 = 60;
-    private static final int BASE100 = 100;
 
     private static final int MAX25 = 25;
     private static final int MAX40 = 40;
-    private static final int MAX8 = 8;
 
     private static final int ACC100 = 100;
-    private static final int ACC75 = 75;
     private static final int ACC90 = 90;
 
     private SkillFactory() {
@@ -42,17 +37,11 @@ public final class SkillFactory {
             name = aspect.getAspectName() + " Kick";
             skillList.add(new Skill(name, id, aspect, BASE60, ACC90, MAX25, SkillCategory.PHYS));
             id++;
-            name = aspect.getAspectName() + " Slam";
-            skillList.add(new Skill(name, id, aspect, BASE100, ACC75, MAX8, SkillCategory.PHYS));
-            id++;
             name = aspect.getAspectName() + " Ray";
             skillList.add(new Skill(name, id, aspect, BASE40, ACC100, MAX40, SkillCategory.SPEC));
             id++;
             name = aspect.getAspectName() + " Spirit";
             skillList.add(new Skill(name, id, aspect, BASE60, ACC90, MAX25, SkillCategory.SPEC));
-            id++;
-            name = aspect.getAspectName() + " Bomb";
-            skillList.add(new Skill(name, id, aspect, BASE100, ACC75, MAX8, SkillCategory.SPEC));
             id++;
         }
 

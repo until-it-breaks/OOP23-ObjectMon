@@ -1,7 +1,6 @@
 package it.unibo.objectmon.model.data.objectmon;
 
 import java.util.List;
-
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
@@ -201,27 +200,16 @@ public class ObjectmonImpl implements Objectmon {
 
         /**
          * Constructor of the class ObjectmonImpl.java.
-         * @param id The id of the Objectmon.
-         * @param name The name of the Objectmon.
-         * @param aspects The aspects of the Objectmon.
-         * @param skills The skills of the Objectmon.
-         * @param stats The stats of the Objectmon.
-         * @param level The level of the Objectmon.
-         */
-        public Builder(
-            final int id,
-            final String name,
-            final List<Aspect> aspects,
-            final List<Skill> skills,
-            final ActualStats stats,
-            final int level
-            ) {
-            this.id = id;
-            this.name = name;
-            this.aspects = List.copyOf(aspects);
-            this.skills = List.copyOf(skills);
-            this.stats = stats;
+         * @param objectmon The objectmon to be generated.
+         * @param level the level of the Objectmon.
+        */
+        public Builder(final ObjectmonEnum objectmon, final int level) {
+            this.id = objectmon.getId();
+            this.name = objectmon.getName();
+            this.aspects = List.copyOf(objectmon.getAspects());
+            this.skills = List.copyOf(objectmon.getSkills());
             this.level = level;
+            this.stats = objectmon.getStats().calcNewStats(level);
             this.exp = 0;
         }
 
