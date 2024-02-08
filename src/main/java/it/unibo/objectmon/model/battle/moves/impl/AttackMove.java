@@ -5,7 +5,6 @@ import it.unibo.objectmon.model.battle.damage.DamageCalculator;
 import it.unibo.objectmon.model.battle.damage.DamageCalculatorImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
 
 import java.util.Random;
 /**
@@ -30,9 +29,8 @@ public class AttackMove {
     public void action(final Objectmon objectmon, final Objectmon target) {
         if (this.hitSuccessful(this.skill.getAccuracy())) {
             final DamageCalculator calculator = new DamageCalculatorImpl(skill);
-            final Double hp = target.getStats().getSingleStat(StatId.HP)
-                    - calculator.damage(objectmon, target);
-            target.getStats().getStats().put(StatId.HP, hp.intValue()); //TO MODIFY!!!!
+            final int hp = (int) calculator.damage(objectmon, target);
+            target.setCurrentHp(-hp);
         }
     }
     /**
