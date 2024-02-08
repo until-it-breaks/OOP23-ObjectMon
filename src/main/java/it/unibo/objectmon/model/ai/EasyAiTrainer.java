@@ -7,7 +7,6 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
  * which change the objectmon only if the current fighting objectmon is dead.
  */
 public final class EasyAiTrainer extends EasyAiObjectmon implements AiTrainer {
-    private static final int SIZE = 6;
     private int index;
     /**
      * Constructor.
@@ -18,7 +17,7 @@ public final class EasyAiTrainer extends EasyAiObjectmon implements AiTrainer {
 
     @Override
     public void switchObjectmon(final ObjectmonParty team) {
-        if (index < EasyAiTrainer.SIZE) {
+        if (index < team.getParty().size()) {
             team.switchPosition(team.getParty().get(0), team.getParty().get(this.index++));
         }
     }
