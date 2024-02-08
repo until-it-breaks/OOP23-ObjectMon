@@ -8,7 +8,6 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
@@ -55,8 +54,10 @@ public final class BattleImpl implements Battle {
 
     @Override
     public boolean isWin() {
-        return this.trainer.get().isDefeated() && !this.player.isDefeated() 
-        || this.wildObjectmon.get().getStats().getSingleStat(StatId.HP) <= 0;
+        return this.trainer.isPresent()
+        ? !this.trainer.get().getObjectmonParty().getParty()
+            .stream().filter(o -> o.getCurrentHp() != 0).findAny().isPresent()
+        : this.wildObjectmon.get().getCurrentHp() == 0;
     }
 
     @Override
