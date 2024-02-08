@@ -1,7 +1,6 @@
 package it.unibo.objectmon.model.data.statistics;
 
 import java.util.Map;
-
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 
 /**
@@ -10,6 +9,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
  * and so can only be read for comparison or to generate an Objectmon.
  */
 public class BaseStats extends ActualStats {
+    private static final long serialVersionUID = 2005L;
 
     /**
      * Constructor of the class.

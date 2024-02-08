@@ -2,7 +2,6 @@ package it.unibo.objectmon.model.data.statistics;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.api.statistics.Stats;
 
@@ -27,6 +26,19 @@ public abstract class StatsImpl implements Stats {
         this.stats.put(StatId.SPATK, stats.get(StatId.SPATK));
         this.stats.put(StatId.SPDEF, stats.get(StatId.SPDEF));
         this.stats.put(StatId.SPD, stats.get(StatId.SPD));
+    }
+
+    /**
+     * Constructor for the class for serialization.
+     */
+    public StatsImpl() {
+        final int defaultStats = 50;
+        this.stats.put(StatId.HP, defaultStats);
+        this.stats.put(StatId.ATK, defaultStats);
+        this.stats.put(StatId.DEF, defaultStats);
+        this.stats.put(StatId.SPATK, defaultStats);
+        this.stats.put(StatId.SPDEF, defaultStats);
+        this.stats.put(StatId.SPD, defaultStats);
     }
 
     /**

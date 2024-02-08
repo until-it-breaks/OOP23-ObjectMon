@@ -1,10 +1,11 @@
 package it.unibo.objectmon.model.data.statistics;
 
+import java.io.Serializable;
 import java.util.Map;
-
+import java.util.HashMap;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 
-import java.util.HashMap;
+
 /**
  * Extension of the class StatsImpl.
  * This implementation is used to store the change of stats of the Objectmon
@@ -13,8 +14,9 @@ import java.util.HashMap;
  * because leveling should be an action that rarely happens and
  * so creating a new object shouldn't be too taxing on the program.
  */
-public class ActualStats extends StatsImpl {
+public class ActualStats extends StatsImpl implements Serializable {
 
+    private static final long serialVersionUID = 2004L;
     private static final double STATGROWTHVARIATION = 0.20;
     /**
      * Constructor of the class.

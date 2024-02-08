@@ -1,5 +1,6 @@
 package it.unibo.objectmon.model.data.api.skill;
 
+import java.io.Serializable;
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 
 /**
@@ -7,7 +8,8 @@ import it.unibo.objectmon.model.data.api.aspect.Aspect;
  * a Map of the Skill an Objectmon can learn by leveling up;
  * a Map of Skill of what an Objectmon can use (4 Skills Max).
  */
-public class Skill {
+public class Skill implements Serializable {
+    private static final long serialVersionUID = 2006L;
     private final String name;
     private final int id;
     private final Aspect aspect;
