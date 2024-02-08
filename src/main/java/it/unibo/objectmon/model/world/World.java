@@ -16,16 +16,17 @@ public final class World {
     private Coord startingPosition;
 
     /**
-     * Constructs a new World object and initializes it by loading tiles from a default file.
+     * Constructs a new World and initializes it by loading tiles from a config.
+     * @param config
      */
-    public World() {
+    public World(final Worlds config) {
         map = new LinkedHashMap<>();
-        init();
+        initialize(config);
     }
 
-    private void init() {
-        final MapData mapData = MapData.loadFromJson();
-        final TileSet tileSet = new TileSet();
+    private void initialize(final Worlds config) {
+        final MapData mapData = MapData.loadFromJson(config.getWorldPath());
+        final TileSet tileSet = new TileSet(config.getAtlasPath());
         this.width = mapData.getWidth();
         this.height = mapData.getHeight();
         this.startingPosition = new Coord(mapData.getStartingX(), mapData.getStartingY());

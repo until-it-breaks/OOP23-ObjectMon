@@ -10,6 +10,6 @@ public final class Interact implements Command {
     @Override
     public void execute(final Model model) {
         model.getInteractionManager().triggerInteraction(model.getNpcManager().getNpcs(),
-            model.getPlayerController());
+            model.getPlayer());
     }
 }

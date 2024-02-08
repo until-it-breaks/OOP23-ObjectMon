@@ -1,17 +1,16 @@
 package it.unibo.objectmon.model.data.objectmon;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
-
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.skill.SkillFactory;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
-import com.google.gson.Gson;
+
 /**
  * A factory of Skills.
  */
@@ -79,8 +78,8 @@ public final class ObjectmonFactory {
      * Creates the Objectmons that Trainers are going to use.
      * @return Returns the complete list of all the Objectmons.
      */
-    public static Set<ObjectmonImpl> createObjectmon() {
-        final Set<ObjectmonImpl> objectmonSet = new HashSet<>();
+    public static List<Objectmon> createObjectmon() {
+        final List<Objectmon> objectmonList = new ArrayList<>();
         final List<Skill> skillList = SkillFactory.createSkills();
         int id = 0;
         final int level = 5;
@@ -88,7 +87,7 @@ public final class ObjectmonFactory {
         final List<Skill> skills0 = skillList.stream()
         .filter(skill -> skill.getAspect() == Aspect.NORMAL)
         .collect(Collectors.toList());
-        objectmonSet.add(
+        objectmonList.add(
             new ObjectmonImpl.Builder(
                 id, name, List.of(Aspect.NORMAL), skills0, ZIGZAGOON, level
             ).build()
@@ -99,7 +98,7 @@ public final class ObjectmonFactory {
         final List<Skill> skills1 = skillList.stream()
         .filter(skill -> skill.getAspect() == Aspect.GRASS)
         .collect(Collectors.toList());
-        objectmonSet.add(
+        objectmonList.add(
             new ObjectmonImpl.Builder(
                 id, name, List.of(Aspect.GRASS), skills1, TREEKO, level
             ).build()
@@ -110,7 +109,7 @@ public final class ObjectmonFactory {
         final List<Skill> skills2 = skillList.stream()
         .filter(skill -> skill.getAspect() == Aspect.WATER)
         .collect(Collectors.toList());
-        objectmonSet.add(
+        objectmonList.add(
             new ObjectmonImpl.Builder(
                 id, name, List.of(Aspect.WATER, Aspect.GROUND), skills2, MUDKIP, level
             ).build()
@@ -121,7 +120,7 @@ public final class ObjectmonFactory {
         final List<Skill> skills3 = skillList.stream()
         .filter(skill -> skill.getAspect() == Aspect.FIRE)
         .collect(Collectors.toList());
-        objectmonSet.add(
+        objectmonList.add(
             new ObjectmonImpl.Builder(
                 id, name, List.of(Aspect.FIRE), skills3, TORCHIC, level
             ).build()
@@ -132,21 +131,12 @@ public final class ObjectmonFactory {
         final List<Skill> skills4 = skillList.stream()
         .filter(skill -> skill.getAspect() == Aspect.ROCK)
         .collect(Collectors.toList());
-        objectmonSet.add(
+        objectmonList.add(
             new ObjectmonImpl.Builder(
                 id, name, List.of(Aspect.ROCK, Aspect.GROUND), skills4, GEODUDE, level
             ).build()
         );
 
-        return objectmonSet;
-    }
-
-    /**
-     * Converts a set of ObjectmonImpl to a json file.
-     * @return Returns a json of the set of ObjectmonImpl.
-     */
-    public static String toJson() {
-        final Gson gson = new Gson();
-        return gson.toJson(createObjectmon());
+        return objectmonList;
     }
 }

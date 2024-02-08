@@ -1,7 +1,6 @@
 package it.unibo.objectmon.model.entity.player;
 
 import java.util.List;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
@@ -9,6 +8,7 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entity.api.Direction;
 import it.unibo.objectmon.model.entity.api.EntityImpl;
 import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -17,7 +17,6 @@ import it.unibo.objectmon.model.world.Coord;
 public final class PlayerImpl extends EntityImpl implements Player {
 
     private final ObjectmonParty objectmonParty;
-    private boolean isDefeated;
 
     /**
      * Constructs a new Player.
@@ -28,41 +27,20 @@ public final class PlayerImpl extends EntityImpl implements Player {
     public PlayerImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
-        this.isDefeated = false;
     }
 
     @Override
-    public void moveUp() {
-        super.setPosition(new Coord(super.getPosition().x(), super.getPosition().y() - 1));
-        this.setDirection(Direction.UP);
-    }
-
-    @Override
-    public void moveDown() {
-        super.setPosition(new Coord(super.getPosition().x(), super.getPosition().y() + 1));
-        this.setDirection(Direction.DOWN);
-    }
-
-    @Override
-    public void moveLeft() {
-        super.setPosition(new Coord(super.getPosition().x() - 1, super.getPosition().y()));
-        this.setDirection(Direction.LEFT);
-    }
-
-    @Override
-    public void moveRight() {
-        super.setPosition(new Coord(super.getPosition().x() + 1, super.getPosition().y()));
-        this.setDirection(Direction.RIGHT);
-    }
-
-    @Override
-    public void setDefeated(final boolean isDefeated) {
-        this.isDefeated = isDefeated;
+    public void move(final Direction direction, final CollisionChecker collisionChecker) {
+        final Coord nextPosition = new Coord(getPosition().x() + direction.getX(), getPosition().y() + direction.getY());
+        this.setDirection(direction);
+        if (!collisionChecker.isCollision(nextPosition)) {
+            this.setPosition(nextPosition);
+        }
     }
 
     @Override
     public boolean isDefeated() {
-        return this.isDefeated;
+        return false; //TODO
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",

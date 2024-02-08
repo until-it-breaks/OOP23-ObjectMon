@@ -5,8 +5,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.npc.NpcManager;
-import it.unibo.objectmon.model.entity.player.PlayerManager;
 import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.view.api.View;
 /**
@@ -62,8 +62,8 @@ public final class Controller {
      * Returns the player controller.
      * @return the player controller.
      */
-    public PlayerManager getPlayerController() {
-        return model.getPlayerController();
+    public Player getPlayer() {
+        return model.getPlayer();
     }
 
     /**

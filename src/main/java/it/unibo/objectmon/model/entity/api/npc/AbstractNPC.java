@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.entity.api.npc;
 
 import it.unibo.objectmon.model.entity.api.EntityImpl;
-import it.unibo.objectmon.model.entity.player.PlayerManager;
+import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -17,9 +17,10 @@ public abstract class AbstractNPC extends EntityImpl {
     public AbstractNPC(final String name, final Coord coord) {
         super(name, coord);
     }
+
     /**
      * Triggers the NPC specific behaviour after performing checks.
      * @param player The player that is affected by the interaction.
      */
-    public abstract void handleInteraction(PlayerManager player);
+    public abstract void handleInteraction(Player player);
 }

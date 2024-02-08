@@ -6,9 +6,9 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
+import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
-import it.unibo.objectmon.model.entity.player.PlayerManager;
 import it.unibo.objectmon.model.misc.eventlog.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
@@ -17,7 +17,6 @@ import it.unibo.objectmon.model.world.Coord;
  */
 public final class TrainerNpc extends AbstractNPC implements Trainer {
     private final ObjectmonParty objectmonParty;
-    private boolean isDefeated;
 
     /**
      * Constructs a new Trainer.
@@ -28,17 +27,11 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
     public TrainerNpc(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
-        this.isDefeated = false;
-    }
-
-    @Override
-    public void setDefeated(final boolean isDefeated) {
-        this.isDefeated = isDefeated;
     }
 
     @Override
     public boolean isDefeated() {
-        return this.isDefeated;
+        return false; //TODO
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
@@ -49,8 +42,8 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
     }
 
     @Override
-    public void handleInteraction(final PlayerManager player) {
-        if (!isDefeated) {
+    public void handleInteraction(final Player player) {
+        if (!isDefeated()) {
             EventLogger.getLogger().log(this.getName() + " challenges " + player.getName());
             //Calls battle manager.
         } else {
