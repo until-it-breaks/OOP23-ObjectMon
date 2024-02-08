@@ -2,10 +2,6 @@ package it.unibo.objectmon.model.data.skill;
 
 import java.util.LinkedList;
 import java.util.List;
-<<<<<<< HEAD
-=======
-import com.google.gson.Gson;
->>>>>>> objectmon-features
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.skill.SkillCategory;
