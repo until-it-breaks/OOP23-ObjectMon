@@ -11,7 +11,7 @@ public final class Interact implements Command {
     @Override
     public void execute(final Model model) {
         final GameContext gc = model.getGameContext();
-        model.getInteractionManager().triggerInteraction(gc.getNpcManager().getNpcs(),
+        model.getInteractionManager().triggerInteraction(gc.getNpcManager().getNPCs(),
             gc.getPlayer());
     }
 }

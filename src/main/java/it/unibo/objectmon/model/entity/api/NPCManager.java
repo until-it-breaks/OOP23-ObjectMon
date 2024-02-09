@@ -16,7 +16,7 @@ public interface NPCManager {
      * 
      * @return An immutable set of current NPCs.
      */
-    Set<AbstractNPC> getNpcs();
+    Set<AbstractNPC> getNPCs();
 
     /**
      * Sets the defeat status of the specified trainer NPC.

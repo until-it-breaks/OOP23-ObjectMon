@@ -29,7 +29,7 @@ public final class ModelImpl implements Model {
     @Override
     public void initialize() {
         this.gameContext = GameContexts.createDefaultContext();
-        this.collisionChecker = new CollisionCheckerImpl(this.gameContext.getWorld(), this.gameContext.getNpcManager().getNpcs());
+        this.collisionChecker = new CollisionCheckerImpl(this.gameContext.getWorld(), this.gameContext.getNpcManager().getNPCs());
         this.interactionManager = new InteractionManagerImpl();
         this.battleManager = new BattleManagerImpl();
     }

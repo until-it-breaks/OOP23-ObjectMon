@@ -1,11 +1,16 @@
 package it.unibo.objectmon.controller;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
-import it.unibo.objectmon.model.GameContext;
 import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entity.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.view.api.View;
 /**
  * Models the controller of the application.
@@ -49,10 +54,31 @@ public final class Controller {
     }
 
     /**
-     * Returns the world.
-     * @return the world.
+     * Returns the npcs in the game.
+     * @return the npc in the game.
      */
-    public GameContext getGameContext() {
-        return model.getGameContext();
+    public Set<ReadOnlyNPC> getNPCs() {
+        final Set<AbstractNPC> npcs = model.getGameContext().getNpcManager().getNPCs();
+        final Set<ReadOnlyNPC> out = new HashSet<>();
+        for (final AbstractNPC readOnlyNPC : npcs) {
+            out.add(new ReadOnlyNPC(readOnlyNPC));
+        }
+        return out;
+    }
+
+    /**
+     * Returns the world in the game.
+     * @return the world in the game.
+     */
+    public World getWorld() {
+        return model.getGameContext().getWorld();
+    }
+
+    /**
+     * Retrieves a read only wrapper of the Player.
+     * @return a read only wrapper of the Player.
+     */
+    public Player getPlayer() {
+        return new ReadOnlyPlayer(model.getGameContext().getPlayer());
     }
 }

@@ -1,8 +1,11 @@
 package it.unibo.objectmon.model;
 
+import java.util.Set;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.entity.api.NPCManager;
 import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entity.npc.NPCManagerImpl;
 import it.unibo.objectmon.model.world.World;
 
 /**
@@ -20,12 +23,12 @@ public final class GameContextImpl implements GameContext {
      * 
      * @param world The game world associated with the context.
      * @param player The player associated with the context.
-     * @param npcManager The NPC manager associated with the context.
+     * @param npcs The set of NPCS to be put in the NPCManager associated with the context.
      */
-    public GameContextImpl(final World world, final Player player, final NPCManager npcManager) {
+    public GameContextImpl(final World world, final Player player, final Set<AbstractNPC> npcs) {
         this.world = world;
         this.player = player;
-        this.npcManager = npcManager;
+        this.npcManager = new NPCManagerImpl(npcs);
     }
 
     @Override

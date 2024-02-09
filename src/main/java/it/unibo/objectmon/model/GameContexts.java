@@ -1,9 +1,10 @@
 package it.unibo.objectmon.model;
 
 import java.util.List;
-import it.unibo.objectmon.model.entity.api.NPCManager;
+import java.util.Set;
 import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.npc.NPCManagerImpl;
+import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entity.npc.NPCFactory;
 import it.unibo.objectmon.model.entity.player.PlayerImpl;
 import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.model.world.Worlds;
@@ -19,14 +20,14 @@ public final class GameContexts {
 
     /**
      * Creates a default game context with predefined settings, including a default world,
-     * player, and NPC manager.
+     * player, and a set of NPCs.
      * 
      * @return A default {@link GameContext} instance.
      */
     public static GameContext createDefaultContext() {
         final World defaultWorld = new World(Worlds.DEMO);
         final Player defaultPlayer = new PlayerImpl("Player", defaultWorld.getStartingPosition(), List.of());
-        final NPCManager defaultNpcManager = NPCManagerImpl.createDefaultNPCManager();
+        final Set<AbstractNPC> defaultNpcManager = NPCFactory.createDemoNPCs();
         return new GameContextImpl(defaultWorld, defaultPlayer, defaultNpcManager);
     }
 }

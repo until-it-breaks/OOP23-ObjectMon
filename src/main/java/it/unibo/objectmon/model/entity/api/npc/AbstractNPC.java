@@ -1,13 +1,13 @@
 package it.unibo.objectmon.model.entity.api.npc;
 
-import it.unibo.objectmon.model.entity.api.EntityImpl;
+import it.unibo.objectmon.model.entity.api.AbstractEntity;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
  * Models an npc with a behaviour that can be triggered on interaction.
  */
-public abstract class AbstractNPC extends EntityImpl {
+public abstract class AbstractNPC extends AbstractEntity {
 
     /**
      * Constructs an incomplete NPC.

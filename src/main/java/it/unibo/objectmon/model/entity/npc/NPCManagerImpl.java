@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.entity.npc;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.HashSet;
 import it.unibo.objectmon.model.entity.api.NPCManager;
 import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 
@@ -19,21 +20,12 @@ public final class NPCManagerImpl implements NPCManager {
      * @param npcs The set of NPCs to be managed by this NPCManagerImpl.
      */
     public NPCManagerImpl(final Set<AbstractNPC> npcs) {
-        this.npcs = npcs;
-    }
-
-    /**
-     * Creates a default NPCManagerImpl populated with demo NPCs.
-     * 
-     * @return A default NPCManagerImpl instance.
-     */
-    public static NPCManager createDefaultNPCManager() {
-        return new NPCManagerImpl(NPCFactory.createDemoNPCs());
+        this.npcs = new HashSet<>(npcs);
     }
 
     @Override
-    public Set<AbstractNPC> getNpcs() {
-        return Collections.unmodifiableSet(npcs);
+    public Set<AbstractNPC> getNPCs() {
+        return Collections.unmodifiableSet(this.npcs);
     }
 
     @Override

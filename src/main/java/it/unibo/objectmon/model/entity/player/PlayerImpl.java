@@ -6,7 +6,7 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entity.api.Direction;
-import it.unibo.objectmon.model.entity.api.EntityImpl;
+import it.unibo.objectmon.model.entity.api.AbstractEntity;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 import it.unibo.objectmon.model.world.Coord;
@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.world.Coord;
 /**
  * This will be the implementation of {@link Player}.
  */
-public final class PlayerImpl extends EntityImpl implements Player {
+public final class PlayerImpl extends AbstractEntity implements Player {
 
     private final ObjectmonParty objectmonParty;
 

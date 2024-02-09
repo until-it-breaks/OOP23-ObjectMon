@@ -5,7 +5,7 @@ import it.unibo.objectmon.model.world.Coord;
 /**
  * A basic implementation of a game entity.
  */
-public class EntityImpl implements Entity {
+public class AbstractEntity implements Entity {
 
     private final String name;
     private Coord position;
@@ -16,7 +16,7 @@ public class EntityImpl implements Entity {
      * @param name the name of the entity.
      * @param coord the starting position of the entity.
      */
-    public EntityImpl(final String name, final Coord coord) {
+    public AbstractEntity(final String name, final Coord coord) {
         this.name = name;
         this.position = coord;
         this.facingDirection = Direction.DOWN;
