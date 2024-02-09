@@ -15,7 +15,7 @@ import it.unibo.objectmon.model.world.Coord;
 /**
  * Models an NPC capable of fighting.
  */
-public final class TrainerNpc extends AbstractNPC implements Trainer {
+public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
     private final ObjectmonParty objectmonParty;
 
     /**
@@ -24,7 +24,7 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
      * @param coord The starting position of the Trainer.
      * @param team The team of Objectmons of the Trainer.
      */
-    public TrainerNpc(final String name, final Coord coord, final List<Objectmon> team) {
+    public TrainerNPCImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
     }

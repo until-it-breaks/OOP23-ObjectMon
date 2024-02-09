@@ -39,10 +39,10 @@ public final class NPCFactory {
      */
     public static Set<AbstractNPC> createJustTrainers() {
         final Set<AbstractNPC> npcs = new HashSet<>();
-        npcs.add(new TrainerNpc("Trainer Bob", POSITION_1, List.of()));
-        npcs.add(new TrainerNpc("Trainer Alex", POSITION_2, List.of()));
-        npcs.add(new TrainerNpc("Trainer Delta", POSITION_3, List.of()));
-        npcs.add(new TrainerNpc("Trainer Alpha", POSITION_4, List.of()));
+        npcs.add(new TrainerNPCImpl("Trainer Bob", POSITION_1, List.of()));
+        npcs.add(new TrainerNPCImpl("Trainer Alex", POSITION_2, List.of()));
+        npcs.add(new TrainerNPCImpl("Trainer Delta", POSITION_3, List.of()));
+        npcs.add(new TrainerNPCImpl("Trainer Alpha", POSITION_4, List.of()));
         return npcs;
     }
 
@@ -53,8 +53,8 @@ public final class NPCFactory {
      */
     public static Set<AbstractNPC> createSupportNPCsOnly() {
         final Set<AbstractNPC> npcs = new HashSet<>();
-        npcs.add(new HealerNPC("Doctor Madness", POSITION_5));
-        npcs.add(new SellerNPC("Street Vendor", POSITION_6));
+        npcs.add(new HealerNPCImpl("Doctor Madness", POSITION_5));
+        npcs.add(new SellerNPCImpl("Street Vendor", POSITION_6));
         return npcs;
     }
 }

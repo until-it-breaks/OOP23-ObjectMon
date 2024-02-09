@@ -17,6 +17,7 @@ public final class World {
 
     /**
      * Constructs a new World and initializes it by loading tiles from a config.
+     * 
      * @param config
      */
     public World(final Worlds config) {
@@ -43,6 +44,7 @@ public final class World {
 
     /**
      * Retrieves an immutable mapping of coordinates to tiles, representing the game world.
+     * 
      * @return An immutable map of coordinates to tiles.
      */
     public Map<Coord, Tile> getMap() {
@@ -51,6 +53,7 @@ public final class World {
 
     /**
      * Retrieves the width of the game world grid.
+     * 
      * @return The width of the game world.
      */
     public int getWidth() {
@@ -59,6 +62,7 @@ public final class World {
 
     /**
      * Retrieves the height of the game world grid.
+     * 
      * @return The height of the game world.
      */
     public int getHeight() {
@@ -67,6 +71,7 @@ public final class World {
 
     /**
      * Retrives the starting position of the player.
+     * 
      * @return A coord representing the starting position of the player.
      */
     public Coord getStartingPosition() {

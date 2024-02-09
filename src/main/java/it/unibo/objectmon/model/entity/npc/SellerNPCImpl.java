@@ -8,14 +8,14 @@ import it.unibo.objectmon.model.world.Coord;
 /**
  * Models an NPC capable of selling its own wares.
  */
-public final class SellerNPC extends AbstractNPC implements Seller {
+public final class SellerNPCImpl extends AbstractNPC implements Seller {
 
     /**
      * Constructs a new Seller NPC.
      * @param name The name of the seller.
      * @param coord The starting position of the seller.
      */
-    public SellerNPC(final String name, final Coord coord) {
+    public SellerNPCImpl(final String name, final Coord coord) {
         super(name, coord);
     }
 

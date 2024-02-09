@@ -59,8 +59,8 @@ public final class OverWorldPanel extends JPanel {
             RenderingHints.VALUE_RENDER_SPEED);
             graphics2d.setRenderingHints(renderingHints);
             //Computes the offset needed to center the camera.
-            final int playerX = controller.getPlayer().getPosition().x() * TILE_SIZE;
-            final int playerY = controller.getPlayer().getPosition().y() * TILE_SIZE;
+            final int playerX = controller.getGameContext().getPlayer().getPosition().x() * TILE_SIZE;
+            final int playerY = controller.getGameContext().getPlayer().getPosition().y() * TILE_SIZE;
             final double cameraX = getWidth() / 2 - playerX;
             final double cameraY = getHeight() / 2 - playerY;
             //In this section the camera is always centered on the player.
@@ -78,7 +78,7 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final AbstractNPC npc : controller.getNpcManager().getNpcs()) {
+        for (final AbstractNPC npc : controller.getGameContext().getNpcManager().getNpcs()) {
             final BufferedImage image = getNPCImage(npc);
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
         }
@@ -86,12 +86,12 @@ public final class OverWorldPanel extends JPanel {
 
     private void drawPlayer(final Graphics2D g) {
         final BufferedImage image = getPlayerImage();
-        final Coord playerPosition = controller.getPlayer().getPosition();
+        final Coord playerPosition = controller.getGameContext().getPlayer().getPosition();
         g.drawImage(image, playerPosition.x() * TILE_SIZE, playerPosition.y() * TILE_SIZE, null);
     }
 
     private void drawWorld(final Graphics2D g) {
-        for (final var entry : controller.getWorld().getMap().entrySet()) {
+        for (final var entry : controller.getGameContext().getWorld().getMap().entrySet()) {
             final BufferedImage image = textureLoader.getImage(entry.getValue().getImagePath());
             final int tileX = entry.getKey().x();
             final int tileY = entry.getKey().y();
@@ -140,7 +140,7 @@ public final class OverWorldPanel extends JPanel {
 
     private BufferedImage getPlayerImage() {
         final String imagePath;
-        switch (controller.getPlayer().getDirection()) {
+        switch (controller.getGameContext().getPlayer().getDirection()) {
             case UP:
                 imagePath = "/player/playerUp.png";
                 break;

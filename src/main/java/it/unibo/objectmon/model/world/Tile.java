@@ -14,6 +14,7 @@ public final class Tile {
 
     /**
      * Creates a basic tile.
+     * 
      * @param id The unique identifier of the tile.
      * @param type The type of the tile.
      * @param triggersEncounters The ability of triggering random encounters.
