@@ -16,9 +16,8 @@ public final class EasyAiTrainer extends EasyAiObjectmon implements AiTrainer {
     }
 
     @Override
-    public void switchObjectmon(final ObjectmonParty team) {
-        if (index < team.getParty().size()) {
-            team.switchPosition(team.getParty().get(0), team.getParty().get(this.index++));
-        }
+    public int switchObjectmon(final ObjectmonParty team) {
+        this.index++;
+        return this.index < team.getParty().size() ? this.index : -1;
     }
 }

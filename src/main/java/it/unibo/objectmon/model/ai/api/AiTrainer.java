@@ -9,6 +9,7 @@ public interface AiTrainer extends AiObjectmon {
     /**
      * switch objectmon when ai think it is necessary.
      * @param team team of the battle
+     * @return index to be switch with current objectmon.
      */
-    void switchObjectmon(ObjectmonParty team);
+    int switchObjectmon(ObjectmonParty team);
 } 
