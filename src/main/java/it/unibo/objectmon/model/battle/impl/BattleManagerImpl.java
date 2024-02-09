@@ -47,7 +47,41 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void startTurn(final Move type, final int index) {
+        this.turn.setTurn(StatTurn.TURN_STARTED);
+        final int aiIndex = chooseAiMove();
         this.battle.get().setPlayerMove(type);
+        switch (this.turn.whichFirst(
+            this.battle.get().getEnemyMove(),
+            this.battle.get().getPlayerMove(), 
+            this.battle.get().getCurrentObjectmon(), 
+            this.battle.get().getEnemyObjectmon()
+        )) {
+            case AI_TURN :
+                executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
+                executePlayerTurn(type, index);
+                break;
+            case PLAYER_TURN :
+                executePlayerTurn(type, index);
+                executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
+                break;
+            default :
+                throw new IllegalArgumentException();
+        }
+        this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
+    }
+    /**
+     * 
+     * @param type type of move.
+     * @param index index of skill or objectmon to switch
+     */
+    public void executeAiTurn(final Move type, final int index) {
+    }
+    /**
+     * 
+     * @param type type of move.
+     * @param index index of skill or objectmon to switch
+     */
+    public void executePlayerTurn(final Move type, final int index) {
     }
 
     @Override
@@ -114,11 +148,14 @@ public final class BattleManagerImpl implements BattleManager {
      * @return index of skill or position to use
      */
     public int chooseAiMove() {
-        this.battle.get().getTrainer().ifPresent(t -> {
-            if (t.getObjectmonParty().getParty().get(0).getCurrentHp() <= 0) {
-                this.aiTrainer.switchObjectmon(t.getObjectmonParty());
+        if (this.battle.get().getTrainer().isPresent()) {
+            final Trainer trainer = this.battle.get().getTrainer().get();
+            if (trainer.getObjectmonParty().getParty().get(0).getCurrentHp() <= 0) {
+                this.battle.get().setEnemyMove(Move.SWITCH_OBJECTMON);
+                return this.aiTrainer.switchObjectmon(trainer.getObjectmonParty());
             }
-        });
+        }
+        this.battle.get().setEnemyMove(Move.ATTACK);
         return this.aiTrainer.useSkill(this.battle.get().getEnemyObjectmon());
     }
 }

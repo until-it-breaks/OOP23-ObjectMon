@@ -27,6 +27,7 @@ public interface Battle {
     void setPlayerMove(Move move);
     /**
      * set enemy move by AI.
+     * @param move type of move
      */
     void setEnemyMove(Move move);
     /**

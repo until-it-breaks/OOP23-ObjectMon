@@ -19,6 +19,10 @@ public enum StatTurn {
     /**
      * when player and AI execute their moves.
      */
+    TURN_STARTED,
+    /**
+     * when turn is complete.
+     */
     TURN_COMPLETE
 }
 
