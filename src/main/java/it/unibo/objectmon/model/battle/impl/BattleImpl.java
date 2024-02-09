@@ -2,8 +2,6 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
-import it.unibo.objectmon.model.ai.EasyAiTrainer;
-import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
@@ -18,7 +16,6 @@ public final class BattleImpl implements Battle {
     private final Player player;
     private final Optional<Trainer> trainer;
     private final Optional<Objectmon> wildObjectmon;
-    private final AiTrainer aiTrainer;
     private Move playerMove;
     private Move enemyMove;
     /**
@@ -31,7 +28,6 @@ public final class BattleImpl implements Battle {
         this.player = player;
         this.trainer = trainer;
         this.wildObjectmon = objectmon;
-        this.aiTrainer = new EasyAiTrainer();
         this.playerMove = Move.NOT_IN_FIGHT;
         this.enemyMove = Move.NOT_IN_FIGHT;
     }
@@ -71,15 +67,8 @@ public final class BattleImpl implements Battle {
     }
 
     @Override
-    public void setEnemyMove() {
-        this.trainer.ifPresent(t -> {
-            if (t.getObjectmonParty().getParty().get(0).getCurrentHp() <= 0) {
-                this.aiTrainer.switchObjectmon(t.getObjectmonParty());
-                this.enemyMove = Move.SWITCH_OBJECTMON;
-            }
-        });
-        this.aiTrainer.useSkill(getEnemyObjectmon());
-        this.enemyMove = Move.ATTACK;
+    public void setEnemyMove(final Move move) {
+        this.enemyMove = move;
     }
 
     @Override
