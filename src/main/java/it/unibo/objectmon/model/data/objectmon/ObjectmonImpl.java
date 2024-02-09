@@ -12,7 +12,7 @@ import it.unibo.objectmon.model.data.statistics.BaseStats;
 /**
  * Implementation of Objectmon.
  */
-public class ObjectmonImpl implements Objectmon {
+public final class ObjectmonImpl implements Objectmon {
 
     private final int id;
     private final String name;
@@ -66,62 +66,41 @@ public class ObjectmonImpl implements Objectmon {
         this.exp = builder.exp;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public ActualStats getStats() {
         return this.stats;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getId() {
         return this.id;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String getName() {
         return this.name;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getLevel() {
         return this.level;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public List<Aspect> getAspect() {
         return List.copyOf(this.aspects);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Skill getSkill(final int skillId) {
         return this.skills.get(skillId);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getExp() {
         return this.exp;
     }
-    
+
     /**
      * Adds a level to Objectmon.
      * Max 100
@@ -140,9 +119,6 @@ public class ObjectmonImpl implements Objectmon {
         this.exp = exp;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void addExp(final int gainedExp) {
         setExp(gainedExp);
@@ -164,6 +140,7 @@ public class ObjectmonImpl implements Objectmon {
      *
      * @return Returns the currentHp of the Objectmon.
      */
+    @Override
     public int getCurrentHp() {
         return this.currentHp;
     }
@@ -172,6 +149,7 @@ public class ObjectmonImpl implements Objectmon {
      *
      * @param quantity Quantity of the Hp to be added to currentHp.
      */
+    @Override
     public void setCurrentHp(final int quantity) {
         final int value = this.currentHp + quantity;
         final int maxHp = getStats().getSingleStat(StatId.HP);
