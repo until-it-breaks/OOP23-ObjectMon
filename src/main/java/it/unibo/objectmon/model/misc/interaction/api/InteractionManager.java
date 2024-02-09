@@ -13,8 +13,9 @@ public interface InteractionManager {
      * Triggers an npc's interaction upon a succesful check.
      * @param npcs the npcs in the game.
      * @param player the player that will be subject of the interaction.
+     * @return true if an interaction has taken place.
      */
-    void triggerInteraction(Set<AbstractNPC> npcs, Player player);
+    boolean triggerInteraction(Set<AbstractNPC> npcs, Player player);
 
     /**
      * Retrieves the interactions message log.

@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.eventlog;
+package it.unibo.objectmon.model.misc.eventlog;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 
 /**
@@ -16,11 +15,11 @@ import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
  */
 class EventLoggerTest {
 
-    private final EventLogger logger = new EventLoggerImpl();
+    private EventLogger logger;
 
     @BeforeEach
-    void setUp() {
-        logger.clear();
+    void init() {
+        logger = new EventLoggerImpl();
     }
 
     @Test

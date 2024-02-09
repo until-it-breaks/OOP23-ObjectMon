@@ -24,15 +24,16 @@ public final class InteractionManagerImpl implements InteractionManager {
     }
 
     @Override
-    public void triggerInteraction(final Set<AbstractNPC> npcs, final Player player) {
+    public boolean triggerInteraction(final Set<AbstractNPC> npcs, final Player player) {
         final Coord positionInFront = getPositionInFront(player.getPosition(), player.getDirection());
 
         for (final AbstractNPC npc : npcs) {
             if (npc.getPosition().equals(positionInFront)) {
                 npc.handleInteraction(player, this.logger);
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     private Coord getPositionInFront(final Coord currentPosition, final Direction currentDirection) {
