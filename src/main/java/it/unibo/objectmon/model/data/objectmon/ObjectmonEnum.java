@@ -427,21 +427,17 @@ public enum ObjectmonEnum {
         this.id = id;
         this.name = name;
         this.aspects = List.copyOf(aspects);
+
+        final List<Skill> skills = SkillFactory.createSkills().stream()
+        .filter(skill -> skill.getAspect().sameAspect(aspects))
+        .toList();
+
         if (aspects.size() > 1) {
-            final List<Skill> skills = SkillFactory.createSkills().stream()
-            .filter(
-            skill -> skill.getAspect() == aspects.get(0)
-            || skill.getAspect() == aspects.get(1)
-            )
-            .toList();
             final int firstAspectIndex = 2;
             final int lastAspectIndex = 5;
             this.skills = skills.subList(firstAspectIndex, lastAspectIndex);
-
         } else {
-            this.skills = SkillFactory.createSkills().stream()
-            .filter(skill -> skill.getAspect() == aspects.get(0))
-            .toList();
+            this.skills = skills;
         }
         this.stats = new ActualStats(stats);
     }
