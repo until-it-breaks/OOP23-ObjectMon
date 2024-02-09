@@ -77,6 +77,7 @@ public enum Aspect {
         return this.aspectName;
     }
 
+
     /**
      *
      * @param objectmonAspects The Aspect of the Objectmon
@@ -85,7 +86,7 @@ public enum Aspect {
     public boolean sameAspect(final List<Aspect> objectmonAspects) {
         boolean isSame = false;
         for (final Aspect singleAspect : objectmonAspects) {
-            isSame = isSame || getAspectId() == singleAspect.getAspectId();
+            isSame = isSame || getAspectId().equals(singleAspect.getAspectId());
         }
         return isSame;
     }

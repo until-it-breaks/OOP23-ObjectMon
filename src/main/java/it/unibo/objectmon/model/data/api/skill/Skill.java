@@ -1,6 +1,8 @@
 package it.unibo.objectmon.model.data.api.skill;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 
 /**
@@ -169,6 +171,36 @@ public class Skill implements Serializable {
         if (getCurrentUses() > 0) {
             this.currentUses--;
         }
+    }
+
+    /**
+     * Compares a Skill with another to see if they're identical.
+     * If they are the same instance returns true.
+     * If they have the same name and id returns true.
+     * Everything else returns false.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        } else if (this == obj) {
+            return true;
+        }
+
+        final Skill skill = (Skill) obj;
+        return Integer.valueOf(getId()).equals(skill.getId())
+        && getName().equals(skill.getName());
+    }
+
+    /**
+     * Returns the hash code value for Skill.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName());
     }
 
     /**
