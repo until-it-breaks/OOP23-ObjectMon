@@ -5,7 +5,7 @@ import java.util.Collections;
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.model.world.Tile;
 import it.unibo.objectmon.model.world.World;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 
 /**

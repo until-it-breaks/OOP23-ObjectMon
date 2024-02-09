@@ -1,76 +1,74 @@
 package it.unibo.objectmon.controller;
 
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.List;
+import java.util.Set;
 import it.unibo.objectmon.controller.commands.api.Command;
-import it.unibo.objectmon.controller.engine.GameLoop;
-import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.npc.NPCManager;
+import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.world.World;
-import it.unibo.objectmon.view.api.View;
-/**
- * Models the controller of the application.
- */
-public final class Controller {
 
-    private static final int COMMAND_LIMIT = 16;
-    private final Queue<Command> commandQueue;
-    private final Model model;
-    private final View view;
-    /**
-     * 
-     * @param model the model from which information is retrieved.
-     * @param view  the view on which to render and from which inputs are received.
-     */
-    public Controller(final Model model, final View view) {
-        this.model = model;
-        this.view = view;
-        this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
-    }
+/**
+ * The Controller interface defines methods for managing game commands,
+ * controlling game state, retrieving game entities.
+ */
+public interface Controller {
+
     /**
      * Notifies the controller of a new Command.
-     * @param command the command to be added to the command queue.
+     * 
+     * @param command The command to be added to the command queue.
      */
-    public void notifyCommand(final Command command) {
-        this.commandQueue.add(command);
-    }
+    void notifyCommand(Command command);
+
     /**
      * Polls a command.
-     * @return a command from the queue.
+     * 
+     * @return A command from the queue.
      */
-    public Command pollCommand() {
-        return this.commandQueue.poll();
-    }
+    Command pollCommand();
+
     /**
      * Starts the game.
      */
-    public void startGame() {
-        final GameLoop gameLoop = new GameLoop(model, view, this);
-        gameLoop.startLoop();
-    }
+    void startGame();
 
     /**
-     * Returns the world.
-     * @return the world.
+     * Returns the npcs in the game.
+     * 
+     * @return The npc in the game.
      */
-    public World getWorld() {
-        return model.getWorld();
-    }
+    Set<ReadOnlyNPC> getNPCSet();
 
     /**
-     * Returns the player controller.
-     * @return the player controller.
+     * Returns the world in the game.
+     * 
+     * @return The world in the game.
      */
-    public Player getPlayer() {
-        return model.getPlayer();
-    }
+    World getWorld();
 
     /**
-     * Returns the player controller.
-     * @return the player controller.
+     * Retrieves a read only wrapper of the Player.
+     * 
+     * @return A read only wrapper of the Player.
      */
-    public NPCManager getNpcManager() {
-        return model.getNpcManager();
-    }
+    Player getPlayer();
+
+    /**
+     * Returns messages originating from interaction in EXPLORATION MODE.
+     * 
+     * @return A list of messages.
+     */
+    List<String> getMessageLog();
+
+    /**
+     * Retrieves the framerate.
+     * @return The framerate.
+     */
+    long getFPS();
+
+    /**
+     * Updates the framerate.
+     * @param fps framerate.
+     */
+    void updateFPS(long fps);
 }

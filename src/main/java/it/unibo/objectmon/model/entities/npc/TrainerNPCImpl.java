@@ -1,31 +1,31 @@
-package it.unibo.objectmon.model.entity.npc;
+package it.unibo.objectmon.model.entities.npc;
 
 import java.util.List;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.api.npc.Trainer;
-import it.unibo.objectmon.model.misc.eventlog.EventLogger;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
  * Models an NPC capable of fighting.
  */
-public final class TrainerNpc extends AbstractNPC implements Trainer {
+public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
     private final ObjectmonParty objectmonParty;
     private boolean defeatStatus;
 
     /**
      * Constructs a new Trainer.
+     * 
      * @param name The name of the Trainer.
      * @param coord The starting position of the Trainer.
      * @param team The team of Objectmons of the Trainer.
      */
-    public TrainerNpc(final String name, final Coord coord, final List<Objectmon> team) {
+    public TrainerNPCImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
         this.defeatStatus = false;
@@ -36,11 +36,6 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
         return this.defeatStatus;
     }
 
-    @Override
-    public void setDefeated(final boolean defeatStatus) {
-        this.defeatStatus = defeatStatus;
-    }
-
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
     justification = "TEMPORARY")
     @Override
@@ -49,12 +44,17 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
     }
 
     @Override
-    public void handleInteraction(final Player player) {
-        if (!defeatStatus) {
-            EventLogger.getLogger().log(this.getName() + " challenges " + player.getName());
+    public void handleInteraction(final Player player, final EventLogger logger) {
+        if (!isDefeated()) {
+            logger.log(this.getName() + " challenges " + player.getName());
             //Calls battle manager.
         } else {
-            EventLogger.getLogger().log(this.getName() + "has already been defeated");
+            logger.log(this.getName() + "has already been defeated");
         }
+    }
+
+    @Override
+    public void setDefeated(final boolean defeatStatus) {
+        this.defeatStatus = defeatStatus;
     }
 }

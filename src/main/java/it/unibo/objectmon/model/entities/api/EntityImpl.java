@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entity.api;
+package it.unibo.objectmon.model.entities.api;
 
 import it.unibo.objectmon.model.world.Coord;
 
@@ -13,6 +13,7 @@ public class EntityImpl implements Entity {
 
     /**
      * Builds a simple entity.
+     * 
      * @param name the name of the entity.
      * @param coord the starting position of the entity.
      */

@@ -44,6 +44,7 @@ public final class MapData {
 
     /**
      * Retrieves the height of the map.
+     * 
      * @return The height of the map.
      */
     public int getHeight() {
@@ -52,6 +53,7 @@ public final class MapData {
 
     /**
      * Retrieves the width of the map.
+     * 
      * @return The width of the map.
      */
     public int getWidth() {
@@ -60,6 +62,7 @@ public final class MapData {
 
     /**
      * Retrieves the starting X coordinate of the player.
+     * 
      * @return The starting X coordinate of the player.
      */
     public int getStartingX() {
@@ -68,6 +71,7 @@ public final class MapData {
 
     /**
      * Retrieves the starting Y coordinate of the player.
+     * 
      * @return The starting Y coordinate of the player.
      */
     public int getStartingY() {
@@ -77,6 +81,7 @@ public final class MapData {
     /**
      * Retrieves a matrix-like representation of the map data.
      * The returned list is unmodifiable to prevent modification of the map data.
+     * 
      * @return A matrix-like representation of the map data.
      */
     public List<List<Integer>> getData() {

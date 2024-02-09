@@ -2,6 +2,7 @@ package it.unibo.objectmon.view.battleview;
 
 import java.awt.ScrollPane;
 import javax.swing.JTextArea;
+
 import it.unibo.objectmon.controller.Controller;
 
 /**

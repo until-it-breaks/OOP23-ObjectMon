@@ -2,7 +2,7 @@ package it.unibo.objectmon.controller.commands;
 
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.entity.api.Direction;
+import it.unibo.objectmon.model.entities.api.Direction;
 
 /**
  * Attempts to move the player right by one unit.
@@ -10,6 +10,6 @@ import it.unibo.objectmon.model.entity.api.Direction;
 public final class MoveRight implements Command {
     @Override
     public void execute(final Model model) {
-        model.getPlayer().move(Direction.RIGHT, model.getCollisionChecker());
+        model.getGameContext().getPlayer().move(Direction.RIGHT, model.getCollisionChecker());
     }
 }

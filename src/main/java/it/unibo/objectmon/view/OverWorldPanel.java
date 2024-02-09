@@ -8,12 +8,13 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.JPanel;
+
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.api.npc.Healer;
-import it.unibo.objectmon.model.entity.api.npc.Seller;
-import it.unibo.objectmon.model.entity.api.npc.Trainer;
-import it.unibo.objectmon.model.misc.eventlog.EventLogger;
+import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.api.npc.Healer;
+import it.unibo.objectmon.model.entities.api.npc.Seller;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
@@ -28,6 +29,8 @@ public final class OverWorldPanel extends JPanel {
     private static final int FONT_SIZE = 14;
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
+    private static final int FPS_X_POSITION = 10;
+    private static final int FPS_Y_POSITION = 20;
     private final transient Controller controller;
     private final transient ImageLoader textureLoader;
 
@@ -70,6 +73,7 @@ public final class OverWorldPanel extends JPanel {
             drawPlayer(graphics2d);
             //From this point on HUD elements are drawn.
             graphics2d.translate(-cameraX, -cameraY);
+            drawFPS(graphics2d);
             drawEventLog(graphics2d);
             graphics2d.dispose();
         } else {
@@ -78,7 +82,7 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final AbstractNPC npc : controller.getNpcManager().getNpcs()) {
+        for (final ReadOnlyNPC npc : controller.getNPCSet()) {
             final BufferedImage image = getNPCImage(npc);
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
         }
@@ -100,9 +104,9 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawEventLog(final Graphics2D g) {
-        final List<String> messages = EventLogger.getLogger().getMessages();
+        final List<String> messages = controller.getMessageLog();
         final int lineHeight = 20;
-        final int boxHeight = EventLogger.LIMIT * lineHeight;
+        final int boxHeight = EventLoggerImpl.LIMIT * lineHeight;
         final int panelWidth = getWidth();
         final int panelHeight = getHeight();
 
@@ -126,12 +130,12 @@ public final class OverWorldPanel extends JPanel {
         }
     }
 
-    private BufferedImage getNPCImage(final AbstractNPC npc) {
-        if (npc instanceof Seller) {
+    private BufferedImage getNPCImage(final ReadOnlyNPC npc) {
+        if (npc.implementsInterface(Seller.class)) {
             return textureLoader.getImage("/npc/vendor.png");
-        } else if (npc instanceof Healer) {
+        } else if (npc.implementsInterface(Healer.class)) {
             return textureLoader.getImage("/npc/doctor.png");
-        } else if (npc instanceof Trainer) {
+        } else if (npc.implementsInterface(Trainer.class)) {
             return textureLoader.getImage("/npc/trainer.png");
         } else {
             return textureLoader.getImage("/npc/default.png");
@@ -157,5 +161,12 @@ public final class OverWorldPanel extends JPanel {
                 throw new IllegalStateException();
         }
         return textureLoader.getImage(imagePath);
+    }
+
+    private void drawFPS(final Graphics2D g) {
+        final long fps = controller.getFPS();
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
+        g.drawString("FPS: " + fps, FPS_X_POSITION, FPS_Y_POSITION);
     }
 }

@@ -413,7 +413,7 @@ public enum PotencyChart {
      */
     public static PotencyChart getChart(final AspectId id) {
         for (final PotencyChart chart : PotencyChart.values()) {
-            if (chart.getSkillAspect() == id) {
+            if (chart.getSkillAspect().equals(id)) {
                 return chart;
             }
         }

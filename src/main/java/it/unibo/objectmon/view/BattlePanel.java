@@ -1,6 +1,7 @@
 package it.unibo.objectmon.view;
 
 import javax.swing.JPanel;
+
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.view.battleview.BattleLog;
 import it.unibo.objectmon.view.battleview.CombatPanel;

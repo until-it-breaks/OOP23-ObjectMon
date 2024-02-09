@@ -49,7 +49,7 @@ public final class ObjectmonFactory {
      */
     private static Objectmon createObjectmon(final ObjectmonEnum objectmon, final int level) {
         for (final var objmon : ObjectmonEnum.values()) {
-            if (objmon == objectmon) {
+            if (objmon.equals(objectmon)) {
                 return new ObjectmonImpl.Builder(objmon, level).build();
             }
         }

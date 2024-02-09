@@ -24,6 +24,7 @@ public final class ImageLoaderImpl implements ImageLoader {
 
     /**
      * Retrieves an image from the cache or loads it from the resource folder.
+     * 
      * @param path The path of the image file to be loaded.
      * @return The loaded image if successful, or null if the image could not be loaded.
      */

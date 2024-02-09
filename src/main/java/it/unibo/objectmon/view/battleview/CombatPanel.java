@@ -2,6 +2,7 @@ package it.unibo.objectmon.view.battleview;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
+
 import it.unibo.objectmon.controller.Controller;
 
 /**

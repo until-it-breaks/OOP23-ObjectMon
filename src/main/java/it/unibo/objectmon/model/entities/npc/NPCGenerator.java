@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entity.npc;
+package it.unibo.objectmon.model.entities.npc;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -39,38 +39,38 @@ public final class NPCGenerator {
     public static Set<AbstractNPC> createDefaultNPCs() {
         final Set<AbstractNPC> npcs = new HashSet<>();
         // Adding trainer NPCs with predefined names, positions, and party compositions,
-        npcs.add(new TrainerNpc("Trainer Bob", POSITION_1, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerNPCImpl("Trainer Bob", POSITION_1, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.ILLUMISE,
             ObjectmonEnum.LILEEP,
             ObjectmonEnum.NOSEPASS),
             DEFAULT_PARTY_LEVEL))));
-        npcs.add(new TrainerNpc("Trainer Alex", POSITION_2, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerNPCImpl("Trainer Alex", POSITION_2, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.ANORITH,
             ObjectmonEnum.GOLDEEN),
             DEFAULT_PARTY_LEVEL + 1))));
-        npcs.add(new TrainerNpc("Trainer Delta", POSITION_3, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerNPCImpl("Trainer Delta", POSITION_3, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.KECLEON), DEFAULT_PARTY_LEVEL + 2))));
-        npcs.add(new TrainerNpc("Trainer Gamma", POSITION_4, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerNPCImpl("Trainer Gamma", POSITION_4, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.RELICANTH,
             ObjectmonEnum.NUMEL,
             ObjectmonEnum.TROPIUS,
             ObjectmonEnum.SHROOMISH),
             DEFAULT_PARTY_LEVEL - 1))));
-        npcs.add(new TrainerNpc("Trainer Sigma", POSITION_5, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerNPCImpl("Trainer Sigma", POSITION_5, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.SLUGMA,
             ObjectmonEnum.GEODUDE,
             ObjectmonEnum.TORKOAL,
             ObjectmonEnum.NOSEPASS),
             DEFAULT_PARTY_LEVEL))));
-        npcs.add(new TrainerNpc("Trainer Alpha", POSITION_6, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerNPCImpl("Trainer Alpha", POSITION_6, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.ODDISH,
             ObjectmonEnum.ILLUMISE,
             ObjectmonEnum.GEODUDE,
             ObjectmonEnum.GEODUDE),
             DEFAULT_PARTY_LEVEL - 1))));
         //Support NPCs
-        npcs.add(new HealerNPC("Field Doctor", POSITION_7));
-        npcs.add(new SellerNPC("Item Vendor", POSITION_8));
+        npcs.add(new HealerNPCImpl("Field Doctor", POSITION_7));
+        npcs.add(new SellerNPCImpl("Item Vendor", POSITION_8));
         return npcs;
     }
 }

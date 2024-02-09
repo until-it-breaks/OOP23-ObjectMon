@@ -82,11 +82,11 @@ class TestStats {
         });
 
         //Evolution test
-        ActualStats evolution = new BaseStats(STATS);
+        ActualStats evolution = new ActualStats(STATS);
         for (final var singleStat : StatId.values()) {
             assertEquals(STATS.get(singleStat), evolution.getSingleStat(singleStat));
         }
-        evolution = new BaseStats(EVOLUTION);
+        evolution = new ActualStats(EVOLUTION);
         for (final var singleStat : StatId.values()) {
             assertEquals(EVOLUTION.get(singleStat), evolution.getStats().get(singleStat));
         }

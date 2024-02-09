@@ -29,6 +29,7 @@ public final class TileSet {
 
     /**
      * Creates the tileset by loading data from JSON.
+     * 
      * @param path the path to the atlas file.
      */
     public TileSet(final String path) {
@@ -38,6 +39,7 @@ public final class TileSet {
 
     /**
      * Retrieves a Tile object by its ID.
+     * 
      * @param id The ID of the tile to retrieve.
      * @return The Tile object corresponding to the given ID, or null if not found.
      */

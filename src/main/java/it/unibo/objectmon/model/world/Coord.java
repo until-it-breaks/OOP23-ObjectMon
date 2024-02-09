@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.world;
 
 /**
  * A basic representation of a two dimensional coordinate.
+ * 
  * @param x The x coordinate.
  * @param y The y coordinate.
  */

@@ -1,9 +1,9 @@
 package it.unibo.objectmon.view;
 
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.view.api.View;
-import it.unibo.objectmon.view.utility.RenderingHelper;
 
 /**
  * Represents the main GUI frame for the game.
@@ -20,7 +20,7 @@ public final class ViewImpl implements View {
      */
     public ViewImpl() {
         this.frame = new JFrame(GAME_NAME);
-        this.frame.setPreferredSize(RenderingHelper.getResolution());
+        this.frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setResizable(true);
         this.frame.setLocationByPlatform(true);
@@ -36,5 +36,10 @@ public final class ViewImpl implements View {
     public void build(final Controller controller) {
         this.frame.add(new OverWorldPanel(controller));
         this.frame.setVisible(true);
+    }
+
+    @Override
+    public void destroy() {
+        this.frame.dispose();
     }
 }

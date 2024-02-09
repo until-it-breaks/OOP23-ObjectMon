@@ -26,6 +26,14 @@ public class ActualStats extends StatsImpl implements Serializable {
         super(stats);
     }
 
+    /**
+     * Constuctor of the class with BaseStats. 
+     * @param stats Stats of the Objectmon.
+     */
+    public ActualStats(final BaseStats stats) {
+        super(stats.getStats());
+    }
+
      /**
      * Calculates the new single stat.
      * It's an utility method.
