@@ -1,5 +1,6 @@
 package it.unibo.objectmon.model.data.statistics;
 
+import java.io.Serializable;
 import java.util.Map;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 
@@ -8,7 +9,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
  * This implementation is used for storing the base Stats of the Objectmon
  * and so can only be read for comparison or to generate an Objectmon.
  */
-public class BaseStats extends ActualStats {
+public class BaseStats extends StatsImpl implements Serializable {
     private static final long serialVersionUID = 2005L;
 
     /**
@@ -18,17 +19,4 @@ public class BaseStats extends ActualStats {
     public BaseStats(final Map<StatId, Integer> stats) {
         super(stats);
     }
-
-    /**
-     * This method should not be used.
-     * @param level {@link #it.unibo.objectmon.model.data.statistics.ActualStats}
-     * @return Returns an error.
-     */
-    @Deprecated
-    @Override
-    public ActualStats calcNewStats(final int level) {
-        throw new UnsupportedOperationException();
-    }
-
-
 }
