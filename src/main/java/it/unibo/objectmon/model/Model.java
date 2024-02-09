@@ -4,7 +4,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
 import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.npc.NpcManager;
+import it.unibo.objectmon.model.entity.npc.NPCManager;
 import it.unibo.objectmon.model.entity.player.PlayerImpl;
 import it.unibo.objectmon.model.misc.collision.CollisionCheckerImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
@@ -20,7 +20,7 @@ import java.util.List;
 public final class Model {
     private World world;
     private Player player;
-    private NpcManager npcManager;
+    private NPCManager npcManager;
     private InteractionManager interactionManager;
     private CollisionChecker collisionChecker;
     private BattleManager battleManager;
@@ -37,7 +37,7 @@ public final class Model {
      */
     public void initialize() {
         this.world = new World(Worlds.DEMO);
-        this.npcManager = new NpcManager();
+        this.npcManager = new NPCManager();
         this.collisionChecker = new CollisionCheckerImpl(this.world, npcManager.getNpcs());
         this.interactionManager = new InteractionManagerImpl();
         this.player = new PlayerImpl("Player", world.getStartingPosition(), List.of());
@@ -56,8 +56,7 @@ public final class Model {
      * Returns an object responsible for controlling the {@link Player}.
      * @return The {@link PlayerManager}
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "TEMPORARY")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "TEMPORARY")
     public Player getPlayer() {
         return this.player;
     }
@@ -66,7 +65,7 @@ public final class Model {
      * Retrieves the NPC manager.
      * @return An NPC manager.
      */
-    public NpcManager getNpcManager() {
+    public NPCManager getNpcManager() {
         return this.npcManager;
     }
 

@@ -17,9 +17,11 @@ import it.unibo.objectmon.model.world.Coord;
 public final class PlayerImpl extends EntityImpl implements Player {
 
     private final ObjectmonParty objectmonParty;
+    private boolean defeatStatus;
 
     /**
      * Constructs a new Player.
+     * 
      * @param name The name of the player.
      * @param coord The starting position of the player.
      * @param team The starting team of Objectmons.
@@ -27,6 +29,7 @@ public final class PlayerImpl extends EntityImpl implements Player {
     public PlayerImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
+        this.defeatStatus = false;
     }
 
     @Override
@@ -40,7 +43,12 @@ public final class PlayerImpl extends EntityImpl implements Player {
 
     @Override
     public boolean isDefeated() {
-        return false; //TODO
+        return this.defeatStatus;
+    }
+
+    @Override
+    public void setDefeated(final boolean defeatStatus) {
+        this.defeatStatus = defeatStatus;
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",

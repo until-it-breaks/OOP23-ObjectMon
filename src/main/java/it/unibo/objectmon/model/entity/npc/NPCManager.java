@@ -7,14 +7,14 @@ import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 /**
  * A manager that handles all the NPCs in game.
  */
-public final class NpcManager {
+public final class NPCManager {
     private final Set<AbstractNPC> npcs;
 
     /**
      * Initializes the manager and creates the in game NPCs.
      */
-    public NpcManager() {
-        this.npcs = NPCFactory.createDemoNPCs();
+    public NPCManager() {
+        this.npcs = NPCGenerator.createDefaultNPCs();
     }
 
     /**

@@ -17,6 +17,7 @@ import it.unibo.objectmon.model.world.Coord;
  */
 public final class TrainerNpc extends AbstractNPC implements Trainer {
     private final ObjectmonParty objectmonParty;
+    private boolean defeatStatus;
 
     /**
      * Constructs a new Trainer.
@@ -27,11 +28,17 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
     public TrainerNpc(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
+        this.defeatStatus = false;
     }
 
     @Override
     public boolean isDefeated() {
-        return false; //TODO
+        return this.defeatStatus;
+    }
+
+    @Override
+    public void setDefeated(final boolean defeatStatus) {
+        this.defeatStatus = defeatStatus;
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
@@ -43,7 +50,7 @@ public final class TrainerNpc extends AbstractNPC implements Trainer {
 
     @Override
     public void handleInteraction(final Player player) {
-        if (!isDefeated()) {
+        if (!defeatStatus) {
             EventLogger.getLogger().log(this.getName() + " challenges " + player.getName());
             //Calls battle manager.
         } else {
