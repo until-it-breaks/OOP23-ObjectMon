@@ -2,6 +2,8 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import it.unibo.objectmon.model.ai.EasyAiTrainer;
+import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
@@ -22,6 +24,7 @@ public final class BattleManagerImpl implements BattleManager {
     private Optional<Battle> battle;
     private Optional<Result> result;
     private final Turn turn;
+    private final AiTrainer aiTrainer;
     /**
      * Constructor of BattleManagerImpl.
      */
@@ -29,6 +32,7 @@ public final class BattleManagerImpl implements BattleManager {
         this.battle = Optional.empty();
         this.result = Optional.empty();
         this.turn = new TurnImpl();
+        this.aiTrainer = new EasyAiTrainer();
     }
 
     @Override
@@ -104,5 +108,17 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE)) {
             this.startTurn(type, index);
         }
+    }
+    /**
+     * set AI move.
+     * @return index of skill or position to use
+     */
+    public int chooseAiMove() {
+        this.battle.get().getTrainer().ifPresent(t -> {
+            if (t.getObjectmonParty().getParty().get(0).getCurrentHp() <= 0) {
+                this.aiTrainer.switchObjectmon(t.getObjectmonParty());
+            }
+        });
+        return this.aiTrainer.useSkill(this.battle.get().getEnemyObjectmon());
     }
 }
