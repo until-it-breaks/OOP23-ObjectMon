@@ -1,7 +1,6 @@
 package it.unibo.objectmon.view;
 
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.view.api.View;
@@ -37,5 +36,10 @@ public final class ViewImpl implements View {
     public void build(final Controller controller) {
         this.frame.add(new OverWorldPanel(controller));
         this.frame.setVisible(true);
+    }
+
+    @Override
+    public void destroy() {
+        this.frame.dispose();
     }
 }

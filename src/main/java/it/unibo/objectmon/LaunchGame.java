@@ -1,6 +1,7 @@
 package it.unibo.objectmon;
 
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.controller.ControllerImpl;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.view.ViewImpl;
@@ -27,7 +28,7 @@ public final class LaunchGame {
     public static void main(final String[] args) {
         final Model model = new ModelImpl();
         final View view = new ViewImpl();
-        final Controller controller = new Controller(model, view);
+        final Controller controller = new ControllerImpl(model, view);
         view.build(controller);
         controller.startGame();
     }

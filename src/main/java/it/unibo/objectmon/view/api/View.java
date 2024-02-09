@@ -21,4 +21,8 @@ public interface View {
      */
     void build(Controller controller);
 
+    /**
+     * Disposes off the view.
+     */
+    void destroy();
 }

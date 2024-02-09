@@ -8,6 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.JPanel;
+
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
 import it.unibo.objectmon.model.entities.api.npc.Healer;
@@ -28,6 +29,8 @@ public final class OverWorldPanel extends JPanel {
     private static final int FONT_SIZE = 14;
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
+    private static final int FPS_X_POSITION = 10;
+    private static final int FPS_Y_POSITION = 20;
     private final transient Controller controller;
     private final transient ImageLoader textureLoader;
 
@@ -70,6 +73,7 @@ public final class OverWorldPanel extends JPanel {
             drawPlayer(graphics2d);
             //From this point on HUD elements are drawn.
             graphics2d.translate(-cameraX, -cameraY);
+            drawFPS(graphics2d);
             drawEventLog(graphics2d);
             graphics2d.dispose();
         } else {
@@ -157,5 +161,12 @@ public final class OverWorldPanel extends JPanel {
                 throw new IllegalStateException();
         }
         return textureLoader.getImage(imagePath);
+    }
+
+    private void drawFPS(final Graphics2D g) {
+        final long fps = controller.getFPS();
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
+        g.drawString("FPS: " + fps, FPS_X_POSITION, FPS_Y_POSITION);
     }
 }
