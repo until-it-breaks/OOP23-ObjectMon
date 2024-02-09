@@ -11,7 +11,10 @@ import it.unibo.objectmon.view.api.View;
  * A basic implementation of a game loop.
  */
 public class GameLoopImpl implements GameLoop {
-    private static final int TARGET_FPS = 30;
+    /**
+     * The target frame rate.
+     */
+    public static final int TARGET_FPS = 30;
     private static final long PERIOD = 1_000 / TARGET_FPS;
     private final Logger logger = Logger.getLogger("GameLoop");
     private final Model model;
@@ -43,7 +46,7 @@ public class GameLoopImpl implements GameLoop {
         while (keepRunning) {
             final long currentTime = System.currentTimeMillis();
             final long elapsed = currentTime - previousTime;
-            printFPS(elapsed);
+            outputFPS(elapsed);
             processInput();
             render();
             waitForNextFrame(currentTime);
@@ -78,11 +81,11 @@ public class GameLoopImpl implements GameLoop {
     }
 
     /**
-     * Prints the FPS to the controller.
+     * Redirects the FPS to the controller.
      * 
      * @param elapsed the time elapsed since the start of the current frame.
      */
-    protected void printFPS(final long elapsed) {
+    protected void outputFPS(final long elapsed) {
         if (elapsed > 0) {
             controller.updateFPS(1_000 / elapsed);
         }
@@ -103,5 +106,13 @@ public class GameLoopImpl implements GameLoop {
      */
     protected void render() {
         this.view.render();
+    }
+
+    /**
+     * Returns the game loop status.
+     */
+    @Override
+    public boolean isRunning() {
+        return this.keepRunning;
     }
 }

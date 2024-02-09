@@ -16,4 +16,10 @@ public interface GameLoop {
      * Stops the game loop.
      */
     void stop();
+
+    /**
+     * Retrieves the game loop status.
+     * @return Whether the game loop is running.
+     */
+    boolean isRunning();
 }
