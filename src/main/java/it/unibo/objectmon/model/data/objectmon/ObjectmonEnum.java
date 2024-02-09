@@ -443,7 +443,7 @@ public enum ObjectmonEnum {
             .filter(skill -> skill.getAspect() == aspects.get(0))
             .toList();
         }
-        this.stats = stats;
+        this.stats = new ActualStats(stats);
     }
 
     /**

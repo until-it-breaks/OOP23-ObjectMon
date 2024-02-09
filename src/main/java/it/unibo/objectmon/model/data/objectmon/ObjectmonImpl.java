@@ -44,7 +44,7 @@ public class ObjectmonImpl implements Objectmon {
         this.name = name;
         this.aspects = List.copyOf(aspects);
         this.skills = List.copyOf(skills);
-        this.stats = stats;
+        this.stats = new ActualStats(stats);
         this.currentHp = this.stats.getSingleStat(StatId.HP);
         this.level = level;
         this.exp = 0;
