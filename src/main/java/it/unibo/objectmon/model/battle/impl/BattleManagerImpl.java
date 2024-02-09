@@ -10,6 +10,7 @@ import it.unibo.objectmon.model.battle.turn.StatTurn;
 import it.unibo.objectmon.model.battle.turn.Turn;
 import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entity.api.Player;
 import it.unibo.objectmon.model.entity.api.npc.Trainer;
 
@@ -42,7 +43,7 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void startTurn(final Move type, final int index) {
-        this.battle.get().setPlayerMove(type); 
+        this.battle.get().setPlayerMove(type);
     }
 
     @Override
@@ -72,11 +73,30 @@ public final class BattleManagerImpl implements BattleManager {
         final AttackMove attack = new AttackMove(this.battle.get().getCurrentObjectmon().getSkill(index));
         attack.action(this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
     }
+    /**
+     * 
+     * @param index index of skill in the list.
+     * @param userSkill objectmon use the skill
+     * @param target objectmon to be attacked
+     */
+    public void useSkill(final int index, final Objectmon userSkill, final Objectmon target) {
+        final AttackMove attack = new AttackMove(userSkill.getSkill(index));
+        attack.action(userSkill, target);
+    }
 
     @Override
     public void switchObjectmon(final int index) {
         final var team = this.battle.get().getPlayerTeam().getParty();
         this.battle.get().getPlayerTeam().switchPosition(team.get(0), team.get(index));
+    }
+
+    /**
+     * 
+     * @param index index of objectmon to be the current objectmon
+     * @param team team of trainer or player.
+     */
+    public void switchObjectmon(final int index, final ObjectmonParty team) {
+        team.switchPosition(team.getParty().get(0), team.getParty().get(index));
     }
 
     @Override
