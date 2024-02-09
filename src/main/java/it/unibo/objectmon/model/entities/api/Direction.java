@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entity.api;
+package it.unibo.objectmon.model.entities.api;
 
 /**
  * Enum representing direction an entity can be facing.
@@ -35,6 +35,7 @@ public enum Direction {
 
     /**
      * Returns the x offset of the direction.
+     * 
      * @return an int representing the x offset.
      */
     public int getX() {
@@ -43,6 +44,7 @@ public enum Direction {
 
     /**
      * Returns the y offset of the direction.
+     * 
      * @return an int representing the y offset.
      */
     public int getY() {

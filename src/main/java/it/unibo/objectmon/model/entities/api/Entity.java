@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entity.api;
+package it.unibo.objectmon.model.entities.api;
 
 import it.unibo.objectmon.model.world.Coord;
 
@@ -30,6 +30,7 @@ public interface Entity {
 
     /**
      * Sets the position the entity is facing towards.
+     * 
      * @param direction the next direction towards which the entity is facing at.
      */
     void setDirection(Direction direction);

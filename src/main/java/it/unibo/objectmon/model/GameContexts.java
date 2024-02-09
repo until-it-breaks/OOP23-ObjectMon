@@ -2,10 +2,11 @@ package it.unibo.objectmon.model;
 
 import java.util.List;
 import java.util.Set;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.npc.NPCFactory;
-import it.unibo.objectmon.model.entity.player.PlayerImpl;
+
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.npc.NPCFactory;
+import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.model.world.Worlds;
 

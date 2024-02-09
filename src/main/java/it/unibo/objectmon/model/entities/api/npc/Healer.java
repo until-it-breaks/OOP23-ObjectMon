@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entity.api.npc;
+package it.unibo.objectmon.model.entities.api.npc;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 
@@ -9,6 +9,7 @@ public interface Healer {
 
     /**
      * Heals the entire Objectmon team.
+     * 
      * @param objectmonParty The team to be healed.
      */
     void healTeam(ObjectmonParty objectmonParty);

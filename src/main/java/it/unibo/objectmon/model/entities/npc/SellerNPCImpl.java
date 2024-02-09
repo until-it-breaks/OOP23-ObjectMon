@@ -1,9 +1,9 @@
-package it.unibo.objectmon.model.entity.npc;
+package it.unibo.objectmon.model.entities.npc;
 
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.api.npc.Seller;
-import it.unibo.objectmon.model.misc.eventlog.EventLogger;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.api.npc.Seller;
+import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -13,6 +13,7 @@ public final class SellerNPCImpl extends AbstractNPC implements Seller {
 
     /**
      * Constructs a new Seller NPC.
+     * 
      * @param name The name of the seller.
      * @param coord The starting position of the seller.
      */
@@ -21,8 +22,8 @@ public final class SellerNPCImpl extends AbstractNPC implements Seller {
     }
 
     @Override
-    public void handleInteraction(final Player player) {
-        EventLogger.getLogger().log("Trade started with player");
+    public void handleInteraction(final Player player, final EventLogger logger) {
+        logger.log("Trade started with player");
         this.trade();
     }
 

@@ -1,10 +1,12 @@
-package it.unibo.objectmon.model.entity.npc;
+package it.unibo.objectmon.model.entities.npc;
 
 import java.util.Collections;
 import java.util.Set;
+
+import it.unibo.objectmon.model.entities.api.NPCManager;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+
 import java.util.HashSet;
-import it.unibo.objectmon.model.entity.api.NPCManager;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
 
 /**
  * A concrete implementation of the NPCManager interface that manages non-playable characters (NPCs) in the game.

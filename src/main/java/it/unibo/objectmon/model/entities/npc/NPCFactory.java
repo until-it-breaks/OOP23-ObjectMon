@@ -1,7 +1,8 @@
-package it.unibo.objectmon.model.entity.npc;
+package it.unibo.objectmon.model.entities.npc;
 
 import java.util.Set;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
+
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.world.Coord;
 import java.util.HashSet;
 import java.util.List;

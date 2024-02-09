@@ -32,6 +32,7 @@ public final class Tile {
 
     /**
      * Retrieves the unique identifier of the tile.
+     * 
      * @return The tile's unique identifier.
      */
     public int getId() {
@@ -40,6 +41,7 @@ public final class Tile {
 
     /**
      * Retrieves the name or type of the tile.
+     * 
      * @return The tile's name or type.
      */
     public String getType() {
@@ -48,6 +50,7 @@ public final class Tile {
 
     /**
      * Retrieves whether the tile can trigger random encounters.
+     * 
      * @return The tile ability to trigger random encounters.
      */
     public boolean isTriggersEncounters() {
@@ -56,6 +59,7 @@ public final class Tile {
 
     /**
      * Retrieves whether the tile can be walked over.
+     * 
      * @return The ability of the tile of preventing the player from walking over.
      */
     public boolean isPassable() {
@@ -64,6 +68,7 @@ public final class Tile {
 
     /**
      * Retrieves the file path to the image representing the tile.
+     * 
      * @return The file path to the tile's image.
      */
     public String getImagePath() {

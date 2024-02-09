@@ -2,8 +2,8 @@ package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.npc.TrainerNPCImpl;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
 /**
  * current state of the battle.
  */

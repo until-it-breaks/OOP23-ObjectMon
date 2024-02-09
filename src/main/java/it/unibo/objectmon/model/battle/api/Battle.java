@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.entity.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 
 /**

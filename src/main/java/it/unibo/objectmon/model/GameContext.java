@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model;
 
-import it.unibo.objectmon.model.entity.api.NPCManager;
-import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entities.api.NPCManager;
+import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.world.World;
 
 /**

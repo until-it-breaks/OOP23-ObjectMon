@@ -1,15 +1,14 @@
-package it.unibo.objectmon.model.entity.npc;
+package it.unibo.objectmon.model.entities.npc;
 
 import java.util.List;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.api.npc.Trainer;
-import it.unibo.objectmon.model.misc.eventlog.EventLogger;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -20,6 +19,7 @@ public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
 
     /**
      * Constructs a new Trainer.
+     * 
      * @param name The name of the Trainer.
      * @param coord The starting position of the Trainer.
      * @param team The team of Objectmons of the Trainer.
@@ -42,12 +42,12 @@ public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
     }
 
     @Override
-    public void handleInteraction(final Player player) {
+    public void handleInteraction(final Player player, final EventLogger logger) {
         if (!isDefeated()) {
-            EventLogger.getLogger().log(this.getName() + " challenges " + player.getName());
+            logger.log(this.getName() + " challenges " + player.getName());
             //Calls battle manager.
         } else {
-            EventLogger.getLogger().log(this.getName() + "has already been defeated");
+            logger.log(this.getName() + "has already been defeated");
         }
     }
 }

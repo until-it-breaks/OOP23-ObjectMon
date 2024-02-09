@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entity.api.npc;
+package it.unibo.objectmon.model.entities.api.npc;
 
 /**
  * Models a seller NPC.
@@ -6,7 +6,7 @@ package it.unibo.objectmon.model.entity.api.npc;
 public interface Seller {
 
     /**
-     * Starts trading with the player.
+     * Trades with the Player.
      */
     void trade();
 }

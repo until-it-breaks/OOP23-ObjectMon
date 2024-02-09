@@ -1,7 +1,8 @@
-package it.unibo.objectmon.model.entity.api.npc;
+package it.unibo.objectmon.model.entities.api.npc;
 
-import it.unibo.objectmon.model.entity.api.AbstractEntity;
-import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entities.api.AbstractEntity;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.world.Coord;
 
 /**
@@ -20,7 +21,9 @@ public abstract class AbstractNPC extends AbstractEntity {
 
     /**
      * Triggers the NPC specific behaviour after performing checks.
+     * 
      * @param player The player that is affected by the interaction.
+     * @param logger The logger on which interaction outputs are logged.
      */
-    public abstract void handleInteraction(Player player);
+    public abstract void handleInteraction(Player player, EventLogger logger);
 }

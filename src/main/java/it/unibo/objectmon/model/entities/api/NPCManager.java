@@ -1,8 +1,9 @@
-package it.unibo.objectmon.model.entity.api;
+package it.unibo.objectmon.model.entities.api;
 
 import java.util.Set;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.npc.TrainerNPCImpl;
+
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
 
 /**
  * An interface defining the contract for managing non-playable characters (NPCs) in the game.

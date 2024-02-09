@@ -1,13 +1,13 @@
-package it.unibo.objectmon.model.entity.player;
+package it.unibo.objectmon.model.entities.player;
 
 import java.util.List;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
-import it.unibo.objectmon.model.entity.api.Direction;
-import it.unibo.objectmon.model.entity.api.AbstractEntity;
-import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entities.api.AbstractEntity;
+import it.unibo.objectmon.model.entities.api.Direction;
+import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 import it.unibo.objectmon.model.world.Coord;
 

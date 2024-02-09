@@ -13,8 +13,8 @@ import it.unibo.objectmon.model.battle.turn.Turn;
 import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
 
 /**
  * an implementation of battle manager.

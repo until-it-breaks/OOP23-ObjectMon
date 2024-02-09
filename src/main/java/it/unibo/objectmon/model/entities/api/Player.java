@@ -1,6 +1,6 @@
-package it.unibo.objectmon.model.entity.api;
+package it.unibo.objectmon.model.entities.api;
 
-import it.unibo.objectmon.model.entity.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
 import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 
 /**

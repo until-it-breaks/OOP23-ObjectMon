@@ -2,10 +2,10 @@ package it.unibo.objectmon.model;
 
 import java.util.Set;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.objectmon.model.entity.api.NPCManager;
-import it.unibo.objectmon.model.entity.api.Player;
-import it.unibo.objectmon.model.entity.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.npc.NPCManagerImpl;
+import it.unibo.objectmon.model.entities.api.NPCManager;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.npc.NPCManagerImpl;
 import it.unibo.objectmon.model.world.World;
 
 /**
@@ -37,8 +37,6 @@ public final class GameContextImpl implements GameContext {
     }
 
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "The Player is supposed to be used for read and write operations")
     public Player getPlayer() {
         return this.player;
     }

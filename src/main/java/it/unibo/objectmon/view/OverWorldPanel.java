@@ -9,11 +9,11 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.model.entity.api.npc.Healer;
-import it.unibo.objectmon.model.entity.api.npc.Seller;
-import it.unibo.objectmon.model.entity.api.npc.Trainer;
-import it.unibo.objectmon.model.entity.npc.ReadOnlyNPC;
-import it.unibo.objectmon.model.misc.eventlog.EventLogger;
+import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.api.npc.Healer;
+import it.unibo.objectmon.model.entities.api.npc.Seller;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.world.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
@@ -100,9 +100,9 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawEventLog(final Graphics2D g) {
-        final List<String> messages = EventLogger.getLogger().getMessages();
+        final List<String> messages = controller.getMessageLog();
         final int lineHeight = 20;
-        final int boxHeight = EventLogger.LIMIT * lineHeight;
+        final int boxHeight = EventLoggerImpl.LIMIT * lineHeight;
         final int panelWidth = getWidth();
         final int panelHeight = getHeight();
 

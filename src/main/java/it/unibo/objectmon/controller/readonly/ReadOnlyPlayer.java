@@ -1,8 +1,8 @@
-package it.unibo.objectmon.controller;
+package it.unibo.objectmon.controller.readonly;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.entity.api.Direction;
-import it.unibo.objectmon.model.entity.api.Player;
+import it.unibo.objectmon.model.entities.api.Direction;
+import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 import it.unibo.objectmon.model.world.Coord;
 
