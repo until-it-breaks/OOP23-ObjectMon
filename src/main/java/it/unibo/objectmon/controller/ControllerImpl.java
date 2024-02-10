@@ -16,8 +16,8 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.view.View;
 import it.unibo.objectmon.view.ViewImpl;
-import it.unibo.objectmon.view.api.View;
 
 /**
  * Models the controller of the application.

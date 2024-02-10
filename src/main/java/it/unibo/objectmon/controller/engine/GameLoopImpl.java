@@ -7,7 +7,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.view.api.View;
+import it.unibo.objectmon.view.View;
 
 /**
  * A basic implementation of a game loop.

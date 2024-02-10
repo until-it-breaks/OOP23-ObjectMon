@@ -3,6 +3,8 @@ package it.unibo.objectmon.model;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
+import it.unibo.objectmon.model.core.GameContext;
+import it.unibo.objectmon.model.core.GameContexts;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
 import it.unibo.objectmon.model.misc.collision.CollisionCheckerImpl;

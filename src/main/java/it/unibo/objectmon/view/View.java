@@ -1,4 +1,4 @@
-package it.unibo.objectmon.view.api;
+package it.unibo.objectmon.view;
 
 import javax.swing.JPanel;
 

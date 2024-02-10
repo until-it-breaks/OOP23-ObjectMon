@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model;
+package it.unibo.objectmon.model.core;
 
 import it.unibo.objectmon.model.entities.api.NPCManager;
 import it.unibo.objectmon.model.entities.api.Player;

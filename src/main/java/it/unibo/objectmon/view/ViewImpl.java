@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.gamestate.GameState;
-import it.unibo.objectmon.view.api.View;
 
 /**
  * Represents the main GUI frame for the game.

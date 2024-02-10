@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model;
+package it.unibo.objectmon.model.core;
 
 import java.util.Set;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
