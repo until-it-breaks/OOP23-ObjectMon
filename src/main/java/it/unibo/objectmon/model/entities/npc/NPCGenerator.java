@@ -17,14 +17,14 @@ import it.unibo.objectmon.model.world.Coord;
 public final class NPCGenerator {
 
     // Predefined positions for NPCs,
-    private static final Coord POSITION_1 = new Coord(0, 5);
-    private static final Coord POSITION_2 = new Coord(44, 5);
-    private static final Coord POSITION_3 = new Coord(5, 44);
-    private static final Coord POSITION_4 = new Coord(44, 44);
-    private static final Coord POSITION_5 = new Coord(44, 44);
-    private static final Coord POSITION_6 = new Coord(44, 44);
+    private static final Coord POSITION_1 = new Coord(5, 5);
+    private static final Coord POSITION_2 = new Coord(5, 40);
+    private static final Coord POSITION_3 = new Coord(44, 5);
+    private static final Coord POSITION_4 = new Coord(44, 40);
+    private static final Coord POSITION_5 = new Coord(44, 25);
+    private static final Coord POSITION_6 = new Coord(5, 25);
     private static final Coord POSITION_7 = new Coord(24, 23);
-    private static final Coord POSITION_8 = new Coord(24, 24);
+    private static final Coord POSITION_8 = new Coord(25, 23);
 
     // Default level for NPC parties,
     private static final int DEFAULT_PARTY_LEVEL = 5;
@@ -39,7 +39,6 @@ public final class NPCGenerator {
      */
     public static Set<AbstractNPC> createDefaultNPCs() {
         final Set<AbstractNPC> npcs = new HashSet<>();
-        // Adding trainer NPCs with predefined names, positions, and party compositions,
         npcs.add(new TrainerNPCImpl("Trainer Bob", POSITION_1, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.ILLUMISE,
             ObjectmonEnum.LILEEP,
