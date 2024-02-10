@@ -68,37 +68,37 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public final ActualStats getStats() {
+    public ActualStats getStats() {
         return this.stats;
     }
 
     @Override
-    public final int getId() {
+    public int getId() {
         return this.id;
     }
 
     @Override
-    public final String getName() {
+    public String getName() {
         return this.name;
     }
 
     @Override
-    public final int getLevel() {
+    public int getLevel() {
         return this.level;
     }
 
     @Override
-    public final List<Aspect> getAspect() {
+    public List<Aspect> getAspect() {
         return List.copyOf(this.aspects);
     }
 
     @Override
-    public final Skill getSkill(final int skillId) {
+    public Skill getSkill(final int skillId) {
         return this.skills.get(skillId);
     }
 
     @Override
-    public final int getExp() {
+    public int getExp() {
         return this.exp;
     }
 
@@ -123,7 +123,7 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public final void calcExp(final int gainedExp) {
+    public void calcExp(final int gainedExp) {
         setExp(gainedExp);
         if (getExp() >= MAXEXP) {
             setExp(getExp() - MAXEXP);
