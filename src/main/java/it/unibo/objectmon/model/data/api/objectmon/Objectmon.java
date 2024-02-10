@@ -36,10 +36,9 @@ import java.util.List;
     List<Aspect> getAspect();
     /**
      * Getter of an Objectmon's Skill.
-     * @param skillId The id of the skill
      * @return Returns the skill with associated id.
      */
-    Skill getSkill(int skillId);
+    List<Skill> getSkills();
     /**
      * Getter of an Objectmon's exp.
      * @return Returns the exp that the Objectmon has.
