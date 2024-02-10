@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.skill.PotencyChart;
-import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.skill.SkillCategory;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.skill.SkillImpl;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 /**
  *  Test of Objectmon.
@@ -25,13 +25,13 @@ class TestObjectmon {
      */
     @Test
     void testSingleObjectmon() {
-        final List<Skill> skills = new ArrayList<>();
+        final List<SkillImpl> skills = new ArrayList<>();
         final int skill0BasePower = 40;
         final int skill0MaxUses = 35;
-        skills.add(new Skill("Tackle", 0, Aspect.NORMAL, skill0BasePower, 100, skill0MaxUses, SkillCategory.PHYS));
+        skills.add(new SkillImpl("Tackle", 0, Aspect.NORMAL, skill0BasePower, 100, skill0MaxUses, SkillCategory.PHYS));
         final int sKill1BasePower = 120;
         final int skill1MaxUses = 8;
-        skills.add(new Skill("Close Combat", 1, Aspect.FIGHTING, sKill1BasePower, 100, skill1MaxUses, SkillCategory.PHYS));
+        skills.add(new SkillImpl("Close Combat", 1, Aspect.FIGHTING, sKill1BasePower, 100, skill1MaxUses, SkillCategory.PHYS));
         final BaseStats stats = new BaseStats(
             Map.of(
             StatId.HP, 60,
@@ -52,7 +52,7 @@ class TestObjectmon {
         // Attacking another Objectmon that's the same.
         final double multi = 2.00;
         final PotencyChart potency = PotencyChart.getChart(objectmon.getSkill(skillid).getAspect());
-        assertEquals(multi, potency.potencyMultiplier(objectmon.getAspect()));
+        assertEquals(multi, potency.potencyMultiplier(objectmon.getAspect(), objectmon.getAspect()));
 
     }
 }

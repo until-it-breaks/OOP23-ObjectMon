@@ -1,10 +1,8 @@
 package it.unibo.objectmon.model.data.api.skill;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- *
+ * The enum of SkillCategory.
+ * <br>A Skill can be PHYS or SPEC.
  */
 public enum SkillCategory {
     /**
@@ -12,43 +10,37 @@ public enum SkillCategory {
      A Physical Skill calculates damage using the user's Atk
      against the target's Def.
      */
-    PHYS(0, "Physical"),
+    PHYS("Physical"),
     /**
      *Category of a Skill.
      A Special Skill calculates damage using the user's SpAtk
      against the target's SpDef.
      */
-    SPEC(1, "Special"),
-    /**
-     *Category of a Skill.
-     A Status Skill doesn't do damage, but can apply a status to the user or the target.
-     */
-    STUS(2, "Status");
+    SPEC("Special");
 
-    private final Map<Integer, String> category = new HashMap<>();
+    private final String name;
 
     /**
-     *
-     * @param id Id of the DamageType.
+     * Constructor of the enum SkillCategory.
      * @param name Name of the DamageType.
      */
-    SkillCategory(final int id, final String name) {
-        this.category.put(id, name);
+    SkillCategory(final String name) {
+        this.name = name;
     }
 
     /**
-     *
-     * @return Returns the category.
+     * Getter of the name of the SkillCategory.
+     * @return Returns the name of the SkillCategory.
      */
-    public Map<Integer, String> getCategory() {
-        return Map.copyOf(this.category);
+    public String getName() {
+        return this.name;
     }
 
     /**
-     * @param key Id of the category.
-     * @return Returns the name of the DamageType of the Skill.
+     * Getter of the SkillCategory.
+     * @return Returns the SkillCategory.
      */
-    public String getName(final int key) {
-        return getCategory().get(key);
+    public SkillCategory getCategory() {
+        return this;
     }
 }

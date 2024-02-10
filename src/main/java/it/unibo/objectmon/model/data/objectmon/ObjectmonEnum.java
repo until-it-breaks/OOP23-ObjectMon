@@ -459,24 +459,24 @@ public enum ObjectmonEnum {
     }
 
     /**
-     * Getter of aspects.
-     * @return Returns the aspects.
+     * Getter of Aspects.
+     * @return Returns the Aspects.
      */
     public List<Aspect> getAspects() {
         return List.copyOf(this.aspects);
     }
 
     /**
-     * Getter of stats.
-     * @return Returns the stats.
+     * Getter of Stats.
+     * @return Returns the Stats.
      */
     public ActualStats getStats() {
         return this.stats;
     }
 
     /**
-     * Getter of skills.
-     * @return Returns the skills.
+     * Getter of Skills.
+     * @return Returns the Skills.
      */
     public List<Skill> getSkills() {
         return List.copyOf(this.skills);

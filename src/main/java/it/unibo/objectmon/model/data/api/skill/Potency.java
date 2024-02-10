@@ -1,45 +1,41 @@
 package it.unibo.objectmon.model.data.api.skill;
 
 /**
- * This is the potency that a Skill can can have. A Skill can be:
- * <pre>
- *{@link #EFFECTIVE} Effective, where the Skill damage is unchanged.
- *{@link #SUPEREFFECTIVE} Super Effective, where the Skill damage is doubled.
- *{@link #NOTEFFECTIVE} Not Very Effective, where the Skill damage is halved.
- *{@link #IMMUNE} Immune, where the Skill fails (does no damage).
- * </pre>
+ * An enum of Potency that a Skill can can have.
  */
 public enum Potency {
     /**
-     *Effective, where the Skill damage is unchanged.
+     *Effective, where the Skill multiplier is 1.0 .
      */
     EFFECTIVE("Effective", 1.0),
     /**
-     *Super Effective, where the Skill damage is doubled.
+     *Super Effective, where the Skill multiplier is 2.0.
      */
     SUPEREFFECTIVE("Super effective", 2.0),
     /**
-     *Not Very Effective, where the Skill damage is halved.
+     *Not Very Effective, where the Skill multiplier is 0.5.
      */
     NOTEFFECTIVE("Not very effective", 0.5),
     /**
-     *Immune, where the Skill fails (does no damage).
+     *Immune, where the Skill multiplier is 0.
      */
-    IMMUNE("Immune", 0.0);
+    NULL("Null", 0.0);
 
-    /**
-     *A map containing each effectiveness.
-     */
     private final String name;
     private final double multiplier;
 
+    /**
+     * Constructor of the enum Potency.
+     * @param name Name of the Potency.
+     * @param multiplier Multiplier assigned to the Potency.
+     */
     Potency(final String name, final double multiplier) {
         this.name = name;
         this.multiplier = multiplier;
     }
 
     /**
-     *
+     * Getter of a Potency's name.
      * @return Returns the name of the Potency.
      */
     public String getName() {
@@ -47,7 +43,7 @@ public enum Potency {
     }
 
     /**
-     *
+     * Getter of a Potency's multiplier.
      * @return Returns the multiplier of the Potency.
      */
     public final double getMultiplier() {
