@@ -67,6 +67,20 @@ public final class ObjectmonImpl implements Objectmon {
         this.exp = builder.exp;
     }
 
+    /**
+     * Constructor of the class ObjectmonImpl with Objectmon.
+     * @param objectmon The Objectmon.
+     */
+    public ObjectmonImpl(final Objectmon objectmon) {
+        this.id = objectmon.getId();
+        this.name = objectmon.getName();
+        this.aspects = List.copyOf(objectmon.getAspect());
+        this.skills = List.copyOf(objectmon.getSkills());
+        this.level = objectmon.getLevel();
+        this.stats = objectmon.getStats().calcNewStats(level);
+        this.exp = 0;
+    }
+
     @Override
     public ActualStats getStats() {
         return this.stats;
@@ -93,8 +107,8 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public Skill getSkill(final int skillId) {
-        return this.skills.get(skillId);
+    public List<Skill> getSkills() {
+        return List.copyOf(this.skills);
     }
 
     @Override
@@ -125,7 +139,7 @@ public final class ObjectmonImpl implements Objectmon {
     @Override
     public void calcExp(final int gainedExp) {
         setExp(gainedExp);
-        if (getExp() >= MAXEXP) {
+        while (getExp() >= MAXEXP) {
             setExp(getExp() - MAXEXP);
             levelUp();
         }
