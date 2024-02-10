@@ -18,6 +18,11 @@ public interface Battle {
     boolean isWin();
     /**
      * 
+     * @return if player has no more objectmon.
+     */
+    boolean isLose();
+    /**
+     * 
      * @return get the move of player
      */
     Move getPlayerMove();

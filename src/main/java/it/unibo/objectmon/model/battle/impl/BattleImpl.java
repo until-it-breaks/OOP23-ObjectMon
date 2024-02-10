@@ -56,6 +56,11 @@ public final class BattleImpl implements Battle {
     }
 
     @Override
+    public boolean isLose() {
+        return this.player.getObjectmonParty().getParty().size() == 0;
+    }
+
+    @Override
     public Move getPlayerMove() {
         return this.playerMove;
     }

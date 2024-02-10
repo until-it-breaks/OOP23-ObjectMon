@@ -74,7 +74,7 @@ public final class BattleManagerImpl implements BattleManager {
      * @param type type of move.
      * @param index index of skill or objectmon to switch
      */
-    public void executeAiTurn(final Move type, final int index) {
+    private void executeAiTurn(final Move type, final int index) {
         switch (type) {
             case ATTACK :
                 if (this.isDead(this.battle.get().getEnemyObjectmon())) {
@@ -97,7 +97,7 @@ public final class BattleManagerImpl implements BattleManager {
      * @param type type of move.
      * @param index index of skill or objectmon to switch
      */
-    public void executePlayerTurn(final Move type, final int index) {
+    private void executePlayerTurn(final Move type, final int index) {
         switch (type) {
             case ATTACK:
                 if (this.isDead(this.battle.get().getCurrentObjectmon())) {
@@ -191,6 +191,34 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     private void endTurnAction() {
+        if (this.battle.get().isWin()) {
+            this.setResult(Result.WIN);
+            this.endBattleAction();
+        }
+        if (this.battle.get().isLose()) {
+            this.setResult(Result.LOSE);
+            this.endBattleAction();
+        }
         this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
+    }
+
+    private void endBattleAction() {
+        if (this.isOver()) {
+            switch (this.result.get()) {
+                case WIN:
+                    this.battle.get().getTrainer().ifPresent(t -> t.setDefeated(true));
+                    break;
+                case LOSE:
+                    break;
+                default:
+                    break;
+            }
+            this.setfieldsEmpty();
+        }
+    }
+
+    private void setfieldsEmpty() {
+        this.battle = Optional.empty();
+        this.result = Optional.empty();
     }
 }
