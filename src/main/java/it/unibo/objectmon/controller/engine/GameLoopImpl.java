@@ -2,6 +2,8 @@ package it.unibo.objectmon.controller.engine;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
@@ -25,10 +27,12 @@ public class GameLoopImpl implements GameLoop {
     /**
      * Constructs a new Game Loop.
      * 
-     * @param model the model on which commands will be executed.
-     * @param view the view on which the game will be rendered.
-     * @param controller the controller from which commands are polled.
+     * @param model The model where commands will be executed.
+     * @param view The view where the game will be rendered.
+     * @param controller The controller where the commands are polled.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "The game engine has the ability to shut down the view")
     public GameLoopImpl(final Model model, final View view, final Controller controller) {
         this.model = model;
         this.view = view;
@@ -37,7 +41,8 @@ public class GameLoopImpl implements GameLoop {
     }
 
     /**
-     * Starts the game loop, continuously updating the game state and rendering frames until stopped.
+     * The methods that starts the game loop.
+     * It updates the game state and rendering frames until stopped.
      * This method should be called once to begin the game loop.
      */
     @Override
@@ -56,7 +61,7 @@ public class GameLoopImpl implements GameLoop {
     }
 
     /**
-     * Stops the game loop, causing it to exit the main loop and terminate gracefully.
+     * Stops the game loop, causing it to exit the main loop.
      * Once stopped, the game loop cannot be restarted.
      */
     @Override
