@@ -1,6 +1,7 @@
 package it.unibo.objectmon.model.entities.npc;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.npc.Healer;
@@ -24,11 +25,14 @@ public final class HealerNPCImpl extends AbstractNPC implements Healer {
 
     @Override
     public void handleInteraction(final Player player, final EventLogger logger) {
-        logger.log("Player's team has been healed");
+        logger.log(this.getName() + " has healed " + player.getName() + "'s party completely.");
         this.healTeam(player.getObjectmonParty());
     }
 
     @Override
     public void healTeam(final ObjectmonParty team) {
+        for (final var objectmon : team.getParty()) {
+            objectmon.setCurrentHp(objectmon.getStats().getSingleStat(StatId.HP));
+        }
     }
 }

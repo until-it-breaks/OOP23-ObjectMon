@@ -5,6 +5,7 @@ import java.util.Set;
 
 import it.unibo.objectmon.model.entities.api.NPCManager;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
 
 import java.util.HashSet;
 
@@ -31,7 +32,11 @@ public final class NPCManagerImpl implements NPCManager {
     }
 
     @Override
-    public void setDefeatStatus(final TrainerNPCImpl trainerNPC) {
-        //sets trainer to defeated;
+    public void setDefeatStatus(final Trainer trainer) {
+        for (final AbstractNPC npc : npcs) {
+            if (npc instanceof Trainer && ((Trainer) npc).equals(trainer)) {
+                ((Trainer) npc).setDefeated(true);
+            }
+        }
     }
 }

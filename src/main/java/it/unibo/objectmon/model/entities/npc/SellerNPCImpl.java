@@ -23,7 +23,7 @@ public final class SellerNPCImpl extends AbstractNPC implements Seller {
 
     @Override
     public void handleInteraction(final Player player, final EventLogger logger) {
-        logger.log("Trade started with player");
+        logger.log(this.getName() + " has started trading with " + player.getName());
         this.trade();
     }
 

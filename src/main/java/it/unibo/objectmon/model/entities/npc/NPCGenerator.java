@@ -69,7 +69,7 @@ public final class NPCGenerator {
             ObjectmonEnum.GEODUDE),
             DEFAULT_PARTY_LEVEL - 1))));
         //Support NPCs
-        npcs.add(new HealerNPCImpl("Field Doctor", POSITION_7));
+        npcs.add(new HealerNPCImpl("Dr. Madness", POSITION_7));
         npcs.add(new SellerNPCImpl("Item Vendor", POSITION_8));
         return npcs;
     }
