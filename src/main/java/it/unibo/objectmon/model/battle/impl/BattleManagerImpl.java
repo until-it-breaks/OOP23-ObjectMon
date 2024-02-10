@@ -129,12 +129,13 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     /**
-     * 
-     * @param index index of objectmon to be the current objectmon
-     * @param team team of trainer or player.
+     * switch objectmon when the current one is dead, which is going to be removed.
+     * @param team the team that current objectmon is dead and will be removed
      */
-    public void switchObjectmon(final int index, final ObjectmonParty team) {
-        team.switchPosition(team.getParty().get(0), team.getParty().get(index));
+    public void switchObjectmon(final ObjectmonParty team) {
+        if (team.getParty().get(0).getCurrentHp() == 0) {
+            team.remove(team.getParty().get(0));
+        }
     }
 
     @Override
