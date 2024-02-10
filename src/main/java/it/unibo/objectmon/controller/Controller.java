@@ -17,14 +17,14 @@ public interface Controller {
 
     /**
      * Notifies the controller of a new Command.
-     * 
+     *
      * @param command The Command to be added to the command queue.
      */
     void notifyCommand(Command command);
 
     /**
      * Polls a command.
-     * 
+     *
      * @return A command from the queue.
      */
     Command pollCommand();
@@ -36,28 +36,28 @@ public interface Controller {
 
     /**
      * Returns the npcs in the game.
-     * 
+     *
      * @return The npc in the game.
      */
     Set<ReadOnlyNPC> getNPCSet();
 
     /**
      * Returns the world in the game.
-     * 
+     *
      * @return The world in the game.
      */
     World getWorld();
 
     /**
      * Retrieves a read only wrapper of the Player.
-     * 
+     *
      * @return A read only wrapper of the Player.
      */
     Player getPlayer();
 
     /**
      * Returns messages originating from interaction in EXPLORATION MODE.
-     * 
+     *
      * @return A list of messages.
      */
     List<String> getMessageLog();

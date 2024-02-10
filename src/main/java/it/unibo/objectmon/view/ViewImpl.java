@@ -10,7 +10,7 @@ import it.unibo.objectmon.view.api.View;
 
 /**
  * Represents the main GUI frame for the game.
- * This class serves as the primary container 
+ * This class serves as the primary container
  * for displaying various game components and interacting with the user.
  */
 public final class ViewImpl implements View {
@@ -21,7 +21,7 @@ public final class ViewImpl implements View {
     /**
      * Creates a new JFrame for the game's GUI.
      * The JFrame is initialized with default settings.
-     * 
+     *
      * @param controller The controller that will be passed to the child panels.
      */
     public ViewImpl(final Controller controller) {
