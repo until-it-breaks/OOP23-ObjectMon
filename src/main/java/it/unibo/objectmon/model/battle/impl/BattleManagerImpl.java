@@ -2,6 +2,10 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import it.unibo.objectmon.controller.commands.RunAway;
+import it.unibo.objectmon.controller.commands.SwitchObjectmon;
+import it.unibo.objectmon.controller.commands.UseSkill;
+import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.model.ai.EasyAiTrainer;
@@ -46,12 +50,15 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void startBattle(final Player player, final Optional<Trainer> trainer, final Optional<Objectmon> objectMon) {
-        if (trainer.isEmpty()) {
-            this.battle = Optional.of(new BattleImpl(player, objectMon.get()));
+        if (this.battle.isPresent()) {
+            throw new IllegalStateException("A battle is already in progress.");
         }
-        if (objectMon.isEmpty()) {
-            this.battle = Optional.of(new BattleImpl(player, trainer.get()));
-        }
+        trainer.ifPresentOrElse(
+            t -> new BattleImpl(player, t), 
+            () -> objectMon.ifPresentOrElse(o -> new BattleImpl(player, o), () -> {
+                throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
+            })
+        );
     }
 
     @Override
@@ -143,6 +150,7 @@ public final class BattleManagerImpl implements BattleManager {
     private void runAway() {
         if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
             setResult(Result.LOSE);
+            this.endBattleAction();
         }
     }
 
@@ -253,7 +261,15 @@ public final class BattleManagerImpl implements BattleManager {
                 ObjectmonEnum.MUDKIP
             ), DEFAULT_PARTY_LEVEL))
         );
-        Model model = new ModelImpl();
+        final Model model = new ModelImpl();
+        model.initialize();
+        final BattleManager battleManager = model.getBattleManager();
         model.getBattleManager().startBattle(player, Optional.of(trainer), Optional.empty());
+        Command run = new RunAway();
+        Command change = new SwitchObjectmon(2);
+        Command useSkill1 = new UseSkill(0);
+        Command useSkill2 = new UseSkill(1);
+        Command useSkill3 = new UseSkill(1);
+        
     }
 }
