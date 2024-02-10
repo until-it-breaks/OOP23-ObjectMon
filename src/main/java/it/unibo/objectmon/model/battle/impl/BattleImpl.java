@@ -51,8 +51,7 @@ public final class BattleImpl implements Battle {
     @Override
     public boolean isWin() {
         return this.trainer.isPresent()
-        ? !this.trainer.get().getObjectmonParty().getParty()
-            .stream().filter(o -> o.getCurrentHp() != 0).findAny().isPresent()
+        ? this.trainer.get().getObjectmonParty().getParty().size() == 0
         : this.wildObjectmon.get().getCurrentHp() == 0;
     }
 
