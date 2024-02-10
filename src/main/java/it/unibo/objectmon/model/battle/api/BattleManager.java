@@ -61,18 +61,4 @@ public interface BattleManager {
      * @param index index of the e-th element in the list.
      */
     void bufferCommand(Move type, int index);
-    /**
-     * leave the battle.
-     */
-    void runAway();
-    /**
-     * use a skill of objectmon given an index.
-     * @param index index of the skill of objectmon.
-     */
-    void useSkill(int index);
-    /**
-     * switch current objectmon with given index.
-     * @param index index of the objectmon in the team
-     */
-    void switchObjectmon(int index);
 }

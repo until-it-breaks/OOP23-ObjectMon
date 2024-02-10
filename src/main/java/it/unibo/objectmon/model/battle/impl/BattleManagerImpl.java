@@ -98,6 +98,22 @@ public final class BattleManagerImpl implements BattleManager {
      * @param index index of skill or objectmon to switch
      */
     public void executePlayerTurn(final Move type, final int index) {
+        switch (type) {
+            case ATTACK:
+                if (this.isDead(this.battle.get().getCurrentObjectmon())) {
+                    this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+                }
+                this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
+                break;
+            case SWITCH_OBJECTMON:
+                this.switchPlayerObjectmon(index);
+                break;
+            case RUN_AWAY:
+                this.runAway();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -115,18 +131,12 @@ public final class BattleManagerImpl implements BattleManager {
         return !this.result.get().equals(Result.IN_BATTLE);
     }
 
-    @Override
-    public void runAway() {
+    private void runAway() {
         if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
             setResult(Result.LOSE);
         }
     }
 
-    @Override
-    public void useSkill(final int index) {
-        final AttackMove attack = new AttackMove(this.battle.get().getCurrentObjectmon().getSkill(index));
-        attack.action(this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
-    }
     /**
      * 
      * @param index index of skill in the list.
@@ -138,8 +148,7 @@ public final class BattleManagerImpl implements BattleManager {
         attack.action(userSkill, target);
     }
 
-    @Override
-    public void switchObjectmon(final int index) {
+    private void switchPlayerObjectmon(final int index) {
         final var team = this.battle.get().getPlayerTeam().getParty();
         this.battle.get().getPlayerTeam().switchPosition(team.get(0), team.get(index));
     }
