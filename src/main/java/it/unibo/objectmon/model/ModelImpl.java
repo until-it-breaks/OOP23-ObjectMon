@@ -3,6 +3,8 @@ package it.unibo.objectmon.model;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
+import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
 import it.unibo.objectmon.model.misc.collision.CollisionCheckerImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
 import it.unibo.objectmon.model.misc.interaction.InteractionManagerImpl;
@@ -11,16 +13,18 @@ import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 /**
  * Manages the game model logic, including entities, interactions, collisions, and battles.
  * This class initializes the game model with default settings and provides access to various managers
- * responsible for handling different aspects of the game.
+ * that are responsible for handling different aspects of the game.
  */
 public final class ModelImpl implements Model {
     private GameContext gameContext;
     private InteractionManager interactionManager;
     private CollisionChecker collisionChecker;
     private BattleManager battleManager;
+    private GameStateManager gameStateManager;
 
     /**
-     * Constructs a ModelImpl instance and initializes the game model with default settings.
+     * Constructs a ModelImpl instance,
+     * and initializes the game model with default settings.
      */
     public ModelImpl() {
         initialize();
@@ -32,6 +36,7 @@ public final class ModelImpl implements Model {
         this.collisionChecker = new CollisionCheckerImpl(this.gameContext.getWorld(), this.gameContext.getNpcManager().getNPCs());
         this.interactionManager = new InteractionManagerImpl();
         this.battleManager = new BattleManagerImpl();
+        this.gameStateManager = new GameStateManagerImpl();
     }
 
     @Override
@@ -54,5 +59,12 @@ public final class ModelImpl implements Model {
     @Override
     public GameContext getGameContext() {
         return this.gameContext;
+    }
+
+    @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "It's been made sure at Controller level that it won't be misused")
+    public GameStateManager getGameStateManager() {
+        return this.gameStateManager;
     }
 }

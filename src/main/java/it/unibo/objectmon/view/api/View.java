@@ -1,28 +1,32 @@
 package it.unibo.objectmon.view.api;
 
-import it.unibo.objectmon.controller.Controller;
+import javax.swing.JPanel;
+
+import it.unibo.objectmon.model.gamestate.Observer;
 
 /**
  * Represents the main GUI of the game.
  */
-public interface View {
+public interface View extends Observer {
 
     /**
-     * Requests the child panels to render information based on the model's state.
-     * This method triggers the repaint mechanism to update the GUI components 
+     * This method makes a request to the child panel,
+     * in order to render based on the model's state.
+     * Triggers the repaint mechanism to update the GUI components 
      * according to the latest data from the underlying model.
      */
     void render();
 
     /**
-     * Constructs and adds the necessary panels to the view for rendering game content.
+     * Builds and adds the necessary panels to the view,
+     * to render the game content.
      * 
-     * @param controller the controller responsible for handling user inputs and game data retrieval.
+     * @param panel the new panel to be attached.
      */
-    void build(Controller controller);
+    void setCurrentPanel(JPanel panel);
 
     /**
-     * Disposes off the view.
+     * Disposes the view.
      */
     void destroy();
 }

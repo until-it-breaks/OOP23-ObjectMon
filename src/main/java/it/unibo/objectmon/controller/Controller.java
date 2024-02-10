@@ -5,10 +5,12 @@ import java.util.Set;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.world.World;
 
 /**
- * The Controller interface defines methods for managing game commands,
+ * The Controller interface.
+ * It defines methods for managing game commands,
  * controlling game state, retrieving game entities.
  */
 public interface Controller {
@@ -16,7 +18,7 @@ public interface Controller {
     /**
      * Notifies the controller of a new Command.
      * 
-     * @param command The command to be added to the command queue.
+     * @param command The Command to be added to the command queue.
      */
     void notifyCommand(Command command);
 
@@ -71,4 +73,10 @@ public interface Controller {
      * @param fps framerate.
      */
     void updateFPS(long fps);
+
+    /**
+     * Retrieves the current game state.
+     * @return The game state.
+     */
+    GameState getGameState();
 }
