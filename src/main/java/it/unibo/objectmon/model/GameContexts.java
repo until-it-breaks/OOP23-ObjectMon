@@ -8,7 +8,7 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entities.npc.NPCFactory;
+import it.unibo.objectmon.model.entities.npc.NPCGenerator;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.world.World;
 import it.unibo.objectmon.model.world.Worlds;
@@ -34,9 +34,10 @@ public final class GameContexts {
             defaultWorld.getStartingPosition(),
             new ArrayList<>(ObjectmonFactory.createObjectmonSet(
                 List.of(ObjectmonEnum.TORCHIC,
-                ObjectmonEnum.TREECKO),
+                    ObjectmonEnum.TREECKO,
+                    ObjectmonEnum.MUDKIP),
                 5)));
-        final Set<AbstractNPC> defaultNpcManager = NPCFactory.createDemoNPCs();
+        final Set<AbstractNPC> defaultNpcManager = NPCGenerator.createDefaultNPCs();
         return new GameContextImpl(defaultWorld, defaultPlayer, defaultNpcManager);
     }
 }

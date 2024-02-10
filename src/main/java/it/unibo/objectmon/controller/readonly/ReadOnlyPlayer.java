@@ -55,7 +55,7 @@ public final class ReadOnlyPlayer implements Player {
 
     @Override
     public ObjectmonParty getObjectmonParty() {
-        throw new UnsupportedOperationException("Unimplemented method 'getObjectmonParty'");
+        return player.getObjectmonParty();
     }
 
     @Override
