@@ -2,7 +2,10 @@ package it.unibo.objectmon.model.item.inventory.impl;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collections;
 
+import it.unibo.objectmon.model.item.api.BallItem;
+import it.unibo.objectmon.model.item.api.HealItem;
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
@@ -19,62 +22,56 @@ public final class InventoryImpl implements Inventory {
 
     @Override
     public void addItem(final Item item, final int count) {
-        
+        //aggiunge un tot di oggetti basandosi sulla chiave (es new HealItem(HealEnum.POTION))
+        items.put(item, items.getOrDefault(item, 0) + count);
     }
 
     @Override
     public <T extends Item> void useItem(final T item) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'useItem'");
+        //un metodo generico che diminuisce la conta di uno strumento usando come chiave qualunque classe estenda Item
+        items.computeIfPresent(item, (key, count) -> count > 1 ? count - 1 : null);
     }
 
     @Override
     public int getHealItemCount() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHealItemCount'");
+        return items.entrySet().stream()
+            .filter(entry -> entry.getKey() instanceof HealItem)
+            .mapToInt(count -> count.getValue())
+            .sum();
     }
 
     @Override
     public int getBallItemCount() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBallItemCount'");
+        return items.entrySet().stream()
+            .filter(entry -> entry.getKey() instanceof BallItem)
+            .mapToInt(count -> count.getValue())
+            .sum();
     }
 
     @Override
     public int getTotalItemCount() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTotalItemCount'");
+        return items.values().stream()
+            .mapToInt(count -> count.intValue())
+            .sum();
     }
 
     @Override
     public Map<Item, Integer> getItems() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getItems'");
+        //returna una lista immutabile, quindi il ricevente non può manipolare quella mappa
+        return Collections.unmodifiableMap(this.items);
     }
 
     @Override
     public void Clear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Clear'");
+        //toglie tutti le chiavi e i valori dalla mappa
+        this.items.clear();
     }
 
     @Override
     public int getInventoryValue() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getInventoryValue'");
+        //ritorna il totale del valore dell'inventario attraverso lo stream delle chiavi(items) e sommando il loro campo "value"
+        return items.keySet().stream()
+            .mapToInt(item -> item.getValue())
+            .sum();
     }
-
-    @Override
-    public void removeItem(final Item item) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeItem'");
-    }
-
-    @Override
-    public int getItemCount(final Item item) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getItemCount'");
-    }
-
-    
 }

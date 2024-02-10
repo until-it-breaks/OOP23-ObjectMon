@@ -28,19 +28,4 @@ public interface Inventory {
     void Clear();
 
     int getInventoryValue();
-
-    
-
-    /**
-     * remove items by the inventory.
-     * @param item item to be removed
-     */
-    void removeItem(Item item);
-
-    /**
-     * count each item.
-     * @param item item to count
-     * @return counter of one item
-     */
-    int getItemCount(Item item);
 }
