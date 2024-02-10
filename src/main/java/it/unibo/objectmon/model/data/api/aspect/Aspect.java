@@ -10,45 +10,44 @@ public enum Aspect {
     /**
      * Aspect of Normal.
      */
-    NORMAL(AspectId.NORMAL, "Normal"),
+    NORMAL("Normal"),
     /**
      * Aspect of Grass.
      */
-    GRASS(AspectId.GRASS, "Grass"),
+    GRASS("Grass"),
     /**
      * Aspect of Fire.
      */
-    FIRE(AspectId.FIRE, "Fire"),
+    FIRE("Fire"),
     /**
      * Aspect of Water.
      */
-    WATER(AspectId.WATER, "Water"),
+    WATER("Water"),
     /**
      * Aspect of Flying.
      */
-    FLYING(AspectId.FLYING, "Flying"),
+    FLYING("Flying"),
     /**
      * Aspect of Poison.
      */
-    POISON(AspectId.POISON, "Poison"),
+    POISON("Poison"),
     /**
      * Aspect of Ground.
      */
-    GROUND(AspectId.GROUND, "Ground"),
+    GROUND("Ground"),
     /**
      * Aspect of Rock.
      */
-    ROCK(AspectId.ROCK, "Rock"),
+    ROCK("Rock"),
     /**
      * Aspect of Fighting.
      */
-    FIGHTING(AspectId.FIGHTING, "Fighting"),
+    FIGHTING("Fighting"),
     /**
      * Aspect of Bug.
      */
-    BUG(AspectId.BUG, "Bug");
+    BUG("Bug");
 
-    private final AspectId aspectId;
     private final String aspectName;
 
     /**
@@ -56,17 +55,8 @@ public enum Aspect {
      * @param id Id of the aspect.
      * @param name Name of the aspect.
      */
-    Aspect(final AspectId id, final String name) {
-        this.aspectId = id;
+    Aspect(final String name) {
         this.aspectName = name;
-    }
-
-    /**
-     *
-     * @return Returns the id of the Aspect.
-     */
-    public AspectId getAspectId() {
-        return this.aspectId;
     }
 
     /**
@@ -86,7 +76,7 @@ public enum Aspect {
     public boolean sameAspect(final List<Aspect> objectmonAspects) {
         boolean isSame = false;
         for (final Aspect singleAspect : objectmonAspects) {
-            isSame = isSame || getAspectId().equals(singleAspect.getAspectId());
+            isSame = isSame || this.equals(singleAspect);
         }
         return isSame;
     }
