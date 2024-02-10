@@ -159,7 +159,7 @@ public final class OverWorldPanel extends JPanel {
         final int offsetY = getHeight() - TILE_SIZE;
 
         for (final Objectmon objectmon : objectmonList) {
-            final BufferedImage image = imageLoader.getImage("/objectmon/40x40/" + objectmon.getName() + ".png");
+            final BufferedImage image = imageLoader.getImage("/hud/objectmons/" + objectmon.getName() + ".png");
             //Draw the objectmon portrait
             g.drawImage(image, offsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
             g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
@@ -191,19 +191,19 @@ public final class OverWorldPanel extends JPanel {
         final String imagePath;
         switch (controller.getPlayer().getDirection()) {
             case UP:
-                imagePath = "/player/playerUp.png";
+                imagePath = "/player/player_up.png";
                 break;
             case DOWN:
-                imagePath = "/player/playerDown.png";
+                imagePath = "/player/player_down.png";
                 break;
             case LEFT:
-                imagePath = "/player/playerLeft.png";
+                imagePath = "/player/player_left.png";
                 break;
             case RIGHT:
-                imagePath = "/player/playerRight.png";
+                imagePath = "/player/player_right.png";
                 break;
             default:
-                imagePath = "/player/playerDown.png";
+                imagePath = "/player/player_down.png";
         }
         return imageLoader.getImage(imagePath);
     }
