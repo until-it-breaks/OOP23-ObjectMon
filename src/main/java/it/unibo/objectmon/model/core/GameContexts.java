@@ -10,8 +10,9 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.entities.npc.NPCGenerator;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
-import it.unibo.objectmon.model.world.World;
-import it.unibo.objectmon.model.world.Worlds;
+import it.unibo.objectmon.model.world.WorldImpl;
+import it.unibo.objectmon.model.world.api.World;
+import it.unibo.objectmon.model.world.api.Worlds;
 
 /**
  * Utility class for creating default instances of {@link GameContext}.
@@ -29,7 +30,7 @@ public final class GameContexts {
      * @return A default {@link GameContext} instance.
      */
     public static GameContext createDefaultContext() {
-        final World defaultWorld = new World(Worlds.DEMO);
+        final World defaultWorld = new WorldImpl(Worlds.DEMO);
         final Player defaultPlayer = new PlayerImpl("Player",
             defaultWorld.getStartingPosition(),
             new ArrayList<>(ObjectmonFactory.createObjectmonSet(
@@ -37,7 +38,7 @@ public final class GameContexts {
                     ObjectmonEnum.TREECKO,
                     ObjectmonEnum.MUDKIP),
                 5)));
-        final Set<AbstractNPC> defaultNpcManager = NPCGenerator.createDefaultNPCs();
-        return new GameContextImpl(defaultWorld, defaultPlayer, defaultNpcManager);
+        final Set<AbstractNPC> npcSet = NPCGenerator.createDefaultNPCs();
+        return new GameContextImpl(defaultWorld, defaultPlayer, npcSet);
     }
 }

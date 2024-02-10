@@ -2,27 +2,28 @@ package it.unibo.objectmon.model.misc.collision;
 
 import java.util.Set;
 import java.util.Collections;
-import it.unibo.objectmon.model.world.Coord;
+
 import it.unibo.objectmon.model.world.Tile;
-import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.model.world.api.Coord;
+import it.unibo.objectmon.model.world.api.World;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
+import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 
 /**
- * An implementation of the {@link CollisionChecker} interface that checks for collisions
+ * An implementation of the {@link CollisionManager} interface that checks for collisions
  * within a game environment.
  */
-public class CollisionCheckerImpl implements CollisionChecker {
+public class CollisionManagerImpl implements CollisionManager {
     private final World world;
     private final Set<AbstractNPC> npcs;
 
     /**
-     * Constructs a new CollisionCheckerImpl instance with the specified world and set of NPCs.
+     * Constructs a new {@link CollisionManagerImpl} instance with the specified world and set of NPCs.
      *
      * @param world the game world in which collisions are checked.
      * @param npcs  the set of non-player characters in the game.
      */
-    public CollisionCheckerImpl(final World world, final Set<AbstractNPC> npcs) {
+    public CollisionManagerImpl(final World world, final Set<AbstractNPC> npcs) {
         this.world = world;
         this.npcs = Collections.unmodifiableSet(npcs);
     }

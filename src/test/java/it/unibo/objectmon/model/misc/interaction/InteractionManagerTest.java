@@ -15,7 +15,7 @@ import it.unibo.objectmon.model.entities.npc.HealerNPCImpl;
 import it.unibo.objectmon.model.entities.npc.SellerNPCImpl;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

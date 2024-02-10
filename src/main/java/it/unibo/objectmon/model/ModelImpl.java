@@ -7,8 +7,8 @@ import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.core.GameContexts;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
-import it.unibo.objectmon.model.misc.collision.CollisionCheckerImpl;
-import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
+import it.unibo.objectmon.model.misc.collision.CollisionManagerImpl;
+import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.InteractionManagerImpl;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 
@@ -20,7 +20,7 @@ import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 public final class ModelImpl implements Model {
     private GameContext gameContext;
     private InteractionManager interactionManager;
-    private CollisionChecker collisionChecker;
+    private CollisionManager collisionChecker;
     private BattleManager battleManager;
     private GameStateManager gameStateManager;
 
@@ -35,7 +35,7 @@ public final class ModelImpl implements Model {
     @Override
     public void initialize() {
         this.gameContext = GameContexts.createDefaultContext();
-        this.collisionChecker = new CollisionCheckerImpl(this.gameContext.getWorld(), this.gameContext.getNpcManager().getNPCs());
+        this.collisionChecker = new CollisionManagerImpl(this.gameContext.getWorld(), this.gameContext.getNpcManager().getNPCs());
         this.interactionManager = new InteractionManagerImpl();
         this.battleManager = new BattleManagerImpl();
         this.gameStateManager = new GameStateManagerImpl();
@@ -47,7 +47,7 @@ public final class ModelImpl implements Model {
     }
 
     @Override
-    public CollisionChecker getCollisionChecker() {
+    public CollisionManager getCollisionChecker() {
         return this.collisionChecker;
     }
 

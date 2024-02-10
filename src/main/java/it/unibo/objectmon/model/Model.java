@@ -3,7 +3,7 @@ package it.unibo.objectmon.model;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
-import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
+import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 
 /**
@@ -35,7 +35,7 @@ public interface Model {
      *
      * @return The collision checker.
      */
-    CollisionChecker getCollisionChecker();
+    CollisionManager getCollisionChecker();
 
     /**
      * Retrieves the battle manager

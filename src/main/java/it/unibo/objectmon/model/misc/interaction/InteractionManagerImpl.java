@@ -8,7 +8,7 @@ import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * Models a interaction manager that triggers an npc's interaction if the npc is right in front of the player.

@@ -4,11 +4,15 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import it.unibo.objectmon.model.world.api.Coord;
+import it.unibo.objectmon.model.world.api.World;
+import it.unibo.objectmon.model.world.api.Worlds;
+
 /**
  * Represents the game environment, consisting of a grid of tiles.
  * The World class initializes itself by loading tiles from a default file.
  */
-public final class World {
+public final class WorldImpl implements World {
 
     private int width;
     private int height;
@@ -18,11 +22,31 @@ public final class World {
     /**
      * Constructs a new World and initializes it by loading tiles from a config.
      * 
-     * @param config
+     * @param config The config from which default settings are taken.
      */
-    public World(final Worlds config) {
+    public WorldImpl(final Worlds config) {
         map = new LinkedHashMap<>();
         initialize(config);
+    }
+
+    @Override
+    public Map<Coord, Tile> getMap() {
+        return Collections.unmodifiableMap(this.map);
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public Coord getStartingPosition() {
+        return startingPosition;
     }
 
     private void initialize(final Worlds config) {
@@ -40,41 +64,5 @@ public final class World {
                 }
             }
         }
-    }
-
-    /**
-     * Retrieves an immutable mapping of coordinates to tiles, representing the game world.
-     * 
-     * @return An immutable map of coordinates to tiles.
-     */
-    public Map<Coord, Tile> getMap() {
-        return Collections.unmodifiableMap(this.map);
-    }
-
-    /**
-     * Retrieves the width of the game world grid.
-     * 
-     * @return The width of the game world.
-     */
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-     * Retrieves the height of the game world grid.
-     * 
-     * @return The height of the game world.
-     */
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * Retrives the starting position of the player.
-     * 
-     * @return A coord representing the starting position of the player.
-     */
-    public Coord getStartingPosition() {
-        return startingPosition;
     }
 }

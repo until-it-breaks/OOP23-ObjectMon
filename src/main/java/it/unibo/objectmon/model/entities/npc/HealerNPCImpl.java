@@ -6,7 +6,7 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.npc.Healer;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * Models an NPC capable of healing the Player's team.

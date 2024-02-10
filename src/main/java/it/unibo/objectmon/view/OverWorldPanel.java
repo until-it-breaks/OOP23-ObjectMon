@@ -17,7 +17,7 @@ import it.unibo.objectmon.model.entities.api.npc.Healer;
 import it.unibo.objectmon.model.entities.api.npc.Seller;
 import it.unibo.objectmon.model.entities.api.npc.Trainer;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;

@@ -6,7 +6,7 @@ import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.gamestate.GameState;
-import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.model.world.api.World;
 
 /**
  * The Controller interface.

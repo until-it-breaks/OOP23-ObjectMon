@@ -15,7 +15,7 @@ import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.gamestate.GameState;
-import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.model.world.api.World;
 import it.unibo.objectmon.view.View;
 import it.unibo.objectmon.view.ViewImpl;
 

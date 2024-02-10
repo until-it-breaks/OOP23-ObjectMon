@@ -3,8 +3,8 @@ package it.unibo.objectmon.controller.readonly;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * Represents a read-only view of a {@link Player} instance.
@@ -59,7 +59,7 @@ public final class ReadOnlyPlayer implements Player {
     }
 
     @Override
-    public void move(final Direction direction, final CollisionChecker collisionChecker) {
+    public void move(final Direction direction, final CollisionManager collisionChecker) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
     }
 

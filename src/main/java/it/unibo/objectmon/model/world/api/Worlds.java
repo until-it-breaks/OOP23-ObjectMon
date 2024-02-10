@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.world;
+package it.unibo.objectmon.model.world.api;
 
 /**
  * An enum containing information about each world.

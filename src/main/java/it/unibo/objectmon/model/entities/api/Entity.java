@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.entities.api;
 
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * Represents an entity that could be the player or an NPC.

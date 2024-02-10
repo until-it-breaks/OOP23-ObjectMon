@@ -2,7 +2,7 @@ package it.unibo.objectmon.model.core;
 
 import it.unibo.objectmon.model.entities.api.NPCManager;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.model.world.api.World;
 
 /**
  * Represents the context of the game, containing information about the game world,

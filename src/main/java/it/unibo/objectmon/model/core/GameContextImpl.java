@@ -6,7 +6,7 @@ import it.unibo.objectmon.model.entities.api.NPCManager;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.entities.npc.NPCManagerImpl;
-import it.unibo.objectmon.model.world.World;
+import it.unibo.objectmon.model.world.api.World;
 
 /**
  * Represents the context of the game, containing information about the game world,
