@@ -26,7 +26,7 @@ public class EasyAiObjectmon implements AiObjectmon {
         int index;
         do {
             index = this.random.nextInt(MAX_INDEX);
-        } while (objectmon.getSkill(index).getCurrentUses() <= 0);
+        } while (objectmon.getSkills().get(index).getCurrentUses() <= 0);
         return index;
     }
 }
