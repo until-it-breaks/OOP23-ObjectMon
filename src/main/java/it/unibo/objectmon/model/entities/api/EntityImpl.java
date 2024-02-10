@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.entities.api;
 
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * A basic implementation of a game entity.

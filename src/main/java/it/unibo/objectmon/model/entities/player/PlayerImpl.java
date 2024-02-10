@@ -8,8 +8,8 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.EntityImpl;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.misc.collision.api.CollisionChecker;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * This will be the implementation of {@link Player}.
@@ -33,7 +33,7 @@ public final class PlayerImpl extends EntityImpl implements Player {
     }
 
     @Override
-    public void move(final Direction direction, final CollisionChecker collisionChecker) {
+    public void move(final Direction direction, final CollisionManager collisionChecker) {
         final Coord nextPosition = new Coord(getPosition().x() + direction.getX(), getPosition().y() + direction.getY());
         this.setDirection(direction);
         if (!collisionChecker.isCollision(nextPosition)) {

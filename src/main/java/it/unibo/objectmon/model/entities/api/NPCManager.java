@@ -3,8 +3,7 @@ package it.unibo.objectmon.model.entities.api;
 import java.util.Set;
 
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
-
+import it.unibo.objectmon.model.entities.api.npc.Trainer;
 /**
  * An interface defining the contract for managing non-playable characters (NPCs) in the game.
  * Implementations of this interface are responsible for providing access to the current set of NPCs
@@ -25,5 +24,5 @@ public interface NPCManager {
      * 
      * @param trainerNPC The trainer NPC to mark as defeated.
      */
-    void setDefeatStatus(TrainerNPCImpl trainerNPC);
+    void setDefeatStatus(Trainer trainerNPC);
 }

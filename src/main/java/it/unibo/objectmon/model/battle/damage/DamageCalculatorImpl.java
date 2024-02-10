@@ -21,17 +21,17 @@ public class DamageCalculatorImpl implements DamageCalculator {
 
     @Override
     public final double damage(final Objectmon myObjectmon, final Objectmon target) {
-        final PotencyChart potencyChart = PotencyChart.getChart(this.skill.getAspect().getAspectId());
-        final double multiplier = potencyChart.potencyMultiplier(target.getAspect());
+        final PotencyChart potencyChart = PotencyChart.getChart(this.skill.getAspect());
+        final double multiplier = potencyChart.potencyMultiplier(myObjectmon.getAspect(), target.getAspect());
         if (skill.getCategory().equals(SkillCategory.PHYS)) {
             return calculateDamage(
-                multiplier, 
-                myObjectmon.getStats().getSingleStat(StatId.ATK), 
+                multiplier,
+                myObjectmon.getStats().getSingleStat(StatId.ATK),
                 target.getStats().getSingleStat(StatId.DEF)
             );
         } else if (skill.getCategory().equals(SkillCategory.SPEC)) {
             return calculateDamage(
-                multiplier, 
+                multiplier,
                 myObjectmon.getStats().getSingleStat(StatId.SPATK),
                 target.getStats().getSingleStat(StatId.SPDEF));
         }

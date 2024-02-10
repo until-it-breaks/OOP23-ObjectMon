@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.world;
+package it.unibo.objectmon.model.world.api;
 
 /**
  * A basic representation of a two dimensional coordinate.

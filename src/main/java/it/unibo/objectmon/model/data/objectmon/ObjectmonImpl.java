@@ -6,11 +6,12 @@ import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.skill.SkillImpl;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 
 /**
- * Implementation of Objectmon.
+ * Implementation of the interface Objectmon.
  */
 public final class ObjectmonImpl implements Objectmon {
 
@@ -37,7 +38,7 @@ public final class ObjectmonImpl implements Objectmon {
         final int id,
         final String name,
         final List<Aspect> aspects,
-        final List<Skill> skills,
+        final List<SkillImpl> skills,
         final BaseStats stats,
         final int level
         ) {
@@ -66,6 +67,20 @@ public final class ObjectmonImpl implements Objectmon {
         this.exp = builder.exp;
     }
 
+    /**
+     * Constructor of the class ObjectmonImpl with Objectmon.
+     * @param objectmon The Objectmon.
+     */
+    public ObjectmonImpl(final Objectmon objectmon) {
+        this.id = objectmon.getId();
+        this.name = objectmon.getName();
+        this.aspects = List.copyOf(objectmon.getAspect());
+        this.skills = List.copyOf(objectmon.getSkills());
+        this.level = objectmon.getLevel();
+        this.stats = objectmon.getStats().calcNewStats(level);
+        this.exp = 0;
+    }
+
     @Override
     public ActualStats getStats() {
         return this.stats;
@@ -92,8 +107,8 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public Skill getSkill(final int skillId) {
-        return this.skills.get(skillId);
+    public List<Skill> getSkills() {
+        return List.copyOf(this.skills);
     }
 
     @Override
@@ -102,8 +117,10 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     * Adds a level to Objectmon.
-     * Max 100
+     * Method that adds a level to an Objectmon.
+     * It's an utility method.
+     * Should only be called by the method levelUp.
+     * Adds a level to the Objectmon, max 100.
      */
     private void addLevel() {
         if (getLevel() < 100) {
@@ -112,7 +129,7 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     *
+     * Setter of the Objectmon's exp.
      * @param exp New quantity of exp.
      */
     private void setExp(final int exp) {
@@ -120,35 +137,29 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public void addExp(final int gainedExp) {
+    public void calcExp(final int gainedExp) {
         setExp(gainedExp);
-        if (getExp() >= MAXEXP) {
+        while (getExp() >= MAXEXP) {
             setExp(getExp() - MAXEXP);
             levelUp();
         }
     }
 
     /**
-     *  Levels up an Objectmon and grows its stats.
+     * Method that levels up an Objectmon and grows its stats.
+     * It's an utility method.
+     * Should only be called by calcExp.
      */
-    public void levelUp() {
+    private void levelUp() {
         addLevel();
         this.stats = getStats().calcNewStats(1);
     }
 
-    /**
-     *
-     * @return Returns the currentHp of the Objectmon.
-     */
     @Override
     public int getCurrentHp() {
         return this.currentHp;
     }
 
-    /**
-     *
-     * @param quantity Quantity of the Hp to be added to currentHp.
-     */
     @Override
     public void setCurrentHp(final int quantity) {
         final int value = this.currentHp + quantity;
@@ -165,10 +176,11 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     * Compares an Objectmon with another to see if they're identical.
-     * If they are the same instance returns true.
+     * Method that compares an Objectmon with another to see if they're identical.
+     * <br>If they are the same instance returns true.
      * If they have the same name and id returns true.
      * Everything else returns false.
+     * @param obj Objectmon that needs to be compared.
      */
     @Override
     public boolean equals(final Object obj) {
@@ -187,7 +199,7 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     * Returns the hash code value for Objectmon.
+     * @return Returns the hash code value for Objectmon.
      */
     @Override
     public int hashCode() {

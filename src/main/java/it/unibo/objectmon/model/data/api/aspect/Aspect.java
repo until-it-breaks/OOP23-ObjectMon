@@ -3,74 +3,65 @@ package it.unibo.objectmon.model.data.api.aspect;
 import java.util.List;
 
 /**
- *Aspect correspond to Pokémon's Type. Each aspect has an id and a name
+ *  Aspect correspond to Pokémon's Type.
+ *  Aspects are used on Objectmon (List of max 2 Aspects) and
+ *  In a Skill (A Skill has only one Aspect).
  */
 public enum Aspect {
 
     /**
      * Aspect of Normal.
      */
-    NORMAL(AspectId.NORMAL, "Normal"),
+    NORMAL("Normal"),
     /**
      * Aspect of Grass.
      */
-    GRASS(AspectId.GRASS, "Grass"),
+    GRASS("Grass"),
     /**
      * Aspect of Fire.
      */
-    FIRE(AspectId.FIRE, "Fire"),
+    FIRE("Fire"),
     /**
      * Aspect of Water.
      */
-    WATER(AspectId.WATER, "Water"),
+    WATER("Water"),
     /**
      * Aspect of Flying.
      */
-    FLYING(AspectId.FLYING, "Flying"),
+    FLYING("Flying"),
     /**
      * Aspect of Poison.
      */
-    POISON(AspectId.POISON, "Poison"),
+    POISON("Poison"),
     /**
      * Aspect of Ground.
      */
-    GROUND(AspectId.GROUND, "Ground"),
+    GROUND("Ground"),
     /**
      * Aspect of Rock.
      */
-    ROCK(AspectId.ROCK, "Rock"),
+    ROCK("Rock"),
     /**
      * Aspect of Fighting.
      */
-    FIGHTING(AspectId.FIGHTING, "Fighting"),
+    FIGHTING("Fighting"),
     /**
      * Aspect of Bug.
      */
-    BUG(AspectId.BUG, "Bug");
+    BUG("Bug");
 
-    private final AspectId aspectId;
     private final String aspectName;
 
     /**
-     *
-     * @param id Id of the aspect.
-     * @param name Name of the aspect.
+     * Constructor of the enum Aspect.
+     * @param name Name of the Aspect.
      */
-    Aspect(final AspectId id, final String name) {
-        this.aspectId = id;
+    Aspect(final String name) {
         this.aspectName = name;
     }
 
     /**
-     *
-     * @return Returns the id of the Aspect.
-     */
-    public AspectId getAspectId() {
-        return this.aspectId;
-    }
-
-    /**
-     *
+     * Getter of the name of the Aspect.
      * @return Returns the name of the Aspect.
      */
     public String getAspectName() {
@@ -79,14 +70,15 @@ public enum Aspect {
 
 
     /**
-     *
+     * Method that checks if the Aspect of an Objectmon are the same of a move.
+     * To check if an aspect is the same as another equals should be used.
      * @param objectmonAspects The Aspect of the Objectmon
      * @return  Returns true if it's the same, false otherwise.
      */
     public boolean sameAspect(final List<Aspect> objectmonAspects) {
         boolean isSame = false;
         for (final Aspect singleAspect : objectmonAspects) {
-            isSame = isSame || getAspectId().equals(singleAspect.getAspectId());
+            isSame = isSame || this.equals(singleAspect);
         }
         return isSame;
     }

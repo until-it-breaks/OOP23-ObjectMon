@@ -3,7 +3,7 @@ package it.unibo.objectmon.model.entities.api.npc;
 import it.unibo.objectmon.model.entities.api.EntityImpl;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * Models an npc with a behaviour that can be triggered on interaction.

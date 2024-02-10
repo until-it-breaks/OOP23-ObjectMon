@@ -159,7 +159,7 @@ public final class BattleManagerImpl implements BattleManager {
      * @param target objectmon to be attacked
      */
     private void useSkill(final int index, final Objectmon userSkill, final Objectmon target) {
-        final AttackMove attack = new AttackMove(userSkill.getSkill(index));
+        final AttackMove attack = new AttackMove(userSkill.getSkills().get(index));
         attack.action(userSkill, target);
     }
 

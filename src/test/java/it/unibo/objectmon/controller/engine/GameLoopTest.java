@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.view.api.View;
+import it.unibo.objectmon.view.View;
 
 /**
  * Unit tests for the {@link GameLoopImpl} class.

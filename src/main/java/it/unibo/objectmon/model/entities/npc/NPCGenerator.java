@@ -8,7 +8,7 @@ import java.util.Set;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * A utility class for generating predefined Non-Player Characters (NPCs) in a game world.
@@ -69,7 +69,7 @@ public final class NPCGenerator {
             ObjectmonEnum.GEODUDE),
             DEFAULT_PARTY_LEVEL - 1))));
         //Support NPCs
-        npcs.add(new HealerNPCImpl("Field Doctor", POSITION_7));
+        npcs.add(new HealerNPCImpl("Dr. Madness", POSITION_7));
         npcs.add(new SellerNPCImpl("Item Vendor", POSITION_8));
         return npcs;
     }

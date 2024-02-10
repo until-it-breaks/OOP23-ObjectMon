@@ -1,8 +1,8 @@
 package it.unibo.objectmon.controller.commands;
 
 import it.unibo.objectmon.controller.commands.api.Command;
-import it.unibo.objectmon.model.GameContext;
 import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.model.core.GameContext;
 
 /**
  * Calls for an interaction check.

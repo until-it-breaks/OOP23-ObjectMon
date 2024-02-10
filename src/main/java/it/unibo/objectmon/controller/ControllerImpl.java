@@ -11,10 +11,13 @@ import it.unibo.objectmon.controller.engine.GameLoopImpl;
 import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
 import it.unibo.objectmon.controller.readonly.ReadOnlyPlayer;
 import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.world.World;
-import it.unibo.objectmon.view.api.View;
+import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.world.api.World;
+import it.unibo.objectmon.view.View;
+import it.unibo.objectmon.view.ViewImpl;
 
 /**
  * Models the controller of the application.
@@ -29,14 +32,13 @@ public final class ControllerImpl implements Controller {
 
     /**
      * Constructs the controller.
-     * 
-     * @param model The model from which information is retrieved.
-     * @param view  The view on which to render and from which inputs are received.
      */
-    public ControllerImpl(final Model model, final View view) {
-        this.model = model;
-        this.view = view;
+    public ControllerImpl() {
+        this.model = new ModelImpl();
+        this.view = new ViewImpl(this);
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
+        this.model.getGameStateManager().registerObserver(view);
+        this.model.getGameStateManager().setGameState(GameState.EXPLORATION);
     }
 
     @Override
@@ -88,5 +90,10 @@ public final class ControllerImpl implements Controller {
     @Override
     public void updateFPS(final long fps) {
         this.fps = fps;
+    }
+
+    @Override
+    public GameState getGameState() {
+        return model.getGameStateManager().getGameState();
     }
 }

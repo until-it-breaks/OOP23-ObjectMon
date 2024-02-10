@@ -47,6 +47,14 @@ public final class TileSet {
         return tileIdMap.get(id);
     }
 
+    /**
+     * Retrieves the set of tiles.
+     * @return A set of tiles.
+     */
+    public Set<Tile> getTileAtlas() {
+        return Collections.unmodifiableSet(tileAtlas);
+    }
+
     private Set<Tile> loadFromJson(final String path) {
         try (InputStream inputStream = this.getClass().getResourceAsStream(path);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
