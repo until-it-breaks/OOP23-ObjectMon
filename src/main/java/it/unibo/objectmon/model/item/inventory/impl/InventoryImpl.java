@@ -11,20 +11,19 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
  */
 public final class InventoryImpl implements Inventory {
 
-    private Map<Item, Integer> items;
+    private final Map<Item, Integer> items;
 
     public InventoryImpl() {
         this.items = new HashMap<>();
     }
 
     @Override
-    public void addItem(Item item, int count) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addItem'");
+    public void addItem(final Item item, final int count) {
+        
     }
 
     @Override
-    public <T extends Item> void useItem(T item) {
+    public <T extends Item> void useItem(final T item) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'useItem'");
     }
@@ -66,13 +65,13 @@ public final class InventoryImpl implements Inventory {
     }
 
     @Override
-    public void removeItem(Item item) {
+    public void removeItem(final Item item) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeItem'");
     }
 
     @Override
-    public int getItemCount(Item item) {
+    public int getItemCount(final Item item) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getItemCount'");
     }

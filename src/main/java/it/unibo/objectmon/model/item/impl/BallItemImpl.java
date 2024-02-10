@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.item.impl;
 
-import it.unibo.objectmon.model.item.BallEnum;
+import it.unibo.objectmon.model.item.api.BallEnum;
 import it.unibo.objectmon.model.item.api.BallItem;
 
 /**

@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.item;
+package it.unibo.objectmon.model.item.api;
 
 /**
  * Enum of item Heal.
@@ -7,15 +7,15 @@ public enum HealEnum {
     /**
      * The smallest heal item.
      */
-    SMALLHEAL("Small Heal", 50, 20),
+    POTION("Small Heal", 100, 15),
     /**
      * The medium heal item.
      */
-    MEDIUMHEAL("Medium Heal", 100, 40),
+    SUPERPOTION("Medium Heal", 200, 30),
     /**
      * The largest heal item.
      */
-    LARGEHEAL("Large Heal", 200, 60);
+    HYPERPOTION("Large Heal", 400, 60);
 
     private final String name;
     private final int value;

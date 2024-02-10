@@ -1,21 +1,25 @@
-package it.unibo.objectmon.model.item;
+package it.unibo.objectmon.model.item.api;
 
 /**
  * Enum Item Ball.
  */
 public enum BallEnum {
     /**
-     * The less powerful ball.
+     * The most common objectball.
      */
     OBJECTBALL("Object Ball", 100, 1.0),
     /**
-     * The medium ball.
+     * An average objectball.
      */
     MEGABALL("Mega Ball", 200, 1.5),
     /**
-     * The most powerful ball.
+     * The strongest objectball available commercially.
      */
-    ULTRABALL("Ultra Ball", 400, 2.0);
+    ULTRABALL("Ultra Ball", 400, 2.0),
+    /**
+     * An sure-fire objectball, one of a kind.
+     */
+    MASTERBALL("Master Ball", 3000, Double.POSITIVE_INFINITY);
 
     private final String name;
     private final int value;

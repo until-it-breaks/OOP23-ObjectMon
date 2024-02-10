@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.item.impl;
 
-import it.unibo.objectmon.model.item.HealEnum;
+import it.unibo.objectmon.model.item.api.HealEnum;
 import it.unibo.objectmon.model.item.api.HealItem;
 
 /**
