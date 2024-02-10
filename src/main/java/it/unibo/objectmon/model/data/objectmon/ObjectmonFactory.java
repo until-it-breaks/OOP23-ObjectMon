@@ -47,13 +47,8 @@ public final class ObjectmonFactory {
      * @param level Level of the objectmon to be created.
      * @return The objectmon desired.
      */
-    private static Objectmon createObjectmon(final ObjectmonEnum objectmon, final int level) {
-        for (final var objmon : ObjectmonEnum.values()) {
-            if (objmon.equals(objectmon)) {
-                return new ObjectmonImpl.Builder(objmon, level).build();
-            }
-        }
-        throw new IllegalArgumentException("No such objectmon : " + objectmon);
+    public static Objectmon createObjectmon(final ObjectmonEnum objectmon, final int level) {
+        return new ObjectmonImpl.Builder(objectmon, level).build();
     }
 
     /**

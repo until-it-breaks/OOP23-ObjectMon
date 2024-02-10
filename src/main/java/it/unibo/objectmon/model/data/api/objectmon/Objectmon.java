@@ -58,11 +58,11 @@ import java.util.List;
      * Getter of the currentHp of the Objecmton.
      * @return Returns the currentHp of the Objectmon.
      */
-    public int getCurrentHp();
+    int getCurrentHp();
 
     /**
      * Setter of the currentHp of the Objecmton.
      * @param quantity Quantity of the Hp to be added to currentHp.
      */
-    public void setCurrentHp(final int quantity);
+    void setCurrentHp(int quantity);
 }
