@@ -1,8 +1,11 @@
 package it.unibo.objectmon.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.entities.npc.NPCFactory;
@@ -27,7 +30,12 @@ public final class GameContexts {
      */
     public static GameContext createDefaultContext() {
         final World defaultWorld = new World(Worlds.DEMO);
-        final Player defaultPlayer = new PlayerImpl("Player", defaultWorld.getStartingPosition(), List.of());
+        final Player defaultPlayer = new PlayerImpl("Player",
+            defaultWorld.getStartingPosition(),
+            new ArrayList<>(ObjectmonFactory.createObjectmonSet(
+                List.of(ObjectmonEnum.TORCHIC,
+                ObjectmonEnum.TREECKO),
+                5)));
         final Set<AbstractNPC> defaultNpcManager = NPCFactory.createDemoNPCs();
         return new GameContextImpl(defaultWorld, defaultPlayer, defaultNpcManager);
     }
