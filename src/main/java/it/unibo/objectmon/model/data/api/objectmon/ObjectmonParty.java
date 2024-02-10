@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.data.api.objectmon;
 
-import org.apache.commons.collections4.list.UnmodifiableList;
+import java.util.List;
 /**
  * An Objectmon party to be used by player and trainer in the battle.
  * the party can add, remove and switch position of objecmons
@@ -28,5 +28,5 @@ public interface ObjectmonParty {
      * get an unmodifiable list of objectmon party.
      * @return unmodifiable list of objecmon
      */
-    UnmodifiableList<Objectmon> getParty();
+    List<Objectmon> getParty();
 }

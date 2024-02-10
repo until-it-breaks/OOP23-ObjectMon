@@ -13,7 +13,7 @@ import it.unibo.objectmon.model.data.statistics.BaseStats;
 /**
  * Implementation of the interface Objectmon.
  */
-public class ObjectmonImpl implements Objectmon {
+public final class ObjectmonImpl implements Objectmon {
 
     private final int id;
     private final String name;
@@ -141,18 +141,12 @@ public class ObjectmonImpl implements Objectmon {
         this.stats = getStats().calcNewStats(1);
     }
 
-    /**
-     * Getter of the currentHp of the Objecmton.
-     * @return Returns the currentHp of the Objectmon.
-     */
+    @Override
     public int getCurrentHp() {
         return this.currentHp;
     }
 
-    /**
-     * Setter of the currentHp of the Objecmton.
-     * @param quantity Quantity of the Hp to be added to currentHp.
-     */
+    @Override
     public void setCurrentHp(final int quantity) {
         final int value = this.currentHp + quantity;
         final int maxHp = getStats().getSingleStat(StatId.HP);
@@ -169,8 +163,8 @@ public class ObjectmonImpl implements Objectmon {
 
     /**
      * Method that compares an Objectmon with another to see if they're identical.
-     * <br>If they are the same instance returns true. 
-     * If they have the same name and id returns true. 
+     * <br>If they are the same instance returns true.
+     * If they have the same name and id returns true.
      * Everything else returns false.
      * @param obj Objectmon that needs to be compared.
      */

@@ -53,4 +53,16 @@ import java.util.List;
      *  @param gainedExp Exp gained after defeating an Objectmon.
      */
     void calcExp(int gainedExp);
+
+    /**
+     * Getter of the currentHp of the Objecmton.
+     * @return Returns the currentHp of the Objectmon.
+     */
+    public int getCurrentHp();
+
+    /**
+     * Setter of the currentHp of the Objecmton.
+     * @param quantity Quantity of the Hp to be added to currentHp.
+     */
+    public void setCurrentHp(final int quantity);
 }

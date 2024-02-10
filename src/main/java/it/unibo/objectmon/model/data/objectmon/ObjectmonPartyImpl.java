@@ -50,7 +50,7 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
     }
 
     @Override
-    public UnmodifiableList<Objectmon> getParty() {
+    public List<Objectmon> getParty() {
         return new UnmodifiableList<>(this.party);
     }
 }
