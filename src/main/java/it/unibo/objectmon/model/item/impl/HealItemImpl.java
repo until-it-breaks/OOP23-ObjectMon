@@ -86,4 +86,9 @@ public final class HealItemImpl implements HealItem {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "HealItemImpl [name=" + name + ", value=" + value + ", healPoint=" + healPoint + "]";
+    }
 }

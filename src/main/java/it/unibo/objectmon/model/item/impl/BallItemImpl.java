@@ -89,4 +89,8 @@ public final class BallItemImpl implements BallItem {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "BallItemImpl [name=" + name + ", value=" + value + ", catchMultiplier=" + catchMultiplier + "]";
+    }
 }
