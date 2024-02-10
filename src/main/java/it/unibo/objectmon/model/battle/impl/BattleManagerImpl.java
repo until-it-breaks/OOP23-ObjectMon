@@ -75,6 +75,22 @@ public final class BattleManagerImpl implements BattleManager {
      * @param index index of skill or objectmon to switch
      */
     public void executeAiTurn(final Move type, final int index) {
+        switch (type) {
+            case ATTACK :
+                if (this.isDead(this.battle.get().getEnemyObjectmon())) {
+                    this.battle.get().getTrainerTeam().ifPresentOrElse(
+                        t -> this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get()),
+                        () -> setResult(Result.WIN)
+                    );
+                }
+                useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
+                break;
+            case SWITCH_OBJECTMON :
+                this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
+                break;
+            default :
+                break;
+        }
     }
     /**
      * 
@@ -117,7 +133,7 @@ public final class BattleManagerImpl implements BattleManager {
      * @param userSkill objectmon use the skill
      * @param target objectmon to be attacked
      */
-    public void useSkill(final int index, final Objectmon userSkill, final Objectmon target) {
+    private void useSkill(final int index, final Objectmon userSkill, final Objectmon target) {
         final AttackMove attack = new AttackMove(userSkill.getSkill(index));
         attack.action(userSkill, target);
     }
@@ -132,8 +148,8 @@ public final class BattleManagerImpl implements BattleManager {
      * switch objectmon when the current one is dead, which is going to be removed.
      * @param team the team that current objectmon is dead and will be removed
      */
-    public void switchObjectmon(final ObjectmonParty team) {
-        if (team.getParty().get(0).getCurrentHp() == 0) {
+    private void removeCurrentAndSwitch(final ObjectmonParty team) {
+        if (this.isDead(team.getParty().get(0))) {
             team.remove(team.getParty().get(0));
         }
     }
@@ -148,7 +164,7 @@ public final class BattleManagerImpl implements BattleManager {
      * set AI move.
      * @return index of skill or position to use
      */
-    public int chooseAiMove() {
+    private int chooseAiMove() {
         if (this.battle.get().getTrainer().isPresent()) {
             final Trainer trainer = this.battle.get().getTrainer().get();
             if (trainer.getObjectmonParty().getParty().get(0).getCurrentHp() <= 0) {
@@ -158,5 +174,9 @@ public final class BattleManagerImpl implements BattleManager {
         }
         this.battle.get().setEnemyMove(Move.ATTACK);
         return this.aiTrainer.useSkill(this.battle.get().getEnemyObjectmon());
+    }
+
+    private boolean isDead(final Objectmon objectmon) {
+        return objectmon.getCurrentHp() <= 0;
     }
 }
