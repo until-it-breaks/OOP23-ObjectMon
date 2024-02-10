@@ -16,6 +16,7 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.Trainer;
 
+
 /**
  * an implementation of battle manager.
  */
@@ -36,12 +37,12 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     @Override
-    public void startBattle(final Player player, final Optional<Trainer> enemy, final Optional<Objectmon> objectMon) {
-        if (enemy.isEmpty()) {
+    public void startBattle(final Player player, final Optional<Trainer> trainer, final Optional<Objectmon> objectMon) {
+        if (trainer.isEmpty()) {
             this.battle = Optional.of(new BattleImpl(player, objectMon.get()));
         }
         if (objectMon.isEmpty()) {
-            this.battle = Optional.of(new BattleImpl(player, enemy.get()));
+            this.battle = Optional.of(new BattleImpl(player, trainer.get()));
         }
     }
 
@@ -209,6 +210,7 @@ public final class BattleManagerImpl implements BattleManager {
                     this.battle.get().getTrainer().ifPresent(t -> t.setDefeated(true));
                     break;
                 case LOSE:
+                    this.battle.get().getPlayer().setDefeated(true);
                     break;
                 default:
                     break;

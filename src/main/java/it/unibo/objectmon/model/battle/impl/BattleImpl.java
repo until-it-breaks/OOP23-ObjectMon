@@ -106,4 +106,8 @@ public final class BattleImpl implements Battle {
     public ObjectmonParty getPlayerTeam() {
         return new ObjectmonPartyImpl(this.player.getObjectmonParty().getParty());
     }
+    @Override
+    public Player getPlayer() {
+        return this.player;
+    }
 }
