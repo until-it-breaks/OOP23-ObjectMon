@@ -67,7 +67,7 @@ public final class BattleManagerImpl implements BattleManager {
             default :
                 throw new IllegalArgumentException();
         }
-        this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
+        this.endTurnAction();
     }
     /**
      * 
@@ -166,6 +166,7 @@ public final class BattleManagerImpl implements BattleManager {
     @Override
     public void bufferCommand(final Move type, final int index) {
         if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE)) {
+            this.turn.setTurn(StatTurn.TURN_STARTED);
             this.startTurn(type, index);
         }
     }
@@ -187,5 +188,9 @@ public final class BattleManagerImpl implements BattleManager {
 
     private boolean isDead(final Objectmon objectmon) {
         return objectmon.getCurrentHp() <= 0;
+    }
+
+    private void endTurnAction() {
+        this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
     }
 }
