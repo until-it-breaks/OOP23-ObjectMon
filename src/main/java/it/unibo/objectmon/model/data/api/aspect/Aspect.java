@@ -3,7 +3,9 @@ package it.unibo.objectmon.model.data.api.aspect;
 import java.util.List;
 
 /**
- *Aspect correspond to Pokémon's Type. Each aspect has an id and a name
+ *  Aspect correspond to Pokémon's Type.
+ *  Aspects are used on Objectmon (List of max 2 Aspects) and
+ *  In a Skill (A Skill has only one Aspect).
  */
 public enum Aspect {
 
@@ -51,16 +53,15 @@ public enum Aspect {
     private final String aspectName;
 
     /**
-     *
-     * @param id Id of the aspect.
-     * @param name Name of the aspect.
+     * Constructor of the enum Aspect.
+     * @param name Name of the Aspect.
      */
     Aspect(final String name) {
         this.aspectName = name;
     }
 
     /**
-     *
+     * Getter of the name of the Aspect.
      * @return Returns the name of the Aspect.
      */
     public String getAspectName() {
@@ -69,7 +70,8 @@ public enum Aspect {
 
 
     /**
-     *
+     * Method that checks if the Aspect of an Objectmon are the same of a move.
+     * To check if an aspect is the same as another equals should be used.
      * @param objectmonAspects The Aspect of the Objectmon
      * @return  Returns true if it's the same, false otherwise.
      */

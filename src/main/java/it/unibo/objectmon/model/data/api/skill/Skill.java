@@ -1,110 +1,41 @@
 package it.unibo.objectmon.model.data.api.skill;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 
 /**
- * The class Skill, that gets used to make:
- * a Map of the Skill an Objectmon can learn by leveling up;
- * a Map of Skill of what an Objectmon can use (4 Skills Max).
+ * The interface of a Skill.
+ * <br>A Skill has:
+ * <br>A name;
+ * <br>An id;
+ * <br>An Aspect;
+ * <br>Accuracy, that determines how likely the Skill will hit.
+ * <br>Base Power, which is the damage that a Skill would inflict
+ * before multipliers;
+ * <br>Max Uses, which is the max of how much a Skill can be used;
+ * <br>Current Uses, which is the remaning uses of the Skill;
+ * <br>Category, which determines what Stats are used in Battle.
  */
-public class Skill implements Serializable {
-    private static final long serialVersionUID = 2006L;
-    private final String name;
-    private final int id;
-    private final Aspect aspect;
-    private final int basePower;
-    private final int accuracy;
-    private final int maxUses;
-    private int currentUses;
-    private final SkillCategory category;
+public interface Skill {
 
     /**
-     * Constructor of a Skill.
-     * @param name  Name of the Skill.Can't be null.
-     * @param id    Id of the Skill. Can't be negative.
-     *
-     * @param aspect Aspect of the Skill.
-     *  It's used to determine if a Skill is:
-     *  {@see #it.unibo.objectmon.data.skill.SkillStrenght},
-     *  or if a Skill has SameAspectBoost.
-     *  Can't be null.
-     *
-     * @param basePower Base power of the Skill.
-     *  Gets added to the offensive stat of the user to determine
-     *  how much damage is inflicted.
-     *  Can't be negative.
-     *  Should only be 0 if it's a Status Skill.
-     * @param accuracy  Accuracy of the Skill.
-     *  Determines if a Skill will hit or not.
-     *  accuracy can have a value between 0 and 101:
-     *  101 If it can't miss;
-     *  between 0 an 100 a random number is generated.
-     *  If the number is higher than the accuracy,
-     *  the Skill will fail.
-     * @param maxUses   Determines how many times the move can be used it total.
-     *  Can't be 0 or negative.
-     * @param category Category of a skill {@see SkillCategory#getCategory()}.
-     */
-    public Skill(
-        final String name,
-        final int id,
-        final Aspect aspect,
-        final int basePower,
-        final int accuracy,
-        final int maxUses,
-        final SkillCategory category
-        ) {
-        this.name = name;
-        this.id = id;
-        this.aspect = aspect;
-        this.basePower = basePower;
-        this.accuracy = accuracy;
-        this.maxUses = maxUses;
-        this.currentUses = this.maxUses;
-        this.category = category;
-    }
-
-    /**
-     * Constructor of Skill using a builder.
-     * @param builder The builder.
-     */
-    private Skill(final Builder builder) {
-        this.name = builder.name;
-        this.id = builder.id;
-        this.aspect = builder.aspect;
-        this.basePower = builder.basePower;
-        this.accuracy = builder.accuracy;
-        this.maxUses = builder.maxUses;
-        this.currentUses = builder.currentUses;
-        this.category = builder.category;
-    }
-
-    /**
-     *
+     * Getter of the id of a Skill.
      * @return Returns the Id of the Skill.
      */
-    public int getId() {
-        return this.id;
-    }
+    int getId();
 
     /**
+     * Getter of the Aspect of a Skill.
      * @return Returns the Aspect of an Objectmon.
      * {@see #it.unibo.objectmon.data.skill.SkillStrenght}
      */
-    public Aspect getAspect() {
-        return this.aspect;
-    }
+    Aspect getAspect();
 
     /**
+     * Getter of the Accuracy of a Skill.
      * @return Returns the Accuracy of the Skill.
      * The accuracy is how likely a Skill will hit an opposing Objectmon.
      */
-    public int getAccuracy() {
-        return this.accuracy;
-    }
+    int getAccuracy();
 
     /**
      *
@@ -113,9 +44,7 @@ public class Skill implements Serializable {
      * adding the user's Atk/SpAtk against
      * the opposing Objectmon's Def/SpDef.
      */
-    public int getBasePower() {
-        return this.basePower;
-    }
+    int getBasePower();
 
     /**
      *
@@ -123,26 +52,20 @@ public class Skill implements Serializable {
      * A skill can't have more uses that the max uses,
      * while the minimun is 0.
      */
-    public int getMaxUses() {
-        return this.maxUses;
-    }
+    int getMaxUses();
 
     /**
      *
      * @return Returns the Name of the Skill.
      */
-    public String getName() {
-        return this.name;
-    }
+    String getName();
 
     /**
      *
      * @return Returns the Current uses of the Skill.
      * Current uses varies from MaxUses to 0.
      */
-    public int getCurrentUses() {
-        return this.currentUses;
-    }
+    int getCurrentUses();
 
     /**
      *
@@ -153,122 +76,16 @@ public class Skill implements Serializable {
      * Skill will use the user's SpAtk and the SpDef of the target Objectmon.
      * {@see #it.unibo.objectmon.api.data.skill.SkillCategory}
      */
-    public SkillCategory getCategory() {
-        return this.category;
-    }
+    SkillCategory getCategory();
+
     /**
      *  Resets the value of CurrentUses to the MaxUses.
      *  Used when interacting with a healing NPC.
      */
-    public void resetCurrentUses() {
-        this.currentUses = this.maxUses;
-    }
+    void resetCurrentUses();
 
     /**
      *  Subtracts from Current uses one use.
      */
-    public void subtractCurrentUses() {
-        if (getCurrentUses() > 0) {
-            this.currentUses--;
-        }
-    }
-
-    /**
-     * Compares a Skill with another to see if they're identical.
-     * If they are the same instance returns true.
-     * If they have the same name and id returns true.
-     * Everything else returns false.
-     */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        } else if (this == obj) {
-            return true;
-        }
-
-        final Skill skill = (Skill) obj;
-        return Integer.valueOf(getId()).equals(skill.getId())
-        && getName().equals(skill.getName());
-    }
-
-    /**
-     * Returns the hash code value for Skill.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName());
-    }
-
-    /**
-     * Builder of a Skill.
-     * Used to generate a Skill.
-     */
-    public static class Builder {
-        private final String name;
-        private final int id;
-        private final Aspect aspect;
-        private final int basePower;
-        private final int accuracy;
-        private final int maxUses;
-        private final int currentUses;
-        private final SkillCategory category;
-
-        /**
-         * Constructor of a Skill.
-         * @param name  Name of the Skill.Can't be null.
-         * @param id    Id of the Skill. Can't be negative.
-         *
-         * @param aspect Aspect of the Skill.
-         *  It's used to determine if a Skill is:
-         *  {@see #it.unibo.objectmon.data.skill.SkillStrenght},
-         *  or if a Skill has SameAspectBoost.
-         *  Can't be null.
-         *
-         * @param basePower Base power of the Skill.
-         *  Gets added to the offensive stat of the user to determine
-         *  how much damage is inflicted.
-         *  Can't be negative.
-         *  Should only be 0 if it's a Status Skill.
-         * @param accuracy  Accuracy of the Skill.
-         *  Determines if a Skill will hit or not.
-         *  accuracy can have a value between 0 and 101:
-         *  101 If it can't miss;
-         *  between 0 an 100 a random number is generated.
-         *  If the number is higher than the accuracy,
-         *  the Skill will fail.
-         * @param maxUses   Determines how many times the move can be used it total.
-         *  Can't be 0 or negative.
-         * @param category Category of a skill {@see SkillCategory#getCategory()}.
-         */
-        public Builder(
-            final String name,
-            final int id,
-            final Aspect aspect,
-            final int basePower,
-            final int accuracy,
-            final int maxUses,
-            final SkillCategory category
-            ) {
-            this.name = name;
-            this.id = id;
-            this.aspect = aspect;
-            this.basePower = basePower;
-            this.accuracy = accuracy;
-            this.maxUses = maxUses;
-            this.currentUses = this.maxUses;
-            this.category = category;
-        }
-
-        /**
-         * Method that builds the Skill.
-         * @return Returns the Skill that was built.
-         */
-        public Skill build() {
-            return new Skill(this);
-        }
-    }
+    void subtractCurrentUses();
 }

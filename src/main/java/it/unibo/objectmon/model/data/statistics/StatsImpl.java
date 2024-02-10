@@ -6,7 +6,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.api.statistics.Stats;
 
 /**
- * Abstract class that implements Stats.
+ * Abstract class of the interface Stats.
  */
 public abstract class StatsImpl implements Stats {
 
