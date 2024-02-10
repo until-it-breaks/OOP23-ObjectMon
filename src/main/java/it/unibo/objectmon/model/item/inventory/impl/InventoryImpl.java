@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.item.inventory.impl;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.HashMap;
 
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
@@ -11,28 +11,71 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
  */
 public final class InventoryImpl implements Inventory {
 
-    private final Map<Item, Integer> items = new LinkedHashMap<>();
+    private Map<Item, Integer> items;
 
-    @Override
-    public void addItem(final Item item) {
-        final Integer count = items.get(item);
-        if (count != null) {
-            items.put(item, count + 1);
-        } else {
-            items.put(item, 1);
-        }
+    public InventoryImpl() {
+        this.items = new HashMap<>();
     }
 
     @Override
-    public void removeItem(final Item item) {
-        final Integer count = items.get(item);
-        if (count != null && count > 1) {
-            items.put(item, count - 1);
-        }
+    public void addItem(Item item, int count) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addItem'");
     }
 
     @Override
-    public int getItemCount(final Item item) {
-        return items.get(item);
+    public <T extends Item> void useItem(T item) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'useItem'");
     }
+
+    @Override
+    public int getHealItemCount() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getHealItemCount'");
+    }
+
+    @Override
+    public int getBallItemCount() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getBallItemCount'");
+    }
+
+    @Override
+    public int getTotalItemCount() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTotalItemCount'");
+    }
+
+    @Override
+    public Map<Item, Integer> getItems() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getItems'");
+    }
+
+    @Override
+    public void Clear() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'Clear'");
+    }
+
+    @Override
+    public int getInventoryValue() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getInventoryValue'");
+    }
+
+    @Override
+    public void removeItem(Item item) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeItem'");
+    }
+
+    @Override
+    public int getItemCount(Item item) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getItemCount'");
+    }
+
+    
 }
