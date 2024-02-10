@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 /**
- * A factory of Skills.
+ * The factory of Objectmon.
  */
 public final class ObjectmonFactory {
     private ObjectmonFactory() {

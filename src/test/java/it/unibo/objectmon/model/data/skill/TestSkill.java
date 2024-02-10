@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
  * Test of Skills.
  */
 class TestSkill {
-    private final Skill normal = new Skill("Tackle", 0, Aspect.NORMAL, 40, 100, 35, SkillCategory.PHYS);
-    private final Skill ground = new Skill("Earth Power", 3, Aspect.GROUND, 90, 100, 10, SkillCategory.SPEC);
+    private final Skill normal = new SkillImpl("Tackle", 0, Aspect.NORMAL, 40, 100, 35, SkillCategory.PHYS);
+    private final Skill ground = new SkillImpl("Earth Power", 3, Aspect.GROUND, 90, 100, 10, SkillCategory.SPEC);
 
     /**
      * Test of the various Skills.
@@ -42,7 +42,7 @@ class TestSkill {
     void testSkillBuilder() {
         final int basePower = 40;
         final int maxUses = 35;
-        final Skill skill = new Skill.Builder("Tackle",  0, Aspect.NORMAL, basePower, 100, maxUses, SkillCategory.PHYS)
+        final Skill skill = new SkillImpl.Builder("Tackle",  0, Aspect.NORMAL, basePower, 100, maxUses, SkillCategory.PHYS)
         .build();
 
         assertEquals(normal.getId(), skill.getId());

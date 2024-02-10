@@ -32,16 +32,16 @@ public final class SkillFactory {
         int id = 0;
         for (final Aspect aspect : Aspect.values()) {
             String name = aspect.getAspectName() + " Tackle";
-            skillList.add(new Skill(name, id, aspect, BASE40, ACC100, MAX40, SkillCategory.PHYS));
+            skillList.add(new SkillImpl(name, id, aspect, BASE40, ACC100, MAX40, SkillCategory.PHYS));
             id++;
             name = aspect.getAspectName() + " Kick";
-            skillList.add(new Skill(name, id, aspect, BASE60, ACC90, MAX25, SkillCategory.PHYS));
+            skillList.add(new SkillImpl(name, id, aspect, BASE60, ACC90, MAX25, SkillCategory.PHYS));
             id++;
             name = aspect.getAspectName() + " Ray";
-            skillList.add(new Skill(name, id, aspect, BASE40, ACC100, MAX40, SkillCategory.SPEC));
+            skillList.add(new SkillImpl(name, id, aspect, BASE40, ACC100, MAX40, SkillCategory.SPEC));
             id++;
             name = aspect.getAspectName() + " Spirit";
-            skillList.add(new Skill(name, id, aspect, BASE60, ACC90, MAX25, SkillCategory.SPEC));
+            skillList.add(new SkillImpl(name, id, aspect, BASE60, ACC90, MAX25, SkillCategory.SPEC));
             id++;
         }
 
