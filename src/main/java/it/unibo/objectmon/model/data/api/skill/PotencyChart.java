@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
-import it.unibo.objectmon.model.data.api.aspect.AspectId;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public enum PotencyChart {
      *A Map of NORMAL, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     NORMAL(
-        AspectId.NORMAL,
+        Aspect.NORMAL,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -55,7 +54,7 @@ public enum PotencyChart {
      *A Map of GRASS, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     GRASS(
-        AspectId.GRASS,
+        Aspect.GRASS,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -92,7 +91,7 @@ public enum PotencyChart {
      *A Map of FIRE, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     FIRE(
-        AspectId.FIRE,
+        Aspect.FIRE,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -129,7 +128,7 @@ public enum PotencyChart {
      *A Map of WATER, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     WATER(
-        AspectId.WATER,
+        Aspect.WATER,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -166,7 +165,7 @@ public enum PotencyChart {
      *A Map of FLYING, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     FLYING(
-        AspectId.FLYING,
+        Aspect.FLYING,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -203,7 +202,7 @@ public enum PotencyChart {
      *A Map of POISON, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     POISON(
-        AspectId.POISON,
+        Aspect.POISON,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -240,7 +239,7 @@ public enum PotencyChart {
      *A Map of GROUND, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     GROUND(
-        AspectId.GROUND,
+        Aspect.GROUND,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -277,7 +276,7 @@ public enum PotencyChart {
      *A Map of ROCK, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     ROCK(
-        AspectId.ROCK,
+        Aspect.ROCK,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -314,7 +313,7 @@ public enum PotencyChart {
      *A Map of FIGHTING, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     FIGHTING(
-        AspectId.FIGHTING,
+        Aspect.FIGHTING,
         Map.of(
             Aspect.NORMAL,
             Potency.SUPEREFFECTIVE,
@@ -351,7 +350,7 @@ public enum PotencyChart {
      *A Map of BUG, containing the Skill Aspect and a Map of the defenderAspect and Potency.
      */
     BUG(
-        AspectId.BUG,
+        Aspect.BUG,
         Map.of(
             Aspect.NORMAL,
             Potency.EFFECTIVE,
@@ -385,7 +384,7 @@ public enum PotencyChart {
         )
     );
 
-    private final AspectId skillAspect;
+    private final Aspect skillAspect;
     private final Map<Aspect, Potency> multiplierChart = new HashMap<>();
 
     /**
@@ -393,7 +392,7 @@ public enum PotencyChart {
      * @param skillAspect Aspect of the associated Skill.
      * @param multipliers Map of the relation with other Aspects and the Potency.
      */
-    PotencyChart(final AspectId skillAspect, final Map<Aspect, Potency> multipliers) {
+    PotencyChart(final Aspect skillAspect, final Map<Aspect, Potency> multipliers) {
         this.skillAspect = skillAspect;
         this.multiplierChart.putAll(multipliers);
     }
@@ -402,22 +401,22 @@ public enum PotencyChart {
      *
      * @return Returns the skillAspect.
      */
-    protected AspectId getSkillAspect() {
+    protected Aspect getSkillAspect() {
         return this.skillAspect;
     }
 
     /**
      *
-     * @param id Id of the return chart.
+     * @param aspect Id of the return chart.
      * @return Returns the potencyChart of the associated id.
      */
-    public static PotencyChart getChart(final AspectId id) {
+    public static PotencyChart getChart(final Aspect aspect) {
         for (final PotencyChart chart : PotencyChart.values()) {
-            if (chart.getSkillAspect().equals(id)) {
+            if (chart.getSkillAspect().equals(aspect)) {
                 return chart;
             }
         }
-        throw new IllegalArgumentException("No such id : " + id + " in the enum");
+        throw new IllegalArgumentException("No such id : " + aspect + " in the enum");
     }
 
     /**

@@ -51,7 +51,7 @@ class TestObjectmon {
 
         // Attacking another Objectmon that's the same.
         final double multi = 2.00;
-        final PotencyChart potency = PotencyChart.getChart(objectmon.getSkill(skillid).getAspect().getAspectId());
+        final PotencyChart potency = PotencyChart.getChart(objectmon.getSkill(skillid).getAspect());
         assertEquals(multi, potency.potencyMultiplier(objectmon.getAspect()));
 
     }
