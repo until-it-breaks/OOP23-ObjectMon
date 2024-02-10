@@ -2,8 +2,6 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
-import it.unibo.objectmon.controller.commands.RunAway;
-import it.unibo.objectmon.controller.commands.SwitchObjectmon;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
@@ -54,8 +52,8 @@ public final class BattleManagerImpl implements BattleManager {
             throw new IllegalStateException("A battle is already in progress.");
         }
         trainer.ifPresentOrElse(
-            t -> new BattleImpl(player, t), 
-            () -> objectMon.ifPresentOrElse(o -> new BattleImpl(player, o), () -> {
+            t -> this.battle = Optional.of(new BattleImpl(player, t)), 
+            () -> objectMon.ifPresentOrElse(o -> this.battle = Optional.of(new BattleImpl(player, o)), () -> {
                 throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
             })
         );
@@ -252,7 +250,6 @@ public final class BattleManagerImpl implements BattleManager {
                 ObjectmonEnum.ILLUMISE,
                 ObjectmonEnum.LILEEP),
                 DEFAULT_PARTY_LEVEL)));
-            System.out.print("helllo");
         Player player = new PlayerImpl("yous",
             new Coord(5, 6), 
             new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
@@ -265,11 +262,20 @@ public final class BattleManagerImpl implements BattleManager {
         model.initialize();
         final BattleManager battleManager = model.getBattleManager();
         model.getBattleManager().startBattle(player, Optional.of(trainer), Optional.empty());
-        Command run = new RunAway();
-        Command change = new SwitchObjectmon(2);
-        Command useSkill1 = new UseSkill(0);
-        Command useSkill2 = new UseSkill(1);
-        Command useSkill3 = new UseSkill(1);
-        
+        Command useSkill1 = new UseSkill(1);
+        Command useSkill0 = new UseSkill(0);
+        battleManager.printInfo();
+        useSkill1.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
     }
+
+    public void printInfo() {
+        System.out.println(this.battle.get().getCurrentObjectmon().getName() 
+        + this.battle.get().getCurrentObjectmon().getCurrentHp()
+        );
+        System.out.println(this.battle.get().getEnemyObjectmon().getName()
+            + this.battle.get().getEnemyObjectmon().getCurrentHp());
+    } 
 }

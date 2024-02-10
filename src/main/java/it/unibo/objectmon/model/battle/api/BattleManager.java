@@ -61,4 +61,6 @@ public interface BattleManager {
      * @param index index of the e-th element in the list.
      */
     void bufferCommand(Move type, int index);
+
+    void printInfo();
 }
