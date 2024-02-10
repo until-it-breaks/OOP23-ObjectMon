@@ -2,6 +2,8 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import it.unibo.objectmon.model.Model;
+import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.model.ai.EasyAiTrainer;
 import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
@@ -13,10 +15,16 @@ import it.unibo.objectmon.model.battle.turn.Turn;
 import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
+import it.unibo.objectmon.model.entities.player.PlayerImpl;
+import it.unibo.objectmon.model.world.Coord;
 
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  * an implementation of battle manager.
  */
@@ -222,5 +230,30 @@ public final class BattleManagerImpl implements BattleManager {
     private void setfieldsEmpty() {
         this.battle = Optional.empty();
         this.result = Optional.empty();
+    }
+        /**
+     * test.
+     * @param args
+     */
+    public static void main(final String[] args) {
+        final int DEFAULT_PARTY_LEVEL = 5;
+        final Coord POSITION_1 = new Coord(5, 5);
+        Trainer trainer = new TrainerNPCImpl("Trainer Bob", 
+            POSITION_1, 
+            new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+                ObjectmonEnum.ILLUMISE,
+                ObjectmonEnum.LILEEP),
+                DEFAULT_PARTY_LEVEL)));
+            System.out.print("helllo");
+        Player player = new PlayerImpl("yous",
+            new Coord(5, 6), 
+            new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+                ObjectmonEnum.ANORITH,
+                ObjectmonEnum.KECLEON,
+                ObjectmonEnum.MUDKIP
+            ), DEFAULT_PARTY_LEVEL))
+        );
+        Model model = new ModelImpl();
+        model.getBattleManager().startBattle(player, Optional.of(trainer), Optional.empty());
     }
 }
