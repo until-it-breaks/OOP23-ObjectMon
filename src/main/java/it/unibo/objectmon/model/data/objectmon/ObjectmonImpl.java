@@ -1,22 +1,26 @@
 package it.unibo.objectmon.model.data.objectmon;
 
 import java.util.List;
-
-import it.unibo.objectmon.api.data.aspect.Aspect;
-import it.unibo.objectmon.api.data.objectmon.Objectmon;
-import it.unibo.objectmon.api.data.skill.Skill;
+import java.util.Objects;
+import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.skill.SkillImpl;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
+import it.unibo.objectmon.model.data.statistics.BaseStats;
 
 /**
- * Implementation of Objectmon.
+ * Implementation of the interface Objectmon.
  */
-public class ObjectmonImpl implements Objectmon {
+public final class ObjectmonImpl implements Objectmon {
 
     private final int id;
     private final String name;
     private final List<Aspect> aspects;
     private final List<Skill> skills;
     private ActualStats stats;
+    private int currentHp;
     private int level;
     private int exp;
     private static final int MAXEXP = 100;
@@ -34,78 +38,89 @@ public class ObjectmonImpl implements Objectmon {
         final int id,
         final String name,
         final List<Aspect> aspects,
-        final List<Skill> skills,
-        final ActualStats stats,
+        final List<SkillImpl> skills,
+        final BaseStats stats,
         final int level
         ) {
         this.id = id;
         this.name = name;
         this.aspects = List.copyOf(aspects);
         this.skills = List.copyOf(skills);
-        this.stats = stats;
+        this.stats = new ActualStats(stats);
+        this.currentHp = this.stats.getSingleStat(StatId.HP);
         this.level = level;
         this.exp = 0;
     }
 
     /**
-     * {@inheritDoc}
+     * Constructor of the class ObjectmonImpl with a builder.
+     * @param builder The builder.
      */
+    private ObjectmonImpl(final Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.aspects = List.copyOf(builder.aspects);
+        this.skills = List.copyOf(builder.skills);
+        this.stats = builder.stats;
+        this.currentHp = this.stats.getSingleStat(StatId.HP);
+        this.level = builder.level;
+        this.exp = builder.exp;
+    }
+
+    /**
+     * Constructor of the class ObjectmonImpl with Objectmon.
+     * @param objectmon The Objectmon.
+     */
+    public ObjectmonImpl(final Objectmon objectmon) {
+        this.id = objectmon.getId();
+        this.name = objectmon.getName();
+        this.aspects = List.copyOf(objectmon.getAspect());
+        this.skills = List.copyOf(objectmon.getSkills());
+        this.level = objectmon.getLevel();
+        this.stats = objectmon.getStats().calcNewStats(level);
+        this.exp = 0;
+    }
+
     @Override
     public ActualStats getStats() {
         return this.stats;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getId() {
         return this.id;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String getName() {
         return this.name;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getLevel() {
         return this.level;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public List<Aspect> getAspect() {
         return List.copyOf(this.aspects);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Skill getSkill(final int skillId) {
-        return this.skills.get(skillId);
+    public List<Skill> getSkills() {
+        return List.copyOf(this.skills);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getExp() {
         return this.exp;
     }
 
     /**
-     * Adds a level to Objectmon.
-     * Max 100
+     * Method that adds a level to an Objectmon.
+     * It's an utility method.
+     * Should only be called by the method levelUp.
+     * Adds a level to the Objectmon, max 100.
      */
     private void addLevel() {
         if (getLevel() < 100) {
@@ -114,31 +129,117 @@ public class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     *
-     * @param exp
+     * Setter of the Objectmon's exp.
+     * @param exp New quantity of exp.
      */
     private void setExp(final int exp) {
         this.exp = exp;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void addExp(final int gainedExp) {
+    public void calcExp(final int gainedExp) {
         setExp(gainedExp);
-        if (getExp() >= MAXEXP) {
+        while (getExp() >= MAXEXP) {
             setExp(getExp() - MAXEXP);
             levelUp();
         }
     }
 
     /**
-     *  Levels up an Objectmon and grows its stats.
+     * Method that levels up an Objectmon and grows its stats.
+     * It's an utility method.
+     * Should only be called by calcExp.
      */
-    public void levelUp() {
+    private void levelUp() {
         addLevel();
-        this.stats = getStats().growAllStats();
+        this.stats = getStats().calcNewStats(1);
     }
 
+    @Override
+    public int getCurrentHp() {
+        return this.currentHp;
+    }
+
+    @Override
+    public void setCurrentHp(final int quantity) {
+        final int value = this.currentHp + quantity;
+        final int maxHp = getStats().getSingleStat(StatId.HP);
+
+        if (value > maxHp) {
+            this.currentHp = maxHp;
+        } else if (value < 0) {
+            this.currentHp = 0;
+        } else {
+            this.currentHp = value;
+        }
+
+    }
+
+    /**
+     * Method that compares an Objectmon with another to see if they're identical.
+     * <br>If they are the same instance returns true.
+     * If they have the same name and id returns true.
+     * Everything else returns false.
+     * @param obj Objectmon that needs to be compared.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        } else if (this == obj) {
+            return true;
+        }
+
+        final ObjectmonImpl objmon = (ObjectmonImpl) obj;
+        return Integer.valueOf(getId()).equals(objmon.getId())
+        && getName().equals(objmon.getName());
+    }
+
+    /**
+     * @return Returns the hash code value for Objectmon.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName());
+    }
+
+    /**
+     * Builder of ObjectmonImpl.
+     * Used to generate an Objectmon.
+     */
+    public static class Builder {
+        private final int id;
+        private final String name;
+        private final List<Aspect> aspects;
+        private final List<Skill> skills;
+        private final ActualStats stats;
+        private final int level;
+        private final int exp;
+
+        /**
+         * Constructor of the class ObjectmonImpl.java.
+         * @param objectmon The objectmon to be generated.
+         * @param level the level of the Objectmon.
+        */
+        public Builder(final ObjectmonEnum objectmon, final int level) {
+            this.id = objectmon.getId();
+            this.name = objectmon.getName();
+            this.aspects = List.copyOf(objectmon.getAspects());
+            this.skills = List.copyOf(objectmon.getSkills());
+            this.level = level;
+            this.stats = objectmon.getStats().calcNewStats(level);
+            this.exp = 0;
+        }
+
+        /**
+         * Method that builds the Objectmon.
+         * @return Returns the ObjectmonImpl that was built.
+         */
+        public ObjectmonImpl build() {
+            return new ObjectmonImpl(this);
+        }
+    }
 }

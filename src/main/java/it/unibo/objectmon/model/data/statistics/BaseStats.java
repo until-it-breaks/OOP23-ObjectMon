@@ -1,15 +1,16 @@
 package it.unibo.objectmon.model.data.statistics;
 
+import java.io.Serializable;
 import java.util.Map;
-
-import it.unibo.objectmon.api.data.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 
 /**
  * Extension of the class StatsImpl.
  * This implementation is used for storing the base Stats of the Objectmon
  * and so can only be read for comparison or to generate an Objectmon.
  */
-public class BaseStats extends StatsImpl {
+public class BaseStats extends StatsImpl implements Serializable {
+    private static final long serialVersionUID = 2005L;
 
     /**
      * Constructor of the class.
@@ -18,5 +19,4 @@ public class BaseStats extends StatsImpl {
     public BaseStats(final Map<StatId, Integer> stats) {
         super(stats);
     }
-
 }

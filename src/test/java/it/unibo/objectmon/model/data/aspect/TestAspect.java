@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import it.unibo.objectmon.api.data.aspect.Aspect;
+
+import it.unibo.objectmon.model.data.api.aspect.Aspect;
 
 /**
  * Test of Aspects.
@@ -22,7 +23,7 @@ class TestAspect {
         for (final Aspect singleAspect : Aspect.values()) {
             aspect = singleAspect;
             assertEquals(singleAspect.getAspectName(), aspect.getAspectName());
-            assertEquals(singleAspect.getAspectId(), aspect.getAspectId());
+            assertEquals(singleAspect, aspect);
         }
         aspect = Aspect.NORMAL;
         assertTrue(aspect.sameAspect(List.of(Aspect.NORMAL)));

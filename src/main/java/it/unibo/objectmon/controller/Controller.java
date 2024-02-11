@@ -1,57 +1,70 @@
 package it.unibo.objectmon.controller;
 
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
-import it.unibo.objectmon.controller.commands.Command;
-import it.unibo.objectmon.controller.engine.GameLoop;
-import it.unibo.objectmon.model.GameManager;
-import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.view.api.View;
-/**
- * Models the controller of the application.
- */
-public final class Controller {
+import java.util.List;
+import java.util.Set;
+import it.unibo.objectmon.controller.commands.api.Command;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.world.api.World;
 
-    private static final int COMMAND_LIMIT = 16;
-    private final Queue<Command> commandQueue;
-    private final Model model;
-    private final View view;
-    /**
-     * 
-     * @param model the model from which information is retrieved.
-     * @param view  the view on which to render and from which inputs are received.
-     */
-    public Controller(final Model model, final View view) {
-        this.model = model;
-        this.view = view;
-        this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
-    }
+/**
+ * The Controller interface.
+ * It defines methods for managing game commands,
+ * controlling game state, retrieving game entities.
+ */
+public interface Controller {
+
     /**
      * Notifies the controller of a new Command.
-     * @param command the command to be added to the command queue.
+     *
+     * @param command The Command to be added to the command queue.
      */
-    public void notifyCommand(final Command command) {
-        this.commandQueue.add(command);
-    }
-    /**
-     * 
-     * @return the game manager.
-     */
-    public GameManager getGameManager() {
-        return model.getGameManager();
-    }
+    void notifyCommand(Command command);
+
     /**
      * Polls a command.
-     * @return a command from the queue.
+     *
+     * @return A command from the queue.
      */
-    public Command pollCommand() {
-        return this.commandQueue.poll();
-    }
+    Command pollCommand();
+
     /**
      * Starts the game.
      */
-    public void startGame() {
-        final GameLoop gameLoop = new GameLoop(model, view, this);
-        gameLoop.startLoop();
-    }
+    void startGame();
+
+    /**
+     * Returns the npcs in the game.
+     *
+     * @return The npc in the game.
+     */
+    Set<ReadOnlyNPC> getNPCSet();
+
+    /**
+     * Returns the world in the game.
+     *
+     * @return The world in the game.
+     */
+    World getWorld();
+
+    /**
+     * Retrieves a read only wrapper of the Player.
+     *
+     * @return A read only wrapper of the Player.
+     */
+    Player getPlayer();
+
+    /**
+     * Returns messages originating from interaction in EXPLORATION MODE.
+     *
+     * @return A list of messages.
+     */
+    List<String> getMessageLog();
+
+    /**
+     * Retrieves the current game state.
+     * @return The game state.
+     */
+    GameState getGameState();
 }
