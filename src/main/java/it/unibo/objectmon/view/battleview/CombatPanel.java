@@ -13,10 +13,9 @@ import it.unibo.objectmon.controller.Controller;
  * A panel that is used to display the flow of the battle.
  */
 @SuppressWarnings("PMD")
-public class CombatPanel extends JPanel {
+public final class CombatPanel extends JPanel {
     private static final long serialVersionUID = 4L;
     private final transient Controller controller;
-    private final double scale = 2.0;
 
     /**
      * Constructs a combat panel and attaches a controller to it.

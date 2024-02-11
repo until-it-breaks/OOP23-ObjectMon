@@ -39,7 +39,7 @@ public final class ControllerImpl implements Controller {
         this.view = new ViewImpl(this);
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
         this.model.getGameStateManager().registerObserver(view);
-        this.model.getGameStateManager().setGameState(GameState.BATTLE);
+        this.model.getGameStateManager().setGameState(GameState.EXPLORATION);
     }
 
     @Override
