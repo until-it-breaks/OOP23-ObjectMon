@@ -14,6 +14,7 @@ import it.unibo.objectmon.controller.commands.SwitchObjectmon;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 
 /**
  * The panel responsible for sending the player choices to the model.
@@ -61,10 +62,13 @@ public class CommandPanel extends JPanel {
             attackButton.addActionListener(e -> {
                     removeAll();
                     controller.notifyCommand(new UseSkill(currentSkillIndex));
-                    System.out.println("Attack " + skillCounter[0]);
+                    //System.out.println("Attack " + skillCounter[0]);
                     drawStartingButtons();
             });
-            attackButton.setToolTipText("Type: "+ skill.getCategory().getName() + " Power: " + skill.getBasePower() + ", Accuracy: " + skill.getAccuracy() + " %");
+            attackButton.setToolTipText("Power: " + skill.getBasePower()
+                + " Accuracy: " + skill.getAccuracy() + "% "
+                + "Type: " + skill.getCategory().getName()
+            );
             this.add(attackButton, gbc);
             gbc.gridx++;
             skillCounter[0]++;
@@ -87,10 +91,12 @@ public class CommandPanel extends JPanel {
             final int currentObjectmonIndex = objectmonCounter[0];
             switchObjectmon.addActionListener(e -> {
                     removeAll();
-                    System.out.println("Switch to " + controller.getBattleStats().get().getPlayerTeam().getParty().get(currentObjectmonIndex).getName());
+                    //System.out.println("Switch to " + controller.getBattleStats().get().getPlayerTeam().getParty().get(currentObjectmonIndex).getName());
                     controller.notifyCommand(new SwitchObjectmon(currentObjectmonIndex));
                     drawStartingButtons();
             });
+            switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspect().toString()
+            + " HP: " + objectmon.getCurrentHp()+ " / " + objectmon.getStats().getSingleStat(StatId.HP));
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;
             gbc.gridx++;
