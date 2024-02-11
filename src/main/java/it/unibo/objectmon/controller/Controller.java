@@ -3,10 +3,12 @@ package it.unibo.objectmon.controller;
 import java.util.List;
 import java.util.Set;
 import it.unibo.objectmon.controller.commands.api.Command;
+import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.world.api.World;
+import java.util.Optional;
 
 /**
  * The Controller interface.
@@ -62,6 +64,11 @@ public interface Controller {
      */
     List<String> getMessageLog();
 
+    /**
+     * informations of the battle.
+     * @return contains the informations of the battle.
+     */
+    Optional<Battle> getBattleStats();
     /**
      * Retrieves the current game state.
      * @return The game state.

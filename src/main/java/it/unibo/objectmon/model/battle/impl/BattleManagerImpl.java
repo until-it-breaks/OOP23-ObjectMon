@@ -241,13 +241,8 @@ public final class BattleManagerImpl implements BattleManager {
                 default:
                     break;
             }
-            this.setfieldsEmpty();
+            this.battle = Optional.empty();
         }
-    }
-
-    private void setfieldsEmpty() {
-        this.battle = Optional.empty();
-        this.result = Optional.empty();
     }
 
     @Override
