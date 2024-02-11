@@ -2,8 +2,9 @@ package it.unibo.objectmon.model.misc.interaction.api;
 
 import java.util.List;
 import java.util.Set;
+
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 
 /**
  * Models a manager responsible for triggering the behaviour of an npc upon succesful check.

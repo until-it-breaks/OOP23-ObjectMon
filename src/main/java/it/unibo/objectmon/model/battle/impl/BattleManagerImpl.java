@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.Trainer;
 
 /**
  * an implementation of battle manager.
@@ -235,10 +235,8 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.isOver()) {
             switch (this.result.get()) {
                 case WIN:
-                    this.battle.get().getTrainer().ifPresent(t -> t.setDefeated(true));
                     break;
                 case LOSE:
-                    this.battle.get().getPlayer().setDefeated(true);
                     break;
                 default:
                     break;

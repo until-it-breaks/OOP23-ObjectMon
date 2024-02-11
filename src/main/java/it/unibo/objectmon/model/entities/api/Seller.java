@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entities.api.npc;
+package it.unibo.objectmon.model.entities.api;
 
 /**
  * Models a seller NPC.

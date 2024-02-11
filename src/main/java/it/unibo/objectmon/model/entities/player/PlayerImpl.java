@@ -6,7 +6,7 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.Direction;
-import it.unibo.objectmon.model.entities.api.EntityImpl;
+import it.unibo.objectmon.model.entities.api.AbstractEntity;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.world.api.Coord;
@@ -14,10 +14,9 @@ import it.unibo.objectmon.model.world.api.Coord;
 /**
  * This will be the implementation of {@link Player}.
  */
-public final class PlayerImpl extends EntityImpl implements Player {
+public final class PlayerImpl extends AbstractEntity implements Player {
 
     private final ObjectmonParty objectmonParty;
-    private boolean defeatStatus;
 
     /**
      * Constructs a new Player.
@@ -29,7 +28,6 @@ public final class PlayerImpl extends EntityImpl implements Player {
     public PlayerImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
-        this.defeatStatus = false;
     }
 
     @Override
@@ -43,12 +41,7 @@ public final class PlayerImpl extends EntityImpl implements Player {
 
     @Override
     public boolean isDefeated() {
-        return this.defeatStatus;
-    }
-
-    @Override
-    public void setDefeated(final boolean defeatStatus) {
-        this.defeatStatus = defeatStatus;
+        return this.objectmonParty.getParty().size() == 0;
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",

@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entities.api.npc;
+package it.unibo.objectmon.model.entities.api;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 
@@ -8,17 +8,11 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 public interface Trainer {
 
     /**
-     * Returns whether the entity is battle worthy.
+     * Returns the Trainer is capable of fighting again.
      * 
-     * @return The preparedness of the Trainer.
+     * @return The trainer's will to fight.
      */
     boolean isDefeated();
-
-    /**
-     * Sets the defeat status of the trainer.
-     * @param defeatStatus Whether the trainer has been defeated.
-     */
-    void setDefeated(boolean defeatStatus);
 
     /**
      * Returns the Trainer's team of Objectmons.

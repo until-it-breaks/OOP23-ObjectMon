@@ -4,7 +4,7 @@ import java.util.Optional;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.Trainer;
 
 /**
  * A manager of battle which can start a battle between the player and a fighter.

@@ -6,8 +6,8 @@ import java.util.Set;
 
 import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.entities.npc.NPCGenerator;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.world.WorldImpl;

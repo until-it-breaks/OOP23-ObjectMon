@@ -2,9 +2,10 @@ package it.unibo.objectmon.model.misc.interaction;
 
 import java.util.List;
 import java.util.Set;
+
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;

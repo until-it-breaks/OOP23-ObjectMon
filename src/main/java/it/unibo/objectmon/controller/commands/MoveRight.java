@@ -10,6 +10,6 @@ import it.unibo.objectmon.model.entities.api.Direction;
 public final class MoveRight implements Command {
     @Override
     public void execute(final Model model) {
-        model.getGameContext().getPlayer().move(Direction.RIGHT, model.getCollisionChecker());
+        model.getGameContext().getPlayer().move(Direction.RIGHT, model.getCollisionManager());
     }
 }

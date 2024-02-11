@@ -1,4 +1,4 @@
-package it.unibo.objectmon.controller.readonly;
+package it.unibo.objectmon.model.entities.player;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Direction;
@@ -61,10 +61,5 @@ public final class ReadOnlyPlayer implements Player {
     @Override
     public void move(final Direction direction, final CollisionManager collisionChecker) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
-    }
-
-    @Override
-    public void setDefeated(final boolean defeatStatus) {
-        throw new UnsupportedOperationException("Unimplemented method 'setDefeated'");
     }
 }

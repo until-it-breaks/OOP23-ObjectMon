@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.entities.api.npc;
+package it.unibo.objectmon.model.entities.api;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 

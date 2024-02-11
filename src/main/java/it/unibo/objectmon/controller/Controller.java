@@ -3,8 +3,8 @@ package it.unibo.objectmon.controller;
 import java.util.List;
 import java.util.Set;
 import it.unibo.objectmon.controller.commands.api.Command;
-import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.world.api.World;
 
@@ -61,18 +61,6 @@ public interface Controller {
      * @return A list of messages.
      */
     List<String> getMessageLog();
-
-    /**
-     * Retrieves the framerate.
-     * @return The framerate.
-     */
-    long getFPS();
-
-    /**
-     * Updates the framerate.
-     * @param fps framerate.
-     */
-    void updateFPS(long fps);
 
     /**
      * Retrieves the current game state.

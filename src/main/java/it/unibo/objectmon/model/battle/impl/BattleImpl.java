@@ -7,7 +7,7 @@ import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.Trainer;
 /**
  * A simple battle that implements Battle.
  */
