@@ -17,7 +17,7 @@ public class RunAway {
      */
     public final void action(final Battle battle, final BattleManager battleManager) {
         if (this.runnable(battle)) {
-            battleManager.setResult(Result.LOSE);
+            battleManager.setResult(Result.END);
         }
     }
     /**

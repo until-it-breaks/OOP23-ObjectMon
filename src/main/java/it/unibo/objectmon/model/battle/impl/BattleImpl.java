@@ -6,7 +6,6 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 /**
@@ -51,7 +50,8 @@ public final class BattleImpl implements Battle {
     @Override
     public boolean isWin() {
         return this.trainer.isPresent()
-        ? this.trainer.get().getObjectmonParty().getParty().size() == 0
+        ? this.trainer.get().getObjectmonParty().getParty().size() == 1
+            && this.getEnemyObjectmon().getCurrentHp() <= 0
         : this.wildObjectmon.get().getCurrentHp() == 0;
     }
 
@@ -104,6 +104,10 @@ public final class BattleImpl implements Battle {
 
     @Override
     public ObjectmonParty getPlayerTeam() {
-        return new ObjectmonPartyImpl(this.player.getObjectmonParty().getParty());
+        return this.player.getObjectmonParty();
+    }
+    @Override
+    public Player getPlayer() {
+        return this.player;
     }
 }

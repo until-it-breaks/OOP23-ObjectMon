@@ -36,37 +36,43 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     @Override
-    public void startBattle(final Player player, final Optional<Trainer> enemy, final Optional<Objectmon> objectMon) {
-        if (enemy.isEmpty()) {
-            this.battle = Optional.of(new BattleImpl(player, objectMon.get()));
+    public void startBattle(final Player player, final Optional<Trainer> trainer, final Optional<Objectmon> objectMon) {
+        if (this.battle.isPresent()) {
+            throw new IllegalStateException("A battle is already in progress.");
         }
-        if (objectMon.isEmpty()) {
-            this.battle = Optional.of(new BattleImpl(player, enemy.get()));
-        }
+        trainer.ifPresentOrElse(
+            t -> this.battle = Optional.of(new BattleImpl(player, t)), 
+            () -> objectMon.ifPresentOrElse(o -> this.battle = Optional.of(new BattleImpl(player, o)), () -> {
+                throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
+            })
+        );
+        this.setResult(Result.IN_BATTLE);
+        this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
     }
 
-    @Override
-    public void startTurn(final Move type, final int index) {
+    private void startTurn(final Move type, final int index) {
         this.turn.setTurn(StatTurn.TURN_STARTED);
         final int aiIndex = chooseAiMove();
         this.battle.get().setPlayerMove(type);
-        switch (this.turn.whichFirst(
-            this.battle.get().getEnemyMove(),
-            this.battle.get().getPlayerMove(), 
-            this.battle.get().getCurrentObjectmon(), 
-            this.battle.get().getEnemyObjectmon()
-        )) {
-            case AI_TURN :
-                executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
-                executePlayerTurn(type, index);
-                break;
-            case PLAYER_TURN :
-                executePlayerTurn(type, index);
-                executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
-                break;
-            default :
-                throw new IllegalArgumentException();
-        }
+            switch (this.turn.whichFirst(
+                this.battle.get().getEnemyMove(),
+                this.battle.get().getPlayerMove(), 
+                this.battle.get().getCurrentObjectmon(), 
+                this.battle.get().getEnemyObjectmon()
+            )) {
+                case AI_TURN :
+                    executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
+                    executePlayerTurn(type, index);
+                    break;
+                case PLAYER_TURN :
+                    executePlayerTurn(type, index);
+                    if (this.battle.isPresent()) {
+                        executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
+                    }
+                    break;
+                default :
+                    throw new IllegalArgumentException();
+            }
         this.endTurnAction();
     }
     /**
@@ -78,12 +84,16 @@ public final class BattleManagerImpl implements BattleManager {
         switch (type) {
             case ATTACK :
                 if (this.isDead(this.battle.get().getEnemyObjectmon())) {
-                    this.battle.get().getTrainerTeam().ifPresentOrElse(
-                        t -> this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get()),
-                        () -> setResult(Result.WIN)
+                    this.battle.get().getTrainerTeam().ifPresent(
+                        t -> {
+                            if (t.getParty().size() > 1) {
+                                this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
+                            }
+                        }
                     );
+                } else {
+                    useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
                 }
-                useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
                 break;
             case SWITCH_OBJECTMON :
                 this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
@@ -98,21 +108,24 @@ public final class BattleManagerImpl implements BattleManager {
      * @param index index of skill or objectmon to switch
      */
     private void executePlayerTurn(final Move type, final int index) {
-        switch (type) {
-            case ATTACK:
-                if (this.isDead(this.battle.get().getCurrentObjectmon())) {
-                    this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
-                }
-                this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
-                break;
-            case SWITCH_OBJECTMON:
-                this.switchPlayerObjectmon(index);
-                break;
-            case RUN_AWAY:
-                this.runAway();
-                break;
-            default:
-                break;
+        if (this.isDead(this.battle.get().getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
+            this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+        } else {
+            switch (type) {
+                case ATTACK:
+                        this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
+                    break;
+                case SWITCH_OBJECTMON:
+                    if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
+                        this.switchPlayerObjectmon(index);
+                    }
+                    break;
+                case RUN_AWAY:
+                    this.runAway();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -133,7 +146,8 @@ public final class BattleManagerImpl implements BattleManager {
 
     private void runAway() {
         if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
-            setResult(Result.LOSE);
+            setResult(Result.END);
+            this.endBattleAction();
         }
     }
 
@@ -165,9 +179,24 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void bufferCommand(final Move type, final int index) {
-        if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE)) {
+        if (this.battle.isPresent()
+            && this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE) 
+            && isCommandValid(type, index)) {
             this.turn.setTurn(StatTurn.TURN_STARTED);
             this.startTurn(type, index);
+        }
+    }
+
+    private boolean isCommandValid(final Move type, final int index) {
+        switch (type) {
+            case RUN_AWAY:
+                return this.battle.isPresent() && this.battle.get().getTrainer().isEmpty();
+            case ATTACK:
+                return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size();
+            case SWITCH_OBJECTMON:
+                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size() - 1;
+            default:
+                return false;
         }
     }
     /**
@@ -194,19 +223,18 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.battle.get().isWin()) {
             this.setResult(Result.WIN);
             this.endBattleAction();
-        }
-        if (this.battle.get().isLose()) {
+        } else if (this.battle.get().isLose()) {
             this.setResult(Result.LOSE);
             this.endBattleAction();
+        } else {
+            this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
         }
-        this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
     }
 
     private void endBattleAction() {
         if (this.isOver()) {
             switch (this.result.get()) {
                 case WIN:
-                    //this.battle.get().getTrainer().ifPresent(t -> t.setDefeated(true));
                     break;
                 case LOSE:
                     break;
