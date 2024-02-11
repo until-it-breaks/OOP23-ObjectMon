@@ -62,7 +62,9 @@ public final class BattleManagerImpl implements BattleManager {
             )) {
                 case AI_TURN :
                     executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
-                    executePlayerTurn(type, index);
+                    if (this.battle.isPresent()) {
+                        executePlayerTurn(type, index);
+                    }
                     break;
                 case PLAYER_TURN :
                     executePlayerTurn(type, index);
