@@ -26,7 +26,11 @@ public interface BattleManager {
         /**
          * Represents the battle has not finished.
          */
-        IN_BATTLE
+        IN_BATTLE,
+        /**
+         * the battle is finished.
+         */
+        END
     }
 
     /**

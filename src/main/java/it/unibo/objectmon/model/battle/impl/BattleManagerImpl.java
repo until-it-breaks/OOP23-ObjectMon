@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import it.unibo.objectmon.controller.commands.SwitchObjectmon;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
@@ -117,24 +118,24 @@ public final class BattleManagerImpl implements BattleManager {
      * @param index index of skill or objectmon to switch
      */
     private void executePlayerTurn(final Move type, final int index) {
-        switch (type) {
-            case ATTACK:
-                if (this.isDead(this.battle.get().getCurrentObjectmon())) {
-                    this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
-                } else {
-                    this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
-                }
-                break;
-            case SWITCH_OBJECTMON:
-                if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
-                    this.switchPlayerObjectmon(index);
-                }
-                break;
-            case RUN_AWAY:
-                this.runAway();
-                break;
-            default:
-                break;
+        if (this.isDead(this.battle.get().getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
+            this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+        } else {
+            switch (type) {
+                case ATTACK:
+                        this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
+                    break;
+                case SWITCH_OBJECTMON:
+                    if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
+                        this.switchPlayerObjectmon(index);
+                    }
+                    break;
+                case RUN_AWAY:
+                    this.runAway();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -155,7 +156,7 @@ public final class BattleManagerImpl implements BattleManager {
 
     private void runAway() {
         if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
-            setResult(Result.LOSE);
+            setResult(Result.END);
             this.endBattleAction();
         }
     }
@@ -279,8 +280,8 @@ public final class BattleManagerImpl implements BattleManager {
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
-        //Command switchObj = new SwitchObjectmon(1);
-        //switchObj.execute(model);
+        Command switchObj = new SwitchObjectmon(1);
+        switchObj.execute(model);
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
@@ -290,8 +291,7 @@ public final class BattleManagerImpl implements BattleManager {
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
-        useSkill0.execute(model);
-        battleManager.printInfo();
+
     }
 
     public void printInfo() {
