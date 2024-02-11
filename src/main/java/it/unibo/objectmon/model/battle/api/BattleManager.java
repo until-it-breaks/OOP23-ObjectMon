@@ -59,4 +59,9 @@ public interface BattleManager {
      * @param index index of the e-th element in the list.
      */
     void bufferCommand(Move type, int index);
+    /**
+     * get information of battle which it has read only access.
+     * @return informations of battle.
+     */
+    Optional<Battle> getBattleStats();
 }
