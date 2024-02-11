@@ -68,7 +68,9 @@ public final class BattleManagerImpl implements BattleManager {
             )) {
                 case AI_TURN :
                     executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
-                    executePlayerTurn(type, index);
+                    if (this.battle.isPresent()) {
+                        executePlayerTurn(type, index);
+                    }
                     break;
                 case PLAYER_TURN :
                     executePlayerTurn(type, index);
@@ -200,7 +202,7 @@ public final class BattleManagerImpl implements BattleManager {
             case ATTACK:
                 return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size();
             case SWITCH_OBJECTMON:
-                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size() - 1;
+                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size();
             default:
                 return false;
         }
