@@ -1,0 +1,45 @@
+package it.unibo.objectmon.model.misc.battlelog.api;
+
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * Class representing a battle logger to store information related to the battle.
+ */
+public class BattleLogger {
+    private final List<BattleLogObserver> observers;
+    private final List<String> battleLog;
+
+    /**
+     * Constructor to create a new battle logger.
+     */
+    public BattleLogger() {
+        this.observers = new ArrayList<>();
+        this.battleLog = new ArrayList<>();
+    }
+
+    /**
+     * Adds an observer to the battle logger.
+     * 
+     * @param observer The observer to add.
+     */
+    public void addObserver(final BattleLogObserver observer) {
+        observers.add(observer);
+    }
+
+    /**
+     * Records a new message in the battle log and notifies the observers.
+     * 
+     * @param message The message to add to the battle log.
+     */
+    public void log(final String message) {
+        battleLog.add(message);
+        notifyObservers(message);
+    }
+
+    private void notifyObservers(final String message) {
+        for (final BattleLogObserver observer : observers) {
+            observer.update(message);
+        }
+    }
+}
