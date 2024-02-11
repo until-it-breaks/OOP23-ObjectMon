@@ -41,12 +41,6 @@ public interface BattleManager {
      */
     void startBattle(Player player, Optional<Trainer> enemy, Optional<Objectmon> objectMon);
     /**
-     * start a new turn.
-     * @param type type of move
-     * @param index index of the e-th element in the list.
-     */
-    void startTurn(Move type, int index);
-    /**
      * @return the result of the battle
      */
     Result getResult();
@@ -65,6 +59,4 @@ public interface BattleManager {
      * @param index index of the e-th element in the list.
      */
     void bufferCommand(Move type, int index);
-
-    void printInfo();
 }
