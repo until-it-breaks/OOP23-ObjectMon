@@ -16,6 +16,9 @@ public final class InventoryImpl implements Inventory {
 
     private final Map<Item, Integer> items;
 
+    /**
+     * 
+     */
     public InventoryImpl() {
         this.items = new HashMap<>();
     }
@@ -57,13 +60,11 @@ public final class InventoryImpl implements Inventory {
 
     @Override
     public Map<Item, Integer> getItems() {
-        //returna una lista immutabile, quindi il ricevente non può manipolare quella mappa
         return Collections.unmodifiableMap(this.items);
     }
 
     @Override
-    public void Clear() {
-        //toglie tutti le chiavi e i valori dalla mappa
+    public void clear() {
         this.items.clear();
     }
 
