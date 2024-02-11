@@ -249,4 +249,11 @@ public final class BattleManagerImpl implements BattleManager {
         this.battle = Optional.empty();
         this.result = Optional.empty();
     }
+
+    @Override
+    public Optional<Battle> getBattleStats() {
+        return this.battle.isPresent()
+            ? Optional.of(new ReadOnlyBattle(this.battle.get()))
+            : Optional.empty();
+    }
 }
