@@ -20,7 +20,6 @@ public class BattleLogger {
 
     /**
      * Adds an observer to the battle logger.
-     * 
      * @param observer The observer to add.
      */
     public void addObserver(final BattleLogObserver observer) {
@@ -29,7 +28,6 @@ public class BattleLogger {
 
     /**
      * Records a new message in the battle log and notifies the observers.
-     * 
      * @param message The message to add to the battle log.
      */
     public void log(final String message) {
@@ -38,8 +36,6 @@ public class BattleLogger {
     }
 
     private void notifyObservers(final String message) {
-        for (final BattleLogObserver observer : observers) {
-            observer.update(message);
-        }
+        this.observers.stream().forEach(o -> o.update(message));
     }
 }
