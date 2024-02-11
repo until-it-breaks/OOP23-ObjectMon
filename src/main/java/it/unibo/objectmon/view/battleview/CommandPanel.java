@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.RunAway;
+import it.unibo.objectmon.controller.commands.SwitchObjectmon;
 import it.unibo.objectmon.controller.commands.UseSkill;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 
 /**
@@ -85,65 +87,32 @@ public class CommandPanel extends JPanel {
     private void drawSwitch() {
         this.removeAll();
         final GridBagConstraints gbc = createDefaultConstraints();
-        final JButton switch1 = new JButton();
-        switch1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
+        final int[] objectmonCounter = {0};
+
+        for (Objectmon objectmon : controller.getBattleStats().get().getPlayerTeam().getParty()) {
+            final JButton switchObjectmon = new JButton();
+            switchObjectmon.setText(objectmon.getName());
+            if (objectmon.equals(controller.getBattleStats().get().getCurrentObjectmon())) {
+                switchObjectmon.setEnabled(false);
             }
+            switchObjectmon.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    removeAll();
+                    controller.notifyCommand(new SwitchObjectmon(objectmonCounter[0]));
+                    drawStartingButtons();
+                }
+            });
+            this.add(switchObjectmon, gbc);
+            objectmonCounter[0]++;
+            gbc.gridx++;
+        }
+        final JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            removeAll();
+            drawStartingButtons();
         });
-        this.add(switch1, gbc);
-        final JButton switch2 = new JButton("Switch choice 2");
-        switch2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch2, gbc);
-        final JButton switch3 = new JButton("Switch choice 3");
-        switch3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch3, gbc);
-        final JButton switch4 = new JButton("Switch choice 4");
-        switch4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch4, gbc);
-        final JButton switch5 = new JButton("Switch choice 5");
-        switch5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch5, gbc);
-        final JButton switch6 = new JButton("Switch choice 6");
-        switch6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch6, gbc);
+        this.add(backButton);
         this.revalidate();
     }
 
