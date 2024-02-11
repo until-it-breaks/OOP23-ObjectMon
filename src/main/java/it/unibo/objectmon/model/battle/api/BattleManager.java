@@ -1,11 +1,15 @@
 package it.unibo.objectmon.model.battle.api;
 import java.util.Optional;
+
+import it.unibo.objectmon.model.battle.moves.type.Move;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.Trainer;
+
 /**
  * A manager of battle which can start a battle between the player and a fighter.
- * @param <T> is an entity of fighter
- * @param <O> is an ObjectMon 
  */
-public interface BattleManager<T, O> {
+public interface BattleManager {
     /**
      * Enum representing the result of a battle.
      * It can be either WIN or LOSE.
@@ -22,7 +26,11 @@ public interface BattleManager<T, O> {
         /**
          * Represents the battle has not finished.
          */
-        IN_BATTLE
+        IN_BATTLE,
+        /**
+         * the battle is finished.
+         */
+        END
     }
 
     /**
@@ -31,22 +39,24 @@ public interface BattleManager<T, O> {
      * @param enemy it is enemy because if the player meet a wild ObjectMon, the  enemy should be empty
      * @param objectMon it is wild objectMon, if player meet a fighter, then objectMon should be empty
      */
-    void startBattle(T player, Optional<T> enemy, Optional<O> objectMon);
-    /**
-     * start a new turn.
-     */
-    void startTurn();
+    void startBattle(Player player, Optional<Trainer> enemy, Optional<Objectmon> objectMon);
     /**
      * @return the result of the battle
      */
     Result getResult();
     /**
      * 
-     * @return current stats of the battle
+     * @param result set the result of the battle.
      */
-    BattleState<T, O> getBattleState();
+    void setResult(Result result);
     /**
      * @return true if the battle isOver
      */
     boolean isOver();
+    /**
+     * receive commands from player and give it to turn when it is necessary.
+     * @param type type of move
+     * @param index index of the e-th element in the list.
+     */
+    void bufferCommand(Move type, int index);
 }

@@ -8,13 +8,16 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.JPanel;
+
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.model.entity.npc.AbstractNPC;
-import it.unibo.objectmon.model.entity.npc.api.Healer;
-import it.unibo.objectmon.model.entity.npc.api.Seller;
-import it.unibo.objectmon.model.entity.npc.api.Trainer;
-import it.unibo.objectmon.model.eventlog.EventLogger;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.entities.api.Healer;
+import it.unibo.objectmon.model.entities.api.Seller;
+import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
+import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
@@ -25,11 +28,11 @@ import it.unibo.objectmon.view.utility.ImageLoaderImpl;
  * providing a visual representation of the game state to the user.
  */
 public final class OverWorldPanel extends JPanel {
-    private static final int FONT_SIZE = 14;
+    private static final int FONT_SIZE = 13;
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
-    private final transient ImageLoader textureLoader;
+    private final transient ImageLoader imageLoader;
 
     /**
      * Constructs a new OverWorld panel, initializing its properties and attaching it to the provided controller.
@@ -40,7 +43,7 @@ public final class OverWorldPanel extends JPanel {
         this.setDoubleBuffered(true);
         this.setBackground(Color.BLACK);
         this.controller = controller;
-        this.textureLoader = new ImageLoaderImpl();
+        this.imageLoader = new ImageLoaderImpl();
         this.addKeyListener(new OverWorldControls(controller));
         this.setFocusable(true);
     }
@@ -55,30 +58,40 @@ public final class OverWorldPanel extends JPanel {
         super.paintComponent(g);
         if (g instanceof Graphics2D) {
             final Graphics2D graphics2d = (Graphics2D) g;
-            final RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_RENDERING, 
-            RenderingHints.VALUE_RENDER_SPEED);
-            graphics2d.setRenderingHints(renderingHints);
+            configureRenderingHints(graphics2d);
             //Computes the offset needed to center the camera.
-            final int playerX = controller.getGameManager().getPlayerController().getPosition().x() * TILE_SIZE;
-            final int playerY = controller.getGameManager().getPlayerController().getPosition().y() * TILE_SIZE;
+            final int playerX = controller.getPlayer().getPosition().x() * TILE_SIZE;
+            final int playerY = controller.getPlayer().getPosition().y() * TILE_SIZE;
             final double cameraX = getWidth() / 2 - playerX;
             final double cameraY = getHeight() / 2 - playerY;
-            //In this section the camera is always centered on the player.
+            //Centers the camera.
             graphics2d.translate(cameraX, cameraY);
             drawWorld(graphics2d);
             drawNPCs(graphics2d);
             drawPlayer(graphics2d);
-            //From this point on HUD elements are drawn.
+            //Reverts to the previous position.
             graphics2d.translate(-cameraX, -cameraY);
-            drawEventLog(graphics2d);
+            drawHUD(graphics2d);
             graphics2d.dispose();
-        } else {
-            throw new IllegalArgumentException();
         }
     }
 
+    private void configureRenderingHints(final Graphics2D g) {
+        final RenderingHints renderingHints = new RenderingHints(
+            RenderingHints.KEY_RENDERING,
+            RenderingHints.VALUE_RENDER_QUALITY);
+        //Fixes those font jaggies.
+        renderingHints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g.setRenderingHints(renderingHints);
+    }
+
+    private void drawHUD(final Graphics2D g) {
+        drawEventLog(g);
+        drawParty(g);
+    }
+
     private void drawNPCs(final Graphics2D g) {
-        for (final AbstractNPC npc : controller.getGameManager().getNpcManager().getNpcs()) {
+        for (final ReadOnlyNPC npc : controller.getNPCSet()) {
             final BufferedImage image = getNPCImage(npc);
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
         }
@@ -86,13 +99,13 @@ public final class OverWorldPanel extends JPanel {
 
     private void drawPlayer(final Graphics2D g) {
         final BufferedImage image = getPlayerImage();
-        final Coord playerPosition = controller.getGameManager().getPlayerController().getPosition();
-        g.drawImage(image, playerPosition.x() * TILE_SIZE, playerPosition.y() * TILE_SIZE, null);
+        final Coord playerCoord = controller.getPlayer().getPosition();
+        g.drawImage(image, playerCoord.x() * TILE_SIZE, playerCoord.y() * TILE_SIZE, null);
     }
 
     private void drawWorld(final Graphics2D g) {
-        for (final var entry : controller.getGameManager().getWorld().getMap().entrySet()) {
-            final BufferedImage image = textureLoader.getImage(entry.getValue().getImagePath());
+        for (final var entry : controller.getWorld().getMap().entrySet()) {
+            final BufferedImage image = imageLoader.getImage(entry.getValue().getImagePath());
             final int tileX = entry.getKey().x();
             final int tileY = entry.getKey().y();
             g.drawImage(image, tileX  * TILE_SIZE, tileY * TILE_SIZE, null);
@@ -100,62 +113,88 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawEventLog(final Graphics2D g) {
-        final List<String> messages = EventLogger.getLogger().getMessages();
+        final List<String> messages = controller.getMessageLog();
         final int lineHeight = 20;
-        final int boxHeight = EventLogger.LIMIT * lineHeight;
-        final int panelWidth = getWidth();
-        final int panelHeight = getHeight();
+        final int boxHeight = EventLoggerImpl.LIMIT * lineHeight;
 
-        // Calculate the position of the black box at the bottom of the panel
+        // Calculate the position and size of the black box at the bottom left of the panel
         final int boxX = 0;
-        final int boxY = panelHeight - boxHeight;
+        final int boxY = getHeight() - boxHeight;
+        final int boxWidth = getWidth() / 2; // Adjusted to cover half of the panel width
 
+        // Draw the border
+        g.setColor(Color.LIGHT_GRAY);
+        g.drawRect(boxX, boxY, boxWidth, boxHeight);
+
+        // Fill the black box
         g.setColor(Color.BLACK);
-        g.fillRect(boxX, boxY, panelWidth, boxHeight);
+        g.fillRect(boxX + 1, boxY + 1, boxWidth - 1, boxHeight - 1);
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
 
-        // Adjusted to draw text a little higher
+        // Adjustment to draw text a little higher
         final int startY = boxY + lineHeight - 5; 
 
         // Draw messages from the top to the bottom.
         for (int i = 0; i < messages.size(); i++) {
             final String message = messages.get(i);
-            g.drawString(message, 10, startY + (i * lineHeight));
+            g.drawString(message, boxX + 10, startY + (i * lineHeight));
         }
     }
 
-    private BufferedImage getNPCImage(final AbstractNPC npc) {
-        if (npc instanceof Seller) {
-            return textureLoader.getImage("/npc/vendor.png");
-        } else if (npc instanceof Healer) {
-            return textureLoader.getImage("/npc/doctor.png");
-        } else if (npc instanceof Trainer) {
-            return textureLoader.getImage("/npc/trainer.png");
+    private void drawParty(final Graphics2D g) {
+        final List<Objectmon> objectmonList = controller.getPlayer().getObjectmonParty().getParty();
+        int offsetX = getWidth() - (objectmonList.size() * TILE_SIZE);
+        final int offsetY = getHeight() - TILE_SIZE;
+
+        for (final Objectmon objectmon : objectmonList) {
+            final BufferedImage image = imageLoader.getImage("/hud/objectmons/" + objectmon.getName() + ".png");
+            //Draw the objectmon portrait
+            g.drawImage(image, offsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
+            g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
+            g.setColor(Color.WHITE);
+
+            // Draw level text above the health counter
+            g.drawString("Lv." + objectmon.getLevel(), offsetX, offsetY - TILE_SIZE / 2);
+
+            // Draw health counter above the image
+            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
+            offsetX, offsetY - TILE_SIZE / FONT_SIZE);
+            offsetX += TILE_SIZE;
+        }
+    }
+
+    private BufferedImage getNPCImage(final ReadOnlyNPC npc) {
+        if (npc.implementsInterface(Seller.class)) {
+            return imageLoader.getImage("/npc/vendor.png");
+        } else if (npc.implementsInterface(Healer.class)) {
+            return imageLoader.getImage("/npc/doctor.png");
+        } else if (npc.implementsInterface(Trainer.class)) {
+            return imageLoader.getImage("/npc/trainer.png");
         } else {
-            return textureLoader.getImage("/npc/default.png");
+            return imageLoader.getImage("/npc/default.png");
         }
     }
 
     private BufferedImage getPlayerImage() {
         final String imagePath;
-        switch (controller.getGameManager().getPlayerController().getDirection()) {
+        switch (controller.getPlayer().getDirection()) {
             case UP:
-                imagePath = "/player/playerUp.png";
+                imagePath = "/player/player_up.png";
                 break;
             case DOWN:
-                imagePath = "/player/playerDown.png";
+                imagePath = "/player/player_down.png";
                 break;
             case LEFT:
-                imagePath = "/player/playerLeft.png";
+                imagePath = "/player/player_left.png";
                 break;
             case RIGHT:
-                imagePath = "/player/playerRight.png";
+                imagePath = "/player/player_right.png";
                 break;
             default:
-                throw new IllegalStateException();
+                imagePath = "/player/player_down.png";
         }
-        return textureLoader.getImage(imagePath);
+        return imageLoader.getImage(imagePath);
     }
 }
