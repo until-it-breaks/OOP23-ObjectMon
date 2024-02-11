@@ -1,5 +1,6 @@
 package it.unibo.objectmon.view.battleview;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -61,6 +62,7 @@ public class CommandPanel extends JPanel {
         
         for (final Skill skill : controller.getBattleStats().get().getCurrentObjectmon().getSkills()) {
             final JButton attackButton = new JButton(skill.getName());
+            attackButton.setForeground(Color.WHITE);
             attackButton.setBackground(AspectColorMap.getColorForAspect(skill.getAspect()));
             attackButton.addActionListener(new ActionListener() {
                 final int currentSkillIndex = skillCounter[0];
@@ -72,9 +74,10 @@ public class CommandPanel extends JPanel {
                     drawStartingButtons();
                 }
             });
+            attackButton.setToolTipText("Type: "+ skill.getCategory().getName() + " Power: " + skill.getBasePower() + ", Accuracy: " + skill.getAccuracy() + " %");
             this.add(attackButton, gbc);
             gbc.gridx++;
-            skillCounter[0]++; // Increment skill counter for the next button
+            skillCounter[0]++;
         }
         this.revalidate();
     }
@@ -82,7 +85,7 @@ public class CommandPanel extends JPanel {
     private void drawSwitch() {
         this.removeAll();
         final GridBagConstraints gbc = createDefaultConstraints();
-        final JButton switch1 = new JButton("Switch choice 1");
+        final JButton switch1 = new JButton();
         switch1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {

@@ -14,10 +14,10 @@ public final class AspectColorMap {
         aspectColorMap.put(Aspect.NORMAL, Color.LIGHT_GRAY);
         aspectColorMap.put(Aspect.GRASS, Color.GREEN);
         aspectColorMap.put(Aspect.FIRE, Color.ORANGE);
-        aspectColorMap.put(Aspect.WATER, Color.BLUE);
+        aspectColorMap.put(Aspect.WATER, Color.BLUE.brighter());
         aspectColorMap.put(Aspect.FLYING, Color.CYAN);
         aspectColorMap.put(Aspect.POISON, Color.MAGENTA.darker());
-        aspectColorMap.put(Aspect.GROUND, Color.YELLOW);
+        aspectColorMap.put(Aspect.GROUND, Color.YELLOW.darker());
         aspectColorMap.put(Aspect.ROCK, Color.BLACK.brighter());
         aspectColorMap.put(Aspect.FIGHTING, Color.RED.darker());
         aspectColorMap.put(Aspect.BUG, Color.GREEN.darker());
