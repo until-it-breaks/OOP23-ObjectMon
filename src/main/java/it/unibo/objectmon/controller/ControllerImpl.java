@@ -5,12 +5,14 @@ import java.util.Set;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.controller.engine.GameLoopImpl;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.ModelImpl;
+import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
 import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
@@ -81,5 +83,10 @@ public final class ControllerImpl implements Controller {
     @Override
     public GameState getGameState() {
         return model.getGameStateManager().getGameState();
+    }
+
+    @Override
+    public Optional<Battle> getBattleStats() {
+        return model.getBattleManager().getBattleStats();
     }
 }
