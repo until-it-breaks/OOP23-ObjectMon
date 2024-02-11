@@ -26,6 +26,8 @@ public class CommandPanel extends JPanel {
     private final JButton switchButton = new JButton("Switch");
     private final JButton itemButton = new JButton("Use item");
     private final JButton fleeButton = new JButton("Run away");
+    private final JButton backButton = new JButton("Back");
+
 
     /**
      * Constructs a JPanel displaying some buttons.
@@ -35,25 +37,14 @@ public class CommandPanel extends JPanel {
     public CommandPanel(final Controller controller) {
         this.controller = controller;
         this.setLayout(new GridBagLayout());
-        attackButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                drawAttacks();
-            }
+        attackButton.addActionListener(e -> drawAttacks());
+        switchButton.addActionListener(e -> drawSwitch());
+        itemButton.addActionListener(e -> drawItems());
+        fleeButton.addActionListener(e -> controller.notifyCommand(new RunAway()));
+        backButton.addActionListener(e -> {
+            removeAll();
+            drawStartingButtons();
         });
-        switchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                drawSwitch();
-            }
-        });
-        itemButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                drawItems();
-            }
-        });
-        fleeButton.addActionListener(e -> controller.notifyCommand(new RunAway())); //To be substituted with something like controller.notifyCommand(new RunAway())
         drawStartingButtons();
     }
 
@@ -66,21 +57,19 @@ public class CommandPanel extends JPanel {
             final JButton attackButton = new JButton(skill.getName());
             attackButton.setForeground(Color.WHITE);
             attackButton.setBackground(AspectColorMap.getColorForAspect(skill.getAspect()));
-            attackButton.addActionListener(new ActionListener() {
-                final int currentSkillIndex = skillCounter[0];
-                
-                @Override
-                public void actionPerformed(final ActionEvent e) {
+            final int currentSkillIndex = skillCounter[0];
+            attackButton.addActionListener(e -> {
                     removeAll();
                     controller.notifyCommand(new UseSkill(currentSkillIndex));
+                    System.out.println("Attack " + skillCounter[0]);
                     drawStartingButtons();
-                }
             });
             attackButton.setToolTipText("Type: "+ skill.getCategory().getName() + " Power: " + skill.getBasePower() + ", Accuracy: " + skill.getAccuracy() + " %");
             this.add(attackButton, gbc);
             gbc.gridx++;
             skillCounter[0]++;
         }
+        this.add(backButton);
         this.revalidate();
     }
 
@@ -95,23 +84,17 @@ public class CommandPanel extends JPanel {
             if (objectmon.equals(controller.getBattleStats().get().getCurrentObjectmon())) {
                 switchObjectmon.setEnabled(false);
             }
-            switchObjectmon.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(final ActionEvent e) {
+            final int currentObjectmonIndex = objectmonCounter[0];
+            switchObjectmon.addActionListener(e -> {
                     removeAll();
-                    controller.notifyCommand(new SwitchObjectmon(objectmonCounter[0]));
+                    System.out.println("Switch to " + controller.getBattleStats().get().getPlayerTeam().getParty().get(currentObjectmonIndex).getName());
+                    controller.notifyCommand(new SwitchObjectmon(currentObjectmonIndex));
                     drawStartingButtons();
-                }
             });
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;
             gbc.gridx++;
         }
-        final JButton backButton = new JButton("Back");
-        backButton.addActionListener(e -> {
-            removeAll();
-            drawStartingButtons();
-        });
         this.add(backButton);
         this.revalidate();
     }
