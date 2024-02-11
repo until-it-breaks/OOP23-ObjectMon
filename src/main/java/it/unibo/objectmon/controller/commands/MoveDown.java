@@ -10,6 +10,6 @@ import it.unibo.objectmon.model.entities.api.Direction;
 public final class MoveDown implements Command {
     @Override
     public void execute(final Model model) {
-        model.getGameContext().getPlayer().move(Direction.DOWN, model.getCollisionChecker());
+        model.getGameContext().getPlayer().move(Direction.DOWN, model.getCollisionManager());
     }
 }

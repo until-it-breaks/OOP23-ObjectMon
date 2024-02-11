@@ -18,14 +18,13 @@ class GameLoopTest {
 
     private final Model model = mock(Model.class);
     private final View view = mock(View.class);
-    private Controller controller;
+    private final Controller controller = mock(Controller.class);
     private GameLoopImpl gameLoop;
     private Thread gameLoopThread;
     private static final int MILLIS_TO_WAIT = 3000;
 
     @BeforeEach
     void init() {
-        controller = mock(Controller.class);
         gameLoop = new GameLoopImpl(model, view, controller);
         gameLoopThread = new Thread(() -> gameLoop.start());
     }
@@ -43,7 +42,7 @@ class GameLoopTest {
     void testFrameRate() throws InterruptedException {
         gameLoopThread.start();
         Thread.sleep(MILLIS_TO_WAIT);
-        assertTrue(controller.getFPS() <= GameLoopImpl.TARGET_FPS);
+        assertTrue(this.gameLoop.getFPS() <= GameLoopImpl.TARGET_FPS);
         gameLoop.stop();
     }
 }

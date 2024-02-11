@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Set;
 import java.util.HashSet;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.npc.HealerNPCImpl;
 import it.unibo.objectmon.model.entities.npc.SellerNPCImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;

@@ -20,7 +20,7 @@ import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 public final class ModelImpl implements Model {
     private GameContext gameContext;
     private InteractionManager interactionManager;
-    private CollisionManager collisionChecker;
+    private CollisionManager collisionManager;
     private BattleManager battleManager;
     private GameStateManager gameStateManager;
 
@@ -35,7 +35,7 @@ public final class ModelImpl implements Model {
     @Override
     public void initialize() {
         this.gameContext = GameContexts.createDefaultContext();
-        this.collisionChecker = new CollisionManagerImpl(this.gameContext.getWorld(), this.gameContext.getNpcManager().getNPCs());
+        this.collisionManager = new CollisionManagerImpl(this.gameContext.getWorld(), this.gameContext.getNPCs());
         this.interactionManager = new InteractionManagerImpl();
         this.battleManager = new BattleManagerImpl();
         this.gameStateManager = new GameStateManagerImpl();
@@ -47,8 +47,8 @@ public final class ModelImpl implements Model {
     }
 
     @Override
-    public CollisionManager getCollisionChecker() {
-        return this.collisionChecker;
+    public CollisionManager getCollisionManager() {
+        return this.collisionManager;
     }
 
     @Override

@@ -5,9 +5,9 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 
@@ -16,7 +16,6 @@ import it.unibo.objectmon.model.world.api.Coord;
  */
 public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
     private final ObjectmonParty objectmonParty;
-    private boolean defeatStatus;
 
     /**
      * Constructs a new Trainer.
@@ -28,12 +27,11 @@ public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
     public TrainerNPCImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
-        this.defeatStatus = false;
     }
 
     @Override
     public boolean isDefeated() {
-        return this.defeatStatus;
+        return this.objectmonParty.getParty().size() == 0;
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
@@ -51,10 +49,5 @@ public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
         } else {
             logger.log(this.getName() + "has already been defeated");
         }
-    }
-
-    @Override
-    public void setDefeated(final boolean defeatStatus) {
-        this.defeatStatus = defeatStatus;
     }
 }

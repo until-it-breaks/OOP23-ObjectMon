@@ -1,6 +1,8 @@
 package it.unibo.objectmon.model.core;
 
-import it.unibo.objectmon.model.entities.api.NPCManager;
+import java.util.Set;
+
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.world.api.World;
 
@@ -25,9 +27,9 @@ public interface GameContext {
     Player getPlayer();
 
     /**
-     * Retrieves the NPC manager associated with the game context.
+     * Retrieves the NPCs in the game.
      * 
-     * @return The NPC manager.
+     * @return The NPCs.
      */
-    NPCManager getNpcManager();
+    Set<AbstractNPC> getNPCs();
 }

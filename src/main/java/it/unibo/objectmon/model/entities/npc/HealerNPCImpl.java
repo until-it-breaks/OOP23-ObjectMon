@@ -2,9 +2,9 @@ package it.unibo.objectmon.model.entities.npc;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
+import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entities.api.npc.Healer;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 

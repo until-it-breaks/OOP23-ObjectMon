@@ -1,19 +1,19 @@
 package it.unibo.objectmon.controller;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.stream.Collectors;
+
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.controller.engine.GameLoop;
 import it.unibo.objectmon.controller.engine.GameLoopImpl;
-import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
-import it.unibo.objectmon.controller.readonly.ReadOnlyPlayer;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.world.api.World;
 import it.unibo.objectmon.view.View;
@@ -28,7 +28,6 @@ public final class ControllerImpl implements Controller {
     private final Queue<Command> commandQueue;
     private final Model model;
     private final View view;
-    private long fps;
 
     /**
      * Constructs the controller.
@@ -59,12 +58,9 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public Set<ReadOnlyNPC> getNPCSet() {
-        final Set<AbstractNPC> npcs = model.getGameContext().getNpcManager().getNPCs();
-        final Set<ReadOnlyNPC> out = new HashSet<>();
-        for (final AbstractNPC npc : npcs) {
-            out.add(new ReadOnlyNPC(npc));
-        }
-        return out;
+    return model.getGameContext().getNPCs().stream()
+            .map(ReadOnlyNPC::new)
+            .collect(Collectors.toSet());
     }
 
     @Override
@@ -80,16 +76,6 @@ public final class ControllerImpl implements Controller {
     @Override
     public List<String> getMessageLog() {
         return model.getInteractionManager().getMessages();
-    }
-
-    @Override
-    public long getFPS() {
-        return this.fps;
-    }
-
-    @Override
-    public void updateFPS(final long fps) {
-        this.fps = fps;
     }
 
     @Override

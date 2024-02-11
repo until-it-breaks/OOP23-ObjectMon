@@ -17,10 +17,12 @@ public class GameLoopImpl implements GameLoop {
      * The target frame rate.
      */
     public static final int TARGET_FPS = 30;
-    private static final long PERIOD = 1_000 / TARGET_FPS;
-    private final Logger logger = Logger.getLogger("GameLoop");
+    private static final int SECOND_IN_MILLIS = 1_000;
+    private static final int PERIOD = SECOND_IN_MILLIS / TARGET_FPS;
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
     private final Model model;
     private final View view;
+    private long fps;
     private final Controller controller;
     private boolean keepRunning;
 
@@ -51,7 +53,7 @@ public class GameLoopImpl implements GameLoop {
         while (keepRunning) {
             final long currentTime = System.currentTimeMillis();
             final long elapsed = currentTime - previousTime;
-            outputFPS(elapsed);
+            updateFPS(elapsed);
             processInput();
             render();
             waitForNextFrame(currentTime);
@@ -86,14 +88,23 @@ public class GameLoopImpl implements GameLoop {
     }
 
     /**
-     * Redirects the FPS to the controller.
+     * Updates the FPS.
      * 
      * @param elapsed the time elapsed since the start of the current frame.
      */
-    protected void outputFPS(final long elapsed) {
+    protected void updateFPS(final long elapsed) {
         if (elapsed > 0) {
-            controller.updateFPS(1_000 / elapsed);
+            this.fps = SECOND_IN_MILLIS / elapsed;
         }
+    }
+
+    /**
+     * Retrieves the latest calculate fps.
+     * 
+     * @return The fps.
+     */
+    protected long getFPS() {
+        return this.fps;
     }
 
     /**

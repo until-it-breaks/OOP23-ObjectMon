@@ -35,7 +35,7 @@ public interface Model {
      *
      * @return The collision checker.
      */
-    CollisionManager getCollisionChecker();
+    CollisionManager getCollisionManager();
 
     /**
      * Retrieves the battle manager

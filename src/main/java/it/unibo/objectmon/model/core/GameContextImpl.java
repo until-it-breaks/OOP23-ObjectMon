@@ -1,11 +1,10 @@
 package it.unibo.objectmon.model.core;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.objectmon.model.entities.api.NPCManager;
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
-import it.unibo.objectmon.model.entities.npc.NPCManagerImpl;
 import it.unibo.objectmon.model.world.api.World;
 
 /**
@@ -16,7 +15,7 @@ import it.unibo.objectmon.model.world.api.World;
 public final class GameContextImpl implements GameContext {
     private final World world;
     private final Player player;
-    private final NPCManager npcManager;
+    private final Set<AbstractNPC> npcs;
 
     /**
      * Constructs a GameContextImpl instance with the specified world, player, and NPC manager.
@@ -28,7 +27,7 @@ public final class GameContextImpl implements GameContext {
     public GameContextImpl(final World world, final Player player, final Set<AbstractNPC> npcs) {
         this.world = world;
         this.player = player;
-        this.npcManager = new NPCManagerImpl(npcs);
+        this.npcs = new HashSet<>(npcs);
     }
 
     @Override
@@ -42,9 +41,7 @@ public final class GameContextImpl implements GameContext {
     }
 
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "The NPCManager is supposed to be used for read and write operations")
-    public NPCManager getNpcManager() {
-        return this.npcManager;
+    public Set<AbstractNPC> getNPCs() {
+        return Collections.unmodifiableSet(this.npcs);
     }
 }

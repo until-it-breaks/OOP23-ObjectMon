@@ -1,14 +1,12 @@
-package it.unibo.objectmon.model.entities.api.npc;
+package it.unibo.objectmon.model.entities.api;
 
-import it.unibo.objectmon.model.entities.api.EntityImpl;
-import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
  * Models an npc with a behaviour that can be triggered on interaction.
  */
-public abstract class AbstractNPC extends EntityImpl {
+public abstract class AbstractNPC extends AbstractEntity {
 
     /**
      * Constructs an incomplete NPC.
@@ -26,4 +24,5 @@ public abstract class AbstractNPC extends EntityImpl {
      * @param logger The logger on which interaction outputs are logged.
      */
     public abstract void handleInteraction(Player player, EventLogger logger);
+
 }

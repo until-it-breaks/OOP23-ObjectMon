@@ -10,12 +10,12 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.controller.readonly.ReadOnlyNPC;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
-import it.unibo.objectmon.model.entities.api.npc.Healer;
-import it.unibo.objectmon.model.entities.api.npc.Seller;
-import it.unibo.objectmon.model.entities.api.npc.Trainer;
+import it.unibo.objectmon.model.entities.api.Healer;
+import it.unibo.objectmon.model.entities.api.Seller;
+import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
@@ -31,8 +31,6 @@ public final class OverWorldPanel extends JPanel {
     private static final int FONT_SIZE = 13;
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
-    private static final int FPS_X_POSITION = 10;
-    private static final int FPS_Y_POSITION = 20;
     private final transient Controller controller;
     private final transient ImageLoader imageLoader;
 
@@ -88,7 +86,6 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawHUD(final Graphics2D g) {
-        drawFPS(g);
         drawEventLog(g);
         drawParty(g);
     }
@@ -144,13 +141,6 @@ public final class OverWorldPanel extends JPanel {
             final String message = messages.get(i);
             g.drawString(message, boxX + 10, startY + (i * lineHeight));
         }
-    }
-
-    private void drawFPS(final Graphics2D g) {
-        final long fps = controller.getFPS();
-        g.setColor(Color.RED);
-        g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
-        g.drawString("FPS: " + fps, FPS_X_POSITION, FPS_Y_POSITION);
     }
 
     private void drawParty(final Graphics2D g) {

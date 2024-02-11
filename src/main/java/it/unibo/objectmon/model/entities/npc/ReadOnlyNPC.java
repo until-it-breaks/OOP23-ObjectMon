@@ -1,8 +1,8 @@
-package it.unibo.objectmon.controller.readonly;
+package it.unibo.objectmon.model.entities.npc;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Direction;
-import it.unibo.objectmon.model.entities.api.npc.AbstractNPC;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
