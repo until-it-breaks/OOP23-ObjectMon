@@ -2,7 +2,6 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
-import it.unibo.objectmon.controller.commands.SwitchObjectmon;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
@@ -58,6 +57,7 @@ public final class BattleManagerImpl implements BattleManager {
                 throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
             })
         );
+        this.result = Optional.of(Result.IN_BATTLE);
     }
 
     @Override
@@ -93,17 +93,16 @@ public final class BattleManagerImpl implements BattleManager {
         switch (type) {
             case ATTACK :
                 if (this.isDead(this.battle.get().getEnemyObjectmon())) {
-                    this.battle.get().getTrainerTeam().ifPresentOrElse(
+                    this.battle.get().getTrainerTeam().ifPresent(
                         t -> {
                             if (t.getParty().size() > 1) {
                                 this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
                             }
-                            setResult(Result.WIN);
-                        },
-                        () -> setResult(Result.WIN)
+                        }
                     );
+                } else {
+                    useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
                 }
-                useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
                 break;
             case SWITCH_OBJECTMON :
                 this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
@@ -122,11 +121,14 @@ public final class BattleManagerImpl implements BattleManager {
             case ATTACK:
                 if (this.isDead(this.battle.get().getCurrentObjectmon())) {
                     this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+                } else {
+                    this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
                 }
-                this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
                 break;
             case SWITCH_OBJECTMON:
-                this.switchPlayerObjectmon(index);
+                if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
+                    this.switchPlayerObjectmon(index);
+                }
                 break;
             case RUN_AWAY:
                 this.runAway();
@@ -186,7 +188,7 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void bufferCommand(final Move type, final int index) {
-        if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE)) {
+        if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE) && this.battle.isPresent()) {
             this.turn.setTurn(StatTurn.TURN_STARTED);
             this.startTurn(type, index);
         }
@@ -215,12 +217,12 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.battle.get().isWin()) {
             this.setResult(Result.WIN);
             this.endBattleAction();
-        }
-        if (this.battle.get().isLose()) {
+        } else if (this.battle.get().isLose()) {
             this.setResult(Result.LOSE);
             this.endBattleAction();
+        } else {
+            this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
         }
-        this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
     }
 
     private void endBattleAction() {
@@ -228,9 +230,11 @@ public final class BattleManagerImpl implements BattleManager {
             switch (this.result.get()) {
                 case WIN:
                     this.battle.get().getTrainer().ifPresent(t -> t.setDefeated(true));
+                    System.out.println("YOU WON");
                     break;
                 case LOSE:
                     this.battle.get().getPlayer().setDefeated(true);
+                    System.out.println("YOU LOSE");
                     break;
                 default:
                     break;
@@ -261,7 +265,7 @@ public final class BattleManagerImpl implements BattleManager {
                 ObjectmonEnum.ANORITH,
                 ObjectmonEnum.KECLEON,
                 ObjectmonEnum.MUDKIP
-            ), 2))
+            ), 3))
         );
         final Model model = new ModelImpl();
         model.initialize();
@@ -275,18 +279,28 @@ public final class BattleManagerImpl implements BattleManager {
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
-        Command switchObj = new SwitchObjectmon(1);
-        switchObj.execute(model);
+        //Command switchObj = new SwitchObjectmon(1);
+        //switchObj.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
     }
 
     public void printInfo() {
-        System.out.println(this.battle.get().getCurrentObjectmon().getName() 
-        + this.battle.get().getCurrentObjectmon().getCurrentHp()
+        System.out.println(this.battle.get().getCurrentObjectmon().getName() + " " 
+        + this.battle.get().getCurrentObjectmon().getCurrentHp() + " "
+        + this.getResult()
         );
-        System.out.println(this.battle.get().getEnemyObjectmon().getName()
-            + this.battle.get().getEnemyObjectmon().getCurrentHp());
+        System.out.println(this.battle.get().getEnemyObjectmon().getName() + " "
+            + this.battle.get().getEnemyObjectmon().getCurrentHp() + " "
+            + this.getResult());
     } 
 }
