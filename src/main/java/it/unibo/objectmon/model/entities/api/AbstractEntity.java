@@ -61,11 +61,6 @@ public abstract class AbstractEntity implements Entity {
         return id;
     }
 
-    /**
-     * Computes a hash code for this NPC.
-     * 
-     * @return A hash code value for this NPC.
-     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -74,13 +69,6 @@ public abstract class AbstractEntity implements Entity {
         return result;
     }
 
-        /**
-     * Indicates whether some other object is equal to this NPC.
-     * The {@link UUID} is also used to make the comparison.
-     * 
-     * @param obj The reference object with which to compare.
-     * @return {@code true} if this NPC is the same as the obj argument; {@code false} otherwise.
-     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {

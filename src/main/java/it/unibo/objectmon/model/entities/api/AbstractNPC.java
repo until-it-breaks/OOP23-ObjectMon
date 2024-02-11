@@ -10,6 +10,7 @@ public abstract class AbstractNPC extends AbstractEntity {
 
     /**
      * Constructs an incomplete NPC.
+     * 
      * @param name the npc name
      * @param coord the npc position
      */
