@@ -10,14 +10,14 @@ import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
 /**
- * Models the player inventory that uses a Map.
+ * Models the player inventory using a map that accepts the item istance as key.
  */
 public final class InventoryImpl implements Inventory {
 
     private final Map<Item, Integer> items;
 
     /**
-     * 
+     * Constructs the inventory.
      */
     public InventoryImpl() {
         this.items = new HashMap<>();
@@ -25,14 +25,17 @@ public final class InventoryImpl implements Inventory {
 
     @Override
     public void addItem(final Item item, final int count) {
-        //aggiunge un tot di oggetti basandosi sulla chiave (es new HealItem(HealEnum.POTION))
         items.put(item, items.getOrDefault(item, 0) + count);
     }
 
     @Override
-    public <T extends Item> void useItem(final T item) {
-        //un metodo generico che diminuisce la conta di uno strumento usando come chiave qualunque classe estenda Item
-        items.computeIfPresent(item, (key, count) -> count > 1 ? count - 1 : null);
+    public <T extends Item> boolean useItem(final T item) {
+        final Integer count = items.get(item);
+        if (count != null && count > 0) {
+            items.put(item, count - 1);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -70,7 +73,6 @@ public final class InventoryImpl implements Inventory {
 
     @Override
     public int getInventoryValue() {
-        //ritorna il totale del valore dell'inventario attraverso lo stream delle chiavi(items) e sommando il loro campo "value"
         return items.keySet().stream()
             .mapToInt(item -> item.getValue())
             .sum();

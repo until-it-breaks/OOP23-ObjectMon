@@ -17,44 +17,45 @@ public interface Inventory {
     void addItem(Item item, int count);
 
     /**
-     * uses item of the inventory.
-     * @param <T>
+     * Consume an item of the inventory.
+     * @param <T> The type of item to be used. Must be a subtype of {@link Item}
      * @param item item to be used
+     * @return True if the item is present and successfully used
      */
-    <T extends Item> void useItem(T item);
+    <T extends Item> boolean useItem(T item);
 
     /**
-     * Returns number of heal items.
+     * Returns number of heal items in the inventory.
      * @return heal count
      */
     int getHealItemCount();
 
     /**
-     * Returns number of ball items.
+     * Returns number of ball items in the inventory.
      * @return ball count
      */
     int getBallItemCount();
 
     /**
-     * Returns number of items.
-     * @return item count
+     * Returns number of total items in the inventory.
+     * @return total item count
      */
     int getTotalItemCount();
 
     /**
-     * Returns unmodifiable list of items.
-     * @return items list
+     * Returns the map of items.
+     * @return a map of items
      */
     Map<Item, Integer> getItems();
 
     /**
-     * Clears keys and values by map.
+     * Clears the inventory.
      */
     void clear();
 
     /**
-     * Returns inventory value by stream.
-     * @return inventory value
+     * Returns the total value of the inventory.
+     * @return total inventory value
      */
     int getInventoryValue();
 }
