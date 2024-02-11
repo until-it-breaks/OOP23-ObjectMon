@@ -1,5 +1,7 @@
 package it.unibo.objectmon.model.item.impl;
 
+import java.util.Objects;
+
 import it.unibo.objectmon.model.item.api.HealEnum;
 import it.unibo.objectmon.model.item.api.HealItem;
 
@@ -64,27 +66,13 @@ public final class HealItemImpl implements HealItem {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         final HealItemImpl other = (HealItemImpl) obj;
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        if (value != other.value) {
-            return false;
-        }
-        if (healPoint != other.healPoint) {
-            return false;
-        }
-        return true;
+        return healPoint == other.healPoint
+            && value == other.value
+            && Objects.equals(name, other.name);
     }
 
     @Override

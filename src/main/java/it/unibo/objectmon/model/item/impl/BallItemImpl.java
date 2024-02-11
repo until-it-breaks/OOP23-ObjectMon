@@ -1,5 +1,7 @@
 package it.unibo.objectmon.model.item.impl;
 
+import java.util.Objects;
+
 import it.unibo.objectmon.model.item.api.BallEnum;
 import it.unibo.objectmon.model.item.api.BallItem;
 
@@ -66,27 +68,13 @@ public final class BallItemImpl implements BallItem {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         final BallItemImpl other = (BallItemImpl) obj;
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        if (value != other.value) {
-            return false;
-        }
-        if (Double.doubleToLongBits(catchMultiplier) != Double.doubleToLongBits(other.catchMultiplier)) {
-            return false;
-        }
-        return true;
+        return Double.compare(other.catchMultiplier, catchMultiplier) == 0
+            && value == other.value
+            && Objects.equals(name, other.name);
     }
 
     @Override
