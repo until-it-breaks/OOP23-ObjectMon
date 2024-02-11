@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
@@ -29,7 +30,7 @@ public final class GameContexts {
      * 
      * @return A default {@link GameContext} instance.
      */
-    public static GameContext createDefaultContext() {
+    public static GameContext createDefaultContext(BattleManager bm) {
         final World defaultWorld = new WorldImpl(Worlds.DEMO);
         final Player defaultPlayer = new PlayerImpl("Player",
             defaultWorld.getStartingPosition(),
@@ -38,7 +39,7 @@ public final class GameContexts {
                     ObjectmonEnum.TREECKO,
                     ObjectmonEnum.MUDKIP),
                 5)));
-        final Set<AbstractNPC> npcSet = NPCGenerator.createDefaultNPCs();
+        final Set<AbstractNPC> npcSet = NPCGenerator.createDefaultNPCs(bm);
         return new GameContextImpl(defaultWorld, defaultPlayer, npcSet);
     }
 }

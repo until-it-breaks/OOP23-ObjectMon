@@ -15,6 +15,8 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
  * an implementation of battle manager.
@@ -25,14 +27,16 @@ public final class BattleManagerImpl implements BattleManager {
     private Optional<Result> result;
     private final Turn turn;
     private final AiTrainer aiTrainer;
+    private GameStateManager gameStateManager;
     /**
      * Constructor of BattleManagerImpl.
      */
-    public BattleManagerImpl() {
+    public BattleManagerImpl(final GameStateManager gameStateManager) {
         this.battle = Optional.empty();
         this.result = Optional.empty();
         this.turn = new TurnImpl();
         this.aiTrainer = new EasyAiTrainer();
+        this.gameStateManager = gameStateManager;
     }
 
     @Override
@@ -41,7 +45,9 @@ public final class BattleManagerImpl implements BattleManager {
             throw new IllegalStateException("A battle is already in progress.");
         }
         trainer.ifPresentOrElse(
-            t -> this.battle = Optional.of(new BattleImpl(player, t)), 
+            t -> { this.battle = Optional.of(new BattleImpl(player, t));
+            this.gameStateManager.setGameState(GameState.BATTLE);
+            },
             () -> objectMon.ifPresentOrElse(o -> this.battle = Optional.of(new BattleImpl(player, o)), () -> {
                 throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
             })
@@ -240,6 +246,13 @@ public final class BattleManagerImpl implements BattleManager {
                     break;
                 default:
                     break;
+            }
+            gameStateManager.setGameState(GameState.EXPLORATION);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
             this.battle = Optional.empty();
         }

@@ -8,6 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.controller.commands.RunAway;
+import it.unibo.objectmon.controller.commands.UseSkill;
+import it.unibo.objectmon.model.data.api.skill.Skill;
 
 /**
  * The panel responsible for sending the player choices to the model.
@@ -47,58 +50,32 @@ public class CommandPanel extends JPanel {
                 drawItems();
             }
         });
-        fleeButton.addActionListener(null); //To be substituted with something like controller.notifyCommand(new RunAway())
+        fleeButton.addActionListener(e -> controller.notifyCommand(new RunAway())); //To be substituted with something like controller.notifyCommand(new RunAway())
         drawStartingButtons();
     }
 
     private void drawAttacks() {
         this.removeAll();
         final GridBagConstraints gbc = createDefaultConstraints();
-
-        final JButton attack1 = new JButton("Attack 1");
-        attack1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        this.add(attack1, gbc);
-
-
-        final JButton attack2 = new JButton("Attack 2");
-        attack2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(attack2, gbc);
-
-        final JButton attack3 = new JButton("Attack 3");
-        attack3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(attack3, gbc);
-
-
-        final JButton attack4 = new JButton("Attack 4");
-        attack4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(attack4, gbc);
+        final int[] skillCounter = {0};
+        
+        for (final Skill skill : controller.getBattleStats().get().getCurrentObjectmon().getSkills()) {
+            final JButton attackButton = new JButton(skill.getName());
+            attackButton.setBackground(AspectColorMap.getColorForAspect(skill.getAspect()));
+            attackButton.addActionListener(new ActionListener() {
+                final int currentSkillIndex = skillCounter[0];
+                
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    removeAll();
+                    controller.notifyCommand(new UseSkill(currentSkillIndex));
+                    drawStartingButtons();
+                }
+            });
+            this.add(attackButton, gbc);
+            gbc.gridx++;
+            skillCounter[0]++; // Increment skill counter for the next button
+        }
         this.revalidate();
     }
 

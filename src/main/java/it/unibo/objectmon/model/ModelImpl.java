@@ -34,11 +34,12 @@ public final class ModelImpl implements Model {
 
     @Override
     public void initialize() {
-        this.gameContext = GameContexts.createDefaultContext();
+        this.gameStateManager = new GameStateManagerImpl();
+        this.battleManager = new BattleManagerImpl(gameStateManager);
+        this.gameContext = GameContexts.createDefaultContext(battleManager);
         this.collisionManager = new CollisionManagerImpl(this.gameContext.getWorld(), this.gameContext.getNPCs());
         this.interactionManager = new InteractionManagerImpl();
-        this.battleManager = new BattleManagerImpl();
-        this.gameStateManager = new GameStateManagerImpl();
+
     }
 
     @Override
