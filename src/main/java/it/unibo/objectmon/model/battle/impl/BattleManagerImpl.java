@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import it.unibo.objectmon.controller.commands.SwitchObjectmon;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
@@ -23,7 +24,7 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.Trainer;
 import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
-import it.unibo.objectmon.model.world.Coord;
+import it.unibo.objectmon.model.world.api.Coord;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -64,23 +65,23 @@ public final class BattleManagerImpl implements BattleManager {
         this.turn.setTurn(StatTurn.TURN_STARTED);
         final int aiIndex = chooseAiMove();
         this.battle.get().setPlayerMove(type);
-        switch (this.turn.whichFirst(
-            this.battle.get().getEnemyMove(),
-            this.battle.get().getPlayerMove(), 
-            this.battle.get().getCurrentObjectmon(), 
-            this.battle.get().getEnemyObjectmon()
-        )) {
-            case AI_TURN :
-                executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
-                executePlayerTurn(type, index);
-                break;
-            case PLAYER_TURN :
-                executePlayerTurn(type, index);
-                executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
-                break;
-            default :
-                throw new IllegalArgumentException();
-        }
+            switch (this.turn.whichFirst(
+                this.battle.get().getEnemyMove(),
+                this.battle.get().getPlayerMove(), 
+                this.battle.get().getCurrentObjectmon(), 
+                this.battle.get().getEnemyObjectmon()
+            )) {
+                case AI_TURN :
+                    executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
+                    executePlayerTurn(type, index);
+                    break;
+                case PLAYER_TURN :
+                    executePlayerTurn(type, index);
+                    executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
+                    break;
+                default :
+                    throw new IllegalArgumentException();
+            }
         this.endTurnAction();
     }
     /**
@@ -93,7 +94,12 @@ public final class BattleManagerImpl implements BattleManager {
             case ATTACK :
                 if (this.isDead(this.battle.get().getEnemyObjectmon())) {
                     this.battle.get().getTrainerTeam().ifPresentOrElse(
-                        t -> this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get()),
+                        t -> {
+                            if (t.getParty().size() > 1) {
+                                this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
+                            }
+                            setResult(Result.WIN);
+                        },
                         () -> setResult(Result.WIN)
                     );
                 }
@@ -242,30 +248,35 @@ public final class BattleManagerImpl implements BattleManager {
      * @param args
      */
     public static void main(final String[] args) {
-        final int DEFAULT_PARTY_LEVEL = 5;
         final Coord POSITION_1 = new Coord(5, 5);
         Trainer trainer = new TrainerNPCImpl("Trainer Bob", 
             POSITION_1, 
             new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
                 ObjectmonEnum.ILLUMISE,
                 ObjectmonEnum.LILEEP),
-                DEFAULT_PARTY_LEVEL)));
+                1)));
         Player player = new PlayerImpl("yous",
             new Coord(5, 6), 
             new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
                 ObjectmonEnum.ANORITH,
                 ObjectmonEnum.KECLEON,
                 ObjectmonEnum.MUDKIP
-            ), DEFAULT_PARTY_LEVEL))
+            ), 2))
         );
         final Model model = new ModelImpl();
         model.initialize();
         final BattleManager battleManager = model.getBattleManager();
         model.getBattleManager().startBattle(player, Optional.of(trainer), Optional.empty());
-        Command useSkill1 = new UseSkill(1);
         Command useSkill0 = new UseSkill(0);
         battleManager.printInfo();
-        useSkill1.execute(model);
+        useSkill0.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
+        Command switchObj = new SwitchObjectmon(1);
+        switchObj.execute(model);
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();

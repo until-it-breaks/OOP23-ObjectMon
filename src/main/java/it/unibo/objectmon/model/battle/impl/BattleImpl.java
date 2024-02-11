@@ -6,7 +6,6 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.npc.Trainer;
 /**
@@ -104,7 +103,7 @@ public final class BattleImpl implements Battle {
 
     @Override
     public ObjectmonParty getPlayerTeam() {
-        return new ObjectmonPartyImpl(this.player.getObjectmonParty().getParty());
+        return this.player.getObjectmonParty();
     }
     @Override
     public Player getPlayer() {
