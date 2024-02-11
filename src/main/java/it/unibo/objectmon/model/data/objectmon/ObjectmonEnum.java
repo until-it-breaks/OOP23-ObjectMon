@@ -253,7 +253,7 @@ public enum ObjectmonEnum {
     TORCHIC(
         13,
         "Torchic",
-        List.of(Aspect.NORMAL),
+        List.of(Aspect.FIRE),
         new BaseStats(
             Map.of(
                 StatId.HP, 45,
@@ -434,7 +434,7 @@ public enum ObjectmonEnum {
 
         if (aspects.size() > 1) {
             final int firstAspectIndex = 2;
-            final int lastAspectIndex = 5;
+            final int lastAspectIndex = 6;
             this.skills = skills.subList(firstAspectIndex, lastAspectIndex);
         } else {
             this.skills = skills;
