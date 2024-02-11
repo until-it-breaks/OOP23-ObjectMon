@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import it.unibo.objectmon.controller.commands.RunAway;
 import it.unibo.objectmon.controller.commands.SwitchObjectmon;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.controller.commands.api.Command;
@@ -173,6 +174,9 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     private void switchPlayerObjectmon(final int index) {
+        if(index == 0) {
+            throw new IllegalArgumentException("index not valid to switch objectmon");
+        }
         final var team = this.battle.get().getPlayerTeam().getParty();
         this.battle.get().getPlayerTeam().switchPosition(team.get(0), team.get(index));
     }
@@ -189,9 +193,27 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     public void bufferCommand(final Move type, final int index) {
-        if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE) && this.battle.isPresent()) {
+        if (this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE) 
+            && this.battle.isPresent()
+            && isCommandValid(type, index)) {
             this.turn.setTurn(StatTurn.TURN_STARTED);
             this.startTurn(type, index);
+        } else {
+            System.out.println("command is not valid");
+        }
+
+    }
+
+    private boolean isCommandValid(final Move type, final int index) {
+        switch (type) {
+            case RUN_AWAY:
+                return this.battle.isPresent() && this.battle.get().getTrainer().isEmpty();
+            case ATTACK:
+                return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size();
+            case SWITCH_OBJECTMON:
+                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size() - 1;
+            default:
+                return false;
         }
     }
     /**
@@ -273,25 +295,23 @@ public final class BattleManagerImpl implements BattleManager {
         final BattleManager battleManager = model.getBattleManager();
         model.getBattleManager().startBattle(player, Optional.of(trainer), Optional.empty());
         Command useSkill0 = new UseSkill(0);
-        battleManager.printInfo();
-        useSkill0.execute(model);
-        battleManager.printInfo();
-        useSkill0.execute(model);
-        battleManager.printInfo();
-        useSkill0.execute(model);
-        battleManager.printInfo();
         Command switchObj = new SwitchObjectmon(1);
+        Command run = new RunAway();
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
+        useSkill0.execute(model);
+        battleManager.printInfo();
         switchObj.execute(model);
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
-        useSkill0.execute(model);
+        run.execute(model);
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
         useSkill0.execute(model);
         battleManager.printInfo();
-
     }
 
     public void printInfo() {
