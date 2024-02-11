@@ -1,5 +1,6 @@
 package it.unibo.objectmon.view;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,7 +27,7 @@ public final class ViewImpl implements View {
     public ViewImpl(final Controller controller) {
         this.controller = controller;
         this.frame = new JFrame(GAME_NAME);
-        this.frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.frame.setPreferredSize(new Dimension(1280, 720));
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setResizable(true);
         this.frame.setLocationByPlatform(true);
