@@ -433,8 +433,8 @@ public enum ObjectmonEnum {
 
         if (aspects.size() > 1) {
             final int firstAspectIndex = 2;
-            final int lastAspectIndex = 5;
-            this.skills = skills.subList(firstAspectIndex, lastAspectIndex + 1);
+            final int lastAspectIndex = 6;
+            this.skills = skills.subList(firstAspectIndex, lastAspectIndex);
         } else {
             this.skills = skills;
         }
