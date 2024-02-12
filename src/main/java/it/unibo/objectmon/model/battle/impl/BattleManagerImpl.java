@@ -25,6 +25,7 @@ import it.unibo.objectmon.model.gamestate.GameState;
  */
 public final class BattleManagerImpl implements BattleManager {
 
+    private final static int EXP = 100;
     private Optional<Battle> battle;
     private Optional<Result> result;
     private final Turn turn;
@@ -237,7 +238,8 @@ public final class BattleManagerImpl implements BattleManager {
             case RUN_AWAY:
                 return this.battle.isPresent() && this.battle.get().getTrainer().isEmpty();
             case ATTACK:
-                return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size();
+                return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size()
+                    && this.battle.get().getCurrentObjectmon().getCurrentHp() > 0;
             case SWITCH_OBJECTMON:
                 return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size()
                     && this.battle.get().getPlayerTeam().getParty().size() > 1;
@@ -281,6 +283,8 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.isOver()) {
             switch (this.result.get()) {
                 case WIN:
+                    this.battle.get().getPlayerTeam().getParty()
+                        .stream().forEach(o -> o.calcExp(upgradeEXP()));
                     this.logger.log("YOU WIN");
                     break;
                 case LOSE:
@@ -292,6 +296,10 @@ public final class BattleManagerImpl implements BattleManager {
             gameStateManager.setGameState(GameState.EXPLORATION);
             this.battle = Optional.empty();
         }
+    }
+
+    private int upgradeEXP() {
+        return EXP * this.battle.get().getEnemyObjectmon().getLevel();
     }
 
     @Override

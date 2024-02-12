@@ -10,10 +10,8 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
  * a damage calculator calculate the damage in a simple way.
  */
 public class DamageCalculatorImpl implements DamageCalculator {
-    private static final int LEVEL_MULTIPLIER = 2;
-    private static final int ATTACK_DIVISOR = 5;
-    private static final int BASE_DAMAGE_ADDITION = 2;
-    private static final int DAMAGE_DIVISOR = 50;
+    private final static double EFFICIENCY = 0.2;
+    private final static double STATISTIC_DEPENDECE = 0.3;
     private final Skill skill;
     /**
      * Constructor of DamageCalculator.
@@ -31,22 +29,23 @@ public class DamageCalculatorImpl implements DamageCalculator {
             return calculateDamage(
                 multiplier,
                 myObjectmon.getStats().getSingleStat(StatId.ATK),
-                target.getStats().getSingleStat(StatId.DEF),
-                myObjectmon
+                target.getStats().getSingleStat(StatId.DEF)
             );
         } else if (skill.getCategory().equals(SkillCategory.SPEC)) {
             return calculateDamage(
                 multiplier,
                 myObjectmon.getStats().getSingleStat(StatId.SPATK),
-                target.getStats().getSingleStat(StatId.SPDEF),
-                myObjectmon);
+                target.getStats().getSingleStat(StatId.SPDEF));
         }
         return 0;
     }
 
-    private double calculateDamage(final double multiplier, final int attack, final int defense, final Objectmon objectmon) {
-        return (
-            (LEVEL_MULTIPLIER * objectmon.getLevel() / ATTACK_DIVISOR + BASE_DAMAGE_ADDITION) 
-            * (double) this.skill.getBasePower() * ((double) attack / defense)) / DAMAGE_DIVISOR * multiplier;
+    private double calculateDamage(final double multiplier, final int attack, final int defense) {
+        final double damage;
+        damage = multiplier * EFFICIENCY * this.skill.getBasePower() + (attack - defense) * STATISTIC_DEPENDECE;
+        if(damage > 0) {
+            return damage;
+        }
+        return this.skill.getBasePower() * multiplier * EFFICIENCY;
     }
 }
