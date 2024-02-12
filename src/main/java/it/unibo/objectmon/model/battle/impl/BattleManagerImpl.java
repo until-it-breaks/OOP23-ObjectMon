@@ -128,8 +128,6 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.isDead(this.battle.get().getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
             if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
                 this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
-            } else {
-                this.setResult(Result.LOSE);
             }
         } else {
             switch (type) {
