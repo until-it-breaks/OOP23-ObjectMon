@@ -5,6 +5,7 @@ import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 
 /**
  * A manager of battle which can start a battle between the player and a fighter.
@@ -64,4 +65,9 @@ public interface BattleManager {
      * @return informations of battle.
      */
     Optional<Battle> getBattleStats();
+    /**
+     * get logger.
+     * @return logger of battle.
+     */
+    BattleLogger getLogger();
 }

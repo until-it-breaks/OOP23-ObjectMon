@@ -204,7 +204,7 @@ public final class BattleManagerImpl implements BattleManager {
         final var team = this.battle.get().getPlayerTeam().getParty();
         this.battle.get().getPlayerTeam().switchPosition(team.get(0), team.get(index));
         this.logger.log(
-            "player change current objectmon from " + team.get(index) + " to " + team.get(0)
+            "player change current objectmon from " + team.get(index).getName() + " to " + team.get(0).getName()
         );
     }
 
@@ -216,7 +216,7 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.isDead(team.getParty().get(0))) {
             this.logger.log(
                 team.getParty().get(0).getName() + " is dead " 
-                + "\n next pokemon will be " + team.getParty().get(1)
+                + "\n next pokemon will be " + team.getParty().get(1).getName()
                 );
             team.remove(team.getParty().get(0));
         }
@@ -299,5 +299,12 @@ public final class BattleManagerImpl implements BattleManager {
         return this.battle.isPresent()
             ? Optional.of(new ReadOnlyBattle(this.battle.get()))
             : Optional.empty();
+    }
+
+    @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Temporary")
+    public BattleLogger getLogger() { 
+        return this.logger;
     }
 }

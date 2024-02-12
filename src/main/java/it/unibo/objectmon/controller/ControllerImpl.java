@@ -24,6 +24,7 @@ import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
+import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.CollisionManagerImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.InteractionManagerImpl;
@@ -113,5 +114,10 @@ public final class ControllerImpl implements Controller {
     @Override
     public Optional<Battle> getBattleStats() {
         return model.getBattleStats();
+    }
+
+    @Override
+    public BattleLogger getBattleLogger() {
+        return model.getBattleLogger();
     }
 }
