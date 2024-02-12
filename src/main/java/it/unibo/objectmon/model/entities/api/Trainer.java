@@ -5,7 +5,7 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 /**
  * Models an entity capable of fighting with its Objectmon team.
  */
-public interface Trainer {
+public interface Trainer extends Entity {
 
     /**
      * Returns the Trainer is capable of fighting again.

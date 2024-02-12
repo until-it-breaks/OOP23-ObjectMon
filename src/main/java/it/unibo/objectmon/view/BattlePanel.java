@@ -20,10 +20,12 @@ public class BattlePanel extends JPanel {
     private static final long serialVersionUID = 2L;
     private static final double COMBAT_PANEL_RATIO = 0.95;
     private static final double COMMAND_PANEL_RATIO = 0.05;
+    private static final double RIGHT_PANEL_RATIO = 0.15;
 
     /**
      * Constructs a BattlePanel comprising a CombatPanel, a CommandPanel and a BattleLog.
-     * @param controller
+     * 
+     * @param controller The Controller used to pull rendering information.
      */
     public BattlePanel(final Controller controller) {
         this.setBackground(Color.BLACK);
@@ -47,12 +49,13 @@ public class BattlePanel extends JPanel {
         final CommandPanel commandPanel = new CommandPanel(controller);
         gbc.gridy = 1;
         gbc.weighty = COMMAND_PANEL_RATIO;
+        commandPanel.initialize();
         leftPanel.add(commandPanel, gbc);
 
         // Right panel (BattleLog)
         final JPanel rightPanel = new JPanel(new BorderLayout());
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        final int width = (int) (screenSize.width * 0.2); //The right panel is going to take 20% of the width at the RIGHT.
+        final int width = (int) (screenSize.width * RIGHT_PANEL_RATIO);
         rightPanel.setPreferredSize(new Dimension(width, 0));
         this.add(rightPanel, BorderLayout.EAST);
 

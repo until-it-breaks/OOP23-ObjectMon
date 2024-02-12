@@ -5,7 +5,7 @@ import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 /**
  * Represents a playable entity able to move.
  */
-public interface Player extends Entity, Trainer {
+public interface Player extends Trainer {
 
     /**
      * Attempts to move the player towards a certain direction.

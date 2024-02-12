@@ -20,7 +20,6 @@ public final class LaunchGame {
      * Sets up and starts the game.
      * 
      * @param args The arguments of the command-line passed to the application.
-     * It's not used.
      */
     public static void main(final String[] args) {
         final Controller controller = new ControllerImpl();

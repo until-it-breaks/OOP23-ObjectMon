@@ -10,6 +10,6 @@ public final class RunAway implements Command {
 
     @Override
     public void execute(final Model model) {
-        model.getBattleManager().bufferCommand(Move.RUN_AWAY, 0);
+        model.bufferCommand(Move.RUN_AWAY, 0);
     }
 }

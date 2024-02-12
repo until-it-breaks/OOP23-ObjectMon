@@ -13,13 +13,24 @@ import it.unibo.objectmon.controller.engine.GameLoopImpl;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.model.battle.api.Battle;
+import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.api.BattleStartListener;
+import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
+import it.unibo.objectmon.model.core.GameContext;
+import it.unibo.objectmon.model.core.GameContexts;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
 import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
+import it.unibo.objectmon.model.misc.collision.CollisionManagerImpl;
+import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
+import it.unibo.objectmon.model.misc.interaction.InteractionManagerImpl;
+import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 import it.unibo.objectmon.model.world.api.World;
 import it.unibo.objectmon.view.View;
-import it.unibo.objectmon.view.ViewImpl;
+import it.unibo.objectmon.view.SwingViewImpl;
 
 /**
  * Models the controller of the application.
@@ -32,14 +43,28 @@ public final class ControllerImpl implements Controller {
     private final View view;
 
     /**
-     * Constructs the controller.
+     * Constructs the controller and initializes the model dependencies.
      */
     public ControllerImpl() {
-        this.model = new ModelImpl();
-        this.view = new ViewImpl(this);
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
-        this.model.getGameStateManager().registerObserver(view);
-        this.model.getGameStateManager().setGameState(GameState.EXPLORATION);
+
+        // Create and initialize necessary dependencies
+        final GameStateManager gameStateManager = new GameStateManagerImpl();
+        final BattleManager battleManager = new BattleManagerImpl(gameStateManager);
+        final BattleStartListener battleStartListener = (player, trainer, objectmon) -> {
+            battleManager.startBattle(player, trainer, objectmon);
+        };
+        final GameContext gameContext = GameContexts.createDefaultContext(battleStartListener);
+        final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
+        final InteractionManager interactionManager = new InteractionManagerImpl();
+
+        // Create the model with initialized dependencies
+        this.model = new ModelImpl(gameContext, interactionManager, collisionManager, battleManager, gameStateManager);
+
+        // Initialize the view
+        this.view = new SwingViewImpl(this);
+        gameStateManager.registerObserver(view);
+        gameStateManager.setGameState(GameState.EXPLORATION);
     }
 
     @Override
@@ -59,9 +84,9 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Set<ReadOnlyNPC> getNPCSet() {
+    public Set<ReadOnlyEntity> getNPCSet() {
     return model.getGameContext().getNPCs().stream()
-            .map(ReadOnlyNPC::new)
+            .map(ReadOnlyEntity::new)
             .collect(Collectors.toSet());
     }
 
@@ -76,17 +101,17 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public List<String> getMessageLog() {
+    public List<String> getInteractionLog() {
         return model.getInteractionManager().getMessages();
     }
 
     @Override
     public GameState getGameState() {
-        return model.getGameStateManager().getGameState();
+        return model.getGameState();
     }
 
     @Override
     public Optional<Battle> getBattleStats() {
-        return model.getBattleManager().getBattleStats();
+        return model.getBattleStats();
     }
 }

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.JPanel;
@@ -15,12 +14,13 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Seller;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
+import it.unibo.objectmon.view.utility.RenderingUtils;
 
 /**
  * A JPanel responsible for rendering the overworld environment and entities during exploration mode.
@@ -58,7 +58,7 @@ public final class OverWorldPanel extends JPanel {
         super.paintComponent(g);
         if (g instanceof Graphics2D) {
             final Graphics2D graphics2d = (Graphics2D) g;
-            configureRenderingHints(graphics2d);
+            RenderingUtils.configureRenderingHints(graphics2d);
             //Computes the offset needed to center the camera.
             final int playerX = controller.getPlayer().getPosition().x() * TILE_SIZE;
             final int playerY = controller.getPlayer().getPosition().y() * TILE_SIZE;
@@ -76,22 +76,13 @@ public final class OverWorldPanel extends JPanel {
         }
     }
 
-    private void configureRenderingHints(final Graphics2D g) {
-        final RenderingHints renderingHints = new RenderingHints(
-            RenderingHints.KEY_RENDERING,
-            RenderingHints.VALUE_RENDER_QUALITY);
-        //Fixes those font jaggies.
-        renderingHints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        g.setRenderingHints(renderingHints);
-    }
-
     private void drawHUD(final Graphics2D g) {
         drawEventLog(g);
         drawParty(g);
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final ReadOnlyNPC npc : controller.getNPCSet()) {
+        for (final ReadOnlyEntity npc : controller.getNPCSet()) {
             final BufferedImage image = getNPCImage(npc);
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
         }
@@ -113,7 +104,7 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawEventLog(final Graphics2D g) {
-        final List<String> messages = controller.getMessageLog();
+        final List<String> messages = controller.getInteractionLog();
         final int lineHeight = 20;
         final int boxHeight = EventLoggerImpl.LIMIT * lineHeight;
 
@@ -165,7 +156,7 @@ public final class OverWorldPanel extends JPanel {
         }
     }
 
-    private BufferedImage getNPCImage(final ReadOnlyNPC npc) {
+    private BufferedImage getNPCImage(final ReadOnlyEntity npc) {
         if (npc.implementsInterface(Seller.class)) {
             return imageLoader.getImage("/npc/vendor.png");
         } else if (npc.implementsInterface(Healer.class)) {

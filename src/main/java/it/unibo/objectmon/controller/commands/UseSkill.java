@@ -17,6 +17,6 @@ public final class UseSkill implements Command {
     }
     @Override
     public void execute(final Model model) {
-        model.getBattleManager().bufferCommand(Move.ATTACK, index);
+        model.bufferCommand(Move.ATTACK, index);
     }
 }

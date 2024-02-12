@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.ai.EasyAiTrainer;
 import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
@@ -15,6 +16,8 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
  * an implementation of battle manager.
@@ -25,14 +28,21 @@ public final class BattleManagerImpl implements BattleManager {
     private Optional<Result> result;
     private final Turn turn;
     private final AiTrainer aiTrainer;
+    private final GameStateManager gameStateManager;
+
     /**
      * Constructor of BattleManagerImpl.
+     * 
+     * @param gameStateManager The game state manager.
      */
-    public BattleManagerImpl() {
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Temporary")
+    public BattleManagerImpl(final GameStateManager gameStateManager) {
         this.battle = Optional.empty();
         this.result = Optional.empty();
         this.turn = new TurnImpl();
         this.aiTrainer = new EasyAiTrainer();
+        this.gameStateManager = gameStateManager;
     }
 
     @Override
@@ -41,7 +51,10 @@ public final class BattleManagerImpl implements BattleManager {
             throw new IllegalStateException("A battle is already in progress.");
         }
         trainer.ifPresentOrElse(
-            t -> this.battle = Optional.of(new BattleImpl(player, t)), 
+            t -> {
+                this.battle = Optional.of(new BattleImpl(player, t));
+                this.gameStateManager.setGameState(GameState.BATTLE);
+            },
             () -> objectMon.ifPresentOrElse(o -> this.battle = Optional.of(new BattleImpl(player, o)), () -> {
                 throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
             })
@@ -77,6 +90,7 @@ public final class BattleManagerImpl implements BattleManager {
             }
         this.endTurnAction();
     }
+
     /**
      * 
      * @param type type of move.
@@ -104,6 +118,7 @@ public final class BattleManagerImpl implements BattleManager {
                 break;
         }
     }
+
     /**
      * 
      * @param type type of move.
@@ -246,6 +261,7 @@ public final class BattleManagerImpl implements BattleManager {
                 default:
                     break;
             }
+            gameStateManager.setGameState(GameState.EXPLORATION);
             this.battle = Optional.empty();
         }
     }

@@ -17,6 +17,6 @@ public final class SwitchObjectmon implements Command {
     }
     @Override
     public void execute(final Model model) {
-        model.getBattleManager().bufferCommand(Move.SWITCH_OBJECTMON, index);
+        model.bufferCommand(Move.SWITCH_OBJECTMON, index);
     }
 }

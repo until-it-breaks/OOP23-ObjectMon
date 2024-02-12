@@ -1,7 +1,10 @@
 package it.unibo.objectmon.model.entities.npc;
 
 import java.util.List;
+import java.util.Optional;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.battle.api.BattleStartListener;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
@@ -16,6 +19,7 @@ import it.unibo.objectmon.model.world.api.Coord;
  */
 public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
     private final ObjectmonParty objectmonParty;
+    private final BattleStartListener battleStartListener;
 
     /**
      * Constructs a new Trainer.
@@ -23,10 +27,15 @@ public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
      * @param name The name of the Trainer.
      * @param coord The starting position of the Trainer.
      * @param team The team of Objectmons of the Trainer.
+     * @param battleStartListener the listener that will
      */
-    public TrainerNPCImpl(final String name, final Coord coord, final List<Objectmon> team) {
+    public TrainerNPCImpl(final String name,
+            final Coord coord,
+            final List<Objectmon> team,
+            final BattleStartListener battleStartListener) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
+        this.battleStartListener = battleStartListener;
     }
 
     @Override
@@ -45,7 +54,7 @@ public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
     public void handleInteraction(final Player player, final EventLogger logger) {
         if (!isDefeated()) {
             logger.log(this.getName() + " challenges " + player.getName());
-            //Calls battle manager.
+            this.battleStartListener.onStartBattle(player, Optional.of(this), Optional.empty());
         } else {
             logger.log(this.getName() + "has already been defeated");
         }
