@@ -8,14 +8,12 @@ import java.util.ArrayList;
  */
 public class BattleLogger {
     private final List<BattleLogObserver> observers;
-    private final List<String> battleLog;
 
     /**
      * Constructor to create a new battle logger.
      */
     public BattleLogger() {
         this.observers = new ArrayList<>();
-        this.battleLog = new ArrayList<>();
     }
 
     /**
@@ -31,7 +29,6 @@ public class BattleLogger {
      * @param message The message to add to the battle log.
      */
     public void log(final String message) {
-        battleLog.add(message);
         notifyObservers(message);
     }
 
