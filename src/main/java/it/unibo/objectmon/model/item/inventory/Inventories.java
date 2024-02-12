@@ -36,7 +36,6 @@ public final class Inventories {
     public static InventoryImpl createWithOneOfEachItem() {
         final InventoryImpl inventory = new InventoryImpl();
         inventory.addItem(new BallItemImpl(BallEnum.OBJECTBALL), 1);
-        inventory.addItem(new BallItemImpl(BallEnum.MASTERBALL), 1);
         inventory.addItem(new BallItemImpl(BallEnum.ULTRABALL), 1);
         inventory.addItem(new BallItemImpl(BallEnum.MASTERBALL), 1);
         inventory.addItem(new HealItemImpl(HealEnum.POTION), 1);

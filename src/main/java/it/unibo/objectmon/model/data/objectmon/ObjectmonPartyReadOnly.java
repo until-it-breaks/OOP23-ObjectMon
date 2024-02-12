@@ -13,8 +13,7 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
  */
 @SuppressFBWarnings(
     value = "EI_EXPOSE_REP2", 
-    justification = "It is designed to provide read-only access to ObjectmonParty information"
-                    + "ensuring that the ObjectmonParty's state remains immutable."
+    justification = "By design this provides read-only information outside of the model."
 )
 public final class ObjectmonPartyReadOnly implements ObjectmonParty {
 
