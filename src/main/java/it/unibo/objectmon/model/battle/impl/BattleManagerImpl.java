@@ -25,7 +25,6 @@ import it.unibo.objectmon.model.gamestate.GameState;
  */
 public final class BattleManagerImpl implements BattleManager {
 
-    private final static int EXP = 100;
     private Optional<Battle> battle;
     private Optional<Result> result;
     private final Turn turn;
@@ -219,8 +218,12 @@ public final class BattleManagerImpl implements BattleManager {
                 team.getParty().get(0).getName() + " is dead " 
                 + "\n next pokemon will be " + team.getParty().get(1).getName()
                 );
-            team.remove(team.getParty().get(0));
+            this.remove(team);
         }
+    }
+
+    private void remove(final ObjectmonParty team) {
+            team.remove(team.getParty().get(0));
     }
 
     @Override
@@ -268,12 +271,14 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     private void endTurnAction() {
-        if (this.battle.get().isWin()) {
-            this.setResult(Result.WIN);
-            this.endBattleAction();
-        } else if (this.battle.get().isLose()) {
-            this.setResult(Result.LOSE);
-            this.endBattleAction();
+        if (this.battle.isPresent()) {
+            if (this.battle.get().isWin()) {
+                this.setResult(Result.WIN);
+                this.endBattleAction();
+            } else if (this.battle.get().isLose()) {
+                this.setResult(Result.LOSE);
+                this.endBattleAction();
+            }
         } else {
             this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
         }
@@ -284,7 +289,7 @@ public final class BattleManagerImpl implements BattleManager {
             switch (this.result.get()) {
                 case WIN:
                     this.battle.get().getPlayerTeam().getParty()
-                        .stream().forEach(o -> o.calcExp(upgradeEXP()));
+                        .stream().forEach(o -> o.calcExp(this.battle.get().upgradeEXP()));
                     this.logger.log("YOU WIN");
                     break;
                 case LOSE:
@@ -296,10 +301,6 @@ public final class BattleManagerImpl implements BattleManager {
             gameStateManager.setGameState(GameState.EXPLORATION);
             this.battle = Optional.empty();
         }
-    }
-
-    private int upgradeEXP() {
-        return EXP * this.battle.get().getEnemyObjectmon().getLevel();
     }
 
     @Override
