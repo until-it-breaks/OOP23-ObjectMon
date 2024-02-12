@@ -196,7 +196,7 @@ public final class BattleManagerImpl implements BattleManager {
         final int damage = attack.action(userSkill, target);
         this.logger.log(
             userSkill.getName() + " uses " + userSkill.getSkills().get(index).getName()
-            + "\n enemy " + target.getName() + " takes " + damage + " damage."
+            + "\n" + target.getName() + " takes " + damage + " damage."
             );
     }
 
