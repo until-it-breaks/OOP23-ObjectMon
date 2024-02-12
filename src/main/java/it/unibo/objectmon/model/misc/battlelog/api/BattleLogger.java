@@ -21,7 +21,7 @@ public class BattleLogger {
      * @param observer The observer to add.
      */
     public void addObserver(final BattleLogObserver observer) {
-        observers.add(observer);
+        this.observers.add(observer);
     }
 
     /**
