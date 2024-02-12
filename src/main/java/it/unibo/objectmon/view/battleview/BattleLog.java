@@ -16,7 +16,7 @@ public class BattleLog extends ScrollPane {
     private final JTextArea textArea;
 
     /**
-     * Constructs a plain ScrollPane that has a scrollable JTextAread.
+     * Constructs a plain ScrollPane that has a scrollable JTextArea.
      * 
      * @param controller the controller from which to poll information.
      */

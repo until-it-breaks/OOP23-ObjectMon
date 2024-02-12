@@ -3,7 +3,7 @@ package it.unibo.objectmon.view.utility;
 import java.awt.image.BufferedImage;
 
 /**
- * Defines an interface for loading images.
+ * Defines an interface for a class whose duty is to load images.
  */
 public interface ImageLoader {
 

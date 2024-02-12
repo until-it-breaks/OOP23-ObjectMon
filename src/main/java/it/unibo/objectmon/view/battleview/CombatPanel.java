@@ -47,12 +47,12 @@ public final class CombatPanel extends JPanel {
             RenderingUtils.configureRenderingHints(graphics2d);
             drawBackgroud(graphics2d);
             drawChallengers(graphics2d);
-            drawObjectmons(graphics2d);
             drawObjectmonCount(graphics2d);
+            drawObjectmons(graphics2d);
             graphics2d.dispose();
         }
     }
-
+    //Draws the background to fill the entire component width and height available.
     private void drawBackgroud(final Graphics2D g) {
         final BufferedImage background = imageLoader.getImage("/battle/background.png");
         g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
@@ -62,21 +62,22 @@ public final class CombatPanel extends JPanel {
         final Battle battleInfo = controller.getBattleStats().get();
         final Objectmon playerObjectmon = battleInfo.getCurrentObjectmon();
         final Objectmon enemyObjectmon = battleInfo.getEnemyObjectmon();
-        final BufferedImage playerObjectmonImg = imageLoader.getImage("/objectmon/"
+        final BufferedImage playerObjectmonImg = imageLoader.getImage("/battle/objectmon/"
             + playerObjectmon.getName()
             + ".png");
-        final BufferedImage enemyObjectmonImg = imageLoader.getImage("/objectmon/"
+        final BufferedImage enemyObjectmonImg = imageLoader.getImage("/battle/objectmon/"
             + enemyObjectmon.getName()
             + ".png");
         //Draws the player's objectmon in the middle left.
         int width = getWidth() / 2;
         int height = getHeight() / 2;
+        //Draws the player objectmon in the middle left.
         g.drawImage(playerObjectmonImg, 0, height - playerObjectmonImg.getHeight() / 2, width, height, null);
+        //Draws the player objectmon information just half it's image height above.
         drawObjectmonInfo(g, playerObjectmon, 0, height - playerObjectmonImg.getHeight() / 2);
         //Draws the enemy objectmon in the middle right.
-        width = getWidth() / 2;
-        height = getHeight() / 2;
         g.drawImage(enemyObjectmonImg, width, height - enemyObjectmonImg.getHeight() / 2, width, height, null);
+        //Draws the enemy objectmon information just half it's image height above.
         drawObjectmonInfo(g, enemyObjectmon, width, height - enemyObjectmonImg.getHeight() / 2);
     }
 
@@ -84,17 +85,14 @@ public final class CombatPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.setFont(defaultFont);
         final FontMetrics fm = g.getFontMetrics();
-
-        // Draw objectmon name
+        // Draw objectmon name.
         final int nameWidth = fm.stringWidth(objectmon.getName());
         g.drawString(objectmon.getName(), x + (getWidth() / 4) - (nameWidth / 2), y + Y_OFFSET);
-
-        // Draw objectmon level
+        // Draw objectmon level.
         final String levelText = "Level: " + objectmon.getLevel();
         final int levelWidth = fm.stringWidth(levelText);
         g.drawString(levelText, x + (getWidth() / 4) - (levelWidth / 2), y + Y_OFFSET * 2);
-
-        // Draw objectmon health
+        // Draw objectmon health.
         final String healthText = "Health: " + objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP);
         final int healthWidth = fm.stringWidth(healthText);
         g.drawString(healthText, x + (getWidth() / 4) - (healthWidth / 2), y + Y_OFFSET * 3);
@@ -103,13 +101,19 @@ public final class CombatPanel extends JPanel {
     private void drawChallengers(final Graphics2D g) {
         final Battle battleInfo = controller.getBattleStats().get();
         final Player player = battleInfo.getPlayer();
-        final Trainer enemy = battleInfo.getTrainer().get();
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), Y_OFFSET * 2);
         g.setColor(Color.WHITE);
         g.setFont(defaultFont);
         final FontMetrics fm = g.getFontMetrics();
-        final String text = player.getName() + " vs " + enemy.getName();
+        final String text;
+        if (battleInfo.getTrainer().isPresent()) {
+            final Trainer enemy = battleInfo.getTrainer().get();
+            text = player.getName() + " vs " + enemy.getName();
+        } else {
+            text = player.getName() + " vs Random Encounter";  
+        }
+        //Centered in the middle.
         final int textWidth = fm.stringWidth(text);
         final int x = (getWidth() - textWidth) / 2;
         g.drawString(text, x, Y_OFFSET);
@@ -122,14 +126,14 @@ public final class CombatPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.setFont(defaultFont);
         final FontMetrics fm = g.getFontMetrics();
-
-        // Draw player objectmon count at the top left
+        // Draw player objectmon count at the top left corner.
         final String playerCountText = battleInfo.getPlayer().getName() + " objectmons: " + playerObjectmonCount;
         g.drawString(playerCountText, 10, Y_OFFSET);
-
-        // Draw enemy objectmon count at the top right
-        final String enemyCountText = battleInfo.getPlayer().getName() + " objectmons: " + enemyObjectmonCount;
-        final int enemyCountWidth = fm.stringWidth(enemyCountText);
-        g.drawString(enemyCountText, getWidth() - enemyCountWidth - 10, Y_OFFSET);
+        // Draw enemy objectmon count at the top right corner.
+        if (battleInfo.getTrainer().isPresent()) {
+            final String enemyCountText = battleInfo.getPlayer().getName() + " objectmons: " + enemyObjectmonCount;
+            final int enemyCountWidth = fm.stringWidth(enemyCountText);
+            g.drawString(enemyCountText, getWidth() - enemyCountWidth - 10, Y_OFFSET);
+        }
     }
 }

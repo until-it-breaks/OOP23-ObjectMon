@@ -11,14 +11,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * A class modeling a caching image loader.
+ * Models a caching image loader that uses a Map behind the scenes.
  */
 public final class ImageLoaderImpl implements ImageLoader {
     private final Map<String, BufferedImage> images;
     private final Logger logger = Logger.getLogger(ImageLoaderImpl.class.getName());
 
     /**
-     * Constructs a new {@code ImageLoaderImpl} object.
+     * Constructs a new {@code ImageLoaderImpl}.
      */
     public ImageLoaderImpl() {
         this.images = new HashMap<>();
