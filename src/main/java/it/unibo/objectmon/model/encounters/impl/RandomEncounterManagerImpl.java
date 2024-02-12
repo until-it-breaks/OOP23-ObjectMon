@@ -1,5 +1,7 @@
 package it.unibo.objectmon.model.encounters.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.util.Random;
 import java.util.Optional;
 
@@ -29,6 +31,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
      * @param gameContext the game context
      * @param battleManager the manager used to start the battle
      */
+    @SuppressFBWarnings (value = "EI_EXPOSE_REP", justification = "Temporary")
     public RandomEncounterManagerImpl(final GameContext gameContext, final BattleManager battleManager) {
         this.gameContext = gameContext;
         this.battleManager = battleManager;
