@@ -1,6 +1,8 @@
 package it.unibo.objectmon.model;
 
 import java.util.Optional;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.moves.type.Move;
@@ -19,26 +21,27 @@ public final class ModelImpl implements Model {
     private final GameContext gameContext;
     private final InteractionManager interactionManager;
     private final CollisionManager collisionManager;
-    private BattleManager battleManager;
-    private GameStateManager gameStateManager;
+    private final BattleManager battleManager;
+    private final GameStateManager gameStateManager;
 
     /**
      * Constructs a ModelImpl instance with the provided dependencies.
      *
-     * @param gameContext       The game context containing information about the game world and entities.
-     * @param interactionManager The manager responsible for handling interactions within the game.
-     * @param collisionManager  The manager responsible for collision detection.
-     * @param battleManager     The manager responsible for handling battles between entities.
-     * @param gameStateManager  The manager responsible for managing the game state.
+     * @param gameContext           The game context containing information about the game world and entities.
+     * @param interactionManager    The manager responsible for handling interactions within the game.
+     * @param collisionManager      The manager responsible for collision detection.
+     * @param battleManager         The manager responsible for handling battles between entities.
+     * @param gameStateManager      The manager responsible for managing the game state.
      */
+    @SuppressFBWarnings(value = "EI2", justification = "Allowing mutable objects to be stored for flexibility")
     public ModelImpl(final GameContext gameContext, final InteractionManager interactionManager,
-        final CollisionManager collisionManager, final BattleManager battleManager,
-        final GameStateManager gameStateManager) {
+            final CollisionManager collisionManager, final BattleManager battleManager,
+            final GameStateManager gameStateManager) {
         this.gameContext = gameContext;
         this.interactionManager = interactionManager;
         this.collisionManager = collisionManager;
-        setBattleManager(battleManager);
-        setGameStateManager(gameStateManager);
+        this.battleManager = battleManager;
+        this.gameStateManager = gameStateManager;
     }
 
     @Override
@@ -74,13 +77,5 @@ public final class ModelImpl implements Model {
     @Override
     public void bufferCommand(final Move move, final int index) {
         this.battleManager.bufferCommand(move, index);
-    }
-
-    private void setGameStateManager(final GameStateManager gameStateManager) {
-        this.gameStateManager = gameStateManager;
-    }
-
-    private void setBattleManager(final BattleManager battleManager) {
-        this.battleManager = battleManager;
     }
 }

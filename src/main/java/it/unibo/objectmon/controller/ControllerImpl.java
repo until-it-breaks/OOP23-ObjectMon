@@ -43,7 +43,7 @@ public final class ControllerImpl implements Controller {
     private final View view;
 
     /**
-     * Constructs the controller.
+     * Constructs the controller and initializes the model dependencies.
      */
     public ControllerImpl() {
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
@@ -101,7 +101,7 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public List<String> getMessageLog() {
+    public List<String> getInteractionLog() {
         return model.getInteractionManager().getMessages();
     }
 

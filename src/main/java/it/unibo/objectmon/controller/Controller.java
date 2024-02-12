@@ -62,7 +62,7 @@ public interface Controller {
      *
      * @return A list of messages.
      */
-    List<String> getMessageLog();
+    List<String> getInteractionLog();
 
     /**
      * informations of the battle.

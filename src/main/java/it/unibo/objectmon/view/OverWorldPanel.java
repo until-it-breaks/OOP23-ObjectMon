@@ -104,7 +104,7 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawEventLog(final Graphics2D g) {
-        final List<String> messages = controller.getMessageLog();
+        final List<String> messages = controller.getInteractionLog();
         final int lineHeight = 20;
         final int boxHeight = EventLoggerImpl.LIMIT * lineHeight;
 
