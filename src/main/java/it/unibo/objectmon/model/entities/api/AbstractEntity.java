@@ -74,7 +74,7 @@ public abstract class AbstractEntity implements Entity {
         return result;
     }
 
-        /**
+    /**
      * Indicates whether some other object is equal to this NPC.
      * The {@link UUID} is also used to make the comparison.
      * 

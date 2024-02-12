@@ -1,19 +1,21 @@
 package it.unibo.objectmon.view;
 
-import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.view.utility.RenderingUtils;
 
 /**
  * Represents the main GUI frame for the game.
  * This class serves as the primary container
  * for displaying various game components and interacting with the user.
  */
-public final class ViewImpl implements View {
+public final class SwingViewImpl implements View {
     private static final String GAME_NAME = "Objectmon";
+    private static final String GAME_ICON = "/icon/cheesecake.png";
     private final JFrame frame;
     private final Controller controller;
 
@@ -23,14 +25,17 @@ public final class ViewImpl implements View {
      *
      * @param controller The controller that will be passed to the child panels.
      */
-    public ViewImpl(final Controller controller) {
+    public SwingViewImpl(final Controller controller) {
         this.controller = controller;
         this.frame = new JFrame(GAME_NAME);
-        this.frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.frame.setPreferredSize(RenderingUtils.getPreferredResolution());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setResizable(true);
         this.frame.setLocationByPlatform(true);
+        final ImageIcon icon = new ImageIcon(this.getClass().getResource(GAME_ICON));
+        frame.setIconImage(icon.getImage());
         this.frame.pack();
+        this.frame.setVisible(true);
     }
 
     @Override

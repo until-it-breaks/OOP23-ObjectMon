@@ -13,38 +13,47 @@ public enum Aspect {
      * Aspect of Normal.
      */
     NORMAL("Normal"),
+
     /**
      * Aspect of Grass.
      */
     GRASS("Grass"),
+
     /**
      * Aspect of Fire.
      */
     FIRE("Fire"),
+
     /**
      * Aspect of Water.
      */
     WATER("Water"),
+
     /**
      * Aspect of Flying.
      */
     FLYING("Flying"),
+
     /**
      * Aspect of Poison.
      */
     POISON("Poison"),
+
     /**
      * Aspect of Ground.
      */
     GROUND("Ground"),
+
     /**
      * Aspect of Rock.
      */
     ROCK("Rock"),
+
     /**
      * Aspect of Fighting.
      */
     FIGHTING("Fighting"),
+
     /**
      * Aspect of Bug.
      */
@@ -54,6 +63,7 @@ public enum Aspect {
 
     /**
      * Constructor of the enum Aspect.
+     * 
      * @param name Name of the Aspect.
      */
     Aspect(final String name) {
@@ -62,16 +72,17 @@ public enum Aspect {
 
     /**
      * Getter of the name of the Aspect.
+     * 
      * @return Returns the name of the Aspect.
      */
     public String getAspectName() {
         return this.aspectName;
     }
 
-
     /**
      * Method that checks if the Aspect of an Objectmon are the same of a move.
      * To check if an aspect is the same as another equals should be used.
+     * 
      * @param objectmonAspects The Aspect of the Objectmon
      * @return  Returns true if it's the same, false otherwise.
      */

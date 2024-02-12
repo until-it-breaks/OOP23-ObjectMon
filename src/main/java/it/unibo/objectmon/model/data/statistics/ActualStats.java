@@ -18,8 +18,10 @@ public class ActualStats extends StatsImpl implements Serializable {
 
     private static final long serialVersionUID = 2004L;
     private static final double STATGROWTHVARIATION = 0.20;
+
     /**
      * Constructor of the class.
+     * 
      * @param stats Map of all the stats.
      */
     public ActualStats(final Map<StatId, Integer> stats) {
@@ -27,7 +29,8 @@ public class ActualStats extends StatsImpl implements Serializable {
     }
 
     /**
-     * Constuctor of the class with BaseStats. 
+     * Constuctor of the class with BaseStats.
+     * 
      * @param stats Stats of the Objectmon.
      */
     public ActualStats(final BaseStats stats) {
@@ -38,6 +41,7 @@ public class ActualStats extends StatsImpl implements Serializable {
      * Calculates the new single stat.
      * It's an utility method.
      * Should only be called by the method calcNewStat.
+     * 
      * @param id Id of the statistic to increase.
      * @param level How many level ups are done in a row.
      * @return Returns the new singleStat, which is the sum of the base and the growth.
@@ -53,6 +57,7 @@ public class ActualStats extends StatsImpl implements Serializable {
     /**
      * Calculates all the new stats of an Objectmon after level up.
      * Should only be called when an Objectmon levels up.
+     * 
      * @return Returns the new Stats of the Objectmon after level up.
      * @param level How many level ups are done in a row.
      */

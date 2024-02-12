@@ -23,6 +23,7 @@ public class SkillImpl implements Serializable, Skill {
 
     /**
      * Contructor of the SkillImpl.
+     * 
      * @param name Name of the Skill.
      * @param id Id of the Skill.
      * @param aspect Aspect of the Skill.
@@ -52,6 +53,7 @@ public class SkillImpl implements Serializable, Skill {
 
     /**
      * Constructor of Skill using a builder.
+     * 
      * @param builder The builder.
      */
     private SkillImpl(final Builder builder) {
@@ -164,6 +166,7 @@ public class SkillImpl implements Serializable, Skill {
 
         /**
          * Constructor of a Skill.
+         * 
          * @param name  Name of the Skill.Can't be null.
          * @param id    Id of the Skill. Can't be negative.
          *
@@ -210,6 +213,7 @@ public class SkillImpl implements Serializable, Skill {
 
         /**
          * Method that builds the Skill.
+         * 
          * @return Returns the Skill that was built.
          */
         public Skill build() {

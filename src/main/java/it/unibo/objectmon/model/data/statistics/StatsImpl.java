@@ -11,12 +11,13 @@ import it.unibo.objectmon.model.data.api.statistics.Stats;
 public abstract class StatsImpl implements Stats {
 
     /**
-     *  A Map containing all the battle relevant stats of the Objectmon.
+     * A Map containing all the battle relevant stats of the Objectmon.
      */
     private final Map<StatId, Integer> stats = new HashMap<>();
 
     /**
      * Constructor of the class.
+     * 
      * @param stats Map of all the stats.
      */
     public StatsImpl(final Map<StatId, Integer> stats) {
@@ -42,7 +43,7 @@ public abstract class StatsImpl implements Stats {
     }
 
     /**
-     *
+     * Returns a map of stats,
      * @return Returns the Map of the Stats.
      */
     @Override
@@ -51,7 +52,7 @@ public abstract class StatsImpl implements Stats {
     }
 
     /**
-     *
+     * Returns a single specific stat.
      * @param id Id of the Statistic
      * @return The value of the Statistic
      */

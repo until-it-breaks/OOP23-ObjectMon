@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.ai.EasyAiTrainer;
 import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
@@ -15,6 +16,8 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
  * an implementation of battle manager.
@@ -25,14 +28,21 @@ public final class BattleManagerImpl implements BattleManager {
     private Optional<Result> result;
     private final Turn turn;
     private final AiTrainer aiTrainer;
+    private final GameStateManager gameStateManager;
+
     /**
      * Constructor of BattleManagerImpl.
+     * 
+     * @param gameStateManager The game state manager.
      */
-    public BattleManagerImpl() {
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Temporary")
+    public BattleManagerImpl(final GameStateManager gameStateManager) {
         this.battle = Optional.empty();
         this.result = Optional.empty();
         this.turn = new TurnImpl();
         this.aiTrainer = new EasyAiTrainer();
+        this.gameStateManager = gameStateManager;
     }
 
     @Override
@@ -41,7 +51,10 @@ public final class BattleManagerImpl implements BattleManager {
             throw new IllegalStateException("A battle is already in progress.");
         }
         trainer.ifPresentOrElse(
-            t -> this.battle = Optional.of(new BattleImpl(player, t)), 
+            t -> {
+                this.battle = Optional.of(new BattleImpl(player, t));
+                this.gameStateManager.setGameState(GameState.BATTLE);
+            },
             () -> objectMon.ifPresentOrElse(o -> this.battle = Optional.of(new BattleImpl(player, o)), () -> {
                 throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
             })
@@ -62,7 +75,9 @@ public final class BattleManagerImpl implements BattleManager {
             )) {
                 case AI_TURN :
                     executeAiTurn(this.battle.get().getEnemyMove(), aiIndex);
-                    executePlayerTurn(type, index);
+                    if (this.battle.isPresent()) {
+                        executePlayerTurn(type, index);
+                    }
                     break;
                 case PLAYER_TURN :
                     executePlayerTurn(type, index);
@@ -75,6 +90,7 @@ public final class BattleManagerImpl implements BattleManager {
             }
         this.endTurnAction();
     }
+
     /**
      * 
      * @param type type of move.
@@ -102,6 +118,7 @@ public final class BattleManagerImpl implements BattleManager {
                 break;
         }
     }
+
     /**
      * 
      * @param type type of move.
@@ -109,7 +126,9 @@ public final class BattleManagerImpl implements BattleManager {
      */
     private void executePlayerTurn(final Move type, final int index) {
         if (this.isDead(this.battle.get().getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
-            this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+            if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
+                this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+            }
         } else {
             switch (type) {
                 case ATTACK:
@@ -194,7 +213,8 @@ public final class BattleManagerImpl implements BattleManager {
             case ATTACK:
                 return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size();
             case SWITCH_OBJECTMON:
-                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size() - 1;
+                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size()
+                    && this.battle.get().getPlayerTeam().getParty().size() > 1;
             default:
                 return false;
         }
@@ -241,6 +261,7 @@ public final class BattleManagerImpl implements BattleManager {
                 default:
                     break;
             }
+            gameStateManager.setGameState(GameState.EXPLORATION);
             this.battle = Optional.empty();
         }
     }
