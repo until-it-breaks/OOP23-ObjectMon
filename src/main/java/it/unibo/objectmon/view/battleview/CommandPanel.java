@@ -1,5 +1,6 @@
 package it.unibo.objectmon.view.battleview;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -8,18 +9,24 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.controller.commands.RunAway;
+import it.unibo.objectmon.controller.commands.SwitchObjectmon;
+import it.unibo.objectmon.controller.commands.UseSkill;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
 
 /**
  * The panel responsible for sending the player choices to the model.
  */
-@SuppressWarnings("PMD")
-public class CommandPanel extends JPanel {
+public final class CommandPanel extends JPanel {
     private static final long serialVersionUID = 5L;
     private final transient Controller controller;
     private final JButton attackButton = new JButton("Attack");
     private final JButton switchButton = new JButton("Switch");
     private final JButton itemButton = new JButton("Use item");
     private final JButton fleeButton = new JButton("Run away");
+    private final JButton backButton = new JButton("Back");
 
     /**
      * Constructs a JPanel displaying some buttons.
@@ -28,143 +35,84 @@ public class CommandPanel extends JPanel {
      */
     public CommandPanel(final Controller controller) {
         this.controller = controller;
+    }
+
+    /**
+     * Initializes the command panel.
+     */
+    public void initialize() {
         this.setLayout(new GridBagLayout());
-        attackButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                drawAttacks();
-            }
+        attackButton.addActionListener(e -> {
+            drawAttacks();
         });
-        switchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                drawSwitch();
-            }
+        switchButton.addActionListener(e -> {
+            drawSwitch();
         });
-        itemButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                drawItems();
-            }
+        itemButton.addActionListener(e -> {
+            drawItems();
         });
-        fleeButton.addActionListener(null); //To be substituted with something like controller.notifyCommand(new RunAway())
+        fleeButton.addActionListener(e -> {
+            controller.notifyCommand(new RunAway());
+        });
+        backButton.addActionListener(e -> {
+            drawStartingButtons();
+        });
         drawStartingButtons();
     }
 
     private void drawAttacks() {
         this.removeAll();
         final GridBagConstraints gbc = createDefaultConstraints();
-
-        final JButton attack1 = new JButton("Attack 1");
-        attack1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        this.add(attack1, gbc);
-
-
-        final JButton attack2 = new JButton("Attack 2");
-        attack2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(attack2, gbc);
-
-        final JButton attack3 = new JButton("Attack 3");
-        attack3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(attack3, gbc);
-
-
-        final JButton attack4 = new JButton("Attack 4");
-        attack4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(attack4, gbc);
+        final int[] skillCounter = {0};
+        for (final Skill skill : controller.getBattleStats().get().getCurrentObjectmon().getSkills()) {
+            final JButton attackButton = new JButton(skill.getName());
+            attackButton.setForeground(Color.WHITE);
+            attackButton.setBackground(AspectColorMap.getColor(skill.getAspect()));
+            final int currentSkillIndex = skillCounter[0];
+            attackButton.addActionListener(e -> {
+                    removeAll();
+                    controller.notifyCommand(new UseSkill(currentSkillIndex));
+                    drawStartingButtons();
+            });
+            attackButton.setToolTipText("Power: " + skill.getBasePower()
+                + " Accuracy: " + skill.getAccuracy() + "% "
+                + "Type: " + skill.getCategory().getName()
+            );
+            this.add(attackButton, gbc);
+            gbc.gridx++;
+            skillCounter[0]++;
+        }
+        this.add(backButton);
         this.revalidate();
+        this.repaint();
     }
 
     private void drawSwitch() {
         this.removeAll();
         final GridBagConstraints gbc = createDefaultConstraints();
-        final JButton switch1 = new JButton("Switch choice 1");
-        switch1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
+        final int[] objectmonCounter = {0};
+
+        for (final Objectmon objectmon : controller.getBattleStats().get().getPlayerTeam().getParty()) {
+            final JButton switchObjectmon = new JButton();
+            switchObjectmon.setText(objectmon.getName());
+            if (objectmon.equals(controller.getBattleStats().get().getCurrentObjectmon())) {
+                switchObjectmon.setEnabled(false);
             }
-        });
-        this.add(switch1, gbc);
-        final JButton switch2 = new JButton("Switch choice 2");
-        switch2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch2, gbc);
-        final JButton switch3 = new JButton("Switch choice 3");
-        switch3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch3, gbc);
-        final JButton switch4 = new JButton("Switch choice 4");
-        switch4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch4, gbc);
-        final JButton switch5 = new JButton("Switch choice 5");
-        switch5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch5, gbc);
-        final JButton switch6 = new JButton("Switch choice 6");
-        switch6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(switch6, gbc);
+            final int currentObjectmonIndex = objectmonCounter[0];
+            switchObjectmon.addActionListener(e -> {
+                    removeAll();
+                    controller.notifyCommand(new SwitchObjectmon(currentObjectmonIndex));
+                    drawStartingButtons();
+            });
+            switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspect().toString()
+            + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatId.HP));
+            this.add(switchObjectmon, gbc);
+            objectmonCounter[0]++;
+            gbc.gridx++;
+        }
+        this.add(backButton);
         this.revalidate();
+        this.repaint();
     }
 
     private void drawItems() {
@@ -230,6 +178,7 @@ public class CommandPanel extends JPanel {
         gbc.gridx++;
         this.add(item6, gbc);
         this.revalidate();
+        this.repaint();
     }
 
     private void drawStartingButtons() {
@@ -241,6 +190,8 @@ public class CommandPanel extends JPanel {
         this.add(itemButton, gbc);
         gbc.gridx++;
         this.add(fleeButton, gbc);
+        revalidate();
+        repaint();
     }
 
     private GridBagConstraints createDefaultConstraints() {

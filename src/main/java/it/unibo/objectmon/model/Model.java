@@ -1,8 +1,10 @@
 package it.unibo.objectmon.model;
 
-import it.unibo.objectmon.model.battle.api.BattleManager;
+import java.util.Optional;
+import it.unibo.objectmon.model.battle.api.Battle;
+import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
-import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 
@@ -14,12 +16,6 @@ import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
  * provides access to various managers for handling different aspects of the game.
  */
 public interface Model {
-
-    /**
-     * Initializes the game model with default settings,
-     * including entities and environment.
-     */
-    void initialize();
 
     /**
      * Retrieves the interaction manager,
@@ -38,14 +34,6 @@ public interface Model {
     CollisionManager getCollisionManager();
 
     /**
-     * Retrieves the battle manager
-     * which is responsible for managing battles between entities in the game.
-     *
-     * @return The battle manager.
-     */
-    BattleManager getBattleManager();
-
-    /**
      * Retrieves the game context that
      * contains information about the game world, players, and NPCs.
      *
@@ -54,9 +42,27 @@ public interface Model {
     GameContext getGameContext();
 
     /**
-     * Retrieves the gamestate manager
-     * which is responsible for settings states and notify observers of changes.
-     * @return The gamestate manager.
+     * Retrieves the current game state.
+     * @return The game state.
      */
-    GameStateManager getGameStateManager();
+    GameState getGameState();
+
+    /**
+     * Updates the game state.
+     * @param gameState The new game state.
+     */
+    void setGameState(GameState gameState);
+
+    /**
+     * informations of the battle.
+     * @return contains the informations of the battle.
+     */
+    Optional<Battle> getBattleStats();
+
+    /**
+     * Stores a battle move.
+     * @param move The move to be stored.
+     * @param index The index of that move type.
+     */
+    void bufferCommand(Move move, int index);
 }

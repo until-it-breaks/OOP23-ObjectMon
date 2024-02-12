@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.JPanel;
@@ -21,6 +20,7 @@ import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
+import it.unibo.objectmon.view.utility.RenderingUtils;
 
 /**
  * A JPanel responsible for rendering the overworld environment and entities during exploration mode.
@@ -58,7 +58,7 @@ public final class OverWorldPanel extends JPanel {
         super.paintComponent(g);
         if (g instanceof Graphics2D) {
             final Graphics2D graphics2d = (Graphics2D) g;
-            configureRenderingHints(graphics2d);
+            RenderingUtils.configureRenderingHints(graphics2d);
             //Computes the offset needed to center the camera.
             final int playerX = controller.getPlayer().getPosition().x() * TILE_SIZE;
             final int playerY = controller.getPlayer().getPosition().y() * TILE_SIZE;
@@ -74,15 +74,6 @@ public final class OverWorldPanel extends JPanel {
             drawHUD(graphics2d);
             graphics2d.dispose();
         }
-    }
-
-    private void configureRenderingHints(final Graphics2D g) {
-        final RenderingHints renderingHints = new RenderingHints(
-            RenderingHints.KEY_RENDERING,
-            RenderingHints.VALUE_RENDER_QUALITY);
-        //Fixes those font jaggies.
-        renderingHints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        g.setRenderingHints(renderingHints);
     }
 
     private void drawHUD(final Graphics2D g) {

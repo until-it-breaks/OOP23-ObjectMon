@@ -69,6 +69,7 @@ public interface Controller {
      * @return contains the informations of the battle.
      */
     Optional<Battle> getBattleStats();
+
     /**
      * Retrieves the current game state.
      * @return The game state.

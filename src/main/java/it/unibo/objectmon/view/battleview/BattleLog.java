@@ -1,5 +1,6 @@
 package it.unibo.objectmon.view.battleview;
 
+import java.awt.Color;
 import java.awt.ScrollPane;
 import javax.swing.JTextArea;
 
@@ -22,6 +23,7 @@ public class BattleLog extends ScrollPane {
     public BattleLog(final Controller controller) {
         this.controller = controller;
         this.textArea = new JTextArea();
+        this.textArea.setBackground(Color.BLACK);
         this.textArea.setEditable(false);
         this.add(textArea);
     }
