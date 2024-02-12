@@ -3,8 +3,6 @@ package it.unibo.objectmon.view.battleview;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -15,6 +13,8 @@ import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.item.api.BallItem;
+import it.unibo.objectmon.model.item.api.HealItem;
 
 /**
  * The panel responsible for sending the player choices to the model.
@@ -113,65 +113,26 @@ public final class CommandPanel extends JPanel {
     private void drawItems() {
         this.removeAll();
         final GridBagConstraints gbc = createDefaultConstraints();
-        final JButton item1 = new JButton("Item 1");
-        item1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
+        final int[] itemCounter = {0};
+        for (final var entry : controller.getPlayer().getInventory().getItems().entrySet()) {
+            final JButton itemButton = new JButton(entry.getKey().getName() + ": " + entry.getValue());
+            if (entry.getKey() instanceof HealItem) {
+                final HealItem heal = (HealItem) entry.getKey();
+                itemButton.setToolTipText("Restores: " + heal.getHealPoints() + " HP");
+            } else if (entry.getKey() instanceof BallItem) {
+                final BallItem ball = (BallItem) entry.getKey();
+                itemButton.setToolTipText("Catch rate multiplier : " + ball.getCatchMultiplier());
             }
-        });
-        this.add(item1, gbc);
-        final JButton item2 = new JButton("Item 2");
-        item2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
+            itemButton.addActionListener(e -> {
                 removeAll();
+                controller.notifyCommand(new SwitchObjectmon(itemCounter[0]));
                 drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(item2, gbc);
-        final JButton item3 = new JButton("Item 3");
-        item3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(item3, gbc);
-        final JButton item4 = new JButton("Item 4");
-        item4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(item4, gbc);
-        final JButton item5 = new JButton("Item 5");
-        item5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(item5, gbc);
-        final JButton item6 = new JButton("Item 6");
-        item6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                removeAll();
-                drawStartingButtons();
-            }
-        });
-        gbc.gridx++;
-        this.add(item6, gbc);
+            });
+            this.add(itemButton, gbc);
+            itemCounter[0]++;
+            gbc.gridx++;
+        }
+        this.add(backButton);
         this.revalidate();
         this.repaint();
     }

@@ -4,6 +4,7 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyReadOnly;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
@@ -62,5 +63,10 @@ public final class ReadOnlyPlayer implements Player {
     @Override
     public void move(final Direction direction, final CollisionManager collisionChecker) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
+    }
+
+    @Override
+    public Inventory getInventory() {
+        return player.getInventory();
     }
 }

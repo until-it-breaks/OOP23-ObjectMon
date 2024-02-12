@@ -17,8 +17,7 @@ import it.unibo.objectmon.model.data.statistics.ActualStats;
  */
 @SuppressFBWarnings(
     value = "EI_EXPOSE_REP2",
-    justification = "It is designed to provide read-only access to Objectmon's information"
-                    + "ensuring that the Objectmon's state remains immutable."
+    justification = "By design this provides read-only information outside of the model."
 )
 public class ObjectmonReadOnly implements Objectmon {
 

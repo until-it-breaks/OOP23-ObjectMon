@@ -5,19 +5,23 @@ import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 
 /**
- * Attemps to switch objectmon in the battle.
+ * Attemps to use an item.
  */
-public final class SwitchObjectmon implements Command {
+public final class UseItem implements Command {
+
     private final int index;
+
     /**
+     * Uses an item in the inventory.
      * 
-     * @param index index of objectmon to be switched to fight.
+     * @param index Index of the item to be used.
      */
-    public SwitchObjectmon(final int index) {
+    public UseItem(final int index) {
         this.index = index;
     }
+
     @Override
     public void execute(final Model model) {
-        model.bufferCommand(Move.SWITCH_OBJECTMON, index);
+        model.bufferCommand(Move.USE_ITEM, index);
     }
 }
