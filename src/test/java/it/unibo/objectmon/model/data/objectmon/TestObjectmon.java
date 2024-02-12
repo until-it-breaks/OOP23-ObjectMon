@@ -44,7 +44,7 @@ class TestObjectmon {
             )
         );
         final int level = 5;
-        final Objectmon  objectmon = new ObjectmonImpl(0, "Zigzagoon", List.of(Aspect.NORMAL), skills, stats, level);
+        final Objectmon  objectmon = new ObjectmonImpl("Zigzagoon", List.of(Aspect.NORMAL), skills, stats, level);
 
         assertTrue(Aspect.NORMAL.sameAspect(objectmon.getAspect()));
         final int skillid = 1;

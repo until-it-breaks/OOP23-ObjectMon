@@ -1,14 +1,18 @@
 package it.unibo.objectmon.model.data.objectmon;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
+import it.unibo.objectmon.model.data.skill.SkillReadOnly;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 
 /**
- * Read only wrapper of Onbjectmon, to limit who can access.
+ * Read only wrapper of Objectmon, to limit view access.
  */
 public class ObjectmonReadOnly implements Objectmon {
 
@@ -16,19 +20,21 @@ public class ObjectmonReadOnly implements Objectmon {
 
     /**
      * Constructor of the class ObjectmonReadOnly.
+     * 
      * @param objectmon the Objectmon that needs to become read only.
      */
     public ObjectmonReadOnly(final Objectmon objectmon) {
         this.objectmon = new ObjectmonImpl(objectmon);
     }
+
     @Override
     public final ActualStats getStats() {
         return this.objectmon.getStats();
     }
 
     @Override
-    public final int getId() {
-        return this.objectmon.getId();
+    public final UUID getUuid() {
+        return this.objectmon.getUuid();
     }
 
     @Override
@@ -43,11 +49,16 @@ public class ObjectmonReadOnly implements Objectmon {
 
     @Override
     public final List<Aspect> getAspect() {
-        return this.objectmon.getAspect();
+        return Collections.unmodifiableList(this.objectmon.getAspect());
     }
+
     @Override
     public final List<Skill> getSkills() {
-        return this.objectmon.getSkills();
+        List<Skill> out = new ArrayList<>();
+        for (Skill skill : this.objectmon.getSkills()) {
+            out.add(new SkillReadOnly(skill));
+        }
+        return out;
     }
 
     @Override

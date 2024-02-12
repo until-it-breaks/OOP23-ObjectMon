@@ -45,7 +45,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "TEMPORARY")
+    justification = "By design the party may circulate freely in the model")
     @Override
     public ObjectmonParty getObjectmonParty() {
         return this.objectmonParty;

@@ -1,10 +1,16 @@
 package it.unibo.objectmon.model.entities.player;
 
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonReadOnly;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.world.api.Coord;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a read-only view of a {@link Player} instance.
@@ -55,7 +61,11 @@ public final class ReadOnlyPlayer implements Player {
 
     @Override
     public ObjectmonParty getObjectmonParty() {
-        return player.getObjectmonParty();
+        List<Objectmon> out = new ArrayList<>();
+        for (Objectmon objectmon : player.getObjectmonParty().getParty()) {
+            out.add(new ObjectmonReadOnly(objectmon));
+        }
+        return new ObjectmonPartyImpl(out);
     }
 
     @Override
