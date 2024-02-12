@@ -5,7 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JPanel;
 
@@ -16,6 +18,7 @@ import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Seller;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
+import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
@@ -34,6 +37,8 @@ public final class OverWorldPanel extends JPanel {
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
     private final transient ImageLoader imageLoader;
+    private static final int INVENTORY_X_OFFSET = 20;
+    private static final int INVENTORY_Y_OFFSET = 20;
 
     /**
      * Constructs a new OverWorld panel, initializing its properties and attaching it to the provided controller.
@@ -78,6 +83,7 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawHUD(final Graphics2D g) {
+        drawInventory(g);
         drawEventLog(g);
         drawParty(g);
     }
@@ -153,6 +159,19 @@ public final class OverWorldPanel extends JPanel {
             g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
             offsetX, offsetY - TILE_SIZE / FONT_SIZE);
             offsetX += TILE_SIZE;
+        }
+    }
+
+    private void drawInventory(final Graphics2D g) {
+        final Map<Item, Integer> inventory = controller.getPlayer().getInventory().getItems();
+        final int offsetX = INVENTORY_X_OFFSET;
+        int offsetY = INVENTORY_Y_OFFSET;
+        for (final var entry : inventory.entrySet()) {
+            final Item item = entry.getKey();
+            g.setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
+            g.setColor(Color.WHITE);
+            g.drawString(item.getName() + ": " + entry.getValue(), offsetX, offsetY);
+            offsetY += FONT_SIZE;
         }
     }
 

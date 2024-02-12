@@ -7,15 +7,15 @@ public enum HealEnum {
     /**
      * The smallest heal item.
      */
-    POTION("Small Heal", 100, 15),
+    POTION("Potion", 100, 15),
     /**
      * The medium heal item.
      */
-    SUPERPOTION("Medium Heal", 200, 30),
+    SUPERPOTION("Super Potion", 200, 30),
     /**
      * The largest heal item.
      */
-    HYPERPOTION("Large Heal", 400, 60);
+    HYPERPOTION("Hyper Potion", 400, 60);
 
     private final String name;
     private final int value;
