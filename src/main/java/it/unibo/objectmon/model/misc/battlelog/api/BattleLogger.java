@@ -29,7 +29,7 @@ public class BattleLogger {
      * @param message The message to add to the battle log.
      */
     public void log(final String message) {
-        notifyObservers(message);
+        notifyObservers(message + "\n");
     }
 
     private void notifyObservers(final String message) {

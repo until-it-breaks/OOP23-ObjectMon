@@ -28,7 +28,7 @@ public interface ObjectmonParty {
      * @param objectmon2 another objectmon in the party
      */
     void switchPosition(Objectmon objectmon1, Objectmon objectmon2);
-    
+
     /**
      * get an unmodifiable list of objectmon party.
      * @return unmodifiable list of objecmon
