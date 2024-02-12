@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Seller;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
@@ -82,7 +82,7 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final ReadOnlyNPC npc : controller.getNPCSet()) {
+        for (final ReadOnlyEntity npc : controller.getNPCSet()) {
             final BufferedImage image = getNPCImage(npc);
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
         }
@@ -156,7 +156,7 @@ public final class OverWorldPanel extends JPanel {
         }
     }
 
-    private BufferedImage getNPCImage(final ReadOnlyNPC npc) {
+    private BufferedImage getNPCImage(final ReadOnlyEntity npc) {
         if (npc.implementsInterface(Seller.class)) {
             return imageLoader.getImage("/npc/vendor.png");
         } else if (npc.implementsInterface(Healer.class)) {

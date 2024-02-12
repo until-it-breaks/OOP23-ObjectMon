@@ -5,7 +5,7 @@ import java.util.Set;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.world.api.World;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public interface Controller {
      *
      * @return The npc in the game.
      */
-    Set<ReadOnlyNPC> getNPCSet();
+    Set<ReadOnlyEntity> getNPCSet();
 
     /**
      * Returns the world in the game.

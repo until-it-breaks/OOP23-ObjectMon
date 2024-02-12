@@ -15,7 +15,7 @@ import it.unibo.objectmon.model.world.api.Coord;
                     + "It is designed to provide read-only access to NPC information, "
                     + "ensuring that the NPC's state remains immutable."
 )
-public class ReadOnlyNPC {
+public class ReadOnlyEntity {
 
     private final AbstractNPC npc;
 
@@ -24,7 +24,7 @@ public class ReadOnlyNPC {
      * 
      * @param npc The NPC for which to create a read-only view.
      */
-    public ReadOnlyNPC(final AbstractNPC npc) {
+    public ReadOnlyEntity(final AbstractNPC npc) {
         this.npc = npc;
     }
 

@@ -69,8 +69,8 @@ public final class CombatPanel extends JPanel {
             + enemyObjectmon.getName()
             + ".png");
         //Draws the player's objectmon in the middle left.
-        int width = getWidth() / 2;
-        int height = getHeight() / 2;
+        final int width = getWidth() / 2;
+        final int height = getHeight() / 2;
         //Draws the player objectmon in the middle left.
         g.drawImage(playerObjectmonImg, 0, height - playerObjectmonImg.getHeight() / 2, width, height, null);
         //Draws the player objectmon information just half it's image height above.
@@ -111,7 +111,7 @@ public final class CombatPanel extends JPanel {
             final Trainer enemy = battleInfo.getTrainer().get();
             text = player.getName() + " vs " + enemy.getName();
         } else {
-            text = player.getName() + " vs Random Encounter";  
+            text = player.getName() + " vs Random Encounter";
         }
         //Centered in the middle.
         final int textWidth = fm.stringWidth(text);

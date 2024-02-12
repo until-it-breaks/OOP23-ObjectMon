@@ -19,7 +19,7 @@ import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.core.GameContexts;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyNPC;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
 import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
@@ -84,9 +84,9 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Set<ReadOnlyNPC> getNPCSet() {
+    public Set<ReadOnlyEntity> getNPCSet() {
     return model.getGameContext().getNPCs().stream()
-            .map(ReadOnlyNPC::new)
+            .map(ReadOnlyEntity::new)
             .collect(Collectors.toSet());
     }
 
