@@ -10,6 +10,7 @@ public interface ObjectmonParty {
 
     /**
      * add an objectmon to the party.
+     * 
      * @param objectmon objectmon to be added
      * @return is objectmon is added correctly
      */
@@ -17,6 +18,7 @@ public interface ObjectmonParty {
 
     /**
      * remove an objectmon from the party.
+     * 
      * @param objectmon objectmon to be removed
      * @return is objectmon is removed correctly
      */
@@ -24,6 +26,7 @@ public interface ObjectmonParty {
 
     /**
      * change position of 2 objecmon in the party.
+     * 
      * @param objectmon1 an objectmon in the party
      * @param objectmon2 another objectmon in the party
      */
@@ -31,6 +34,7 @@ public interface ObjectmonParty {
 
     /**
      * get an unmodifiable list of objectmon party.
+     * 
      * @return unmodifiable list of objecmon
      */
     List<Objectmon> getParty();

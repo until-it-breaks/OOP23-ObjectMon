@@ -35,12 +35,6 @@ public final class CommandPanel extends JPanel {
      */
     public CommandPanel(final Controller controller) {
         this.controller = controller;
-    }
-
-    /**
-     * Initializes the command panel.
-     */
-    public void initialize() {
         this.setLayout(new GridBagLayout());
         attackButton.addActionListener(e -> {
             drawAttacks();
@@ -55,6 +49,7 @@ public final class CommandPanel extends JPanel {
             controller.notifyCommand(new RunAway());
         });
         backButton.addActionListener(e -> {
+            removeAll();
             drawStartingButtons();
         });
         drawStartingButtons();

@@ -41,38 +41,38 @@ public final class NPCGenerator {
      */
     public static Set<AbstractNPC> createDefaultNPCs(final BattleStartListener battleStartListener) {
         final Set<AbstractNPC> npcs = new HashSet<>();
-        npcs.add(new TrainerNPCImpl("Trainer Bob", POSITION_1, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerImpl("Trainer Bob", POSITION_1, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.ILLUMISE,
             ObjectmonEnum.LILEEP,
             ObjectmonEnum.NOSEPASS),
             DEFAULT_PARTY_LEVEL)), battleStartListener));
-        npcs.add(new TrainerNPCImpl("Trainer Alex", POSITION_2, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerImpl("Trainer Alex", POSITION_2, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.ANORITH,
             ObjectmonEnum.GOLDEEN),
             DEFAULT_PARTY_LEVEL + 1)), battleStartListener));
-        npcs.add(new TrainerNPCImpl("Trainer Delta", POSITION_3, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerImpl("Trainer Delta", POSITION_3, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.KECLEON), DEFAULT_PARTY_LEVEL + 2)), battleStartListener));
-        npcs.add(new TrainerNPCImpl("Trainer Gamma", POSITION_4, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerImpl("Trainer Gamma", POSITION_4, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.RELICANTH,
             ObjectmonEnum.NUMEL,
             ObjectmonEnum.TROPIUS,
             ObjectmonEnum.SHROOMISH),
             DEFAULT_PARTY_LEVEL - 1)), battleStartListener));
-        npcs.add(new TrainerNPCImpl("Trainer Sigma", POSITION_5, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerImpl("Trainer Sigma", POSITION_5, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.SLUGMA,
             ObjectmonEnum.GEODUDE,
             ObjectmonEnum.TORKOAL,
             ObjectmonEnum.NOSEPASS),
             DEFAULT_PARTY_LEVEL)), battleStartListener));
-        npcs.add(new TrainerNPCImpl("Trainer Alpha", POSITION_6, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
+        npcs.add(new TrainerImpl("Trainer Alpha", POSITION_6, new ArrayList<>(ObjectmonFactory.createObjectmonSet(List.of(
             ObjectmonEnum.ODDISH,
             ObjectmonEnum.ILLUMISE,
             ObjectmonEnum.GEODUDE,
             ObjectmonEnum.GEODUDE),
             DEFAULT_PARTY_LEVEL - 1)), battleStartListener));
         //Support NPCs
-        npcs.add(new HealerNPCImpl("Dr. Madness", POSITION_7));
-        npcs.add(new SellerNPCImpl("Item Vendor", POSITION_8));
+        npcs.add(new HealerImpl("Dr. Madness", POSITION_7));
+        npcs.add(new VendorImpl("Item Vendor", POSITION_8));
         return npcs;
     }
 }

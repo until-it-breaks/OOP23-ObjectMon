@@ -3,7 +3,7 @@ import java.util.Optional;
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
+import it.unibo.objectmon.model.entities.npc.TrainerImpl;
 /**
  * current state of the battle.
  */
@@ -21,7 +21,7 @@ public interface BattleState {
      * 
      * @return current stats of trainer.
      */
-    Optional<TrainerNPCImpl> getTrainerStats();
+    Optional<TrainerImpl> getTrainerStats();
     /**
      * 
      * @return current stats of the objectmon as enemy.

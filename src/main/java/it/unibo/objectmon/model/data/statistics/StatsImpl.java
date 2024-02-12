@@ -43,7 +43,8 @@ public abstract class StatsImpl implements Stats {
     }
 
     /**
-     * Returns a map of stats,
+     * Returns a map of stats.
+     * 
      * @return Returns the Map of the Stats.
      */
     @Override
