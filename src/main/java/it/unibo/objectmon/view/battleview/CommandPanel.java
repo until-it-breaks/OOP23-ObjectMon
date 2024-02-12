@@ -19,8 +19,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 /**
  * The panel responsible for sending the player choices to the model.
  */
-@SuppressWarnings("PMD")
-public class CommandPanel extends JPanel {
+public final class CommandPanel extends JPanel {
     private static final long serialVersionUID = 5L;
     private final transient Controller controller;
     private final JButton attackButton = new JButton("Attack");
@@ -29,7 +28,6 @@ public class CommandPanel extends JPanel {
     private final JButton fleeButton = new JButton("Run away");
     private final JButton backButton = new JButton("Back");
 
-
     /**
      * Constructs a JPanel displaying some buttons.
      * 
@@ -37,13 +35,26 @@ public class CommandPanel extends JPanel {
      */
     public CommandPanel(final Controller controller) {
         this.controller = controller;
+    }
+
+    /**
+     * Initializes the command panel.
+     */
+    public void initialize() {
         this.setLayout(new GridBagLayout());
-        attackButton.addActionListener(e -> drawAttacks());
-        switchButton.addActionListener(e -> drawSwitch());
-        itemButton.addActionListener(e -> drawItems());
-        fleeButton.addActionListener(e -> controller.notifyCommand(new RunAway()));
+        attackButton.addActionListener(e -> {
+            drawAttacks();
+        });
+        switchButton.addActionListener(e -> {
+            drawSwitch();
+        });
+        itemButton.addActionListener(e -> {
+            drawItems();
+        });
+        fleeButton.addActionListener(e -> {
+            controller.notifyCommand(new RunAway());
+        });
         backButton.addActionListener(e -> {
-            removeAll();
             drawStartingButtons();
         });
         drawStartingButtons();
@@ -53,16 +64,14 @@ public class CommandPanel extends JPanel {
         this.removeAll();
         final GridBagConstraints gbc = createDefaultConstraints();
         final int[] skillCounter = {0};
-        
         for (final Skill skill : controller.getBattleStats().get().getCurrentObjectmon().getSkills()) {
             final JButton attackButton = new JButton(skill.getName());
             attackButton.setForeground(Color.WHITE);
-            attackButton.setBackground(AspectColorMap.getColorForAspect(skill.getAspect()));
+            attackButton.setBackground(AspectColorMap.getColor(skill.getAspect()));
             final int currentSkillIndex = skillCounter[0];
             attackButton.addActionListener(e -> {
                     removeAll();
                     controller.notifyCommand(new UseSkill(currentSkillIndex));
-                    //System.out.println("Attack " + skillCounter[0]);
                     drawStartingButtons();
             });
             attackButton.setToolTipText("Power: " + skill.getBasePower()
@@ -75,6 +84,7 @@ public class CommandPanel extends JPanel {
         }
         this.add(backButton);
         this.revalidate();
+        this.repaint();
     }
 
     private void drawSwitch() {
@@ -82,7 +92,7 @@ public class CommandPanel extends JPanel {
         final GridBagConstraints gbc = createDefaultConstraints();
         final int[] objectmonCounter = {0};
 
-        for (Objectmon objectmon : controller.getBattleStats().get().getPlayerTeam().getParty()) {
+        for (final Objectmon objectmon : controller.getBattleStats().get().getPlayerTeam().getParty()) {
             final JButton switchObjectmon = new JButton();
             switchObjectmon.setText(objectmon.getName());
             if (objectmon.equals(controller.getBattleStats().get().getCurrentObjectmon())) {
@@ -91,18 +101,18 @@ public class CommandPanel extends JPanel {
             final int currentObjectmonIndex = objectmonCounter[0];
             switchObjectmon.addActionListener(e -> {
                     removeAll();
-                    //System.out.println("Switch to " + controller.getBattleStats().get().getPlayerTeam().getParty().get(currentObjectmonIndex).getName());
                     controller.notifyCommand(new SwitchObjectmon(currentObjectmonIndex));
                     drawStartingButtons();
             });
             switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspect().toString()
-            + " HP: " + objectmon.getCurrentHp()+ " / " + objectmon.getStats().getSingleStat(StatId.HP));
+            + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatId.HP));
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;
             gbc.gridx++;
         }
         this.add(backButton);
         this.revalidate();
+        this.repaint();
     }
 
     private void drawItems() {
@@ -168,6 +178,7 @@ public class CommandPanel extends JPanel {
         gbc.gridx++;
         this.add(item6, gbc);
         this.revalidate();
+        this.repaint();
     }
 
     private void drawStartingButtons() {
@@ -179,6 +190,8 @@ public class CommandPanel extends JPanel {
         this.add(itemButton, gbc);
         gbc.gridx++;
         this.add(fleeButton, gbc);
+        revalidate();
+        repaint();
     }
 
     private GridBagConstraints createDefaultConstraints() {

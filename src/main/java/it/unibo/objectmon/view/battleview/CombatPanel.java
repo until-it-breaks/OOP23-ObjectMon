@@ -12,14 +12,21 @@ import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
 import it.unibo.objectmon.view.utility.RenderingUtils;
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.model.battle.api.Battle;
+import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
+import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
 
 /**
  * A panel that is used to display the flow of the battle.
  */
 public final class CombatPanel extends JPanel {
     private static final long serialVersionUID = 4L;
+    private static final int Y_OFFSET = 20;
     private final transient Controller controller;
     private final transient ImageLoader imageLoader;
+    private final Font defaultFont;
 
     /**
      * Constructs a combat panel and attaches a controller to it.
@@ -29,6 +36,7 @@ public final class CombatPanel extends JPanel {
     public CombatPanel(final Controller controller) {
         this.controller = controller;
         this.imageLoader = new ImageLoaderImpl();
+        this.defaultFont = new Font("Arial", Font.BOLD, 16);
     }
 
     @Override
@@ -38,7 +46,9 @@ public final class CombatPanel extends JPanel {
             final Graphics2D graphics2d = (Graphics2D) g;
             RenderingUtils.configureRenderingHints(graphics2d);
             drawBackgroud(graphics2d);
+            drawChallengers(graphics2d);
             drawObjectmons(graphics2d);
+            drawObjectmonCount(graphics2d);
             graphics2d.dispose();
         }
     }
@@ -49,41 +59,77 @@ public final class CombatPanel extends JPanel {
     }
 
     private void drawObjectmons(final Graphics2D g) {
-        final BufferedImage playerObjectmon = imageLoader.getImage("/objectmon/"
-            + controller.getBattleStats().get().getCurrentObjectmon().getName()
+        final Battle battleInfo = controller.getBattleStats().get();
+        final Objectmon playerObjectmon = battleInfo.getCurrentObjectmon();
+        final Objectmon enemyObjectmon = battleInfo.getEnemyObjectmon();
+        final BufferedImage playerObjectmonImg = imageLoader.getImage("/objectmon/"
+            + playerObjectmon.getName()
             + ".png");
-        final BufferedImage enemyObjectmon = imageLoader.getImage("/objectmon/"
-            + controller.getBattleStats().get().getEnemyObjectmon().getName()
+        final BufferedImage enemyObjectmonImg = imageLoader.getImage("/objectmon/"
+            + enemyObjectmon.getName()
             + ".png");
-        //Draws the player's objectmon at the bottom left.
+        //Draws the player's objectmon in the middle left.
         int width = getWidth() / 2;
         int height = getHeight() / 2;
-        g.drawImage(playerObjectmon, 0, height, width, height, null);
-        drawObjectmonInfo(g, controller.getBattleStats().get().getCurrentObjectmon().getName(), controller.getBattleStats().get().getCurrentObjectmon().getLevel(), controller.getBattleStats().get().getCurrentObjectmon().getCurrentHp(), 0, 0);
-        //Draws the enemy objectmon at the top right.
+        g.drawImage(playerObjectmonImg, 0, height - playerObjectmonImg.getHeight() / 2, width, height, null);
+        drawObjectmonInfo(g, playerObjectmon, 0, height - playerObjectmonImg.getHeight() / 2);
+        //Draws the enemy objectmon in the middle right.
         width = getWidth() / 2;
         height = getHeight() / 2;
-        g.drawImage(enemyObjectmon, width, 0, width, height, null);
-        drawObjectmonInfo(g, controller.getBattleStats().get().getEnemyObjectmon().getName(), controller.getBattleStats().get().getEnemyObjectmon().getLevel(), controller.getBattleStats().get().getEnemyObjectmon().getCurrentHp(), width, 0);
+        g.drawImage(enemyObjectmonImg, width, height - enemyObjectmonImg.getHeight() / 2, width, height, null);
+        drawObjectmonInfo(g, enemyObjectmon, width, height - enemyObjectmonImg.getHeight() / 2);
     }
 
-    private void drawObjectmonInfo(Graphics2D g, String name, int level, int health, int x, int y) {
+    private void drawObjectmonInfo(final Graphics2D g, final Objectmon objectmon, final int x, final int y) {
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 16));
-        FontMetrics fm = g.getFontMetrics();
-    
+        g.setFont(defaultFont);
+        final FontMetrics fm = g.getFontMetrics();
+
         // Draw objectmon name
-        int nameWidth = fm.stringWidth(name);
-        g.drawString(name, x + (getWidth() / 4) - (nameWidth / 2), y + 20);
-    
+        final int nameWidth = fm.stringWidth(objectmon.getName());
+        g.drawString(objectmon.getName(), x + (getWidth() / 4) - (nameWidth / 2), y + Y_OFFSET);
+
         // Draw objectmon level
-        String levelText = "Level: " + level;
-        int levelWidth = fm.stringWidth(levelText);
-        g.drawString(levelText, x + (getWidth() / 4) - (levelWidth / 2), y + 40);
-    
+        final String levelText = "Level: " + objectmon.getLevel();
+        final int levelWidth = fm.stringWidth(levelText);
+        g.drawString(levelText, x + (getWidth() / 4) - (levelWidth / 2), y + Y_OFFSET * 2);
+
         // Draw objectmon health
-        String healthText = "Health: " + health;
-        int healthWidth = fm.stringWidth(healthText);
-        g.drawString(healthText, x + (getWidth() / 4) - (healthWidth / 2), y + 60);
+        final String healthText = "Health: " + objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP);
+        final int healthWidth = fm.stringWidth(healthText);
+        g.drawString(healthText, x + (getWidth() / 4) - (healthWidth / 2), y + Y_OFFSET * 3);
+    }
+
+    private void drawChallengers(final Graphics2D g) {
+        final Battle battleInfo = controller.getBattleStats().get();
+        final Player player = battleInfo.getPlayer();
+        final TrainerNPCImpl enemy = (TrainerNPCImpl) battleInfo.getTrainer().get();
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, getWidth(), Y_OFFSET * 2);
+        g.setColor(Color.WHITE);
+        g.setFont(defaultFont);
+        final FontMetrics fm = g.getFontMetrics();
+        final String text = player.getName() + " vs " + enemy.getName();
+        final int textWidth = fm.stringWidth(text);
+        final int x = (getWidth() - textWidth) / 2;
+        g.drawString(text, x, Y_OFFSET);
+    }
+
+    private void drawObjectmonCount(final Graphics2D g) {
+        final Battle battleInfo = controller.getBattleStats().get();
+        final int playerObjectmonCount = battleInfo.getPlayerTeam().getParty().size();
+        final int enemyObjectmonCount = battleInfo.getTrainerTeam().get().getParty().size();
+        g.setColor(Color.WHITE);
+        g.setFont(defaultFont);
+        final FontMetrics fm = g.getFontMetrics();
+
+        // Draw player objectmon count at the top left
+        final String playerCountText = battleInfo.getPlayer().getName() + " objectmons: " + playerObjectmonCount;
+        g.drawString(playerCountText, 10, Y_OFFSET);
+
+        // Draw enemy objectmon count at the top right
+        final String enemyCountText = battleInfo.getPlayer().getName() + " objectmons: " + enemyObjectmonCount;
+        final int enemyCountWidth = fm.stringWidth(enemyCountText);
+        g.drawString(enemyCountText, getWidth() - enemyCountWidth - 10, Y_OFFSET);
     }
 }
