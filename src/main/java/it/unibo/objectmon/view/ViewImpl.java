@@ -1,6 +1,8 @@
 package it.unibo.objectmon.view;
 
 import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,6 +16,7 @@ import it.unibo.objectmon.model.gamestate.GameState;
  */
 public final class ViewImpl implements View {
     private static final String GAME_NAME = "Objectmon";
+    private static final String GAME_ICON = "/icon/cheesecake.png";
     private final JFrame frame;
     private final Controller controller;
 
@@ -30,7 +33,10 @@ public final class ViewImpl implements View {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setResizable(true);
         this.frame.setLocationByPlatform(true);
+        final ImageIcon icon = new ImageIcon(this.getClass().getResource(GAME_ICON));
+        frame.setIconImage(icon.getImage());
         this.frame.pack();
+        this.frame.setVisible(true);
     }
 
     @Override
