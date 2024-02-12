@@ -111,7 +111,9 @@ public final class BattleManagerImpl implements BattleManager {
      */
     private void executePlayerTurn(final Move type, final int index) {
         if (this.isDead(this.battle.get().getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
-            this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+            if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
+                this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+            }
         } else {
             switch (type) {
                 case ATTACK:
@@ -196,7 +198,8 @@ public final class BattleManagerImpl implements BattleManager {
             case ATTACK:
                 return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size();
             case SWITCH_OBJECTMON:
-                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size() - 1;
+                return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size()
+                    && this.battle.get().getPlayerTeam().getParty().size() > 1;
             default:
                 return false;
         }
