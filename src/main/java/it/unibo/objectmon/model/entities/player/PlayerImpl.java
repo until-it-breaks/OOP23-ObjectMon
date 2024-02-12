@@ -8,6 +8,8 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.AbstractEntity;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.item.inventory.Inventories;
+import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
@@ -17,6 +19,7 @@ import it.unibo.objectmon.model.world.api.Coord;
 public final class PlayerImpl extends AbstractEntity implements Player {
 
     private final ObjectmonParty objectmonParty;
+    private final Inventory inventory;
 
     /**
      * Constructs a new Player.
@@ -28,6 +31,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
     public PlayerImpl(final String name, final Coord coord, final List<Objectmon> team) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
+        this.inventory = Inventories.createWithBasicInitialItems();
     }
 
     @Override
@@ -49,5 +53,12 @@ public final class PlayerImpl extends AbstractEntity implements Player {
     @Override
     public ObjectmonParty getObjectmonParty() {
         return this.objectmonParty;
+    }
+
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "By design the inventory may circulate freely in the model")
+    @Override
+    public Inventory getInventory() {
+        return this.inventory;
     }
 }

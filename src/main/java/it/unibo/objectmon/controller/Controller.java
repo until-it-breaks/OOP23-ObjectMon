@@ -5,8 +5,9 @@ import java.util.Set;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
+import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
 import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.world.api.World;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public interface Controller {
      *
      * @return The npc in the game.
      */
-    Set<ReadOnlyEntity> getNPCSet();
+    Set<EntityReadOnly> getNPCSet();
 
     /**
      * Returns the world in the game.
@@ -75,4 +76,10 @@ public interface Controller {
      * @return The game state.
      */
     GameState getGameState();
+
+    /**
+     * return logger of battle to attach observers.
+     * @return logger of battle.
+     */
+    BattleLogger getBattleLogger();
 }

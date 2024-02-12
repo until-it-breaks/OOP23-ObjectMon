@@ -9,6 +9,7 @@ import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 
@@ -77,5 +78,10 @@ public final class ModelImpl implements Model {
     @Override
     public void bufferCommand(final Move move, final int index) {
         this.battleManager.bufferCommand(move, index);
+    }
+
+    @Override
+    public BattleLogger getBattleLogger() {
+        return this.battleManager.getLogger();
     }
 }

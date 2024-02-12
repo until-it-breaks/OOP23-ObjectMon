@@ -11,11 +11,9 @@ import it.unibo.objectmon.model.world.api.Coord;
  */
 @SuppressFBWarnings(
     value = "EI_EXPOSE_REP2", 
-    justification = "This read-only view does not expose the internal state of AbstractNPC."
-                    + "It is designed to provide read-only access to NPC information, "
-                    + "ensuring that the NPC's state remains immutable."
+    justification = "By design this provides read-only information outside of the model."
 )
-public class ReadOnlyEntity {
+public class EntityReadOnly {
 
     private final AbstractNPC npc;
 
@@ -24,7 +22,7 @@ public class ReadOnlyEntity {
      * 
      * @param npc The NPC for which to create a read-only view.
      */
-    public ReadOnlyEntity(final AbstractNPC npc) {
+    public EntityReadOnly(final AbstractNPC npc) {
         this.npc = npc;
     }
 

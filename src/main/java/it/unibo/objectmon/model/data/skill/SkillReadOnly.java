@@ -4,11 +4,19 @@ import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.skill.SkillCategory;
 
-public class SkillReadOnly implements Skill {
+/**
+ * A Skill wrapper that only expose getters.
+ */
+public final class SkillReadOnly implements Skill {
 
-    private Skill skill;
+    private final Skill skill;
 
-    public SkillReadOnly(Skill skill) {
+    /**
+     * The Skill to make read-only.
+     * 
+     * @param skill The skill to be wrapped.
+     */
+    public SkillReadOnly(final Skill skill) {
         this.skill = skill;
     }
 
@@ -61,5 +69,4 @@ public class SkillReadOnly implements Skill {
     public void subtractCurrentUses() {
         throw new UnsupportedOperationException("Unimplemented method 'subtractCurrentUses'");
     }
-    
 }

@@ -17,6 +17,7 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
@@ -29,6 +30,8 @@ public final class BattleManagerImpl implements BattleManager {
     private final Turn turn;
     private final AiTrainer aiTrainer;
     private final GameStateManager gameStateManager;
+    private final BattleLogger logger;
+    private int count;
 
     /**
      * Constructor of BattleManagerImpl.
@@ -43,6 +46,8 @@ public final class BattleManagerImpl implements BattleManager {
         this.turn = new TurnImpl();
         this.aiTrainer = new EasyAiTrainer();
         this.gameStateManager = gameStateManager;
+        this.logger = new BattleLogger();
+        this.count = 0;
     }
 
     @Override
@@ -54,11 +59,17 @@ public final class BattleManagerImpl implements BattleManager {
             t -> {
                 this.battle = Optional.of(new BattleImpl(player, t));
                 this.gameStateManager.setGameState(GameState.BATTLE);
+                this.logger.log("battle started with trainer:" + t.getName());
             },
-            () -> objectMon.ifPresentOrElse(o -> this.battle = Optional.of(new BattleImpl(player, o)), () -> {
-                throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
-            })
+            () -> objectMon.ifPresentOrElse(o -> {
+                    this.battle = Optional.of(new BattleImpl(player, o));
+                    this.logger.log("battle started with" + o.getName());
+                }, 
+                () -> {
+                    throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
+                })
         );
+        this.count = 0;
         this.setResult(Result.IN_BATTLE);
         this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
     }
@@ -67,6 +78,7 @@ public final class BattleManagerImpl implements BattleManager {
         this.turn.setTurn(StatTurn.TURN_STARTED);
         final int aiIndex = chooseAiMove();
         this.battle.get().setPlayerMove(type);
+        this.logger.log("turn " + (++this.count) + "started");
             switch (this.turn.whichFirst(
                 this.battle.get().getEnemyMove(),
                 this.battle.get().getPlayerMove(), 
@@ -166,7 +178,10 @@ public final class BattleManagerImpl implements BattleManager {
     private void runAway() {
         if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
             setResult(Result.END);
+            this.logger.log("player run away");
             this.endBattleAction();
+        } else {
+            this.logger.log("you cannot run away!");
         }
     }
 
@@ -178,12 +193,19 @@ public final class BattleManagerImpl implements BattleManager {
      */
     private void useSkill(final int index, final Objectmon userSkill, final Objectmon target) {
         final AttackMove attack = new AttackMove(userSkill.getSkills().get(index));
-        attack.action(userSkill, target);
+        final int damage = attack.action(userSkill, target);
+        this.logger.log(
+            userSkill.getName() + " uses " + userSkill.getSkills().get(index).getName()
+            + "\n" + target.getName() + " takes " + damage + " damage."
+            );
     }
 
     private void switchPlayerObjectmon(final int index) {
         final var team = this.battle.get().getPlayerTeam().getParty();
         this.battle.get().getPlayerTeam().switchPosition(team.get(0), team.get(index));
+        this.logger.log(
+            "player change current objectmon from " + team.get(index).getName() + " to " + team.get(0).getName()
+        );
     }
 
     /**
@@ -192,6 +214,10 @@ public final class BattleManagerImpl implements BattleManager {
      */
     private void removeCurrentAndSwitch(final ObjectmonParty team) {
         if (this.isDead(team.getParty().get(0))) {
+            this.logger.log(
+                team.getParty().get(0).getName() + " is dead " 
+                + "\n next pokemon will be " + team.getParty().get(1).getName()
+                );
             team.remove(team.getParty().get(0));
         }
     }
@@ -255,8 +281,10 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.isOver()) {
             switch (this.result.get()) {
                 case WIN:
+                    this.logger.log("YOU WIN");
                     break;
                 case LOSE:
+                    this.logger.log("YOU LOSE");
                     break;
                 default:
                     break;
@@ -271,5 +299,12 @@ public final class BattleManagerImpl implements BattleManager {
         return this.battle.isPresent()
             ? Optional.of(new ReadOnlyBattle(this.battle.get()))
             : Optional.empty();
+    }
+
+    @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Temporary")
+    public BattleLogger getLogger() { 
+        return this.logger;
     }
 }

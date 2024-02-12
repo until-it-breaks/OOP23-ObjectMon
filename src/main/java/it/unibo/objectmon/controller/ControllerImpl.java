@@ -19,11 +19,12 @@ import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.core.GameContexts;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
+import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
 import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
+import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.CollisionManagerImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.InteractionManagerImpl;
@@ -84,9 +85,9 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Set<ReadOnlyEntity> getNPCSet() {
+    public Set<EntityReadOnly> getNPCSet() {
     return model.getGameContext().getNPCs().stream()
-            .map(ReadOnlyEntity::new)
+            .map(EntityReadOnly::new)
             .collect(Collectors.toSet());
     }
 
@@ -113,5 +114,10 @@ public final class ControllerImpl implements Controller {
     @Override
     public Optional<Battle> getBattleStats() {
         return model.getBattleStats();
+    }
+
+    @Override
+    public BattleLogger getBattleLogger() {
+        return model.getBattleLogger();
     }
 }

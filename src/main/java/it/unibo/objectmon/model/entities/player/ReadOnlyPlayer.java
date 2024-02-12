@@ -1,16 +1,12 @@
 package it.unibo.objectmon.model.entities.player;
 
-import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
-import it.unibo.objectmon.model.data.objectmon.ObjectmonReadOnly;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyReadOnly;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.world.api.Coord;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents a read-only view of a {@link Player} instance.
@@ -61,15 +57,16 @@ public final class ReadOnlyPlayer implements Player {
 
     @Override
     public ObjectmonParty getObjectmonParty() {
-        List<Objectmon> out = new ArrayList<>();
-        for (Objectmon objectmon : player.getObjectmonParty().getParty()) {
-            out.add(new ObjectmonReadOnly(objectmon));
-        }
-        return new ObjectmonPartyImpl(out);
+        return new ObjectmonPartyReadOnly(player.getObjectmonParty());
     }
 
     @Override
     public void move(final Direction direction, final CollisionManager collisionChecker) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
+    }
+
+    @Override
+    public Inventory getInventory() {
+        return player.getInventory();
     }
 }

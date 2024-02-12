@@ -17,7 +17,7 @@ import it.unibo.objectmon.model.world.api.Coord;
 /**
  * Models an NPC capable of fighting.
  */
-public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
+public final class TrainerImpl extends AbstractNPC implements Trainer {
     private final ObjectmonParty objectmonParty;
     private final BattleStartListener battleStartListener;
 
@@ -29,7 +29,7 @@ public final class TrainerNPCImpl extends AbstractNPC implements Trainer {
      * @param team The team of Objectmons of the Trainer.
      * @param battleStartListener the listener that will
      */
-    public TrainerNPCImpl(final String name,
+    public TrainerImpl(final String name,
             final Coord coord,
             final List<Objectmon> team,
             final BattleStartListener battleStartListener) {

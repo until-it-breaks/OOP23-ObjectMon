@@ -21,7 +21,7 @@ public class BattleLogger {
      * @param observer The observer to add.
      */
     public void addObserver(final BattleLogObserver observer) {
-        observers.add(observer);
+        this.observers.add(observer);
     }
 
     /**
@@ -29,7 +29,7 @@ public class BattleLogger {
      * @param message The message to add to the battle log.
      */
     public void log(final String message) {
-        notifyObservers(message);
+        notifyObservers(message + "\n");
     }
 
     private void notifyObservers(final String message) {

@@ -5,7 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
@@ -14,7 +17,8 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Seller;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.entities.npc.ReadOnlyEntity;
+import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
+import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
@@ -33,6 +37,8 @@ public final class OverWorldPanel extends JPanel {
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
     private final transient ImageLoader imageLoader;
+    private static final int INVENTORY_X_OFFSET = 20;
+    private static final int INVENTORY_Y_OFFSET = 20;
 
     /**
      * Constructs a new OverWorld panel, initializing its properties and attaching it to the provided controller.
@@ -77,12 +83,13 @@ public final class OverWorldPanel extends JPanel {
     }
 
     private void drawHUD(final Graphics2D g) {
+        drawInventory(g);
         drawEventLog(g);
         drawParty(g);
     }
 
     private void drawNPCs(final Graphics2D g) {
-        for (final ReadOnlyEntity npc : controller.getNPCSet()) {
+        for (final EntityReadOnly npc : controller.getNPCSet()) {
             final BufferedImage image = getNPCImage(npc);
             g.drawImage(image, npc.getPosition().x() * TILE_SIZE, npc.getPosition().y() * TILE_SIZE, null);
         }
@@ -145,7 +152,6 @@ public final class OverWorldPanel extends JPanel {
             g.drawImage(image, offsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
             g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
             g.setColor(Color.WHITE);
-
             // Draw level text above the health counter
             g.drawString("Lv." + objectmon.getLevel(), offsetX, offsetY - TILE_SIZE / 2);
 
@@ -156,7 +162,20 @@ public final class OverWorldPanel extends JPanel {
         }
     }
 
-    private BufferedImage getNPCImage(final ReadOnlyEntity npc) {
+    private void drawInventory(final Graphics2D g) {
+        final Map<Item, Integer> inventory = controller.getPlayer().getInventory().getItems();
+        final int offsetX = INVENTORY_X_OFFSET;
+        int offsetY = INVENTORY_Y_OFFSET;
+        for (final var entry : inventory.entrySet()) {
+            final Item item = entry.getKey();
+            g.setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
+            g.setColor(Color.WHITE);
+            g.drawString(item.getName() + ": " + entry.getValue(), offsetX, offsetY);
+            offsetY += FONT_SIZE;
+        }
+    }
+
+    private BufferedImage getNPCImage(final EntityReadOnly npc) {
         if (npc.implementsInterface(Seller.class)) {
             return imageLoader.getImage("/npc/vendor.png");
         } else if (npc.implementsInterface(Healer.class)) {

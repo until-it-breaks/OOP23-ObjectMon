@@ -49,7 +49,6 @@ public class BattlePanel extends JPanel {
         final CommandPanel commandPanel = new CommandPanel(controller);
         gbc.gridy = 1;
         gbc.weighty = COMMAND_PANEL_RATIO;
-        commandPanel.initialize();
         leftPanel.add(commandPanel, gbc);
 
         // Right panel (BattleLog)

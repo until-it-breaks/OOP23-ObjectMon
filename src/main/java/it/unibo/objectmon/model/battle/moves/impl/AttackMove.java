@@ -25,20 +25,23 @@ public class AttackMove {
      * use skill to attack the target.
      * @param objectmon use the skill
      * @param target to be attacked
+     * @return damage hit to targer.
      */
-    public void action(final Objectmon objectmon, final Objectmon target) {
+    public int action(final Objectmon objectmon, final Objectmon target) {
         if (this.hitSuccessful(this.skill.getAccuracy())) {
             final DamageCalculator calculator = new DamageCalculatorImpl(skill);
             final int hp = (int) calculator.damage(objectmon, target);
             target.setCurrentHp(-hp);
+            return hp;
         }
+        return 0;
     }
     /**
      * calculate the probability to hit the target.
      * @param accuracy the accuracy of the skill.
      * @return true if skill has hit the target
      */
-    private boolean hitSuccessful(final int accuracy) {
+    public boolean hitSuccessful(final int accuracy) {
         return random.nextInt(AttackMove.maxAccuracy) < accuracy;
     }
 }

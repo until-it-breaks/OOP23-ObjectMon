@@ -11,7 +11,7 @@ import it.unibo.objectmon.model.world.api.Coord;
 /**
  * Models an NPC capable of healing the Player's team.
  */
-public final class HealerNPCImpl extends AbstractNPC implements Healer {
+public final class HealerImpl extends AbstractNPC implements Healer {
 
     /**
      * Constructs a new Healer NPC.
@@ -19,7 +19,7 @@ public final class HealerNPCImpl extends AbstractNPC implements Healer {
      * @param name The name of the healer NPC.
      * @param coord The starting position of the healer NPC.
      */
-    public HealerNPCImpl(final String name, final Coord coord) {
+    public HealerImpl(final String name, final Coord coord) {
         super(name, coord);
     }
 

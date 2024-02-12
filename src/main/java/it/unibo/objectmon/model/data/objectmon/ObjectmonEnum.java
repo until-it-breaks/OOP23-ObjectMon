@@ -418,7 +418,6 @@ public enum ObjectmonEnum {
     /**
      * Constructor of ObjectmonEnum.
      * 
-     * @param id Id of the Objectmon
      * @param name Name of the Objectmon
      * @param aspects Aspects of the Objectmon.
      * @param stats Stats of the Objectmon.
@@ -433,8 +432,8 @@ public enum ObjectmonEnum {
 
         if (aspects.size() > 1) {
             final int firstAspectIndex = 2;
-            final int lastAspectIndex = 5;
-            this.skills = skills.subList(firstAspectIndex, lastAspectIndex + 1);
+            final int lastAspectIndex = 6;
+            this.skills = skills.subList(firstAspectIndex, lastAspectIndex);
         } else {
             this.skills = skills;
         }

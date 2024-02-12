@@ -57,6 +57,21 @@ class TestObjectmon {
     }
 
     /**
+     *  Test of the ObjectmonFactory.
+     */
+    @Test
+    void testObjectmonFactory() {
+        final int level = 5;
+        final Objectmon torchic = ObjectmonFactory.createObjectmon(ObjectmonEnum.TORCHIC, level);
+        assertEquals("Fire Tackle", torchic.getSkills().get(0).getName());
+
+        final Objectmon mudkip = ObjectmonFactory.createObjectmon(ObjectmonEnum.MUDKIP, level);
+        final int moveId = 3;
+        //0 1 2 3 4 5 6 7 8
+        assertEquals("Ground Kick", mudkip.getSkills().get(moveId).getName());
+    }
+
+    /**
      *  Test of the ObjectmonReadOnly.
      */
     @Test

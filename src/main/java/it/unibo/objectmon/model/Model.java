@@ -5,6 +5,7 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 
@@ -65,4 +66,10 @@ public interface Model {
      * @param index The index of that move type.
      */
     void bufferCommand(Move move, int index);
+
+    /**
+     * get Battle logger.
+     * @return logger of battle
+     */
+    BattleLogger getBattleLogger();
 }
