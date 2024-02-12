@@ -14,6 +14,7 @@ public class BaseStats extends StatsImpl implements Serializable {
 
     /**
      * Constructor of the class.
+     * 
      * @param stats Map of all the stats.
      */
     public BaseStats(final Map<StatId, Integer> stats) {

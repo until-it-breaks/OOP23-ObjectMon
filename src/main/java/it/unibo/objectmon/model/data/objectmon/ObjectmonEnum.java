@@ -13,6 +13,7 @@ import it.unibo.objectmon.model.data.skill.SkillFactory;
  * Enum of Objectmon in the game.
  */
 public enum ObjectmonEnum {
+
     /**
      * Information of the Objectmon Zigzagoon.
      */
@@ -31,6 +32,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Tailow.
      */
@@ -49,6 +51,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Oddish.
      */
@@ -67,6 +70,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Kecleon.
      */
@@ -85,6 +89,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Treeko.
      */
@@ -103,6 +108,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Shroomish.
      */
@@ -121,6 +127,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Volbeat.
      */
@@ -139,6 +146,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Illumise.
      */
@@ -157,6 +165,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Tropius.
      */
@@ -175,6 +184,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Mudkip.
      */
@@ -193,6 +203,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Goldeen.
      */
@@ -211,6 +222,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Staryu.
      */
@@ -229,6 +241,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Relicant.
      */
@@ -247,6 +260,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Torchic.
      */
@@ -265,6 +279,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Slugma.
      */
@@ -283,6 +298,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Numel.
      */
@@ -301,6 +317,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Torkoal.
      */
@@ -319,6 +336,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Geodude.
      */
@@ -337,6 +355,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Lileep.
      */
@@ -355,6 +374,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Anorith.
      */
@@ -373,6 +393,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Sandshrew.
      */
@@ -391,6 +412,7 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Nosepass.
      */
@@ -418,6 +440,7 @@ public enum ObjectmonEnum {
 
     /**
      * Constructor of ObjectmonEnum.
+     * 
      * @param id Id of the Objectmon
      * @param name Name of the Objectmon
      * @param aspects Aspects of the Objectmon.
@@ -444,6 +467,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of id.
+     * 
      * @return Returns the id.
      */
     public int getId() {
@@ -452,6 +476,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of name.
+     * 
      * @return Returns the name.
      */
     public String getName() {
@@ -460,6 +485,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of Aspects.
+     * 
      * @return Returns the Aspects.
      */
     public List<Aspect> getAspects() {
@@ -468,6 +494,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of Stats.
+     * 
      * @return Returns the Stats.
      */
     public ActualStats getStats() {
@@ -476,6 +503,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of Skills.
+     * 
      * @return Returns the Skills.
      */
     public List<Skill> getSkills() {

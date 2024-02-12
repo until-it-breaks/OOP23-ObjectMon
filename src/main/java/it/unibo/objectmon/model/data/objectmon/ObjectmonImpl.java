@@ -1,7 +1,8 @@
 package it.unibo.objectmon.model.data.objectmon;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.UUID;
+
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
@@ -15,7 +16,7 @@ import it.unibo.objectmon.model.data.statistics.BaseStats;
  */
 public final class ObjectmonImpl implements Objectmon {
 
-    private final int id;
+    private final UUID uuid;
     private final String name;
     private final List<Aspect> aspects;
     private final List<Skill> skills;
@@ -23,10 +24,11 @@ public final class ObjectmonImpl implements Objectmon {
     private int currentHp;
     private int level;
     private int exp;
-    private static final int MAXEXP = 100;
+    private static final int MAX_EXP = 100;
 
     /**
      * Constructor of the class ObjectmonImpl.java.
+     * 
      * @param id The id of the Objectmon.
      * @param name The name of the Objectmon.
      * @param aspects The aspects of the Objectmon.
@@ -35,14 +37,13 @@ public final class ObjectmonImpl implements Objectmon {
      * @param level The level of the Objectmon.
      */
     public ObjectmonImpl(
-        final int id,
         final String name,
         final List<Aspect> aspects,
         final List<SkillImpl> skills,
         final BaseStats stats,
         final int level
         ) {
-        this.id = id;
+        this.uuid = UUID.randomUUID();
         this.name = name;
         this.aspects = List.copyOf(aspects);
         this.skills = List.copyOf(skills);
@@ -54,10 +55,11 @@ public final class ObjectmonImpl implements Objectmon {
 
     /**
      * Constructor of the class ObjectmonImpl with a builder.
+     * 
      * @param builder The builder.
      */
     private ObjectmonImpl(final Builder builder) {
-        this.id = builder.id;
+        this.uuid = UUID.randomUUID();
         this.name = builder.name;
         this.aspects = List.copyOf(builder.aspects);
         this.skills = List.copyOf(builder.skills);
@@ -69,10 +71,11 @@ public final class ObjectmonImpl implements Objectmon {
 
     /**
      * Constructor of the class ObjectmonImpl with Objectmon.
+     * 
      * @param objectmon The Objectmon.
      */
     public ObjectmonImpl(final Objectmon objectmon) {
-        this.id = objectmon.getId();
+        this.uuid = objectmon.getUuid();
         this.name = objectmon.getName();
         this.aspects = List.copyOf(objectmon.getAspect());
         this.skills = List.copyOf(objectmon.getSkills());
@@ -87,8 +90,8 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public int getId() {
-        return this.id;
+    public UUID getUuid() {
+        return this.uuid;
     }
 
     @Override
@@ -130,6 +133,7 @@ public final class ObjectmonImpl implements Objectmon {
 
     /**
      * Setter of the Objectmon's exp.
+     * 
      * @param exp New quantity of exp.
      */
     private void setExp(final int exp) {
@@ -139,8 +143,8 @@ public final class ObjectmonImpl implements Objectmon {
     @Override
     public void calcExp(final int gainedExp) {
         setExp(gainedExp);
-        while (getExp() >= MAXEXP) {
-            setExp(getExp() - MAXEXP);
+        while (getExp() >= MAX_EXP) {
+            setExp(getExp() - MAX_EXP);
             levelUp();
         }
     }
@@ -172,38 +176,31 @@ public final class ObjectmonImpl implements Objectmon {
         } else {
             this.currentHp = value;
         }
-
     }
 
-    /**
-     * Method that compares an Objectmon with another to see if they're identical.
-     * <br>If they are the same instance returns true.
-     * If they have the same name and id returns true.
-     * Everything else returns false.
-     * @param obj Objectmon that needs to be compared.
-     */
     @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        } else if (this == obj) {
+    public boolean equals(Object obj) {
+        if (this == obj)
             return true;
-        }
-
-        final ObjectmonImpl objmon = (ObjectmonImpl) obj;
-        return Integer.valueOf(getId()).equals(objmon.getId())
-        && getName().equals(objmon.getName());
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ObjectmonImpl other = (ObjectmonImpl) obj;
+        if (uuid == null) {
+            if (other.uuid != null)
+                return false;
+        } else if (!uuid.equals(other.uuid))
+            return false;
+        return true;
     }
 
-    /**
-     * @return Returns the hash code value for Objectmon.
-     */
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName());
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
+        return result;
     }
 
     /**
@@ -211,7 +208,6 @@ public final class ObjectmonImpl implements Objectmon {
      * Used to generate an Objectmon.
      */
     public static class Builder {
-        private final int id;
         private final String name;
         private final List<Aspect> aspects;
         private final List<Skill> skills;
@@ -221,11 +217,11 @@ public final class ObjectmonImpl implements Objectmon {
 
         /**
          * Constructor of the class ObjectmonImpl.java.
+         * 
          * @param objectmon The objectmon to be generated.
          * @param level the level of the Objectmon.
         */
         public Builder(final ObjectmonEnum objectmon, final int level) {
-            this.id = objectmon.getId();
             this.name = objectmon.getName();
             this.aspects = List.copyOf(objectmon.getAspects());
             this.skills = List.copyOf(objectmon.getSkills());
@@ -236,6 +232,7 @@ public final class ObjectmonImpl implements Objectmon {
 
         /**
          * Method that builds the Objectmon.
+         * 
          * @return Returns the ObjectmonImpl that was built.
          */
         public ObjectmonImpl build() {

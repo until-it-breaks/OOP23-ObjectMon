@@ -9,21 +9,25 @@ import org.apache.commons.collections4.list.UnmodifiableList;
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+
 /**
- * a simple objecmon party.
+ * A simple objectmon party.
  */
 public final class ObjectmonPartyImpl implements ObjectmonParty {
     private static final int MAX_SIZE = 6;
     private final List<Objectmon> party;
+
     /**
-     * constructor of Objectmon party.
+     * Constructor of Objectmon party.
      */
     public ObjectmonPartyImpl() {
         this.party = new ArrayList<>();
     }
+
     /**
-     * constructor which has party already stabilished.
-     * @param party a undifiableList party with objectmon
+     * Constructor which has party already stabilished.
+     * 
+     * @param party The list of Objectmons to be used.
      */
     public ObjectmonPartyImpl(final List<Objectmon> party) {
         this.party = new ArrayList<>(party);
