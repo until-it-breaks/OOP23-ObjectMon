@@ -17,7 +17,6 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
 
 /**
  * A panel that is used to display the flow of the battle.

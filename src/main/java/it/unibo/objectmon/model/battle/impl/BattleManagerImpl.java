@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.ai.EasyAiTrainer;
 import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
@@ -27,10 +28,15 @@ public final class BattleManagerImpl implements BattleManager {
     private Optional<Result> result;
     private final Turn turn;
     private final AiTrainer aiTrainer;
-    private GameStateManager gameStateManager;
+    private final GameStateManager gameStateManager;
+
     /**
      * Constructor of BattleManagerImpl.
+     * 
+     * @param gameStateManager The game state manager.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "Temporary")
     public BattleManagerImpl(final GameStateManager gameStateManager) {
         this.battle = Optional.empty();
         this.result = Optional.empty();
@@ -45,8 +51,9 @@ public final class BattleManagerImpl implements BattleManager {
             throw new IllegalStateException("A battle is already in progress.");
         }
         trainer.ifPresentOrElse(
-            t -> { this.battle = Optional.of(new BattleImpl(player, t));
-            this.gameStateManager.setGameState(GameState.BATTLE);
+            t -> {
+                this.battle = Optional.of(new BattleImpl(player, t));
+                this.gameStateManager.setGameState(GameState.BATTLE);
             },
             () -> objectMon.ifPresentOrElse(o -> this.battle = Optional.of(new BattleImpl(player, o)), () -> {
                 throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
@@ -83,6 +90,7 @@ public final class BattleManagerImpl implements BattleManager {
             }
         this.endTurnAction();
     }
+
     /**
      * 
      * @param type type of move.
@@ -110,6 +118,7 @@ public final class BattleManagerImpl implements BattleManager {
                 break;
         }
     }
+
     /**
      * 
      * @param type type of move.
@@ -255,12 +264,6 @@ public final class BattleManagerImpl implements BattleManager {
                     break;
             }
             gameStateManager.setGameState(GameState.EXPLORATION);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
             this.battle = Optional.empty();
         }
     }

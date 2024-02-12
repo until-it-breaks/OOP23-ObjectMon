@@ -12,7 +12,7 @@ import it.unibo.objectmon.model.gamestate.GameState;
  * This class serves as the primary container
  * for displaying various game components and interacting with the user.
  */
-public final class ViewImpl implements View {
+public final class SwingViewImpl implements View {
     private static final String GAME_NAME = "Objectmon";
     private final JFrame frame;
     private final Controller controller;
@@ -23,7 +23,7 @@ public final class ViewImpl implements View {
      *
      * @param controller The controller that will be passed to the child panels.
      */
-    public ViewImpl(final Controller controller) {
+    public SwingViewImpl(final Controller controller) {
         this.controller = controller;
         this.frame = new JFrame(GAME_NAME);
         this.frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
