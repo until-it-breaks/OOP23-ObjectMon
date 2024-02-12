@@ -16,6 +16,7 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.TrainerNPCImpl;
 
 /**
@@ -103,7 +104,7 @@ public final class CombatPanel extends JPanel {
     private void drawChallengers(final Graphics2D g) {
         final Battle battleInfo = controller.getBattleStats().get();
         final Player player = battleInfo.getPlayer();
-        final TrainerNPCImpl enemy = (TrainerNPCImpl) battleInfo.getTrainer().get();
+        final Trainer enemy = battleInfo.getTrainer().get();
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), Y_OFFSET * 2);
         g.setColor(Color.WHITE);
