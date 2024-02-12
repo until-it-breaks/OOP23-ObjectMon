@@ -29,7 +29,6 @@ public final class ObjectmonImpl implements Objectmon {
     /**
      * Constructor of the class ObjectmonImpl.java.
      * 
-     * @param id The id of the Objectmon.
      * @param name The name of the Objectmon.
      * @param aspects The aspects of the Objectmon.
      * @param skills The skills of the Objectmon.
@@ -179,20 +178,15 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        ObjectmonImpl other = (ObjectmonImpl) obj;
-        if (uuid == null) {
-            if (other.uuid != null)
-                return false;
-        } else if (!uuid.equals(other.uuid))
-            return false;
-        return true;
+        }
+        final ObjectmonImpl other = (ObjectmonImpl) obj;
+        return uuid == null ? other.uuid == null : uuid.equals(other.uuid);
     }
 
     @Override

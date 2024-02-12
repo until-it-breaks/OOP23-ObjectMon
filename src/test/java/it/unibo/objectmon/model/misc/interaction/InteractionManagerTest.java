@@ -11,8 +11,8 @@ import java.util.HashSet;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.HealerNPCImpl;
-import it.unibo.objectmon.model.entities.npc.SellerNPCImpl;
+import it.unibo.objectmon.model.entities.npc.HealerImpl;
+import it.unibo.objectmon.model.entities.npc.VendorImpl;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 import it.unibo.objectmon.model.world.api.Coord;
@@ -33,8 +33,8 @@ class InteractionManagerTest {
     void init() {
         interactionManager = new InteractionManagerImpl();
         npcs = new HashSet<>();
-        npcs.add(new SellerNPCImpl("Beta", new Coord(1, 0)));
-        npcs.add(new HealerNPCImpl("Alpha", new Coord(4, 4)));
+        npcs.add(new VendorImpl("Beta", new Coord(1, 0)));
+        npcs.add(new HealerImpl("Alpha", new Coord(4, 4)));
         player = new PlayerImpl("Player", new Coord(0, 0), List.of());
     }
 

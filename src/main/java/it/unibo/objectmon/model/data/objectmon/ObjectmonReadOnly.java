@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
@@ -14,6 +15,11 @@ import it.unibo.objectmon.model.data.statistics.ActualStats;
 /**
  * Read only wrapper of Objectmon, to limit view access.
  */
+@SuppressFBWarnings(
+    value = "EI_EXPOSE_REP2",
+    justification = "It is designed to provide read-only access to Objectmon's information"
+                    + "ensuring that the Objectmon's state remains immutable."
+)
 public class ObjectmonReadOnly implements Objectmon {
 
     private final Objectmon objectmon;
@@ -24,7 +30,7 @@ public class ObjectmonReadOnly implements Objectmon {
      * @param objectmon the Objectmon that needs to become read only.
      */
     public ObjectmonReadOnly(final Objectmon objectmon) {
-        this.objectmon = new ObjectmonImpl(objectmon);
+        this.objectmon = objectmon;
     }
 
     @Override
@@ -54,8 +60,8 @@ public class ObjectmonReadOnly implements Objectmon {
 
     @Override
     public final List<Skill> getSkills() {
-        List<Skill> out = new ArrayList<>();
-        for (Skill skill : this.objectmon.getSkills()) {
+        final List<Skill> out = new ArrayList<>();
+        for (final Skill skill : this.objectmon.getSkills()) {
             out.add(new SkillReadOnly(skill));
         }
         return out;

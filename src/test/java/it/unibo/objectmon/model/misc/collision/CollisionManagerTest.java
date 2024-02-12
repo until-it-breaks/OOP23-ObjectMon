@@ -9,8 +9,8 @@ import java.util.Set;
 import java.util.HashSet;
 
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
-import it.unibo.objectmon.model.entities.npc.HealerNPCImpl;
-import it.unibo.objectmon.model.entities.npc.SellerNPCImpl;
+import it.unibo.objectmon.model.entities.npc.HealerImpl;
+import it.unibo.objectmon.model.entities.npc.VendorImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.world.Tile;
 import it.unibo.objectmon.model.world.WorldImpl;
@@ -30,8 +30,8 @@ class CollisionManagerTest {
     void init() {
         world = new WorldImpl(Worlds.DEMO);
         final Set<AbstractNPC> npcs =  new HashSet<>(Set.of(
-            new SellerNPCImpl("Bob", new Coord(0, 0)),
-            new HealerNPCImpl("Semple", new Coord(2, 2))
+            new VendorImpl("Bob", new Coord(0, 0)),
+            new HealerImpl("Semple", new Coord(2, 2))
             ));
         collisionChecker = new CollisionManagerImpl(world, npcs);
     }
