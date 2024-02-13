@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.Collections;
 
+import it.unibo.objectmon.model.battle.api.Battle;
+import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.item.api.BallItem;
 import it.unibo.objectmon.model.item.api.HealItem;
 import it.unibo.objectmon.model.item.api.Item;
@@ -15,13 +17,16 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
  */
 public final class InventoryImpl implements Inventory {
 
+    private static final int WIN_IMPORT = 1000;
     private final Map<Item, Integer> items;
+    private int credits;
 
     /**
      * Constructs the inventory.
      */
-    public InventoryImpl() {
+    public InventoryImpl(final int credits) {
         this.items = new LinkedHashMap<>();
+        this.credits = credits;
     }
 
     @Override
@@ -77,5 +82,25 @@ public final class InventoryImpl implements Inventory {
         return items.keySet().stream()
             .mapToInt(item -> item.getValue())
             .sum();
+    }
+
+    @Override
+    public int getCredits() {
+        return this.credits;
+    }
+
+    @Override
+    public int addCredits() {
+        //battle win
+        return credits;
+    }
+
+    @Override
+    public boolean withdrawCredits(final int amount) {
+        if (credits >= amount) {
+            credits -= amount; 
+            return true;
+        }
+        return false;
     }
 }

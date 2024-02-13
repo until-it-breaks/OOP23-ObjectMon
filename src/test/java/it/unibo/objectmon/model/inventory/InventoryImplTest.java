@@ -18,7 +18,7 @@ class InventoryImplTest {
 
     @BeforeEach
     void init() {
-        inventory = new InventoryImpl();
+        inventory = new InventoryImpl(1000);
     }
 
     @Test
