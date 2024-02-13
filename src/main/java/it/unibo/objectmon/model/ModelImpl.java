@@ -35,6 +35,7 @@ public final class ModelImpl implements Model {
      * @param collisionManager      The manager responsible for collision detection.
      * @param battleManager         The manager responsible for handling battles between entities.
      * @param gameStateManager      The manager responsible for managing the game state.
+     * @param randomEncounterManager The manager responsible for triggering random encounters
      */
     @SuppressFBWarnings(value = "EI2", justification = "Allowing mutable objects to be stored for flexibility")
     public ModelImpl(final GameContext gameContext, final InteractionManager interactionManager,
@@ -72,7 +73,10 @@ public final class ModelImpl implements Model {
     public GameState getGameState() {
         return gameStateManager.getGameState();
     }
-
+     /**
+      * ..
+      * @return return the random encounter manager.
+      */
     public RandomEncounterManager getRandomEncounterManager() {
         return this.randomEncounterManager;
     }

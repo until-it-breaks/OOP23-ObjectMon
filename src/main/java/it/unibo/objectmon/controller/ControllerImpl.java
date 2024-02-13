@@ -63,7 +63,8 @@ public final class ControllerImpl implements Controller {
         final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleManager);
 
         // Create the model with initialized dependencies
-        this.model = new ModelImpl(gameContext, interactionManager, collisionManager, battleManager, gameStateManager, randomEncounterManager);
+        this.model = new ModelImpl(gameContext, interactionManager, collisionManager,
+            battleManager, gameStateManager, randomEncounterManager);
 
         // Initialize the view
         this.view = new SwingViewImpl(this);
