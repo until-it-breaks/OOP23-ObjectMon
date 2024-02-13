@@ -68,6 +68,7 @@ public final class BattleManagerImpl implements BattleManager {
             },
             () -> objectMon.ifPresentOrElse(o -> {
                     this.battle = Optional.of(new BattleImpl(player, o));
+                    this.gameStateManager.setGameState(GameState.BATTLE);
                     this.logger.log("battle started with" + o.getName());
                 }, 
                 () -> {
