@@ -2,6 +2,7 @@ package it.unibo.objectmon.view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
@@ -69,8 +70,19 @@ public final class SwingViewImpl implements View {
             case BATTLE:
                 setCurrentPanel(new BattlePanel(controller));
                 break;
+            case PAUSE:
+                showResumeDialog();
+                break;
             default:
                 throw new IllegalStateException();
         }
+    }
+
+    private void showResumeDialog() {
+        JOptionPane.showConfirmDialog(frame,
+                "Battle is over",
+                "Game Paused",
+                JOptionPane.PLAIN_MESSAGE);
+        setCurrentPanel(new OverWorldPanel(controller));
     }
 }

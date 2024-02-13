@@ -17,6 +17,7 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
  * A panel that is used to display the flow of the battle.
@@ -42,7 +43,7 @@ public final class CombatPanel extends JPanel {
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        if (g instanceof Graphics2D) {
+        if (g instanceof Graphics2D && controller.getGameState() != GameState.PAUSE) {
             final Graphics2D graphics2d = (Graphics2D) g;
             RenderingUtils.configureRenderingHints(graphics2d);
             drawBackgroud(graphics2d);

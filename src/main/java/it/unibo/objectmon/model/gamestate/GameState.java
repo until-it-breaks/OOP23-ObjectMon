@@ -10,10 +10,16 @@ public enum GameState {
      */
 
     EXPLORATION,
+
     /**
      * Battle mode.
      */
     BATTLE,
+
+    /**
+     * Pause mode.
+     */
+    PAUSE,
 
     /**
      * The default mode.
