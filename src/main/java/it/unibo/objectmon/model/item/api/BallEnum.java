@@ -72,7 +72,7 @@ public enum BallEnum {
      * @return imagePath
      */
     public String getImagePath() {
-        return imagePath;
+        return this.imagePath;
     }
 
     /**
@@ -80,7 +80,7 @@ public enum BallEnum {
      * @return description
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
 }

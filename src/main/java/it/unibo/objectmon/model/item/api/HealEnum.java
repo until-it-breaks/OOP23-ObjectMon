@@ -1,53 +1,80 @@
 package it.unibo.objectmon.model.item.api;
 
 /**
- * Enum of item Heal.
+ * Enum item Heal.
  */
 public enum HealEnum {
     /**
-     * The smallest heal item.
+     * This potion heals a moderate amount of HP to an Objectmon.
      */
-    POTION("Potion", 100, 15),
+    POTION("Potion", 50, 250, "/items/potion.png", 
+    "The least powerful healing item. Popular among novice trainers."),
     /**
-     * The medium heal item.
+     * This super potion heals a considerable amount of HP to an Objectmon.
      */
-    SUPERPOTION("Super Potion", 200, 30),
+    SUPERPOTION("Super Potion", 100, 500, "/items/superpotion.png", 
+    "Balanced in price and performance, this is the best seller in the market right now."),
     /**
-     * The largest heal item.
+     * This hyper potion heals a large amount of HP to an Objectmon.
      */
-    HYPERPOTION("Hyper Potion", 400, 60);
+    HYPERPOTION("Hyper Potion", 200, 1000, "/items/hyperpotion.png", 
+    "The latest healing item developed by the Objectmon Corporation. Highly effective but quite expensive.");
 
     private final String name;
     private final int value;
-    private final int healPoint;
+    private final int healingAmount;
+    private final String imagePath;
+    private final String description;
 
-    HealEnum(final String name, final int value, final int healPoint) {
+    HealEnum(final String name, 
+        final int value, 
+        final int healingAmount, 
+        final String imagePath, 
+        final String description) {
         this.name = name;
         this.value = value;
-        this.healPoint = healPoint;
+        this.healingAmount = healingAmount;
+        this.imagePath = imagePath;
+        this.description = description;
     }
 
     /**
-     * returns string of the name of the item.
+     * returns the name of the item.
      * @return name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
-     * returns the value of the item.
+     * returns the cost of the item.
      * @return value
      */
     public int getValue() {
-        return value;
+        return this.value;
     }
 
     /**
-     * returns point of heal of the item.
+     * returns the healing amount of the item.
      * @return healPoint
      */
-    public int getHealPoint() {
-        return healPoint;
+    public int getHealingAmount() {
+        return this.healingAmount;
+    }
+
+    /**
+     * Returns the image path of the ite,m.
+     * @return imagePath
+     */
+    public String getImagePath() {
+        return this.imagePath;
+    }
+
+    /**
+     * Returns the description of the item.
+     * @return description
+     */
+    public String getDescription() {
+        return this.description;
     }
 }
