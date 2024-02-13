@@ -17,13 +17,19 @@ import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.item.api.BallEnum;
 import it.unibo.objectmon.model.item.api.HealEnum;
 
+/**
+ * GUI for the item buying system.
+ */
+public class ShopPanel extends JPanel {
 
-public class ShopPanel extends JPanel{
-    
     private final JPanel itemContainerPanel;
     private final JLabel moneyLabel = new JLabel("Credits: 1000 coins"); //update via controller
     private final Controller controller;
 
+    /**
+     * Constructs a shop panel.
+     * @param controller
+     */
     public ShopPanel(final Controller controller) {
         this.controller = controller;
         setLayout(new BorderLayout());
@@ -102,10 +108,9 @@ public class ShopPanel extends JPanel{
             buyButton.addActionListener(new ActionListener() {
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(final ActionEvent e) {
                     //notify command
                 }
-                
             });
             quantityPanel.add(buyButton, BorderLayout.EAST);
             itemPanel.add(quantityPanel, BorderLayout.SOUTH);
