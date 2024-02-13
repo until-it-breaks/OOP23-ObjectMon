@@ -79,6 +79,11 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
+    public void execute() {
+        this.commandQueue.poll().execute(model);
+    }
+
+    @Override
     public void startGame() {
         final GameLoop gameLoop = new GameLoopImpl(model, view, this);
         gameLoop.start();

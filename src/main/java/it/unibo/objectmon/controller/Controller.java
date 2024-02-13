@@ -33,6 +33,11 @@ public interface Controller {
     Command pollCommand();
 
     /**
+     * Immediately execute a command in the queue, if present.
+     */
+    void execute();
+
+    /**
      * Starts the game.
      */
     void startGame();
