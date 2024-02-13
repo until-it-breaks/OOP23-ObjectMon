@@ -313,7 +313,7 @@ public final class BattleManagerImpl implements BattleManager {
                 default:
                     break;
             }
-            gameStateManager.setGameState(GameState.EXPLORATION);
+            gameStateManager.setGameState(GameState.PAUSE);
             this.battle = Optional.empty();
         }
     }
