@@ -14,30 +14,39 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 class TestStats {
 
     private static final Map<StatId, Integer> STATS = Map.of(
-        StatId.HP, 50,
-        StatId.ATK, 50,
-        StatId.DEF, 50,
-        StatId.SPATK, 50,
-        StatId.SPDEF, 50,
-        StatId.SPD, 50
+        StatId.HP, 20,
+        StatId.ATK, 30,
+        StatId.DEF, 100,
+        StatId.SPATK, 150,
+        StatId.SPDEF, 40,
+        StatId.SPD, 55
     );
 
     private static final Map<StatId, Integer> ONELEVEL = Map.of(
-        StatId.HP, 60,
-        StatId.ATK, 60,
-        StatId.DEF, 60,
-        StatId.SPATK, 60,
-        StatId.SPDEF, 60,
-        StatId.SPD, 60
+        StatId.HP, 25,
+        StatId.ATK, 34,
+        StatId.DEF, 101,
+        StatId.SPATK, 151,
+        StatId.SPDEF, 43,
+        StatId.SPD, 57
     );
 
     private static final Map<StatId, Integer> TWOLEVELS = Map.of(
-        StatId.HP, 72,
-        StatId.ATK, 72,
-        StatId.DEF, 72,
-        StatId.SPATK, 72,
-        StatId.SPDEF, 72,
-        StatId.SPD, 72
+        StatId.HP, 29,
+        StatId.ATK, 37,
+        StatId.DEF, 102,
+        StatId.SPATK, 152,
+        StatId.SPDEF, 46,
+        StatId.SPD, 59
+    );
+
+    private static final Map<StatId, Integer> SEVENLEVELS = Map.of(
+        StatId.HP, 51,
+        StatId.ATK, 55,
+        StatId.DEF, 109,
+        StatId.SPATK, 159,
+        StatId.SPDEF, 61,
+        StatId.SPD, 67
     );
 
     private static final Map<StatId, Integer> EVOLUTION = Map.of(
@@ -67,10 +76,10 @@ class TestStats {
         //One level
         int level = 1;
         growStats = growStats.calcNewStats(level);
+
         growStats.getStats().forEach((id, stat) -> {
             assertEquals(ONELEVEL.get(id), stat);
         });
-
         //reset
         growStats = new ActualStats(STATS);
 
@@ -79,6 +88,13 @@ class TestStats {
         growStats = growStats.calcNewStats(level);
         growStats.getStats().forEach((id, stat) -> {
             assertEquals(TWOLEVELS.get(id), stat);
+        });
+
+        //7 levels
+        final int sevenLevel = 7;
+        growStats = growStats.calcNewStats(sevenLevel);
+        growStats.getStats().forEach((id, stat) -> {
+            assertEquals(SEVENLEVELS.get(id), stat);
         });
 
         //Evolution test

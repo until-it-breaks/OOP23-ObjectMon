@@ -75,22 +75,6 @@ public class SkillImpl implements Serializable, Skill {
         this.category = category;
     }
 
-    /**
-     * Constructor of Skill using a builder.
-     * 
-     * @param builder The builder.
-     */
-    private SkillImpl(final Builder builder) {
-        this.name = builder.name;
-        this.id = builder.id;
-        this.aspect = builder.aspect;
-        this.basePower = builder.basePower;
-        this.accuracy = builder.accuracy;
-        this.maxUses = builder.maxUses;
-        this.currentUses = builder.currentUses;
-        this.category = builder.category;
-    }
-
     @Override
     public final int getId() {
         return this.id;
@@ -172,76 +156,5 @@ public class SkillImpl implements Serializable, Skill {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName());
-    }
-
-    /**
-     * Builder of a Skill.
-     * Used to generate a Skill.
-     */
-    public static class Builder {
-        private final String name;
-        private final int id;
-        private final Aspect aspect;
-        private final int basePower;
-        private final int accuracy;
-        private final int maxUses;
-        private final int currentUses;
-        private final SkillCategory category;
-
-        /**
-         * Constructor of a Skill.
-         * 
-         * @param name  Name of the Skill.Can't be null.
-         * @param id    Id of the Skill. Can't be negative.
-         *
-         * @param aspect Aspect of the Skill.
-         *  It's used to determine if a Skill is:
-         *  {@see #it.unibo.objectmon.data.skill.SkillStrenght},
-         *  or if a Skill has SameAspectBoost.
-         *  Can't be null.
-         *
-         * @param basePower Base power of the Skill.
-         *  Gets added to the offensive stat of the user to determine
-         *  how much damage is inflicted.
-         *  Can't be negative.
-         *  Should only be 0 if it's a Status Skill.
-         * @param accuracy  Accuracy of the Skill.
-         *  Determines if a Skill will hit or not.
-         *  accuracy can have a value between 0 and 101:
-         *  101 If it can't miss;
-         *  between 0 an 100 a random number is generated.
-         *  If the number is higher than the accuracy,
-         *  the Skill will fail.
-         * @param maxUses   Determines how many times the move can be used it total.
-         *  Can't be 0 or negative.
-         * @param category Category of a skill {@see SkillCategory#getCategory()}.
-         */
-        public Builder(
-            final String name,
-            final int id,
-            final Aspect aspect,
-            final int basePower,
-            final int accuracy,
-            final int maxUses,
-            final SkillCategory category
-            ) {
-            this.name = name;
-            this.id = id;
-            this.aspect = aspect;
-            this.basePower = basePower;
-            this.accuracy = accuracy;
-            this.maxUses = maxUses;
-            this.currentUses = this.maxUses;
-            this.category = category;
-        }
-
-        /**
-         * Method that builds the Skill.
-         * 
-         * @return Returns the Skill that was built.
-         */
-        public Skill build() {
-            return new SkillImpl(this);
-        }
     }
 }

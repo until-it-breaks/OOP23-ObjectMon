@@ -53,30 +53,32 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     * Constructor of the class ObjectmonImpl with a builder.
+     * Constructor of the class ObjectmonImpl with a ObjectmonEnum.
      * 
-     * @param builder The builder.
+     * @param objEnum The ObjectmonEnum.
+     * @param level The Objectmon's level.
      */
-    private ObjectmonImpl(final Builder builder) {
+    public ObjectmonImpl(final ObjectmonEnum objEnum, final int level) {
         this.uuid = UUID.randomUUID();
-        this.name = builder.name;
-        this.aspects = List.copyOf(builder.aspects);
-        this.skills = List.copyOf(builder.skills);
-        this.stats = builder.stats;
+        this.name = objEnum.getName();
+        this.aspects = List.copyOf(objEnum.getAspects());
+        this.skills = List.copyOf(objEnum.getSkills());
+        this.stats = objEnum.getStats();
         this.currentHp = this.stats.getSingleStat(StatId.HP);
-        this.level = builder.level;
-        this.exp = builder.exp;
+        this.level = level;
+        this.exp = 0;
     }
 
     /**
      * Constructor of the class ObjectmonImpl with Objectmon.
      * 
+     * 
      * @param objectmon The Objectmon.
      */
     public ObjectmonImpl(final Objectmon objectmon) {
-        this.uuid = objectmon.getUuid();
+        this.uuid = UUID.randomUUID();
         this.name = objectmon.getName();
-        this.aspects = List.copyOf(objectmon.getAspect());
+        this.aspects = List.copyOf(objectmon.getAspects());
         this.skills = List.copyOf(objectmon.getSkills());
         this.level = objectmon.getLevel();
         this.stats = objectmon.getStats().calcNewStats(level);
@@ -104,7 +106,7 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public List<Aspect> getAspect() {
+    public List<Aspect> getAspects() {
         return List.copyOf(this.aspects);
     }
 
@@ -195,42 +197,5 @@ public final class ObjectmonImpl implements Objectmon {
         int result = 1;
         result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
         return result;
-    }
-
-    /**
-     * Builder of ObjectmonImpl.
-     * Used to generate an Objectmon.
-     */
-    public static class Builder {
-        private final String name;
-        private final List<Aspect> aspects;
-        private final List<Skill> skills;
-        private final ActualStats stats;
-        private final int level;
-        private final int exp;
-
-        /**
-         * Constructor of the class ObjectmonImpl.java.
-         * 
-         * @param objectmon The objectmon to be generated.
-         * @param level the level of the Objectmon.
-        */
-        public Builder(final ObjectmonEnum objectmon, final int level) {
-            this.name = objectmon.getName();
-            this.aspects = List.copyOf(objectmon.getAspects());
-            this.skills = List.copyOf(objectmon.getSkills());
-            this.level = level;
-            this.stats = objectmon.getStats().calcNewStats(level);
-            this.exp = 0;
-        }
-
-        /**
-         * Method that builds the Objectmon.
-         * 
-         * @return Returns the ObjectmonImpl that was built.
-         */
-        public ObjectmonImpl build() {
-            return new ObjectmonImpl(this);
-        }
     }
 }

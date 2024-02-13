@@ -1,7 +1,6 @@
 package it.unibo.objectmon.model.data.objectmon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -53,8 +52,8 @@ public class ObjectmonReadOnly implements Objectmon {
     }
 
     @Override
-    public final List<Aspect> getAspect() {
-        return Collections.unmodifiableList(this.objectmon.getAspect());
+    public final List<Aspect> getAspects() {
+        return this.objectmon.getAspects();
     }
 
     @Override

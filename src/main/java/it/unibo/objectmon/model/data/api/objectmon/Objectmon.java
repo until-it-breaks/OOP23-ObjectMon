@@ -45,8 +45,7 @@ public interface Objectmon {
      * 
      * @return Returns the Objectmon's Aspects.
      */
-    List<Aspect> getAspect();
-
+    List<Aspect> getAspects();
     /**
      * Getter of an Objectmon's Skill.
      * 
