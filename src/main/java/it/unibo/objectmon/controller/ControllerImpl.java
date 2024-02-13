@@ -18,6 +18,8 @@ import it.unibo.objectmon.model.battle.api.BattleStartListener;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.core.GameContexts;
+import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
+import it.unibo.objectmon.model.encounters.impl.RandomEncounterManagerImpl;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
 import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
@@ -58,9 +60,10 @@ public final class ControllerImpl implements Controller {
         final GameContext gameContext = GameContexts.createDefaultContext(battleStartListener);
         final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
         final InteractionManager interactionManager = new InteractionManagerImpl();
+        final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleManager);
 
         // Create the model with initialized dependencies
-        this.model = new ModelImpl(gameContext, interactionManager, collisionManager, battleManager, gameStateManager);
+        this.model = new ModelImpl(gameContext, interactionManager, collisionManager, battleManager, gameStateManager, randomEncounterManager);
 
         // Initialize the view
         this.view = new SwingViewImpl(this);

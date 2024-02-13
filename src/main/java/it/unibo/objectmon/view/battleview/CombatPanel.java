@@ -121,7 +121,9 @@ public final class CombatPanel extends JPanel {
     private void drawObjectmonCount(final Graphics2D g) {
         final Battle battleInfo = controller.getBattleStats().get();
         final int playerObjectmonCount = battleInfo.getPlayerTeam().getParty().size();
-        final int enemyObjectmonCount = battleInfo.getTrainerTeam().get().getParty().size();
+        final int enemyObjectmonCount = battleInfo.getTrainerTeam()
+            .map(trainerTeam -> trainerTeam.getParty().size())
+            .orElse(0);
         g.setColor(Color.WHITE);
         g.setFont(DEFAULT_FONT);
         final FontMetrics fm = g.getFontMetrics();

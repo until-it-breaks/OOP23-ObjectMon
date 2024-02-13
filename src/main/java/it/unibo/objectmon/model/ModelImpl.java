@@ -7,6 +7,7 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
+import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
@@ -24,6 +25,7 @@ public final class ModelImpl implements Model {
     private final CollisionManager collisionManager;
     private final BattleManager battleManager;
     private final GameStateManager gameStateManager;
+    private final RandomEncounterManager randomEncounterManager;
 
     /**
      * Constructs a ModelImpl instance with the provided dependencies.
@@ -37,12 +39,13 @@ public final class ModelImpl implements Model {
     @SuppressFBWarnings(value = "EI2", justification = "Allowing mutable objects to be stored for flexibility")
     public ModelImpl(final GameContext gameContext, final InteractionManager interactionManager,
             final CollisionManager collisionManager, final BattleManager battleManager,
-            final GameStateManager gameStateManager) {
+            final GameStateManager gameStateManager, final RandomEncounterManager randomEncounterManager) {
         this.gameContext = gameContext;
         this.interactionManager = interactionManager;
         this.collisionManager = collisionManager;
         this.battleManager = battleManager;
         this.gameStateManager = gameStateManager;
+        this.randomEncounterManager = randomEncounterManager;
     }
 
     @Override
@@ -68,6 +71,10 @@ public final class ModelImpl implements Model {
     @Override
     public GameState getGameState() {
         return gameStateManager.getGameState();
+    }
+
+    public RandomEncounterManager getRandomEncounterManager() {
+        return this.randomEncounterManager;
     }
 
     @Override
