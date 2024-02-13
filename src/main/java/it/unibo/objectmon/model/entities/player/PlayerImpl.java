@@ -1,6 +1,7 @@
 package it.unibo.objectmon.model.entities.player;
 
 import java.util.List;
+import java.util.ArrayList;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
@@ -8,6 +9,7 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.AbstractEntity;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.gamestate.Observer;
 import it.unibo.objectmon.model.item.inventory.Inventories;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
@@ -20,6 +22,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
 
     private final ObjectmonParty objectmonParty;
     private final Inventory inventory;
+    private List<Observer> observers;
 
     /**
      * Constructs a new Player.
@@ -32,6 +35,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
         this.inventory = Inventories.createWithBasicInitialItems();
+        this.observers = new ArrayList<>();
     }
 
     @Override
@@ -61,4 +65,17 @@ public final class PlayerImpl extends AbstractEntity implements Player {
     public Inventory getInventory() {
         return this.inventory;
     }
+
+    //Method to add observers
+    public void addObserver(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    //Method to notify observers
+    private void notifyObserver() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+
 }

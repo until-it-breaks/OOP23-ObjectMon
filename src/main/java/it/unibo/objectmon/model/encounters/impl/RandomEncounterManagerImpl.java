@@ -11,6 +11,7 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
+import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.gamestate.Observer;
 import it.unibo.objectmon.model.world.api.Coord;
 
@@ -34,19 +35,25 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     @SuppressFBWarnings (value = "EI_EXPOSE_REP", justification = "Temporary")
     public RandomEncounterManagerImpl(final GameContext gameContext, final BattleManager battleManager) {
         this.gameContext = gameContext;
+        PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
         this.battleManager = battleManager;
     }
 
     @Override
     public void performCheck() {
         final Coord position = gameContext.getPlayer().getPosition();
-        if (gameContext.getWorld().getMap().get(position).isTriggersEncounters() && encountersOccurs()) {
+        var tile = gameContext.getWorld().getMap().get(position);
+        System.out.println("Tile " + tile.getType() + "triggers? " + tile.isTriggerEncounter());
+        if (gameContext.getWorld().getMap().get(position).isTriggerEncounter() && encountersOccurs()) {
+            System.out.println("Start");
             startRandomEncounter();
         }
     }
 
     private boolean encountersOccurs() {
-        return random.nextDouble() <= ENCOUNTER_RATE;
+        double number = random.nextDouble();
+        System.out.println(number);
+        return number <= ENCOUNTER_RATE;
     }
 
     private void startRandomEncounter() {
