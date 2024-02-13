@@ -5,16 +5,16 @@ package it.unibo.objectmon.model.data.api.skill;
  * <br>A Skill can be PHYS or SPEC.
  */
 public enum SkillCategory {
+
     /**
-     *Category of a Skill.
-     A Physical Skill calculates damage using the user's Atk
-     against the target's Def.
+     * Category of a Skill.
+     * A Physical Skill calculates damage using the user's Atk against the target's Def.
      */
     PHYS("Physical"),
+
     /**
-     *Category of a Skill.
-     A Special Skill calculates damage using the user's SpAtk
-     against the target's SpDef.
+     * Category of a Skill.
+     * A Special Skill calculates damage using the user's SpAtk against the target's SpDef.
      */
     SPEC("Special");
 
@@ -22,6 +22,7 @@ public enum SkillCategory {
 
     /**
      * Constructor of the enum SkillCategory.
+     * 
      * @param name Name of the DamageType.
      */
     SkillCategory(final String name) {
@@ -30,6 +31,7 @@ public enum SkillCategory {
 
     /**
      * Getter of the name of the SkillCategory.
+     * 
      * @return Returns the name of the SkillCategory.
      */
     public String getName() {
@@ -38,6 +40,7 @@ public enum SkillCategory {
 
     /**
      * Getter of the SkillCategory.
+     * 
      * @return Returns the SkillCategory.
      */
     public SkillCategory getCategory() {

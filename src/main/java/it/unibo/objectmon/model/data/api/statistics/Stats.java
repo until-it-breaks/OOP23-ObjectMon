@@ -20,12 +20,14 @@ public interface Stats {
 
     /**
      * Getter of the Map of the Stats.
+     * 
      * @return Returns the Map of the stats.
      */
     Map<StatId, Integer> getStats();
 
     /**
      * Getter of a single stat of Stats.
+     * 
      * @param id Id of the Statistic
      * @return The value of the Statistic
      */

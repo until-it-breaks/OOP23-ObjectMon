@@ -13,11 +13,11 @@ import it.unibo.objectmon.model.data.skill.SkillFactory;
  * Enum of Objectmon in the game.
  */
 public enum ObjectmonEnum {
+
     /**
      * Information of the Objectmon Zigzagoon.
      */
     ZIGZAGOON(
-        0,
         "Zigzagoon",
         List.of(Aspect.NORMAL),
         new BaseStats(
@@ -31,11 +31,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Tailow.
      */
     TAILLOW(
-        1,
         "Taillow",
         List.of(Aspect.NORMAL, Aspect.FLYING),
         new BaseStats(
@@ -49,11 +49,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Oddish.
      */
     ODDISH(
-        2,
         "Oddish",
         List.of(Aspect.GRASS, Aspect.POISON),
         new BaseStats(
@@ -67,11 +67,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Kecleon.
      */
     KECLEON(
-        3,
         "Kecleon",
         List.of(Aspect.NORMAL),
         new BaseStats(
@@ -85,11 +85,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Treeko.
      */
     TREECKO(
-        4,
         "Treecko",
         List.of(Aspect.GRASS),
         new BaseStats(
@@ -103,11 +103,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Shroomish.
      */
     SHROOMISH(
-        5,
         "Shroomish",
         List.of(Aspect.GRASS),
         new BaseStats(
@@ -121,11 +121,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Volbeat.
      */
     VOLBEAT(
-        6,
         "Volbeat",
         List.of(Aspect.BUG),
         new BaseStats(
@@ -139,11 +139,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Illumise.
      */
     ILLUMISE(
-        7,
         "Illumise",
         List.of(Aspect.BUG),
         new BaseStats(
@@ -157,11 +157,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Tropius.
      */
     TROPIUS(
-        8,
         "Tropius",
         List.of(Aspect.GRASS, Aspect.FLYING),
         new BaseStats(
@@ -175,11 +175,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Mudkip.
      */
     MUDKIP(
-        9,
         "Mudkip",
         List.of(Aspect.WATER, Aspect.GROUND),
         new BaseStats(
@@ -193,11 +193,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Goldeen.
      */
     GOLDEEN(
-        10,
         "Goldeen",
         List.of(Aspect.WATER),
         new BaseStats(
@@ -211,11 +211,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Staryu.
      */
     STARYU(
-        11,
         "Staryu",
         List.of(Aspect.WATER),
         new BaseStats(
@@ -229,11 +229,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Relicant.
      */
     RELICANTH(
-        12,
         "Relicanth",
         List.of(Aspect.WATER, Aspect.ROCK),
         new BaseStats(
@@ -247,11 +247,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Torchic.
      */
     TORCHIC(
-        13,
         "Torchic",
         List.of(Aspect.FIRE),
         new BaseStats(
@@ -265,11 +265,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Slugma.
      */
     SLUGMA(
-        14,
         "Slugma",
         List.of(Aspect.FIRE),
         new BaseStats(
@@ -283,11 +283,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Numel.
      */
     NUMEL(
-        15,
         "Numel",
         List.of(Aspect.FIRE, Aspect.GROUND),
         new BaseStats(
@@ -301,11 +301,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Torkoal.
      */
     TORKOAL(
-        16,
         "Torkoal",
         List.of(Aspect.FIRE),
         new BaseStats(
@@ -319,11 +319,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Geodude.
      */
     GEODUDE(
-        17,
         "Geodude",
         List.of(Aspect.ROCK, Aspect.GROUND),
         new BaseStats(
@@ -337,11 +337,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Lileep.
      */
     LILEEP(
-        18,
         "Lileep",
         List.of(Aspect.ROCK, Aspect.GRASS),
         new BaseStats(
@@ -355,11 +355,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Anorith.
      */
     ANORITH(
-        19,
         "Anorith",
         List.of(Aspect.ROCK, Aspect.BUG),
         new BaseStats(
@@ -373,11 +373,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Sandshrew.
      */
     SANDSHREW(
-        20,
         "Sandshrew",
         List.of(Aspect.GROUND),
         new BaseStats(
@@ -391,11 +391,11 @@ public enum ObjectmonEnum {
             )
         )
     ),
+
     /**
      * Information of the Objectmon Nosepass.
      */
     NOSEPASS(
-        21,
         "Nosepass",
         List.of(Aspect.ROCK),
         new BaseStats(
@@ -410,7 +410,6 @@ public enum ObjectmonEnum {
         )
     );
 
-    private final int id;
     private final String name;
     private final List<Aspect> aspects;
     private final List<Skill> skills;
@@ -418,13 +417,12 @@ public enum ObjectmonEnum {
 
     /**
      * Constructor of ObjectmonEnum.
-     * @param id Id of the Objectmon
+     * 
      * @param name Name of the Objectmon
      * @param aspects Aspects of the Objectmon.
      * @param stats Stats of the Objectmon.
      */
-    ObjectmonEnum(final int id, final String name, final List<Aspect> aspects, final BaseStats stats) {
-        this.id = id;
+    ObjectmonEnum(final String name, final List<Aspect> aspects, final BaseStats stats) {
         this.name = name;
         this.aspects = List.copyOf(aspects);
 
@@ -443,15 +441,8 @@ public enum ObjectmonEnum {
     }
 
     /**
-     * Getter of id.
-     * @return Returns the id.
-     */
-    public int getId() {
-        return this.id;
-    }
-
-    /**
      * Getter of name.
+     * 
      * @return Returns the name.
      */
     public String getName() {
@@ -460,6 +451,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of Aspects.
+     * 
      * @return Returns the Aspects.
      */
     public List<Aspect> getAspects() {
@@ -468,6 +460,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of Stats.
+     * 
      * @return Returns the Stats.
      */
     public ActualStats getStats() {
@@ -476,6 +469,7 @@ public enum ObjectmonEnum {
 
     /**
      * Getter of Skills.
+     * 
      * @return Returns the Skills.
      */
     public List<Skill> getSkills() {
