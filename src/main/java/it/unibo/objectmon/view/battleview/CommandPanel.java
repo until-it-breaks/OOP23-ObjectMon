@@ -139,9 +139,10 @@ public final class CommandPanel extends JPanel {
                 final BallItem ball = (BallItem) entry.getKey();
                 itemButton.setToolTipText("Catch rate multiplier : " + ball.getCatchMultiplier());
             }
+            final int currentItemCount = itemCounter[0];
             itemButton.addActionListener(e -> {
                 removeAll();
-                controller.notifyCommand(new UseItem(itemCounter[0]));
+                controller.notifyCommand(new UseItem(currentItemCount));
                 drawStartingButtons();
             });
             this.add(itemButton, gbc);
