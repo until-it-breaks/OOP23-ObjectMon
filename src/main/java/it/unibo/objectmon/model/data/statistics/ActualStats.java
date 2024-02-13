@@ -9,15 +9,15 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 /**
  * Extension of the class StatsImpl.
  * <br>This implementation is used to store the change of stats of the Objectmon
- * (through evolution or level up). 
- * The changes need to be saved in a new Map of Stats, 
- * because leveling should be an action that rarely happens and 
+ * (through evolution or level up).
+ * The changes need to be saved in a new Map of Stats,
+ * because leveling should be an action that rarely happens and
  * so creating a new object shouldn't be too taxing on the program.
  */
 public class ActualStats extends StatsImpl implements Serializable {
 
     private static final long serialVersionUID = 2004L;
-    private static final double STATGROWTHVARIATION = 0.20;
+    private static final double STATGROWTHVARIATION = 0.15;
 
     /**
      * Constructor of the class.
@@ -40,16 +40,24 @@ public class ActualStats extends StatsImpl implements Serializable {
      /**
      * Calculates the new single stat.
      * It's an utility method.
+     * 
      * Should only be called by the method calcNewStat.
      * 
      * @param id Id of the statistic to increase.
      * @param level How many level ups are done in a row.
-     * @return Returns the new singleStat, which is the sum of the base and the growth.
+     * @return Returns the new singleStat, which is between 1-5. 1 If the stat is already high, 5 if it's low
      */
     private int calcSingleStat(final StatId id, final int level) {
         int newSingleStat = getSingleStat(id);
+        final int growthRange = 6;
+        final int maxRawGrowth = 10;
+        final int minRawGrowth = 1;
+        final int ratio = 2;
             for (int i = level; i > 0; i--) {
-                 newSingleStat += (int) Math.ceil(newSingleStat * STATGROWTHVARIATION);
+                int rawGrowth = (int) Math.ceil(newSingleStat * STATGROWTHVARIATION);
+                rawGrowth = Math.max(minRawGrowth, Math.min(rawGrowth, maxRawGrowth));
+
+                newSingleStat += growthRange - rawGrowth / ratio;
             }
         return newSingleStat;
     }
