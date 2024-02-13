@@ -12,17 +12,41 @@ import it.unibo.objectmon.model.data.api.skill.SkillCategory;
  */
 public class SkillImpl implements Serializable, Skill {
     private static final long serialVersionUID = 2006L;
+    /**
+     * The skill's name.
+     */
     private final String name;
+    /**
+     * The skill's id.
+     */
     private final int id;
+    /**
+     * The skill's aspect.
+     */
     private final Aspect aspect;
+    /**
+     * The skill's base power.
+     */
     private final int basePower;
+    /**
+     * The skill's accuracy.
+     */
     private final int accuracy;
+    /**
+     * The skill's max uses.
+     */
     private final int maxUses;
+    /**
+     * The skill's current uses.
+     */
     private int currentUses;
+    /**
+     * The skill's category.
+     */
     private final SkillCategory category;
 
     /**
-     * Contructor of the SkillImpl.
+     * Constructor of the SkillImpl.
      * 
      * @param name Name of the Skill.
      * @param id Id of the Skill.

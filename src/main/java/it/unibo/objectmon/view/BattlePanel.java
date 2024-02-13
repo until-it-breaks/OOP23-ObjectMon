@@ -14,7 +14,7 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 
 /**
- * A panel that will be used when the player is engaged in a battle.
+ * The panel used when the player is engaged in a battle.
  */
 public class BattlePanel extends JPanel {
     private static final long serialVersionUID = 2L;
@@ -23,9 +23,9 @@ public class BattlePanel extends JPanel {
     private static final double RIGHT_PANEL_RATIO = 0.15;
 
     /**
-     * Constructs a BattlePanel comprising a CombatPanel, a CommandPanel and a BattleLog.
+     * Constructs a {@BattlePanel} comprising a {@link CombatPanel}, a {@link CommandPanel} and a {@link BattleLog}.
      * 
-     * @param controller The Controller used to pull rendering information.
+     * @param controller The {@link Controller} used to retrieve rendering information.
      */
     public BattlePanel(final Controller controller) {
         this.setBackground(Color.BLACK);

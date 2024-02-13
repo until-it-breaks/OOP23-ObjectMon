@@ -4,12 +4,7 @@ import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.ControllerImpl;
 
 /**
- * The start of the game application.
- * 
- * This class contains the main method that launches the game.
- * It initializes the Model, View, and Controller components, and then
- * starts the game by building the initial View and begins the game execution.
- * 
+ * The entry point of the game.
  */
 public final class LaunchGame {
 
@@ -19,7 +14,7 @@ public final class LaunchGame {
     /**
      * Sets up and starts the game.
      * 
-     * @param args The arguments of the command-line passed to the application.
+     * @param args The arguments from the command-line.
      */
     public static void main(final String[] args) {
         final Controller controller = new ControllerImpl();

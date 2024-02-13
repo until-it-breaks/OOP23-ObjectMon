@@ -10,23 +10,21 @@ import it.unibo.objectmon.model.gamestate.Observer;
 public interface View extends Observer {
 
     /**
-     * This method makes a request to the child panel,
-     * in order to render based on the model's state.
-     * Triggers the repaint mechanism to update the GUI components
-     * according to the latest data from the underlying model.
+     * Triggers the painting mechanism that updates the GUI components
+     * according to the latest data retrieved from the underlying model.
      */
     void render();
 
     /**
-     * Builds and adds the necessary panels to the view,
+     * Sets up the necessary panels to the view,
      * to render the game content.
      *
-     * @param panel the new panel to be attached.
+     * @param panel The panel to be shown.
      */
     void setCurrentPanel(JPanel panel);
 
     /**
-     * Disposes the view.
+     * Disposes of the view.
      */
     void destroy();
 }

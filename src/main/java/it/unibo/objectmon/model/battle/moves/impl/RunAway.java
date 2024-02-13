@@ -12,8 +12,8 @@ import it.unibo.objectmon.model.battle.api.BattleManager.Result;
 public class RunAway {
     /**
      * .
-     * @param battle
-     * @param battleManager
+     * @param battle The battle to flee from.
+     * @param battleManager The manager to which report.
      */
     public final void action(final Battle battle, final BattleManager battleManager) {
         if (this.runnable(battle)) {

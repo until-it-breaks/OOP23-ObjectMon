@@ -8,14 +8,18 @@ import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogObserver;
 
 /**
- * A Pane that is used to display textual information about the battle.
+ * A ScrollPane used to display textual information about the battle.
  */
 public final class BattleLog extends JScrollPane implements BattleLogObserver {
+
     private static final long serialVersionUID = 3L;
+    /**
+     * The area on which the battle progress is printed.
+     */
     private final JTextArea textArea;
 
     /**
-     * Constructs a plain JScrollPane that has a scrollable JTextArea.
+     * Constructs a plain JScrollPane with a JTextArea.
      *
      * @param controller the controller from which to poll information.
      */

@@ -27,9 +27,8 @@ import it.unibo.objectmon.view.utility.ImageLoaderImpl;
 import it.unibo.objectmon.view.utility.RenderingUtils;
 
 /**
- * A JPanel responsible for rendering the overworld environment and entities during exploration mode.
- * This panel displays the game world, including the player character, NPCs, and terrain tiles,
- * providing a visual representation of the game state to the user.
+ * A {@link JPanel} responsible for rendering the overworld.
+ * This panel displays the game world, including the player character, NPCs, and terrain tiles.
  */
 public final class OverWorldPanel extends JPanel {
     private static final int FONT_SIZE = 13;
@@ -41,9 +40,9 @@ public final class OverWorldPanel extends JPanel {
     private static final int INVENTORY_Y_OFFSET = 20;
 
     /**
-     * Constructs a new OverWorld panel, initializing its properties and attaching it to the provided controller.
+     * Constructs a new {@link OverWorldPanel}, initializing its properties and attaching it to the provided {@link Controller}.
      * 
-     * @param controller the controller responsible for managing inputs and retrieving game data.
+     * @param controller The {@link Controller} responsible for managing inputs and providing game data.
      */
     public OverWorldPanel(final Controller controller) {
         this.setDoubleBuffered(true);
@@ -55,9 +54,9 @@ public final class OverWorldPanel extends JPanel {
     }
 
     /**
-     * This method is automatically invoked by Swing to redraw the panel when necessary.
+     * This method is automatically invoked by Swing to redraw the panel.
      * 
-     * @param g the Graphics context in which to paint.
+     * @param g The Graphics context in which to draw.
      */
     @Override
     public void paintComponent(final Graphics g) {
@@ -115,26 +114,26 @@ public final class OverWorldPanel extends JPanel {
         final int lineHeight = 20;
         final int boxHeight = EventLoggerImpl.LIMIT * lineHeight;
 
-        // Calculate the position and size of the black box at the bottom left of the panel
+        //Calculate the position and size of the black box at the bottom left of the panel
         final int boxX = 0;
         final int boxY = getHeight() - boxHeight;
-        final int boxWidth = getWidth() / 2; // Adjusted to cover half of the panel width
+        final int boxWidth = getWidth() / 2; //Adjusted to cover half of the panel width
 
-        // Draw the border
+        //Draw the border
         g.setColor(Color.LIGHT_GRAY);
         g.drawRect(boxX, boxY, boxWidth, boxHeight);
 
-        // Fill the black box
+        //Fill the black box
         g.setColor(Color.BLACK);
         g.fillRect(boxX + 1, boxY + 1, boxWidth - 1, boxHeight - 1);
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
 
-        // Adjustment to draw text a little higher
+        //Adjustment to draw text a little higher
         final int startY = boxY + lineHeight - 5; 
 
-        // Draw messages from the top to the bottom.
+        //Draw messages from the top to the bottom.
         for (int i = 0; i < messages.size(); i++) {
             final String message = messages.get(i);
             g.drawString(message, boxX + 10, startY + (i * lineHeight));
@@ -152,10 +151,9 @@ public final class OverWorldPanel extends JPanel {
             g.drawImage(image, offsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
             g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
             g.setColor(Color.WHITE);
-            // Draw level text above the health counter
+            //Draw level text above the health counter
             g.drawString("Lv." + objectmon.getLevel(), offsetX, offsetY - TILE_SIZE / 2);
-
-            // Draw health counter above the image
+            //Draw health counter above the image
             g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
             offsetX, offsetY - TILE_SIZE / FONT_SIZE);
             offsetX += TILE_SIZE;

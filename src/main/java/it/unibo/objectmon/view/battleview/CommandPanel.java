@@ -22,10 +22,25 @@ import it.unibo.objectmon.model.item.api.HealItem;
 public final class CommandPanel extends JPanel {
     private static final long serialVersionUID = 5L;
     private final transient Controller controller;
+    /**
+     * The attack button expands into the available attack choices.
+     */
     private final JButton attackButton = new JButton("Attack");
+    /**
+     * The switch button expands into the available switch choices.
+     */
     private final JButton switchButton = new JButton("Switch");
-    private final JButton itemButton = new JButton("Use item");
+    /**
+     * The item button expands into the available item choices.
+     */
+    private final JButton itemButton = new JButton("Use Item");
+    /**
+     * The flee button.
+     */
     private final JButton fleeButton = new JButton("Run away");
+    /**
+     * The button that allows to rethink your move.
+     */
     private final JButton backButton = new JButton("Back");
 
     /**

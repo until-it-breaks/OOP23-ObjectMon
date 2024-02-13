@@ -20,24 +20,23 @@ import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
- * A panel that is used to display the flow of the battle.
+ * A panel used to display the flow of the battle.
  */
 public final class CombatPanel extends JPanel {
     private static final long serialVersionUID = 4L;
     private static final int Y_OFFSET = 20;
+    private static final Font DEFAULT_FONT = new Font("Arial", Font.BOLD, 16);
     private final transient Controller controller;
     private final transient ImageLoader imageLoader;
-    private final Font defaultFont;
 
     /**
-     * Constructs a combat panel and attaches a controller to it.
+     * Constructs a {@link CombatPanel} and attaches a {@link Controller} to it.
      * 
-     * @param controller The controller from which to poll information.
+     * @param controller The {@link Controller} from which information is retrieved.
      */
     public CombatPanel(final Controller controller) {
         this.controller = controller;
         this.imageLoader = new ImageLoaderImpl();
-        this.defaultFont = new Font("Arial", Font.BOLD, 16);
     }
 
     @Override
@@ -69,31 +68,30 @@ public final class CombatPanel extends JPanel {
         final BufferedImage enemyObjectmonImg = imageLoader.getImage("/battle/objectmon/"
             + enemyObjectmon.getName()
             + ".png");
-        //Draws the player's objectmon in the middle left.
         final int width = getWidth() / 2;
         final int height = getHeight() / 2;
         //Draws the player objectmon in the middle left.
         g.drawImage(playerObjectmonImg, 0, height - playerObjectmonImg.getHeight() / 2, width, height, null);
-        //Draws the player objectmon information just half it's image height above.
+        //Draws the player objectmon information just above half it's image height.
         drawObjectmonInfo(g, playerObjectmon, 0, height - playerObjectmonImg.getHeight() / 2);
         //Draws the enemy objectmon in the middle right.
         g.drawImage(enemyObjectmonImg, width, height - enemyObjectmonImg.getHeight() / 2, width, height, null);
-        //Draws the enemy objectmon information just half it's image height above.
+        //Draws the enemy objectmon information just above half it's image height.
         drawObjectmonInfo(g, enemyObjectmon, width, height - enemyObjectmonImg.getHeight() / 2);
     }
 
     private void drawObjectmonInfo(final Graphics2D g, final Objectmon objectmon, final int x, final int y) {
         g.setColor(Color.WHITE);
-        g.setFont(defaultFont);
+        g.setFont(DEFAULT_FONT);
         final FontMetrics fm = g.getFontMetrics();
-        // Draw objectmon name.
+        //Draw objectmon name.
         final int nameWidth = fm.stringWidth(objectmon.getName());
         g.drawString(objectmon.getName(), x + (getWidth() / 4) - (nameWidth / 2), y + Y_OFFSET);
-        // Draw objectmon level.
+        //Draw objectmon level.
         final String levelText = "Level: " + objectmon.getLevel();
         final int levelWidth = fm.stringWidth(levelText);
         g.drawString(levelText, x + (getWidth() / 4) - (levelWidth / 2), y + Y_OFFSET * 2);
-        // Draw objectmon health.
+        //Draw objectmon health.
         final String healthText = "Health: " + objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP);
         final int healthWidth = fm.stringWidth(healthText);
         g.drawString(healthText, x + (getWidth() / 4) - (healthWidth / 2), y + Y_OFFSET * 3);
@@ -105,7 +103,7 @@ public final class CombatPanel extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), Y_OFFSET * 2);
         g.setColor(Color.WHITE);
-        g.setFont(defaultFont);
+        g.setFont(DEFAULT_FONT);
         final FontMetrics fm = g.getFontMetrics();
         final String text;
         if (battleInfo.getTrainer().isPresent()) {
@@ -125,7 +123,7 @@ public final class CombatPanel extends JPanel {
         final int playerObjectmonCount = battleInfo.getPlayerTeam().getParty().size();
         final int enemyObjectmonCount = battleInfo.getTrainerTeam().get().getParty().size();
         g.setColor(Color.WHITE);
-        g.setFont(defaultFont);
+        g.setFont(DEFAULT_FONT);
         final FontMetrics fm = g.getFontMetrics();
         // Draw player objectmon count at the top left corner.
         final String playerCountText = battleInfo.getPlayer().getName() + " objectmons: " + playerObjectmonCount;

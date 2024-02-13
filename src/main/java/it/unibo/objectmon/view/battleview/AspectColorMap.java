@@ -6,7 +6,7 @@ import java.util.Map;
 import it.unibo.objectmon.model.data.api.aspect.Aspect;
 
 /**
- * A utility class used to determine the color corresponding to the {@link Aspect}.
+ * A utility class used to determine the {@link Color} corresponding to an {@link Aspect}.
  */
 public final class AspectColorMap {
     private static final Map<Aspect, Color> ASPECT_COLOR_MAP = new HashMap<>();
