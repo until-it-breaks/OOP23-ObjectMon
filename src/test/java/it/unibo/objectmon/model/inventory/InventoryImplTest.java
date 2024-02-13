@@ -33,7 +33,7 @@ class InventoryImplTest {
 
     @Test
     void testUseItem() {
-        final Item item = new BallItemImpl(BallEnum.MEGABALL);
+        final Item item = new BallItemImpl(BallEnum.GREATBALL);
         inventory.addItem(item, 2);
         inventory.useItem(item);
         assertEquals(1, inventory.getTotalItemCount());
