@@ -176,12 +176,14 @@ public final class BattleManagerImpl implements BattleManager {
                     break;
                 case USE_HEAL:
                     this.useHeal(getHeal(index).getHealPoints(), this.battle.get().getCurrentObjectmon());
+                    this.useItem(index);
                     break;
                 case USE_BALL:
                     if (this.useBall(getBall(index).getCatchMultiplier(), this.battle.get().getEnemyObjectmon())) {
                         this.setResult(Result.WIN);
                         this.endBattleAction();
                     }
+                    useItem(index);
                     break;
                 default:
                     break;
@@ -231,15 +233,22 @@ public final class BattleManagerImpl implements BattleManager {
 
     private void useHeal(final int healHP, final Objectmon objectmon) {
         objectmon.setCurrentHp(healHP);
+        this.logger.log(objectmon.getName() + " heals with " + healHP + "HP");
     }
 
     private boolean useBall(final double multiplier, final Objectmon objectmon) {
         final CatchSystem catchObjctmon = new CatchSystemImpl();
         if (catchObjctmon.isCaught(multiplier, objectmon)) {
             this.battle.get().getPlayerTeam().add(objectmon);
+            this.logger.log("congratulation, you catch " + objectmon.getName());
             return true;
         }
+        this.logger.log("miss catching " + objectmon.getName());
         return false;
+    }
+
+    private void useItem(final int index) {
+        this.battle.get().getPlayer().getInventory().useItem(this.getItem(index));
     }
 
     private void switchPlayerObjectmon(final int index) {
@@ -289,9 +298,10 @@ public final class BattleManagerImpl implements BattleManager {
                 return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size()
                     && this.battle.get().getPlayerTeam().getParty().size() > 1;
             case USE_HEAL:
+                return this.battle.get().getPlayer().getInventory().getItems().get(getItem(index)) > 0;
             case USE_BALL:
-                return this.battle.get().getPlayer().getInventory().useItem(getItem(index)) 
-                    && (type == Move.USE_HEAL || this.battle.get().getTrainer().isEmpty());
+                return this.battle.get().getPlayer().getInventory().getItems().get(getItem(index)) > 0
+                    && this.battle.get().getTrainer().isEmpty();
             default:
                 return false;
         }

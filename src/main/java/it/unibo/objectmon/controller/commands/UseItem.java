@@ -31,7 +31,7 @@ public final class UseItem implements Command {
                     if (item instanceof HealItem) {
                         model.bufferCommand(Move.USE_HEAL, index);
                     } else if (item instanceof BallItem) {
-                        model.bufferCommand(Move.USE_HEAL, index);
+                        model.bufferCommand(Move.USE_BALL, index);
                     } else {
                         throw new IllegalStateException();
                     }
