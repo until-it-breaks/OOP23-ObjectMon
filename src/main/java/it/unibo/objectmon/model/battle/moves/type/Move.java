@@ -9,9 +9,13 @@ public enum Move {
      */
     ATTACK,
     /**
-     * type of use item move.
+     * type of use ball.
      */
-    USE_ITEM,
+    USE_BALL,
+    /**
+     * type of use heal.
+     */
+    USE_HEAL,
     /**
      * type of run away.
      */

@@ -42,8 +42,7 @@ class TestSkill {
     void testSkillBuilder() {
         final int basePower = 40;
         final int maxUses = 35;
-        final Skill skill = new SkillImpl.Builder("Tackle",  0, Aspect.NORMAL, basePower, 100, maxUses, SkillCategory.PHYS)
-        .build();
+        final Skill skill = new SkillImpl("Tackle",  0, Aspect.NORMAL, basePower, 100, maxUses, SkillCategory.PHYS);
 
         assertEquals(normal.getId(), skill.getId());
         assertEquals(normal.getName(), skill.getName());

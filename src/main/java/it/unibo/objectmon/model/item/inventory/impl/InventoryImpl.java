@@ -1,7 +1,8 @@
 package it.unibo.objectmon.model.item.inventory.impl;
 
 import java.util.Map;
-import java.util.HashMap;
+
+import java.util.LinkedHashMap;
 import java.util.Collections;
 
 import it.unibo.objectmon.model.item.api.BallItem;
@@ -20,7 +21,7 @@ public final class InventoryImpl implements Inventory {
      * Constructs the inventory.
      */
     public InventoryImpl() {
-        this.items = new HashMap<>();
+        this.items = new LinkedHashMap<>();
     }
 
     @Override

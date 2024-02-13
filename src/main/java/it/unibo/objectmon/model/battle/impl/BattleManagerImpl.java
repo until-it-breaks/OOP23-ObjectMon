@@ -7,6 +7,8 @@ import it.unibo.objectmon.model.ai.EasyAiTrainer;
 import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.catchsystem.CatchSystem;
+import it.unibo.objectmon.model.battle.catchsystem.CatchSystemImpl;
 import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.battle.turn.StatTurn;
@@ -17,6 +19,9 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.item.api.BallItem;
+import it.unibo.objectmon.model.item.api.HealItem;
+import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.gamestate.GameState;
 
@@ -169,6 +174,17 @@ public final class BattleManagerImpl implements BattleManager {
                 case RUN_AWAY:
                     this.runAway();
                     break;
+                case USE_HEAL:
+                    this.useHeal(getHeal(index).getHealPoints(), this.battle.get().getCurrentObjectmon());
+                    this.useItem(index);
+                    break;
+                case USE_BALL:
+                    if (this.useBall(getBall(index).getCatchMultiplier(), this.battle.get().getEnemyObjectmon())) {
+                        this.setResult(Result.WIN);
+                        this.endBattleAction();
+                    }
+                    useItem(index);
+                    break;
                 default:
                     break;
             }
@@ -213,6 +229,26 @@ public final class BattleManagerImpl implements BattleManager {
             userSkill.getName() + " uses " + userSkill.getSkills().get(index).getName()
             + "\n" + target.getName() + " takes " + damage + " damage."
             );
+    }
+
+    private void useHeal(final int healHP, final Objectmon objectmon) {
+        objectmon.setCurrentHp(healHP);
+        this.logger.log(objectmon.getName() + " heals with " + healHP + "HP");
+    }
+
+    private boolean useBall(final double multiplier, final Objectmon objectmon) {
+        final CatchSystem catchObjctmon = new CatchSystemImpl();
+        if (catchObjctmon.isCaught(multiplier, objectmon)) {
+            this.battle.get().getPlayerTeam().add(objectmon);
+            this.logger.log("congratulation, you catch " + objectmon.getName());
+            return true;
+        }
+        this.logger.log("miss catching " + objectmon.getName());
+        return false;
+    }
+
+    private void useItem(final int index) {
+        this.battle.get().getPlayer().getInventory().useItem(this.getItem(index));
     }
 
     private void switchPlayerObjectmon(final int index) {
@@ -261,10 +297,34 @@ public final class BattleManagerImpl implements BattleManager {
             case SWITCH_OBJECTMON:
                 return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size()
                     && this.battle.get().getPlayerTeam().getParty().size() > 1;
+            case USE_HEAL:
+            case USE_BALL:
+                return this.battle.get().getPlayer().getInventory().getItems().get(getItem(index)) > 0
+                    && (type == Move.USE_HEAL || this.battle.get().getTrainer().isEmpty());
             default:
                 return false;
         }
     }
+
+    private Item getItem(final int index) {
+        return this.battle.get().getPlayer().getInventory().getItems()
+            .keySet().stream().skip(index).findFirst().get();
+    }
+
+    private HealItem getHeal(final int index) {
+        if (getItem(index) instanceof HealItem) {
+            return (HealItem) getItem(index);
+        }
+        throw new IllegalStateException();
+    }
+
+    private BallItem getBall(final int index) {
+        if (getItem(index) instanceof BallItem) {
+            return (BallItem) getItem(index);
+        }
+        throw new IllegalStateException();
+    }
+
     /**
      * set AI move.
      * @return index of skill or position to use

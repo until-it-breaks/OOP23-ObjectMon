@@ -46,14 +46,14 @@ class TestObjectmon {
         final int level = 5;
         final Objectmon  objectmon = new ObjectmonImpl("Zigzagoon", List.of(Aspect.NORMAL), skills, stats, level);
 
-        assertTrue(Aspect.NORMAL.sameAspect(objectmon.getAspect()));
+        assertTrue(Aspect.NORMAL.sameAspect(objectmon.getAspects()));
         final int skillid = 1;
         assertEquals("Close Combat", objectmon.getSkills().get(skillid).getName());
 
         // Attacking another Objectmon that's the same.
         final double multi = 2.00;
         final PotencyChart potency = PotencyChart.getChart(objectmon.getSkills().get(skillid).getAspect());
-        assertEquals(multi, potency.potencyMultiplier(objectmon.getAspect(), objectmon.getAspect()));
+        assertEquals(multi, potency.potencyMultiplier(objectmon.getAspects(), objectmon.getAspects()));
     }
 
     /**

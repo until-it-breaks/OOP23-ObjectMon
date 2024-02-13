@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.RunAway;
 import it.unibo.objectmon.controller.commands.SwitchObjectmon;
+import it.unibo.objectmon.controller.commands.UseItem;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
@@ -114,7 +115,7 @@ public final class CommandPanel extends JPanel {
                     controller.notifyCommand(new SwitchObjectmon(currentObjectmonIndex));
                     drawStartingButtons();
             });
-            switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspect().toString()
+            switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspects().toString()
             + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatId.HP));
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;
@@ -138,9 +139,10 @@ public final class CommandPanel extends JPanel {
                 final BallItem ball = (BallItem) entry.getKey();
                 itemButton.setToolTipText("Catch rate multiplier : " + ball.getCatchMultiplier());
             }
+            final int currentItemCount = itemCounter[0];
             itemButton.addActionListener(e -> {
                 removeAll();
-                controller.notifyCommand(new SwitchObjectmon(itemCounter[0]));
+                controller.notifyCommand(new UseItem(currentItemCount));
                 drawStartingButtons();
             });
             this.add(itemButton, gbc);
