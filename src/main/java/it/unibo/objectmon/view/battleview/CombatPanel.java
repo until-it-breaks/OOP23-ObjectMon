@@ -47,7 +47,7 @@ public final class CombatPanel extends JPanel {
             RenderingUtils.configureRenderingHints(graphics2d);
             drawBackgroud(graphics2d);
             drawChallengers(graphics2d);
-            drawObjectmonCount(graphics2d);
+            //drawObjectmonCount(graphics2d);
             drawObjectmons(graphics2d);
             graphics2d.dispose();
         }
