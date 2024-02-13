@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.RunAway;
 import it.unibo.objectmon.controller.commands.SwitchObjectmon;
+import it.unibo.objectmon.controller.commands.UseItem;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
@@ -140,7 +141,7 @@ public final class CommandPanel extends JPanel {
             }
             itemButton.addActionListener(e -> {
                 removeAll();
-                controller.notifyCommand(new SwitchObjectmon(itemCounter[0]));
+                controller.notifyCommand(new UseItem(itemCounter[0]));
                 drawStartingButtons();
             });
             this.add(itemButton, gbc);
