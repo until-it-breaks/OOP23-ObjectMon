@@ -44,6 +44,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
         this.setDirection(direction);
         if (!collisionChecker.isCollision(nextPosition)) {
             this.setPosition(nextPosition);
+            notifyObserver();
         }
     }
 

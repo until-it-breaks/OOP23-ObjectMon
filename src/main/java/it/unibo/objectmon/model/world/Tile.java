@@ -8,7 +8,7 @@ public final class Tile {
 
     private final int id;
     private final String type;
-    private final boolean triggerEncounter;
+    private final boolean triggersEncounters;
     private final boolean passable;
     private final String imagePath;
 
@@ -21,11 +21,11 @@ public final class Tile {
      * @param passable The ability of preventing movement.
      * @param imagePath The file path to the image representing the tile.
      */
-    public Tile(final int id, final String type, final boolean triggerEncounter,
+    public Tile(final int id, final String type, final boolean triggersEncounters,
                 final boolean passable, final String imagePath) {
         this.id = id;
         this.type = type;
-        this.triggerEncounter = triggerEncounter;
+        this.triggersEncounters = triggersEncounters;
         this.passable = passable;
         this.imagePath = imagePath;
     }
@@ -53,8 +53,8 @@ public final class Tile {
      * 
      * @return The tile ability to trigger random encounters.
      */
-    public boolean isTriggerEncounter() {
-        return triggerEncounter;
+    public boolean isTriggersEncounters() {
+        return triggersEncounters;
     }
 
     /**
