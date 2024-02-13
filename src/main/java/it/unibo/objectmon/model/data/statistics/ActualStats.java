@@ -37,10 +37,11 @@ public class ActualStats extends StatsImpl implements Serializable {
      /**
      * Calculates the new single stat.
      * It's an utility method.
+     * 
      * Should only be called by the method calcNewStat.
      * @param id Id of the statistic to increase.
      * @param level How many level ups are done in a row.
-     * @return Returns the new singleStat, which is the sum of the base and the growth.
+     * @return Returns the new singleStat, which is between 1-5. 1 If the stat is already high, 5 if it's low
      */
     private int calcSingleStat(final StatId id, final int level) {
         int newSingleStat = getSingleStat(id);

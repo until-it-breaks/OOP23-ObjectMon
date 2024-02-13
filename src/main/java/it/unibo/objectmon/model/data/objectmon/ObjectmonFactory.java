@@ -29,34 +29,12 @@ public final class ObjectmonFactory {
     }
 
     /**
-     * Creates a set for the method toJson.
-     * @return Returns the complete set of all the Objectmon.
-     */
-    private static Set<Objectmon> createObjectmonSet() {
-        final Set<Objectmon> objectmonSet = new HashSet<>();
-        final int level = 5;
-        for (final var objectmon : ObjectmonEnum.values()) {
-            objectmonSet.add(createObjectmon(objectmon, level));
-        }
-        return objectmonSet;
-    }
-
-    /**
      * Creates an Objectmon from ObjectmonEnum and level.
      * @param objectmon Objectmon to be created.
      * @param level Level of the objectmon to be created.
      * @return The objectmon desired.
      */
     public static Objectmon createObjectmon(final ObjectmonEnum objectmon, final int level) {
-        return new ObjectmonImpl.Builder(objectmon, level).build();
-    }
-
-    /**
-     * Converts a set of Objectmon to a json file.
-     * @return Returns a json of the set of Objectmon.
-     */
-    public static String toJson() {
-        final Gson gson = new Gson();
-        return gson.toJson(createObjectmonSet());
+        return new ObjectmonImpl(objectmon, level);
     }
 }

@@ -15,7 +15,6 @@ import it.unibo.objectmon.model.data.statistics.BaseStats;
  */
 public final class ObjectmonImpl implements Objectmon {
 
-    private final int id;
     private final String name;
     private final List<Aspect> aspects;
     private final List<Skill> skills;
@@ -27,7 +26,7 @@ public final class ObjectmonImpl implements Objectmon {
 
     /**
      * Constructor of the class ObjectmonImpl.java.
-     * @param id The id of the Objectmon.
+     * 
      * @param name The name of the Objectmon.
      * @param aspects The aspects of the Objectmon.
      * @param skills The skills of the Objectmon.
@@ -35,14 +34,12 @@ public final class ObjectmonImpl implements Objectmon {
      * @param level The level of the Objectmon.
      */
     public ObjectmonImpl(
-        final int id,
         final String name,
         final List<Aspect> aspects,
         final List<SkillImpl> skills,
         final BaseStats stats,
         final int level
         ) {
-        this.id = id;
         this.name = name;
         this.aspects = List.copyOf(aspects);
         this.skills = List.copyOf(skills);
@@ -53,42 +50,39 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     * Constructor of the class ObjectmonImpl with a builder.
-     * @param builder The builder.
-     */
-    private ObjectmonImpl(final Builder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
-        this.aspects = List.copyOf(builder.aspects);
-        this.skills = List.copyOf(builder.skills);
-        this.stats = builder.stats;
-        this.currentHp = this.stats.getSingleStat(StatId.HP);
-        this.level = builder.level;
-        this.exp = builder.exp;
-    }
-
-    /**
      * Constructor of the class ObjectmonImpl with Objectmon.
+     * 
      * @param objectmon The Objectmon.
      */
     public ObjectmonImpl(final Objectmon objectmon) {
-        this.id = objectmon.getId();
         this.name = objectmon.getName();
-        this.aspects = List.copyOf(objectmon.getAspect());
+        this.aspects = List.copyOf(objectmon.getAspects());
         this.skills = List.copyOf(objectmon.getSkills());
         this.level = objectmon.getLevel();
         this.stats = objectmon.getStats().calcNewStats(level);
         this.exp = 0;
     }
 
+    /**
+     * Constructor of the class ObjectmonImpl with an ObjectmonEnum and level.
+     * 
+     * @param objectmonEnum The ObjectmonEnum to copy.
+     * @param level The level to copy.
+     */
+    public ObjectmonImpl(final ObjectmonEnum objectmonEnum, final int level) {
+        this.name = objectmonEnum.getName();
+        this.aspects = List.copyOf(objectmonEnum.getAspects());
+        this.skills = List.copyOf(objectmonEnum.getSkills());
+        this.level = level;
+        this.stats = objectmonEnum.getStats().calcNewStats(level);
+        this.exp = 0;
+    }
+
+
+
     @Override
     public ActualStats getStats() {
         return this.stats;
-    }
-
-    @Override
-    public int getId() {
-        return this.id;
     }
 
     @Override
@@ -102,7 +96,7 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public List<Aspect> getAspect() {
+    public List<Aspect> getAspects() {
         return List.copyOf(this.aspects);
     }
 
@@ -194,8 +188,7 @@ public final class ObjectmonImpl implements Objectmon {
         }
 
         final ObjectmonImpl objmon = (ObjectmonImpl) obj;
-        return Integer.valueOf(getId()).equals(objmon.getId())
-        && getName().equals(objmon.getName());
+        return getName().equals(objmon.getName());
     }
 
     /**
@@ -203,43 +196,6 @@ public final class ObjectmonImpl implements Objectmon {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName());
-    }
-
-    /**
-     * Builder of ObjectmonImpl.
-     * Used to generate an Objectmon.
-     */
-    public static class Builder {
-        private final int id;
-        private final String name;
-        private final List<Aspect> aspects;
-        private final List<Skill> skills;
-        private final ActualStats stats;
-        private final int level;
-        private final int exp;
-
-        /**
-         * Constructor of the class ObjectmonImpl.java.
-         * @param objectmon The objectmon to be generated.
-         * @param level the level of the Objectmon.
-        */
-        public Builder(final ObjectmonEnum objectmon, final int level) {
-            this.id = objectmon.getId();
-            this.name = objectmon.getName();
-            this.aspects = List.copyOf(objectmon.getAspects());
-            this.skills = List.copyOf(objectmon.getSkills());
-            this.level = level;
-            this.stats = objectmon.getStats().calcNewStats(level);
-            this.exp = 0;
-        }
-
-        /**
-         * Method that builds the Objectmon.
-         * @return Returns the ObjectmonImpl that was built.
-         */
-        public ObjectmonImpl build() {
-            return new ObjectmonImpl(this);
-        }
+        return Objects.hash(getName());
     }
 }

@@ -18,11 +18,6 @@ import java.util.List;
      * Getter of an Objectmon's id.
      * @return Return the Objectmon's id.
      */
-    int getId();
-    /**
-     * Getter of an Objectmon's name.
-     * @return Returns the Objectmon's name.
-     */
     String getName();
     /**
      * Getter of an Objectmon's level.
@@ -33,7 +28,7 @@ import java.util.List;
      * Getter of an Objectmon's Aspects.
      * @return Returns the Objectmon's Aspects.
      */
-    List<Aspect> getAspect();
+    List<Aspect> getAspects();
     /**
      * Getter of an Objectmon's Skill.
      * @return Returns the skill with associated id.

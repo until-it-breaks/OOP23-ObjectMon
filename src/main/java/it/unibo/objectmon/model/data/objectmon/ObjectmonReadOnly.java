@@ -27,11 +27,6 @@ public class ObjectmonReadOnly implements Objectmon {
     }
 
     @Override
-    public final int getId() {
-        return this.objectmon.getId();
-    }
-
-    @Override
     public final String getName() {
         return this.objectmon.getName();
     }
@@ -42,8 +37,8 @@ public class ObjectmonReadOnly implements Objectmon {
     }
 
     @Override
-    public final List<Aspect> getAspect() {
-        return this.objectmon.getAspect();
+    public final List<Aspect> getAspects() {
+        return this.objectmon.getAspects();
     }
     @Override
     public final List<Skill> getSkills() {
