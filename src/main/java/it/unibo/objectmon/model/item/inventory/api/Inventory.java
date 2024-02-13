@@ -2,7 +2,6 @@ package it.unibo.objectmon.model.item.inventory.api;
 
 import java.util.Map;
 
-import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.item.api.Item;
 
 /**
@@ -62,7 +61,7 @@ public interface Inventory {
 
     int getCredits();
 
-    int addCredits();
+    int addCredits(int amount);
 
     boolean withdrawCredits(int amount);
 }

@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.Collections;
 
-import it.unibo.objectmon.model.battle.api.Battle;
-import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.item.api.BallItem;
 import it.unibo.objectmon.model.item.api.HealItem;
 import it.unibo.objectmon.model.item.api.Item;
@@ -17,7 +15,6 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
  */
 public final class InventoryImpl implements Inventory {
 
-    private static final int WIN_IMPORT = 1000;
     private final Map<Item, Integer> items;
     private int credits;
 
@@ -90,9 +87,8 @@ public final class InventoryImpl implements Inventory {
     }
 
     @Override
-    public int addCredits() {
-        //battle win
-        return credits;
+    public int addCredits(final int amount) {
+        return credits += amount;
     }
 
     @Override
