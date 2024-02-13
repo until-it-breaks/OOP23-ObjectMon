@@ -12,7 +12,7 @@ import it.unibo.objectmon.model.entities.api.Trainer;
  * A simple battle that implements Battle.
  */
 public final class BattleImpl implements Battle {
-    private final static int EXP = 20;
+    private static final int EXP = 20;
     private final int upgradeEXP;
     private final Player player;
     private final Optional<Trainer> trainer;
@@ -24,6 +24,7 @@ public final class BattleImpl implements Battle {
      * @param player player in the battle.
      * @param trainer trainer to be defeated by player
      * @param objectmon wild objectmon
+     * @param xp xp to upgrade when player win.
      */
     public BattleImpl(final Player player, final Optional<Trainer> trainer, final Optional<Objectmon> objectmon, final int xp) {
         this.player = player;
@@ -44,7 +45,7 @@ public final class BattleImpl implements Battle {
             Optional.of(trainer), 
             Optional.empty(),
             trainer.getObjectmonParty().getParty().stream()
-            .mapToInt(o -> (o.getLevel() * EXP)).sum()
+            .mapToInt(o -> o.getLevel() * EXP).sum()
             );
     }
     /**
@@ -59,14 +60,14 @@ public final class BattleImpl implements Battle {
     @Override
     public boolean isWin() {
         return this.trainer.isPresent()
-        ? this.trainer.get().getObjectmonParty().getParty().size() == 1
+        ? this.trainer.get().getObjectmonParty().getParty().size() == 0
             && this.getEnemyObjectmon().getCurrentHp() <= 0
         : this.wildObjectmon.get().getCurrentHp() == 0;
     }
 
     @Override
     public boolean isLose() {
-        return this.player.getObjectmonParty().getParty().size() == 1
+        return this.player.getObjectmonParty().getParty().size() == 0
             && this.getCurrentObjectmon().getCurrentHp() <= 0;
     }
 
@@ -121,6 +122,7 @@ public final class BattleImpl implements Battle {
         return this.player;
     }
 
+    @Override
     public int upgradeEXP() {
         return this.upgradeEXP;
     }

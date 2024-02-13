@@ -116,11 +116,22 @@ public final class BattleManagerImpl implements BattleManager {
                         t -> {
                             if (t.getParty().size() > 1) {
                                 this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
+                            } else {
+                                remove(t);
+                                this.setResult(Result.WIN);
+                                endBattleAction();
                             }
                         }
                     );
                 } else {
                     useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
+                    if (this.isDead(this.battle.get().getCurrentObjectmon()) 
+                            && this.battle.get().getPlayerTeam().getParty().size() <= 1
+                        ) {
+                            this.remove(this.battle.get().getPlayerTeam());
+                            setResult(Result.LOSE);
+                            endBattleAction();
+                    }
                 }
                 break;
             case SWITCH_OBJECTMON :
@@ -140,6 +151,10 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.isDead(this.battle.get().getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
             if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
                 this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+            } else {
+                this.remove(this.battle.get().getPlayerTeam());
+                setResult(Result.LOSE);
+                endBattleAction();
             }
         } else {
             switch (type) {
@@ -278,10 +293,10 @@ public final class BattleManagerImpl implements BattleManager {
             } else if (this.battle.get().isLose()) {
                 this.setResult(Result.LOSE);
                 this.endBattleAction();
+            } else {
+                this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
             }
-        } else {
-            this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
-        }
+        } 
     }
 
     private void endBattleAction() {

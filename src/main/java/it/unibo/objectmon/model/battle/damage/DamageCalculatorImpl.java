@@ -10,8 +10,8 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
  * a damage calculator calculate the damage in a simple way.
  */
 public class DamageCalculatorImpl implements DamageCalculator {
-    private final static double EFFICIENCY = 0.2;
-    private final static double STATISTIC_DEPENDECE = 0.3;
+    private static final double EFFICIENCY = 0.2;
+    private static final double STATISTIC_DEPENDECE = 0.3;
     private final Skill skill;
     /**
      * Constructor of DamageCalculator.
@@ -43,7 +43,7 @@ public class DamageCalculatorImpl implements DamageCalculator {
     private double calculateDamage(final double multiplier, final int attack, final int defense) {
         final double damage;
         damage = multiplier * EFFICIENCY * this.skill.getBasePower() + (attack - defense) * STATISTIC_DEPENDECE;
-        if(damage > 0) {
+        if (damage > 0) {
             return damage;
         }
         return this.skill.getBasePower() * multiplier * EFFICIENCY;
