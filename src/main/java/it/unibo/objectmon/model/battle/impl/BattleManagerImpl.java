@@ -298,10 +298,9 @@ public final class BattleManagerImpl implements BattleManager {
                 return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size()
                     && this.battle.get().getPlayerTeam().getParty().size() > 1;
             case USE_HEAL:
-                return this.battle.get().getPlayer().getInventory().getItems().get(getItem(index)) > 0;
             case USE_BALL:
                 return this.battle.get().getPlayer().getInventory().getItems().get(getItem(index)) > 0
-                    && this.battle.get().getTrainer().isEmpty();
+                    && (type == Move.USE_HEAL || this.battle.get().getTrainer().isEmpty());
             default:
                 return false;
         }
