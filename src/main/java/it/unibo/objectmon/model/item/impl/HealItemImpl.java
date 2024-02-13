@@ -33,7 +33,7 @@ public final class HealItemImpl implements HealItem {
     public HealItemImpl(final HealEnum heal) {
         this.name = heal.getName();
         this.value = heal.getValue();
-        this.healPoint = heal.getHealPoint();
+        this.healPoint = heal.getHealingAmount();
     }
 
     @Override
