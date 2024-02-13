@@ -57,7 +57,7 @@ class TestObjectmon {
     }
 
     /**
-     *  Test of the ObjectmonFactory
+     *  Test of the ObjectmonFactory.
      */
     @Test
     void testObjectmonFactory() {

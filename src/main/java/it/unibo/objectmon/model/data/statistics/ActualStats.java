@@ -9,15 +9,15 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 /**
  * Extension of the class StatsImpl.
  * <br>This implementation is used to store the change of stats of the Objectmon
- * (through evolution or level up). 
- * The changes need to be saved in a new Map of Stats, 
- * because leveling should be an action that rarely happens and 
+ * (through evolution or level up).
+ * The changes need to be saved in a new Map of Stats,
+ * because leveling should be an action that rarely happens and
  * so creating a new object shouldn't be too taxing on the program.
  */
 public class ActualStats extends StatsImpl implements Serializable {
 
     private static final long serialVersionUID = 2004L;
-    private static final double STATGROWTHVARIATION = 0.20;
+    private static final double STATGROWTHVARIATION = 0.15;
     /**
      * Constructor of the class.
      * @param stats Map of all the stats.
@@ -27,7 +27,7 @@ public class ActualStats extends StatsImpl implements Serializable {
     }
 
     /**
-     * Constuctor of the class with BaseStats. 
+     * Constuctor of the class with BaseStats.
      * @param stats Stats of the Objectmon.
      */
     public ActualStats(final BaseStats stats) {
@@ -44,8 +44,15 @@ public class ActualStats extends StatsImpl implements Serializable {
      */
     private int calcSingleStat(final StatId id, final int level) {
         int newSingleStat = getSingleStat(id);
+        final int growthRange = 6;
+        final int maxRawGrowth = 10;
+        final int minRawGrowth = 1;
+        final int ratio = 2;
             for (int i = level; i > 0; i--) {
-                 newSingleStat += (int) Math.ceil(newSingleStat * STATGROWTHVARIATION);
+                int rawGrowth = (int) Math.ceil(newSingleStat * STATGROWTHVARIATION);
+                rawGrowth = Math.max(minRawGrowth, Math.min(rawGrowth, maxRawGrowth));
+
+                newSingleStat += growthRange - rawGrowth / ratio;
             }
         return newSingleStat;
     }
