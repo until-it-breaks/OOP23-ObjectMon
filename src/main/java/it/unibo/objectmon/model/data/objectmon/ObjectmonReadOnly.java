@@ -1,7 +1,6 @@
 package it.unibo.objectmon.model.data.objectmon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 

@@ -53,19 +53,20 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     /**
-     * Constructor of the class ObjectmonImpl with a builder.
+     * Constructor of the class ObjectmonImpl with a ObjectmonEnum.
      * 
-     * @param builder The builder.
+     * @param objEnum The ObjectmonEnum.
+     * @param level The Objectmon's level.
      */
-    private ObjectmonImpl(final Builder builder) {
+    public ObjectmonImpl(final ObjectmonEnum objEnum, final int level) {
         this.uuid = UUID.randomUUID();
-        this.name = builder.name;
-        this.aspects = List.copyOf(builder.aspects);
-        this.skills = List.copyOf(builder.skills);
-        this.stats = builder.stats;
+        this.name = objEnum.getName();
+        this.aspects = List.copyOf(objEnum.getAspects());
+        this.skills = List.copyOf(objEnum.getSkills());
+        this.stats = objEnum.getStats();
         this.currentHp = this.stats.getSingleStat(StatId.HP);
-        this.level = builder.level;
-        this.exp = builder.exp;
+        this.level = level;
+        this.exp = 0;
     }
 
     /**
@@ -75,7 +76,7 @@ public final class ObjectmonImpl implements Objectmon {
      * @param objectmon The Objectmon.
      */
     public ObjectmonImpl(final Objectmon objectmon) {
-        this.id = objectmon.getId();
+        this.uuid = UUID.randomUUID();
         this.name = objectmon.getName();
         this.aspects = List.copyOf(objectmon.getAspects());
         this.skills = List.copyOf(objectmon.getSkills());
@@ -83,23 +84,6 @@ public final class ObjectmonImpl implements Objectmon {
         this.stats = objectmon.getStats().calcNewStats(level);
         this.exp = 0;
     }
-
-    /**
-     * Constructor of the class ObjectmonImpl with an ObjectmonEnum and level.
-     * 
-     * @param objectmonEnum The ObjectmonEnum to copy.
-     * @param level The level to copy.
-     */
-    public ObjectmonImpl(final ObjectmonEnum objectmonEnum, final int level) {
-        this.name = objectmonEnum.getName();
-        this.aspects = List.copyOf(objectmonEnum.getAspects());
-        this.skills = List.copyOf(objectmonEnum.getSkills());
-        this.level = level;
-        this.stats = objectmonEnum.getStats().calcNewStats(level);
-        this.exp = 0;
-    }
-
-
 
     @Override
     public ActualStats getStats() {

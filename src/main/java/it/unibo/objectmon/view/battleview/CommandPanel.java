@@ -115,7 +115,7 @@ public final class CommandPanel extends JPanel {
                     controller.notifyCommand(new SwitchObjectmon(currentObjectmonIndex));
                     drawStartingButtons();
             });
-            switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspect().toString()
+            switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspects().toString()
             + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatId.HP));
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;
