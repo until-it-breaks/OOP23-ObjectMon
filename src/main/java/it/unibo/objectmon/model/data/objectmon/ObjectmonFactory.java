@@ -4,8 +4,6 @@ package it.unibo.objectmon.model.data.objectmon;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
-import com.google.gson.Gson;
-
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 /**
  * The factory of Objectmon.
