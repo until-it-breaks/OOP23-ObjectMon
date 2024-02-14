@@ -20,6 +20,7 @@ public interface TradeManager {
      * @param player the player who is buying the item
      * @param item the item being bought
      * @return true if the transaction is successfull, false otherwise
+     * @throws IllegalStateException if the game state is not a TRADE
      */
     boolean buyItem(Player player, Item item);
 
@@ -28,6 +29,7 @@ public interface TradeManager {
      * @param player the player who is selling the item
      * @param item the item being sold
      * @return true if the transaction is successfull, false otherwise
+     * @throws IllegalStateException if the game state is not a TRADE
      */
     boolean sellItem(Player player, Item item);
 }
