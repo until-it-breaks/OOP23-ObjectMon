@@ -15,8 +15,8 @@ public interface InteractionManager {
     /**
      * Triggers an interaction with NPCs upon a successful check.
      *
-     * @param npcs   the set of NPCs in the game.
-     * @param player the player who will be the subject of the interaction.
+     * @param npcs   The set of NPCs in the game.
+     * @param player The player who will be the subject of the interaction.
      * @return {@code true} if an interaction has taken place; {@code false} otherwise.
      */
     boolean triggerInteraction(Set<AbstractNPC> npcs, Player player);
@@ -24,7 +24,7 @@ public interface InteractionManager {
     /**
      * Retrieves the log of messages generated during interactions.
      *
-     * @return a list of strings representing the messages logged during interactions.
+     * @return A {@link List} of {@link String} representing the messages logged during interactions.
      */
     List<String> getMessages();
 }

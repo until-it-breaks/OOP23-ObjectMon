@@ -1,12 +1,12 @@
 package it.unibo.objectmon.model.entities.api;
 
 /**
- * Models a seller NPC.
+ * Defines a seller NPC behaviour.
  */
 public interface Seller {
 
     /**
-     * Trades with the Player.
+     * Initiates the trade process with the {@link Player}.
      */
     void trade();
 }

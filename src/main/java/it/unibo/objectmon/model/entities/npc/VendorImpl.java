@@ -3,7 +3,7 @@ package it.unibo.objectmon.model.entities.npc;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Seller;
-import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
+import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
@@ -22,7 +22,7 @@ public final class VendorImpl extends AbstractNPC implements Seller {
     }
 
     @Override
-    public void handleInteraction(final Player player, final EventLogger logger) {
+    public void handleInteraction(final Player player, final InteractionLogger logger) {
         logger.log(this.getName() + " has started trading with " + player.getName());
         this.trade();
     }
