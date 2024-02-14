@@ -1,6 +1,5 @@
 package it.unibo.objectmon.model.item.trademanager.api;
 
-import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
