@@ -65,4 +65,21 @@ public final class InventoryReadOnly implements Inventory {
     public int getInventoryValue() {
         return inventory.getInventoryValue();
     }
+
+    @Override
+    public int getCredits() {
+        return inventory.getCredits();
+    }
+
+    @Override
+    public int addCredits(int amount) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addCredits'");
+    }
+
+    @Override
+    public boolean withdrawCredits(int amount) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'withdrawCredits'");
+    }
 }

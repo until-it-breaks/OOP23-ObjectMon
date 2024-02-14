@@ -59,9 +59,23 @@ public interface Inventory {
      */
     int getInventoryValue();
 
+    /**
+     * Returns credits of the player.
+     * @return credits
+     */
     int getCredits();
 
+    /**
+     * Returns credits of the player increased by an item selling.
+     * @param amount value of item
+     * @return credits
+     */
     int addCredits(int amount);
 
+    /**
+     * Returns true if is possibile to buy the item, which costs 'amount'.
+     * @param amount cost of the item
+     * @return true if possible to buy
+     */
     boolean withdrawCredits(int amount);
 }
