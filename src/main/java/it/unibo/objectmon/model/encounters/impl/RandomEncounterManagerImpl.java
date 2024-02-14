@@ -34,7 +34,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     @SuppressFBWarnings (value = "EI_EXPOSE_REP", justification = "Temporary")
     public RandomEncounterManagerImpl(final GameContext gameContext, final BattleInitiator battleStartListener) {
         this.gameContext = gameContext;
-        final PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
+        PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
         playerImpl.addObserver(this);
         this.battleStartListener = battleStartListener;
     }
@@ -42,7 +42,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     @Override
     public void performCheck() {
         final Coord position = gameContext.getPlayer().getPosition();
-        if (gameContext.getWorld().getMap().get(position).isTriggersEncounters() && encountersOccurs()) {
+        if (gameContext.getWorld().getMap().get(position).isTriggerEncounter() && encountersOccurs()) {
             startRandomEncounter();
         }
     }
