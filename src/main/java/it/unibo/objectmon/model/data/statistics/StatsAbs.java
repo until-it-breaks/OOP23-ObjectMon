@@ -8,7 +8,7 @@ import it.unibo.objectmon.model.data.api.statistics.Stats;
 /**
  * Abstract class of the interface Stats.
  */
-public abstract class StatsImpl implements Stats {
+public abstract class StatsAbs implements Stats {
 
     /**
      * A Map containing all the battle relevant stats of the Objectmon.
@@ -20,7 +20,7 @@ public abstract class StatsImpl implements Stats {
      * 
      * @param stats Map of all the stats.
      */
-    public StatsImpl(final Map<StatId, Integer> stats) {
+    public StatsAbs(final Map<StatId, Integer> stats) {
         this.stats.put(StatId.HP, stats.get(StatId.HP));
         this.stats.put(StatId.ATK, stats.get(StatId.ATK));
         this.stats.put(StatId.DEF, stats.get(StatId.DEF));
@@ -32,7 +32,7 @@ public abstract class StatsImpl implements Stats {
     /**
      * Constructor for the class for serialization.
      */
-    public StatsImpl() {
+    public StatsAbs() {
         final int defaultStats = 50;
         this.stats.put(StatId.HP, defaultStats);
         this.stats.put(StatId.ATK, defaultStats);

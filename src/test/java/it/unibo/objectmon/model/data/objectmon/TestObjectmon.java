@@ -63,6 +63,11 @@ class TestObjectmon {
     void testObjectmonFactory() {
         final int level = 5;
         final Objectmon torchic = ObjectmonFactory.createObjectmon(ObjectmonEnum.TORCHIC, level);
+
+        final int exp = 100;
+        assertEquals(torchic.getStats().getSingleStat(StatId.HP), torchic.getCurrentHp());
+        torchic.calcExp(exp);
+        assertEquals(torchic.getStats().getSingleStat(StatId.HP), torchic.getCurrentHp());
         assertEquals("Fire Tackle", torchic.getSkills().get(0).getName());
 
         final Objectmon mudkip = ObjectmonFactory.createObjectmon(ObjectmonEnum.MUDKIP, level);

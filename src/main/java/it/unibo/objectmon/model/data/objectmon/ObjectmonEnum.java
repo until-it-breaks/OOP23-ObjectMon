@@ -8,6 +8,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 import it.unibo.objectmon.model.data.skill.SkillFactory;
+import it.unibo.objectmon.model.data.skill.SkillImpl;
 
 /**
  * Enum of Objectmon in the game.
@@ -412,7 +413,7 @@ public enum ObjectmonEnum {
 
     private final String name;
     private final List<Aspect> aspects;
-    private final List<Skill> skills;
+    private final List<SkillImpl> skills;
     private final ActualStats stats;
 
     /**
@@ -426,7 +427,7 @@ public enum ObjectmonEnum {
         this.name = name;
         this.aspects = List.copyOf(aspects);
 
-        final List<Skill> skills = SkillFactory.createSkills().stream()
+        final List<SkillImpl> skills = SkillFactory.createSkills().stream()
         .filter(skill -> skill.getAspect().sameAspect(aspects))
         .toList();
 

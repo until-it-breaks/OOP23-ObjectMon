@@ -157,7 +157,10 @@ public final class ObjectmonImpl implements Objectmon {
      */
     private void levelUp() {
         addLevel();
-        this.stats = getStats().calcNewStats(1);
+        final ActualStats newStats = getStats().calcNewStats(1);
+        final int growth = newStats.getSingleStat(StatId.HP) - this.stats.getSingleStat(StatId.HP);
+        this.stats = newStats;
+        setCurrentHp(growth);
     }
 
     @Override
