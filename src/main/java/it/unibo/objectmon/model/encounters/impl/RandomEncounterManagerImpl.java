@@ -43,17 +43,13 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     @Override
     public void performCheck() {
         final Coord position = gameContext.getPlayer().getPosition();
-        final var tile = gameContext.getWorld().getMap().get(position);
-        System.out.println("Tile " + tile.getType() + " triggers? " + tile.isTriggersEncounters());
         if (gameContext.getWorld().getMap().get(position).isTriggersEncounters() && encountersOccurs()) {
-            System.out.println("Start");
             startRandomEncounter();
         }
     }
 
     private boolean encountersOccurs() {
         final double number = random.nextDouble();
-        System.out.println(number);
         return number <= ENCOUNTER_RATE;
     }
 
