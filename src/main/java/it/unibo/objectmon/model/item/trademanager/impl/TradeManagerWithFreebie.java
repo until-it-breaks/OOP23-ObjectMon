@@ -13,7 +13,7 @@ public class TradeManagerWithFreebie implements TradeManager {
     private final int freebieTrigger;
     private final Map<Item, Integer> itemCountMap;
 
-    public TradeManagerWithFreebie(final TradeManager tradeManager, final int freebieTrigger) {
+    public TradeManagerWithFreebie(final int freebieTrigger, final TradeManager tradeManager) {
         this.tradeManager = tradeManager;
         this.freebieTrigger = freebieTrigger;
         this.itemCountMap = new HashMap<>();

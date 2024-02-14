@@ -9,7 +9,7 @@ public class TradeManagerWithPenalty implements TradeManager {
     private final TradeManager tradeManager;
     private final double penaltyRatio;
 
-    public TradeManagerWithPenalty(final TradeManager tradeManager, final double penaltyRatio) {
+    public TradeManagerWithPenalty(final double penaltyRatio, final TradeManager tradeManager) {
         this.tradeManager = tradeManager;
         this.penaltyRatio = penaltyRatio;
     }

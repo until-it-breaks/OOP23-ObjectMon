@@ -26,6 +26,10 @@ import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
+import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
+import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerImpl;
+import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithFreebie;
+import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithPenalty;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.CollisionManagerImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
@@ -53,6 +57,9 @@ public final class ControllerImpl implements Controller {
 
         // Create and initialize necessary dependencies
         final GameStateManager gameStateManager = new GameStateManagerImpl();
+        final TradeManager tradeManager = new TradeManagerWithFreebie(3, 
+            new TradeManagerWithPenalty(0.5, 
+            new TradeManagerImpl(gameStateManager)));
         final BattleManager battleManager = new BattleManagerImpl(gameStateManager);
         final BattleStartListener battleStartListener = (player, trainer, objectmon) -> {
             battleManager.startBattle(player, trainer, objectmon);
@@ -64,7 +71,7 @@ public final class ControllerImpl implements Controller {
 
         // Create the model with initialized dependencies
         this.model = new ModelImpl(gameContext, interactionManager, collisionManager,
-            battleManager, gameStateManager, randomEncounterManager);
+            battleManager, gameStateManager, tradeManager, randomEncounterManager);
 
         // Initialize the view
         this.view = new SwingViewImpl(this);

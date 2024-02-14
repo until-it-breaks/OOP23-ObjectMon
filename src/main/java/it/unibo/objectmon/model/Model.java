@@ -75,7 +75,7 @@ public interface Model {
     BattleLogger getBattleLogger();
 
     /**
-     * Get trade manager
+     * Get trade manager.
      * @return tradeManager
      */
     TradeManager getTradeManager();
