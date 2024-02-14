@@ -4,6 +4,7 @@ import java.util.Optional;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
+import it.unibo.objectmon.model.gamestate.EndGameManager;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
@@ -79,4 +80,10 @@ public interface Model {
      * @return tradeManager
      */
     TradeManager getTradeManager();
+
+    /**
+     * Get the endgame manager.
+     * @return Returns the endGameManager.
+     */
+    EndGameManager getEndGameManager();
 }

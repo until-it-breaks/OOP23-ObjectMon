@@ -8,6 +8,7 @@ import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
+import it.unibo.objectmon.model.gamestate.EndGameManager;
 //import it.unibo.objectmon.model.encounters.impl.RandomEncounterManagerImpl;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
@@ -28,6 +29,7 @@ public final class ModelImpl implements Model {
     private final BattleManager battleManager;
     private final GameStateManager gameStateManager;
     private final TradeManager tradeManager;
+    private final EndGameManager endGameManager;
 
     /**
      * Constructs a ModelImpl instance with the provided dependencies.
@@ -38,19 +40,24 @@ public final class ModelImpl implements Model {
      * @param battleManager                 The manager responsible for handling battles between entities.
      * @param gameStateManager              The manager responsible for managing the game state.
      * @param tradeManager                  The manager responsible for managing the trade mode.
+     * @param endGameManager                The manager responsible for triggering the END game state.
      * @param randomEncounterManagerImpl    The manager responsible for triggering random encounters.
+     * 
      */
     @SuppressFBWarnings(value = "EI2", justification = "Allowing mutable objects to be stored for flexibility")
     public ModelImpl(final GameContext gameContext, final InteractionManager interactionManager,
             final CollisionManager collisionManager, final BattleManager battleManager,
             final GameStateManager gameStateManager, final TradeManager tradeManager, 
-            final RandomEncounterManager randomEncounterManagerImpl) {
+            final RandomEncounterManager randomEncounterManagerImpl,
+            final EndGameManager endGameManager
+            ) {
         this.gameContext = gameContext;
         this.interactionManager = interactionManager;
         this.collisionManager = collisionManager;
         this.battleManager = battleManager;
         this.gameStateManager = gameStateManager;
         this.tradeManager = tradeManager;
+        this.endGameManager = endGameManager;
     }
 
     @Override
@@ -96,5 +103,10 @@ public final class ModelImpl implements Model {
     @Override
     public BattleLogger getBattleLogger() {
         return this.battleManager.getLogger();
+    }
+
+    @Override
+    public EndGameManager getEndGameManager() {
+        return this.endGameManager;
     }
 }

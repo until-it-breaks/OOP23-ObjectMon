@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.controller.commands.EndGame;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.view.utility.RenderingUtils;
+import it.unibo.objectmon.controller.commands.EndGame;
 
 /**
  * Represents the main GUI frame of the game.
@@ -74,9 +74,8 @@ public final class SwingViewImpl implements View {
             case PAUSE:
                 showResumeDialog();
                 break;
-            case WIN:
-            case LOSS:
-                setCurrentPanel(new EndPanel(controller, gameState));
+            case END:
+                setCurrentPanel(new EndPanel(controller));
                 break;
             default:
                 throw new IllegalStateException();
@@ -90,6 +89,8 @@ public final class SwingViewImpl implements View {
                 JOptionPane.PLAIN_MESSAGE);
         setCurrentPanel(new OverWorldPanel(controller));
         //Check if the game has ended
-        controller.notifyCommand(new EndGame());
+        if (controller.isLoss() || controller.isWin()) {
+            controller.notifyCommand(new EndGame());
+        }
     }
 }
