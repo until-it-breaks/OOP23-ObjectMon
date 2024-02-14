@@ -92,4 +92,16 @@ public interface Controller {
      * Inizializes a new game.
      */
     void restart();
+
+    /**
+     * Checks if the player won the game.
+     * @return true if all Trainers have been defeated, false otherwise.
+     */
+    boolean isWin();
+
+    /**
+     * Checks if the player lost the game.
+     * @return true if all the Player's Objectmon are dead. false otherwise.
+     */
+    boolean isLoss();
 }

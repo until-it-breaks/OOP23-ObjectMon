@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
-import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
@@ -37,10 +36,9 @@ public final class EndPanel extends JPanel {
      * Constructs a new {@link EndPanel}, initializing its properties and attaching it to the provided {@link Controller}.
      *
      * @param controller The {@link Controller} responsible for managing inputs and providing game data.
-     * @param endState The endstate of the game. It can be either WIN or LOSS
      */
-    public EndPanel(final Controller controller, final GameState endState) {
-        this.isWin = endState.equals(GameState.WIN);
+    public EndPanel(final Controller controller) {
+        this.isWin = controller.isWin();
         this.setDoubleBuffered(true);
         this.setBackground(Color.BLACK);
         this.controller = controller;

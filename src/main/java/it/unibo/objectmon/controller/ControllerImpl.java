@@ -21,8 +21,12 @@ import it.unibo.objectmon.model.core.GameContexts;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
 import it.unibo.objectmon.model.encounters.impl.RandomEncounterManagerImpl;
 import it.unibo.objectmon.model.entities.api.Player;
+import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
+import it.unibo.objectmon.model.entities.npc.TrainerImpl;
 import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
+import it.unibo.objectmon.model.gamestate.EndGameManager;
+import it.unibo.objectmon.model.gamestate.EndGameManagerImpl;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
@@ -61,8 +65,9 @@ public final class ControllerImpl implements Controller {
 
     /**
      * Inizializes the Model.
+     * @return Returns the inizialized Model.
      */
-    public void inizializeModel() {
+    public ModelImpl inizializeModel() {
         final GameStateManager gameStateManager = new GameStateManagerImpl();
         final TradeManager tradeManager = new TradeManagerWithFreebie(3, 
             new TradeManagerWithPenalty(0.5, 
@@ -73,19 +78,21 @@ public final class ControllerImpl implements Controller {
             battleManager.startBattle(player, trainer, objectmon);
         };
         final GameContext gameContext = GameContexts.createDefaultContext(battleInitiator, tradeInitiator);
-        final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleInitiator);
-
+        
         final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
         final InteractionManager interactionManager = new InteractionManagerImpl();
-
-
-        // Create the model with initialized dependencies
-        this.model = new ModelImpl(gameContext, interactionManager, collisionManager,
-            battleManager, gameStateManager, tradeManager, randomEncounterManager);
-
-        // Initialize the view
-        gameStateManager.registerObserver(view);
-        gameStateManager.setGameState(GameState.EXPLORATION);
+        final EndGameManager endGameManager = new EndGameManagerImpl(gameStateManager);
+        final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleInitiator);
+        return new ModelImpl(
+            gameContext,
+            interactionManager,
+            collisionManager,
+            battleManager,
+            gameStateManager,
+            tradeManager,
+            randomEncounterManager,
+            endGameManager
+        );
     }
 
     @Override
@@ -153,4 +160,23 @@ public final class ControllerImpl implements Controller {
     public BattleLogger getBattleLogger() {
         return model.getBattleLogger();
     }
+
+    @Override
+    public boolean isWin() {
+        for (final var npc : this.model.getGameContext().getNPCs()) {
+            if (npc instanceof Trainer) {
+                final Trainer trainer = (TrainerImpl) npc;
+                if (!trainer.isDefeated()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isLoss() {
+        return this.model.getGameContext().getPlayer().getObjectmonParty().getParty().size() == 0;
+    }
+
 }
