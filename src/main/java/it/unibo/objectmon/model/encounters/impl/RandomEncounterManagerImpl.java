@@ -34,7 +34,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     @SuppressFBWarnings (value = "EI_EXPOSE_REP", justification = "Temporary")
     public RandomEncounterManagerImpl(final GameContext gameContext, final BattleInitiator battleStartListener) {
         this.gameContext = gameContext;
-        PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
+        final PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
         playerImpl.addObserver(this);
         this.battleStartListener = battleStartListener;
     }

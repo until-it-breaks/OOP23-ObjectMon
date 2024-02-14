@@ -60,14 +60,13 @@ public final class ControllerImpl implements Controller {
     public ControllerImpl() {
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
         this.view = new SwingViewImpl(this);
-        inizializeModel();
+        initializeModel();
     }
 
     /**
-     * Inizializes the Model.
-     * @return Returns the inizialized Model.
+     * Initializes the Model.
      */
-    public ModelImpl inizializeModel() {
+    public void initializeModel() {
         final GameStateManager gameStateManager = new GameStateManagerImpl();
         final TradeManager tradeManager = new TradeManagerWithFreebie(3, 
             new TradeManagerWithPenalty(0.5, 
@@ -78,21 +77,15 @@ public final class ControllerImpl implements Controller {
             battleManager.startBattle(player, trainer, objectmon);
         };
         final GameContext gameContext = GameContexts.createDefaultContext(battleInitiator, tradeInitiator);
-        
         final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
         final InteractionManager interactionManager = new InteractionManagerImpl();
         final EndGameManager endGameManager = new EndGameManagerImpl(gameStateManager);
         final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleInitiator);
-        return new ModelImpl(
-            gameContext,
-            interactionManager,
-            collisionManager,
-            battleManager,
-            gameStateManager,
-            tradeManager,
-            randomEncounterManager,
-            endGameManager
-        );
+        this.model = new ModelImpl(gameContext, interactionManager, collisionManager, battleManager,
+        gameStateManager, tradeManager, randomEncounterManager, endGameManager);
+        gameStateManager.registerObserver(this.view);
+        gameStateManager.setGameState(GameState.EXPLORATION);
+        gameStateManager.notifyObservers();
     }
 
     @Override
@@ -115,7 +108,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void restart() {
-        inizializeModel();
+        initializeModel();
     }
 
     @Override
