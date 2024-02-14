@@ -102,6 +102,6 @@ public final class ModelImpl implements Model {
 
     @Override
     public RandomEncounterManager getRandomEncounterManager() {
-        return randomEncounterManager;
+        return this.randomEncounterManager;
     }
 }

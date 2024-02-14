@@ -22,7 +22,7 @@ public final class AspectColorMap {
         ASPECT_COLOR_MAP.put(Aspect.FLYING, Color.CYAN);
         ASPECT_COLOR_MAP.put(Aspect.POISON, Color.MAGENTA.darker());
         ASPECT_COLOR_MAP.put(Aspect.GROUND, Color.YELLOW.darker());
-        ASPECT_COLOR_MAP.put(Aspect.ROCK, Color.BLACK.brighter());
+        ASPECT_COLOR_MAP.put(Aspect.ROCK, Color.decode("#b9770e"));
         ASPECT_COLOR_MAP.put(Aspect.FIGHTING, Color.RED.darker());
         ASPECT_COLOR_MAP.put(Aspect.BUG, Color.GREEN.darker());
     }
