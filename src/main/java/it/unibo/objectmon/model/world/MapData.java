@@ -99,7 +99,11 @@ public final class MapData {
         try (InputStream inputStream = MapData.class.getResourceAsStream(path);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Gson gson = new Gson();
-            return gson.fromJson(reader, MapData.class);
+            final MapData mapData = gson.fromJson(reader, MapData.class);
+            if (mapData == null) {
+                throw new IllegalStateException("No MapData found in: " + path);
+            }
+            return mapData;
         } catch (final IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
             throw new IllegalStateException("Error loading map data from: " + path, e);

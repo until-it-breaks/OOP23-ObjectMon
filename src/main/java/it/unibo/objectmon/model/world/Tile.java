@@ -2,7 +2,7 @@ package it.unibo.objectmon.model.world;
 
 /**
  * Models a single map unit.
- * Each tile has a unique identifier, a type, and an associated image path.
+ * Each {@link Tile} has an unique identifier, a type, and an associated image path.
  */
 public final class Tile {
 
