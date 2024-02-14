@@ -4,12 +4,12 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 
 /**
- * Represents a playable entity able to move.
+ * Represents a playable entity able to move, battle and have an inventory.
  */
 public interface Player extends Trainer {
 
     /**
-     * Attempts to move the player towards a certain direction.
+     * Attempts to move the player towards a direction.
      * 
      * @param direction the direction to move towards.
      * @param collisionChecker the collision checker that will determine whether the player is able to move.

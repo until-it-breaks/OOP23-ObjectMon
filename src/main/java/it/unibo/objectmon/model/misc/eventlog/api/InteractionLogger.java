@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * A general purpose event logger.
  */
-public interface EventLogger {
+public interface InteractionLogger {
 
     /**
      * Stores a message.

@@ -6,8 +6,8 @@ import java.util.Set;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
-import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
+import it.unibo.objectmon.model.misc.eventlog.InteractionLoggerImpl;
+import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
@@ -15,13 +15,14 @@ import it.unibo.objectmon.model.world.api.Coord;
  * Models a interaction manager that triggers an npc's interaction if the npc is right in front of the player.
  */
 public final class InteractionManagerImpl implements InteractionManager {
-    private final EventLogger logger;
+
+    private final InteractionLogger logger;
 
     /**
      * Costructs an interaction manager.
      */
     public InteractionManagerImpl() {
-        this.logger = new EventLoggerImpl();
+        this.logger = new InteractionLoggerImpl();
     }
 
     @Override

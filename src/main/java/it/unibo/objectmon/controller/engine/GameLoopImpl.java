@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.controller.commands.api.Command;
-import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.view.View;
 
 /**
@@ -20,7 +18,6 @@ public class GameLoopImpl implements GameLoop {
     private static final int SECOND_IN_MILLIS = 1_000;
     private static final int PERIOD = SECOND_IN_MILLIS / TARGET_FPS;
     private final Logger logger = Logger.getLogger(this.getClass().getName());
-    private final Model model;
     private final View view;
     private long fps;
     private final Controller controller;
@@ -28,19 +25,18 @@ public class GameLoopImpl implements GameLoop {
 
     /**
      * Constructs a new Game Loop.
-     * 
-     * @param model The model where commands will be executed.
+     *
      * @param view The view where the game will be rendered.
      * @param controller The controller where the commands are polled.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
     justification = "The game engine has the ability to shut down the view")
-    public GameLoopImpl(final Model model, final View view, final Controller controller) {
-        this.model = model;
+    public GameLoopImpl(final View view, final Controller controller) {
         this.view = view;
         this.controller = controller;
         this.keepRunning = true;
     }
+
 
     /**
      * The methods that starts the game loop.
@@ -111,10 +107,7 @@ public class GameLoopImpl implements GameLoop {
      * Processes user input by polling commands from the controller and executing them on the model.
      */
     protected void processInput() {
-        final Command command = this.controller.pollCommand();
-        if (command != null) {
-            command.execute(model);
-        }
+        controller.execute();
     }
 
     /**

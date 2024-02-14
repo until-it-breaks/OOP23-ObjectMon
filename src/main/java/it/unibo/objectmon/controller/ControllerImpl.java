@@ -46,7 +46,7 @@ public final class ControllerImpl implements Controller {
 
     private static final int COMMAND_LIMIT = 16;
     private final Queue<Command> commandQueue;
-    private final Model model;
+    private Model model;
     private final View view;
 
     /**
@@ -54,9 +54,21 @@ public final class ControllerImpl implements Controller {
      */
     public ControllerImpl() {
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
-
-        // Create and initialize necessary dependencies
         final GameStateManager gameStateManager = new GameStateManagerImpl();
+        this.model = inizializeModel(gameStateManager);
+
+        // Initialize the view
+        this.view = new SwingViewImpl(this);
+        gameStateManager.registerObserver(view);
+        gameStateManager.setGameState(GameState.EXPLORATION);
+    }
+
+    /**
+     * Inizializes the Model.
+     * @param gameStateManager the gameStateManager for inizialization.
+     * @return The new Model.
+     */
+    public Model inizializeModel(final GameStateManager gameStateManager) {
         final TradeManager tradeManager = new TradeManagerWithFreebie(3, 
             new TradeManagerWithPenalty(0.5, 
             new TradeManagerImpl(gameStateManager)));
@@ -91,12 +103,23 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void execute() {
-        this.commandQueue.poll().execute(model);
+        final Command command = commandQueue.poll();
+        if (command != null) {
+            command.execute(model);
+        }
+    }
+
+    @Override
+    public void restart() {
+        final GameStateManager gameStateManager = new GameStateManagerImpl();
+        this.model = inizializeModel(gameStateManager);
+        gameStateManager.registerObserver(view);
+        gameStateManager.setGameState(GameState.EXPLORATION);
     }
 
     @Override
     public void startGame() {
-        final GameLoop gameLoop = new GameLoopImpl(model, view, this);
+        final GameLoop gameLoop = new GameLoopImpl(view, this);
         gameLoop.start();
     }
 
@@ -136,4 +159,5 @@ public final class ControllerImpl implements Controller {
     public BattleLogger getBattleLogger() {
         return model.getBattleLogger();
     }
+
 }

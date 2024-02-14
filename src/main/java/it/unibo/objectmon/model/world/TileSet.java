@@ -18,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
 
 /**
  * Represents a set of tiles used within the game environment.
- * The TileSet class loads tile data from a JSON file and provides methods
+ * The {@link TileSet} class loads tile data from a JSON file and provides methods
  * for accessing individual tiles by their IDs.
  */
 public final class TileSet {
@@ -28,7 +28,7 @@ public final class TileSet {
     private final Logger logger = Logger.getLogger(TileSet.class.getName());
 
     /**
-     * Creates the tileset by loading data from JSON.
+     * Creates the {@link TileSet} by loading data from JSON.
      * 
      * @param path the path to the atlas file.
      */
@@ -38,18 +38,19 @@ public final class TileSet {
     }
 
     /**
-     * Retrieves a Tile object by its ID.
+     * Retrieves a {@link Tile} object by its id.
      * 
      * @param id The ID of the tile to retrieve.
-     * @return The Tile object corresponding to the given ID, or null if not found.
+     * @return The {@link Tile} object corresponding to the given ID, or null if not found.
      */
     public Tile getTileById(final int id) {
         return tileIdMap.get(id);
     }
 
     /**
-     * Retrieves the set of tiles.
-     * @return A set of tiles.
+     * Retrieves the {@link Set} of tiles.
+     * 
+     * @return A {@link Set} of tiles.
      */
     public Set<Tile> getTileAtlas() {
         return Collections.unmodifiableSet(tileAtlas);

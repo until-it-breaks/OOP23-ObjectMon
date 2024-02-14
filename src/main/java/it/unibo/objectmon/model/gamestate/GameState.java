@@ -25,6 +25,14 @@ public enum GameState {
      * Pause mode.
      */
     PAUSE,
+    /**
+     * When player wins.
+     */
+    WIN,
+    /**
+     * When player loses.
+     */
+    LOSS,
 
     /**
      * The default mode.

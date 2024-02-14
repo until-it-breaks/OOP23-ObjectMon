@@ -4,44 +4,44 @@ import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
+import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * A singleton that represents a class able to log messages and return a number of them on demand.
+ * Models a logger able to log messages and return a number of them on demand.
  */
-public final class EventLoggerImpl implements EventLogger {
+public final class InteractionLoggerImpl implements InteractionLogger {
 
     /**
      * The maximum amount of messages the logger can hold.
      */
     public static final int LIMIT = 4;
-    private final Queue<String> events;
+    private final Queue<String> messages;
 
     /**
      * Constructs a logger with limits.
      */
-    public EventLoggerImpl() {
-        this.events = new ArrayBlockingQueue<>(LIMIT);
+    public InteractionLoggerImpl() {
+        this.messages = new ArrayBlockingQueue<>(LIMIT);
     }
 
     @Override
     @SuppressFBWarnings(value = "RV_RETURN_VALUE_IGNORED", 
     justification = "Ignoring return value as it is not needed for this specific use case")
     public void log(final String string) {
-        if (events.size() >= LIMIT) {
-            this.events.poll();
+        if (messages.size() >= LIMIT) {
+            this.messages.poll();
         }
-        this.events.add(string);
+        this.messages.add(string);
     }
 
     @Override
     public void clear() {
-        this.events.clear();
+        this.messages.clear();
     }
 
     @Override
     public List<String> getMessages() {
-        return events.stream().collect(Collectors.toUnmodifiableList());
+        return messages.stream().collect(Collectors.toUnmodifiableList());
     }
 }
