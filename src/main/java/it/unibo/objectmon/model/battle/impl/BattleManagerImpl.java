@@ -64,12 +64,12 @@ public final class BattleManagerImpl implements BattleManager {
             t -> {
                 this.battle = Optional.of(new BattleImpl(player, t));
                 this.gameStateManager.setGameState(GameState.BATTLE);
-                this.logger.log("battle started with trainer:" + t.getName());
+                this.logger.log("battle started with trainer: " + t.getName());
             },
             () -> objectMon.ifPresentOrElse(o -> {
                     this.battle = Optional.of(new BattleImpl(player, o));
                     this.gameStateManager.setGameState(GameState.BATTLE);
-                    this.logger.log("battle started with" + o.getName());
+                    this.logger.log("battle started with " + o.getName());
                 }, 
                 () -> {
                     throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
@@ -180,11 +180,11 @@ public final class BattleManagerImpl implements BattleManager {
                     this.useItem(index);
                     break;
                 case USE_BALL:
+                    useItem(index);
                     if (this.useBall(getBall(index).getCatchMultiplier(), this.battle.get().getEnemyObjectmon())) {
                         this.setResult(Result.WIN);
                         this.endBattleAction();
                     }
-                    useItem(index);
                     break;
                 default:
                     break;
@@ -239,6 +239,7 @@ public final class BattleManagerImpl implements BattleManager {
 
     private boolean useBall(final double multiplier, final Objectmon objectmon) {
         final CatchSystem catchObjctmon = new CatchSystemImpl();
+        this.logger.log("player uses ball");
         if (catchObjctmon.isCaught(multiplier, objectmon)) {
             this.battle.get().getPlayerTeam().add(objectmon);
             this.logger.log("congratulation, you catch " + objectmon.getName());

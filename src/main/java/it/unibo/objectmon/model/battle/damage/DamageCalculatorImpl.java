@@ -4,7 +4,6 @@ package it.unibo.objectmon.model.battle.damage;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.PotencyChart;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.skill.SkillCategory;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 /**
  * a damage calculator calculate the damage in a simple way.
@@ -25,19 +24,11 @@ public class DamageCalculatorImpl implements DamageCalculator {
     public final double damage(final Objectmon myObjectmon, final Objectmon target) {
         final PotencyChart potencyChart = PotencyChart.getChart(this.skill.getAspect());
         final double multiplier = potencyChart.potencyMultiplier(myObjectmon.getAspects(), target.getAspects());
-        if (skill.getCategory().equals(SkillCategory.PHYS)) {
             return calculateDamage(
                 multiplier,
                 myObjectmon.getStats().getSingleStat(StatId.ATK),
                 target.getStats().getSingleStat(StatId.DEF)
             );
-        } else if (skill.getCategory().equals(SkillCategory.SPEC)) {
-            return calculateDamage(
-                multiplier,
-                myObjectmon.getStats().getSingleStat(StatId.SPATK),
-                target.getStats().getSingleStat(StatId.SPDEF));
-        }
-        return 0;
     }
 
     private double calculateDamage(final double multiplier, final int attack, final int defense) {
