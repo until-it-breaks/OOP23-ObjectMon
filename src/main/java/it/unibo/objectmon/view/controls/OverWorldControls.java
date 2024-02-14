@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.controller.commands.EndGame;
 import it.unibo.objectmon.controller.commands.Interact;
 import it.unibo.objectmon.controller.commands.MoveDown;
 import it.unibo.objectmon.controller.commands.MoveLeft;
@@ -51,6 +52,9 @@ public final class OverWorldControls implements KeyListener {
                 break;
             case KeyEvent.VK_J:
                 controller.notifyCommand(new Interact());
+                break;
+            case KeyEvent.VK_0:
+                controller.notifyCommand(new EndGame());
                 break;
             default:
                 // No action for other keys.

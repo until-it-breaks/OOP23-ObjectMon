@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.view.View;
 
 /**
@@ -16,7 +15,6 @@ import it.unibo.objectmon.view.View;
  */
 class GameLoopTest {
 
-    private final Model model = mock(Model.class);
     private final View view = mock(View.class);
     private final Controller controller = mock(Controller.class);
     private GameLoopImpl gameLoop;
@@ -25,7 +23,7 @@ class GameLoopTest {
 
     @BeforeEach
     void init() {
-        gameLoop = new GameLoopImpl(model, view, controller);
+        gameLoop = new GameLoopImpl(view, controller);
         gameLoopThread = new Thread(() -> gameLoop.start());
     }
 

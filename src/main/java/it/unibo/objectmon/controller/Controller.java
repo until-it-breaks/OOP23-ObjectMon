@@ -87,4 +87,9 @@ public interface Controller {
      * @return logger of battle.
      */
     BattleLogger getBattleLogger();
+
+    /**
+     * Inizializes a new game.
+     */
+    void restart();
 }
