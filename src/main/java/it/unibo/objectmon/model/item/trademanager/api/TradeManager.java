@@ -10,7 +10,7 @@ public interface TradeManager {
 
     /**
      * Allows a player to buy an item during a trade session.
-     * @param player the player who is buying the item
+     * @param inventory the inventory which contains the item to be sold
      * @param item the item being bought
      * @return true if the transaction is successfull, false otherwise
      */
@@ -18,7 +18,7 @@ public interface TradeManager {
 
     /**
      * Allows a player to sell an item during a trade session.
-     * @param player the player who is selling the item
+     * @param inventory the inventory which contains the item to be sold
      * @param item the item being sold
      * @return true if the transaction is successfull, false otherwise
      */
