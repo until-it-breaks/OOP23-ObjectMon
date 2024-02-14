@@ -36,23 +36,20 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     public RandomEncounterManagerImpl(final GameContext gameContext, final BattleManager battleManager) {
         this.gameContext = gameContext;
         PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
+        playerImpl.addObserver(this);
         this.battleManager = battleManager;
     }
 
     @Override
     public void performCheck() {
         final Coord position = gameContext.getPlayer().getPosition();
-        var tile = gameContext.getWorld().getMap().get(position);
-        System.out.println("Tile " + tile.getType() + "triggers? " + tile.isTriggerEncounter());
         if (gameContext.getWorld().getMap().get(position).isTriggerEncounter() && encountersOccurs()) {
-            System.out.println("Start");
             startRandomEncounter();
         }
     }
 
     private boolean encountersOccurs() {
         double number = random.nextDouble();
-        System.out.println(number);
         return number <= ENCOUNTER_RATE;
     }
 
