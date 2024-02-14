@@ -28,6 +28,7 @@ public final class VendorImpl extends AbstractNPC implements Seller {
 
     @Override
     public void handleInteraction(final Player player, final InteractionLogger logger) {
+    public void handleInteraction(final Player player, final InteractionLogger logger) {
         logger.log(this.getName() + " has started trading with " + player.getName());
         this.trade();
     }

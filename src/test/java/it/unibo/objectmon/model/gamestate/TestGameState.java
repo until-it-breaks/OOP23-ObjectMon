@@ -24,5 +24,4 @@ class TestGameState {
         assertEquals(GameState.BATTLE, gameStateManager.getGameState());
         gameStateManager.setGameState(GameState.BATTLE);
     }
-
 }
