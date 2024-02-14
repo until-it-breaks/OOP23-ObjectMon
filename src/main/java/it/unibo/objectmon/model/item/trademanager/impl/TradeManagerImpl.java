@@ -6,10 +6,17 @@ import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 
-public class TradeManagerImpl implements TradeManager {
+/**
+ * Models TRADE mode.
+ */
+public final class TradeManagerImpl implements TradeManager {
 
     private final GameStateManager gameStateManager;
 
+    /**
+     * Construct basic trade manager.
+     * @param gameStateManager game state manager
+     */
     public TradeManagerImpl(final GameStateManager gameStateManager) {
         this.gameStateManager = gameStateManager;
     }
@@ -25,7 +32,7 @@ public class TradeManagerImpl implements TradeManager {
     }
 
     @Override
-    public boolean buyItem(Player player, Item item) {
+    public boolean buyItem(final Player player, final Item item) {
         if (isTradeSession()) {
             if (player.getInventory().withdrawCredits(item.getValue())) {
                 player.getInventory().addItem(item, 1);
@@ -39,7 +46,7 @@ public class TradeManagerImpl implements TradeManager {
     }
 
     @Override
-    public boolean sellItem(Player player, Item item) {
+    public boolean sellItem(final Player player, final Item item) {
         if (isTradeSession()) {
             if (player.getInventory().useItem(item)) {
                 player.getInventory().addCredits(item.getValue());
@@ -51,7 +58,7 @@ public class TradeManagerImpl implements TradeManager {
             throw new IllegalStateException("Cannot sell an item outside of a trade session.");
         }
     }
-    
+
     private boolean isTradeSession() {
         return gameStateManager.getGameState() == GameState.TRADE;
     }

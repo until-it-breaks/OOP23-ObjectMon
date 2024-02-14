@@ -20,6 +20,7 @@ public final class InventoryImpl implements Inventory {
 
     /**
      * Constructs the inventory.
+     * @param credits credits of the player
      */
     public InventoryImpl(final int credits) {
         this.items = new LinkedHashMap<>();
@@ -88,7 +89,8 @@ public final class InventoryImpl implements Inventory {
 
     @Override
     public int addCredits(final int amount) {
-        return credits += amount;
+        credits += amount;
+        return credits;
     }
 
     @Override

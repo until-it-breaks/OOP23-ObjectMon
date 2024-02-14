@@ -17,7 +17,7 @@ public final class Tile {
      * 
      * @param id The unique identifier of the tile.
      * @param type The type of the tile.
-     * @param triggersEncounters The ability of triggering random encounters.
+     * @param triggerEncounter The ability of triggering random encounters.
      * @param passable The ability of preventing movement.
      * @param imagePath The file path to the image representing the tile.
      */

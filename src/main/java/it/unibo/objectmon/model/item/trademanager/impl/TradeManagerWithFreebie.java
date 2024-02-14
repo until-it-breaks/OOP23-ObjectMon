@@ -7,12 +7,20 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 
-public class TradeManagerWithFreebie implements TradeManager {
+/**
+ * Models Trade manager with freebie for buying items.
+ */
+public final class TradeManagerWithFreebie implements TradeManager {
 
     private final TradeManager tradeManager;
     private final int freebieTrigger;
     private final Map<Item, Integer> itemCountMap;
 
+    /**
+     * Constructs trade manager with freebie.
+     * @param freebieTrigger count of many items to buy to obtain freebie
+     * @param tradeManager trade manager
+     */
     public TradeManagerWithFreebie(final int freebieTrigger, final TradeManager tradeManager) {
         this.tradeManager = tradeManager;
         this.freebieTrigger = freebieTrigger;
@@ -26,11 +34,11 @@ public class TradeManagerWithFreebie implements TradeManager {
 
     @Override
     public void stopTrade() {
-        tradeManager.stopTrade();   
+        tradeManager.stopTrade();
     }
 
     @Override
-    public boolean buyItem(Player player, Item item) {
+    public boolean buyItem(final Player player, final Item item) {
         if (tradeManager.buyItem(player, item)) {
             final int count = itemCountMap.getOrDefault(item, 0) + 1;
             itemCountMap.put(item, count);
@@ -43,8 +51,7 @@ public class TradeManagerWithFreebie implements TradeManager {
     }
 
     @Override
-    public boolean sellItem(Player player, Item item) {
+    public boolean sellItem(final Player player, final Item item) {
         return tradeManager.sellItem(player, item);
     }
-    
 }
