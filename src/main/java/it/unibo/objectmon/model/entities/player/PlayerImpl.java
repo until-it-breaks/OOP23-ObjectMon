@@ -44,6 +44,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
         this.setDirection(direction);
         if (!collisionChecker.isCollision(nextPosition)) {
             this.setPosition(nextPosition);
+            notifyObserver();
         }
     }
 
@@ -66,12 +67,17 @@ public final class PlayerImpl extends AbstractEntity implements Player {
         return this.inventory;
     }
 
-    //Method to add observers
+    /**
+     * Method to add observers.
+     * @param observer to add
+     */
     public void addObserver(Observer observer) {
         this.observers.add(observer);
     }
 
-    //Method to notify observers
+    /**
+     * Method to notify observers.
+     */
     private void notifyObserver() {
         for (Observer observer : observers) {
             observer.update();
