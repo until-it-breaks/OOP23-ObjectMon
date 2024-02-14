@@ -73,6 +73,10 @@ public final class SwingViewImpl implements View {
             case PAUSE:
                 showResumeDialog();
                 break;
+            case WIN:
+            case LOSS:
+                setCurrentPanel(new EndPanel(controller, gameState));
+                break;
             default:
                 throw new IllegalStateException();
         }
