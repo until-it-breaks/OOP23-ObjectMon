@@ -20,7 +20,7 @@ public class EntityReadOnly {
     /**
      * Constructs a read-only view of the specified NPC.
      * 
-     * @param npc The NPC for which to create a read-only view.
+     * @param npc The NPC for which a read-only view is created.
      */
     public EntityReadOnly(final AbstractNPC npc) {
         this.npc = npc;
@@ -41,7 +41,7 @@ public class EntityReadOnly {
      * @return The name of the NPC.
      */
     public String getName() {
-        return  npc.getName();
+        return npc.getName();
     }
 
     /**
@@ -54,10 +54,10 @@ public class EntityReadOnly {
     }
 
     /**
-     * Checks if the NPC implements the specified interface.
+     * Checks if the underlying NPC implements the specified interface.
      * 
      * @param interfaceClass The interface class to check.
-     * @return {@code true} if the NPC implements the interface; otherwise, {@code false}.
+     * @return {@code true} if the NPC implements the interface; {@code false} otherwise.
      */
     public boolean implementsInterface(final Class<?> interfaceClass) {
         return interfaceClass.isInstance(npc);

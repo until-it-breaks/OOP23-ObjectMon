@@ -10,7 +10,7 @@ import java.util.Optional;
  * Implementations of this interface can be used to receive notifications when
  * battles are initiated.
  */
-public interface BattleStartListener {
+public interface BattleInitiator {
 
     /**
      * Called when a battle is about to start.

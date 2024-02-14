@@ -99,4 +99,9 @@ public final class ModelImpl implements Model {
     public BattleLogger getBattleLogger() {
         return this.battleManager.getLogger();
     }
+
+    @Override
+    public RandomEncounterManager getRandomEncounterManager() {
+        return randomEncounterManager;
+    }
 }

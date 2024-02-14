@@ -5,6 +5,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.util.HashSet;
 
@@ -14,6 +15,7 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.npc.HealerImpl;
 import it.unibo.objectmon.model.entities.npc.VendorImpl;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
+import it.unibo.objectmon.model.item.trademanager.api.TradeInitiator;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
@@ -33,7 +35,7 @@ class InteractionManagerTest {
     void init() {
         interactionManager = new InteractionManagerImpl();
         npcs = new HashSet<>();
-        npcs.add(new VendorImpl("Beta", new Coord(1, 0)));
+        npcs.add(new VendorImpl("Beta", new Coord(1, 0), mock(TradeInitiator.class)));
         npcs.add(new HealerImpl("Alpha", new Coord(4, 4)));
         player = new PlayerImpl("Player", new Coord(0, 0), List.of());
     }

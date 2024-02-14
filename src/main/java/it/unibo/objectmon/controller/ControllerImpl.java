@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.ModelImpl;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
-import it.unibo.objectmon.model.battle.api.BattleStartListener;
+import it.unibo.objectmon.model.battle.api.BattleInitiator;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.core.GameContexts;
@@ -27,6 +27,7 @@ import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
+import it.unibo.objectmon.model.item.trademanager.api.TradeInitiator;
 import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerImpl;
 import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithFreebie;
 import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithPenalty;
@@ -54,39 +55,35 @@ public final class ControllerImpl implements Controller {
      */
     public ControllerImpl() {
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
-        final GameStateManager gameStateManager = new GameStateManagerImpl();
-        this.model = inizializeModel(gameStateManager);
-
-        // Initialize the view
         this.view = new SwingViewImpl(this);
-        gameStateManager.registerObserver(view);
-        gameStateManager.setGameState(GameState.EXPLORATION);
+        inizializeModel();
     }
 
     /**
      * Inizializes the Model.
-     * @param gameStateManager the gameStateManager for inizialization.
-     * @return The new Model.
      */
-    public Model inizializeModel(final GameStateManager gameStateManager) {
+    public void inizializeModel() {
+        final GameStateManager gameStateManager = new GameStateManagerImpl();
         final TradeManager tradeManager = new TradeManagerWithFreebie(3, 
             new TradeManagerWithPenalty(0.5, 
-            new TradeManagerImpl(gameStateManager)));
+            new TradeManagerImpl()));
+        final TradeInitiator tradeInitiator = () -> gameStateManager.setGameState(GameState.TRADE);
         final BattleManager battleManager = new BattleManagerImpl(gameStateManager);
-        final BattleStartListener battleStartListener = (player, trainer, objectmon) -> {
+        final BattleInitiator battleInitiator = (player, trainer, objectmon) -> {
             battleManager.startBattle(player, trainer, objectmon);
         };
-        final GameContext gameContext = GameContexts.createDefaultContext(battleStartListener);
+        final GameContext gameContext = GameContexts.createDefaultContext(battleInitiator, tradeInitiator);
+        final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleInitiator);
+
         final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
         final InteractionManager interactionManager = new InteractionManagerImpl();
-        final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleManager);
+
 
         // Create the model with initialized dependencies
         this.model = new ModelImpl(gameContext, interactionManager, collisionManager,
             battleManager, gameStateManager, tradeManager, randomEncounterManager);
 
         // Initialize the view
-        this.view = new SwingViewImpl(this);
         gameStateManager.registerObserver(view);
         gameStateManager.setGameState(GameState.EXPLORATION);
     }
@@ -111,10 +108,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void restart() {
-        final GameStateManager gameStateManager = new GameStateManagerImpl();
-        this.model = inizializeModel(gameStateManager);
-        gameStateManager.registerObserver(view);
-        gameStateManager.setGameState(GameState.EXPLORATION);
+        inizializeModel();
     }
 
     @Override
@@ -159,5 +153,4 @@ public final class ControllerImpl implements Controller {
     public BattleLogger getBattleLogger() {
         return model.getBattleLogger();
     }
-
 }

@@ -37,7 +37,6 @@ public class GameLoopImpl implements GameLoop {
         this.keepRunning = true;
     }
 
-
     /**
      * The methods that starts the game loop.
      * It updates the game state and rendering frames until stopped.
