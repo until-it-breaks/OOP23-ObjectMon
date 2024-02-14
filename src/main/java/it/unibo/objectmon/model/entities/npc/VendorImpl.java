@@ -3,22 +3,27 @@ package it.unibo.objectmon.model.entities.npc;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Seller;
+import it.unibo.objectmon.model.item.trademanager.api.TradeInitiator;
 import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
- * Models an NPC capable of selling its own wares.
+ * Models an NPC capable of selling and buying items.
  */
 public final class VendorImpl extends AbstractNPC implements Seller {
+
+    private final TradeInitiator tradeInitiator;
 
     /**
      * Constructs a new Seller NPC.
      * 
      * @param name The name of the seller.
      * @param coord The starting position of the seller.
+     * @param tradeInitiator A listener responsible for starting a trade session.
      */
-    public VendorImpl(final String name, final Coord coord) {
+    public VendorImpl(final String name, final Coord coord, final TradeInitiator tradeInitiator) {
         super(name, coord);
+        this.tradeInitiator = tradeInitiator;
     }
 
     @Override
@@ -29,5 +34,6 @@ public final class VendorImpl extends AbstractNPC implements Seller {
 
     @Override
     public void trade() {
+        tradeInitiator.onTradeStart();
     }
 }

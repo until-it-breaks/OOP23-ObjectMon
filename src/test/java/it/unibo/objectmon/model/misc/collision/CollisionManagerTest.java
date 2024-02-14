@@ -30,7 +30,7 @@ class CollisionManagerTest {
     void init() {
         world = new WorldImpl(Worlds.DEMO);
         final Set<AbstractNPC> npcs =  new HashSet<>(Set.of(
-            new VendorImpl("Bob", new Coord(0, 0)),
+            new VendorImpl("Bob", new Coord(0, 0), null),
             new HealerImpl("Semple", new Coord(2, 2))
             ));
         collisionChecker = new CollisionManagerImpl(world, npcs);

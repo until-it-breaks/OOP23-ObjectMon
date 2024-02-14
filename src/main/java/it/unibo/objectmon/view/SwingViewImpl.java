@@ -71,6 +71,9 @@ public final class SwingViewImpl implements View {
             case BATTLE:
                 setCurrentPanel(new BattlePanel(controller));
                 break;
+            case TRADE:
+                setCurrentPanel(new ShopPanel(controller));
+                break;
             case PAUSE:
                 showResumeDialog();
                 break;

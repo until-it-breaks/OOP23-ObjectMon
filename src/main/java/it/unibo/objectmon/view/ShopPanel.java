@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
@@ -28,12 +29,12 @@ import it.unibo.objectmon.model.item.impl.HealItemImpl;
  * GUI for the item buying system.
  */
 public class ShopPanel extends JPanel {
-
+    private static final long serialVersionUID = 5L;
     private static final int WIDTH_SCROLLPANE = 200;
     private static final int HEIGHT_SCROLLPANE = 80;
     private final JPanel itemContainerPanel;
     private final JLabel moneyLabel = new JLabel();
-    private final Controller controller;
+    private final transient Controller controller;
 
     /**
      * Constructs a shop panel.
@@ -86,7 +87,8 @@ public class ShopPanel extends JPanel {
 
         final JPanel itemPanel = new JPanel(new BorderLayout());
         //Icon
-        final ImageIcon icon = new ImageIcon(this.getClass().getResource(imagePath));
+        final URL resourceUrl = ShopPanel.class.getResource(imagePath);
+        final ImageIcon icon = new ImageIcon(resourceUrl);
         final JLabel iconLabel = new JLabel(icon);
         itemPanel.add(iconLabel, BorderLayout.WEST);
         //Right side panel

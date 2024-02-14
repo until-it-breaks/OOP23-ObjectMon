@@ -23,16 +23,6 @@ public final class TradeManagerWithPenalty implements TradeManager {
     }
 
     @Override
-    public void startTrade() {
-        tradeManager.startTrade();
-    }
-
-    @Override
-    public void stopTrade() {
-        tradeManager.stopTrade();
-    }
-
-    @Override
     public boolean buyItem(final Player player, final Item item) {
        return tradeManager.buyItem(player, item);
     }

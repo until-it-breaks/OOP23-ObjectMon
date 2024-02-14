@@ -4,6 +4,7 @@ import java.util.Optional;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
+import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
@@ -76,7 +77,13 @@ public interface Model {
 
     /**
      * Get trade manager.
-     * @return tradeManager
+     * @return The trade manager
      */
     TradeManager getTradeManager();
+
+    /**
+     * Get random encounter manager.
+     * @return The random encounter manager.
+     */
+    RandomEncounterManager getRandomEncounterManager();
 }

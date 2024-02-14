@@ -4,8 +4,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.util.Random;
 import java.util.Optional;
-
-import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.api.BattleInitiator;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
@@ -22,7 +21,7 @@ import it.unibo.objectmon.model.world.api.Coord;
 public final class RandomEncounterManagerImpl implements Observer, RandomEncounterManager {
 
     private final GameContext gameContext;
-    private final BattleManager battleManager;
+    private final BattleInitiator battleStartListener;
     private static final double ENCOUNTER_RATE = 0.2;
     private static final int DEFAULT_LEVEL = 5;
     private final Random random = new Random();
@@ -30,32 +29,32 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     /**
      * Constructs a RandomEncounterManager.
      * @param gameContext the game context
-     * @param battleManager the manager used to start the battle
+     * @param battleStartListener the manager used to start the battle
      */
     @SuppressFBWarnings (value = "EI_EXPOSE_REP", justification = "Temporary")
-    public RandomEncounterManagerImpl(final GameContext gameContext, final BattleManager battleManager) {
+    public RandomEncounterManagerImpl(final GameContext gameContext, final BattleInitiator battleStartListener) {
         this.gameContext = gameContext;
-        PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
+        final PlayerImpl playerImpl = (PlayerImpl) gameContext.getPlayer();
         playerImpl.addObserver(this);
-        this.battleManager = battleManager;
+        this.battleStartListener = battleStartListener;
     }
 
     @Override
     public void performCheck() {
         final Coord position = gameContext.getPlayer().getPosition();
-        if (gameContext.getWorld().getMap().get(position).isTriggerEncounter() && encountersOccurs()) {
+        if (gameContext.getWorld().getMap().get(position).isTriggersEncounters() && encountersOccurs()) {
             startRandomEncounter();
         }
     }
 
     private boolean encountersOccurs() {
-        double number = random.nextDouble();
+        final double number = random.nextDouble();
         return number <= ENCOUNTER_RATE;
     }
 
     private void startRandomEncounter() {
         final Objectmon wildObjectmon = ObjectmonFactory.createObjectmon(selectRandomObjectmon(), DEFAULT_LEVEL);
-        battleManager.startBattle(gameContext.getPlayer(), Optional.empty(), Optional.of(wildObjectmon));
+        battleStartListener.onStartBattle(gameContext.getPlayer(), Optional.empty(), Optional.of(wildObjectmon));
     }
 
     private ObjectmonEnum selectRandomObjectmon() {

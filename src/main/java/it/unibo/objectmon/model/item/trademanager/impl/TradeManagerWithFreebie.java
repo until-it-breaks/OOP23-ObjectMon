@@ -28,16 +28,6 @@ public final class TradeManagerWithFreebie implements TradeManager {
     }
 
     @Override
-    public void startTrade() {
-        tradeManager.startTrade();
-    }
-
-    @Override
-    public void stopTrade() {
-        tradeManager.stopTrade();
-    }
-
-    @Override
     public boolean buyItem(final Player player, final Item item) {
         if (tradeManager.buyItem(player, item)) {
             final int count = itemCountMap.getOrDefault(item, 0) + 1;

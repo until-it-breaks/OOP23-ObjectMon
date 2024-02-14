@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.objectmon.model.battle.api.BattleStartListener;
+import it.unibo.objectmon.model.battle.api.BattleInitiator;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
@@ -15,11 +15,12 @@ import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
- * Models an NPC capable of fighting.
+ * Models an NPC capable of battling.
  */
 public final class TrainerImpl extends AbstractNPC implements Trainer {
+
     private final ObjectmonParty objectmonParty;
-    private final BattleStartListener battleStartListener;
+    private final BattleInitiator battleInitiator;
 
     /**
      * Constructs a new Trainer.
@@ -27,15 +28,15 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
      * @param name The name of the Trainer.
      * @param coord The starting position of the Trainer.
      * @param team The team of Objectmons of the Trainer.
-     * @param battleStartListener the listener that will
+     * @param battleInitiator the listener that will notify the BattleManager.
      */
     public TrainerImpl(final String name,
             final Coord coord,
             final List<Objectmon> team,
-            final BattleStartListener battleStartListener) {
+            final BattleInitiator battleInitiator) {
         super(name, coord);
         this.objectmonParty = new ObjectmonPartyImpl(team);
-        this.battleStartListener = battleStartListener;
+        this.battleInitiator = battleInitiator;
     }
 
     @Override
@@ -44,7 +45,7 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
     }
 
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "TEMPORARY")
+    justification = "By design it was decided to let it circulate freely in the model")
     @Override
     public ObjectmonParty getObjectmonParty() {
         return this.objectmonParty;
@@ -54,9 +55,9 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
     public void handleInteraction(final Player player, final InteractionLogger logger) {
         if (!isDefeated()) {
             logger.log(this.getName() + " challenges " + player.getName());
-            this.battleStartListener.onStartBattle(player, Optional.of(this), Optional.empty());
+            this.battleInitiator.onStartBattle(player, Optional.of(this), Optional.empty());
         } else {
-            logger.log(this.getName() + "has already been defeated");
+            logger.log(this.getName() + "has already been defeated.");
         }
     }
 }
