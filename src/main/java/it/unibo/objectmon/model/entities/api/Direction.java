@@ -36,7 +36,7 @@ public enum Direction {
     /**
      * Returns the x offset of the direction.
      * 
-     * @return an int representing the x offset.
+     * @return An int representing the x offset.
      */
     public int getX() {
         return x;
@@ -45,7 +45,7 @@ public enum Direction {
     /**
      * Returns the y offset of the direction.
      * 
-     * @return an int representing the y offset.
+     * @return An int representing the y offset.
      */
     public int getY() {
         return y;

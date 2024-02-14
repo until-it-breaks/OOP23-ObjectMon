@@ -19,7 +19,7 @@ import it.unibo.objectmon.model.entities.api.Seller;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
 import it.unibo.objectmon.model.item.api.Item;
-import it.unibo.objectmon.model.misc.eventlog.EventLoggerImpl;
+import it.unibo.objectmon.model.misc.eventlog.InteractionLoggerImpl;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.controls.OverWorldControls;
 import it.unibo.objectmon.view.utility.ImageLoader;
@@ -112,7 +112,7 @@ public final class OverWorldPanel extends JPanel {
     private void drawEventLog(final Graphics2D g) {
         final List<String> messages = controller.getInteractionLog();
         final int lineHeight = 20;
-        final int boxHeight = EventLoggerImpl.LIMIT * lineHeight;
+        final int boxHeight = InteractionLoggerImpl.LIMIT * lineHeight;
 
         //Calculate the position and size of the black box at the bottom left of the panel
         final int boxX = 0;

@@ -19,7 +19,7 @@ public final class EndGame implements Command {
         // Checks if the player lost all of their Objectmons
         final boolean isLoss = gc.getPlayer().getObjectmonParty().getParty().size() == 0;
         boolean isWin = true;
-        // Checks if all Trainers have been defeate
+        // Checks if all Trainers have been defeated
         for (final AbstractNPC npc : gc.getNPCs()) {
             if (npc instanceof Trainer) {
                 final TrainerImpl trainer = (TrainerImpl) npc;

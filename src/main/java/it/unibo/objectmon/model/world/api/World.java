@@ -10,9 +10,9 @@ import it.unibo.objectmon.model.world.Tile;
 public interface World {
 
     /**
-     * Retrieves an immutable mapping of coordinates to tiles, representing the game world.
+     * Retrieves a mapping of coordinates to tiles, representing the game world.
      * 
-     * @return An immutable map of coordinates to tiles.
+     * @return A map of coordinates to tiles.
      */
     Map<Coord, Tile> getMap();
 

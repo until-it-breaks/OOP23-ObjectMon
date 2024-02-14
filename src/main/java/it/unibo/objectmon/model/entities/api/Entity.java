@@ -3,35 +3,42 @@ package it.unibo.objectmon.model.entities.api;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
- * Represents an entity that could be the player or an NPC.
+ * Represents an entity in the game, that is, something that has name, position and direction.
  */
 public interface Entity {
 
     /**
      * Sets the entity's position.
-     * @param coord the next position.
+     * 
+     * @param coord The next position.
      */
     void setPosition(Coord coord);
 
     /**
-     * @return the entity's current position.
+     * Returns the current entity position.
+     * 
+     * @return The entity's current position.
      */
     Coord getPosition();
 
     /**
-     * @return the entity's name.
+     * Retrieves the entity's name.
+     * 
+     * @return The entity's name.
      */
     String getName();
 
     /**
-     * @return the direction the entity is currently facing at.
+     * Retrieves the direction the entity is facing.
+     * 
+     * @return The direction the entity is currently facing at.
      */
     Direction getDirection();
 
     /**
      * Sets the position the entity is facing towards.
      * 
-     * @param direction the next direction towards which the entity is facing at.
+     * @param direction The next direction towards which the entity will face at.
      */
     void setDirection(Direction direction);
 }

@@ -3,12 +3,12 @@ package it.unibo.objectmon.model.entities.api;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 
 /**
- * Models a healer NPC.
+ * Defines a healer NPC behaviour.
  */
 public interface Healer {
 
     /**
-     * Heals the entire Objectmon team.
+     * Restores the health of an {@link ObjectmonParty}.
      * 
      * @param objectmonParty The team to be healed.
      */

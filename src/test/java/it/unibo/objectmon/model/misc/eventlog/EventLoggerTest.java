@@ -7,19 +7,19 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
+import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 
 /**
- * Unit tests for the {@link EventLoggerImpl} class.
+ * Unit tests for the {@link InteractionLoggerImpl} class.
  * These tests cover various aspects of the EventLogger functionality.
  */
 class EventLoggerTest {
 
-    private EventLogger logger;
+    private InteractionLogger logger;
 
     @BeforeEach
     void init() {
-        logger = new EventLoggerImpl();
+        logger = new InteractionLoggerImpl();
     }
 
     @Test
@@ -35,7 +35,7 @@ class EventLoggerTest {
         logger.log("test3");
         logger.log("test4");
         logger.log("test5");
-        assertEquals(EventLoggerImpl.LIMIT, logger.getMessages().size());
+        assertEquals(InteractionLoggerImpl.LIMIT, logger.getMessages().size());
     }
 
     @Test

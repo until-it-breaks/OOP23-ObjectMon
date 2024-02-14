@@ -11,7 +11,7 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
+import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
@@ -51,7 +51,7 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
     }
 
     @Override
-    public void handleInteraction(final Player player, final EventLogger logger) {
+    public void handleInteraction(final Player player, final InteractionLogger logger) {
         if (!isDefeated()) {
             logger.log(this.getName() + " challenges " + player.getName());
             this.battleStartListener.onStartBattle(player, Optional.of(this), Optional.empty());

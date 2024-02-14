@@ -23,7 +23,7 @@ public class BattlePanel extends JPanel {
     private static final double RIGHT_PANEL_RATIO = 0.15;
 
     /**
-     * Constructs a {@BattlePanel} comprising a {@link CombatPanel}, a {@link CommandPanel} and a {@link BattleLog}.
+     * Constructs a {@link BattlePanel} comprising a {@link CombatPanel}, a {@link CommandPanel} and a {@link BattleLog}.
      * 
      * @param controller The {@link Controller} used to retrieve rendering information.
      */

@@ -26,6 +26,10 @@ import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
+import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
+import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerImpl;
+import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithFreebie;
+import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithPenalty;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.CollisionManagerImpl;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
@@ -50,21 +54,20 @@ public final class ControllerImpl implements Controller {
      */
     public ControllerImpl() {
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
-        final GameStateManager gameStateManager = new GameStateManagerImpl();
-        this.model = inizializeModel(gameStateManager);
-
-        // Initialize the view
         this.view = new SwingViewImpl(this);
-        gameStateManager.registerObserver(view);
-        gameStateManager.setGameState(GameState.EXPLORATION);
+        inizializeModel();
     }
 
     /**
      * Inizializes the Model.
+     * 
      * @param gameStateManager the gameStateManager for inizialization.
-     * @return The new Model.
      */
-    public Model inizializeModel(final GameStateManager gameStateManager) {
+    public void inizializeModel() {
+        final GameStateManager gameStateManager = new GameStateManagerImpl();
+        final TradeManager tradeManager = new TradeManagerWithFreebie(3, 
+            new TradeManagerWithPenalty(0.5, 
+            new TradeManagerImpl(gameStateManager)));
         final BattleManager battleManager = new BattleManagerImpl(gameStateManager);
         final BattleStartListener battleStartListener = (player, trainer, objectmon) -> {
             battleManager.startBattle(player, trainer, objectmon);
@@ -73,14 +76,14 @@ public final class ControllerImpl implements Controller {
         final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
         final InteractionManager interactionManager = new InteractionManagerImpl();
         final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleManager);
-        return new ModelImpl(
-            gameContext,
-            interactionManager,
-            collisionManager,
-            battleManager,
-            gameStateManager,
-            randomEncounterManager
-        );
+
+        // Create the model with initialized dependencies
+        this.model = new ModelImpl(gameContext, interactionManager, collisionManager,
+            battleManager, gameStateManager, tradeManager, randomEncounterManager);
+
+        // Initialize the view
+        gameStateManager.registerObserver(view);
+        gameStateManager.setGameState(GameState.EXPLORATION);
     }
 
     @Override
@@ -103,10 +106,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void restart() {
-        final GameStateManager gameStateManager = new GameStateManagerImpl();
-        this.model = inizializeModel(gameStateManager);
-        gameStateManager.registerObserver(view);
-        gameStateManager.setGameState(GameState.EXPLORATION);
+        inizializeModel();
     }
 
     @Override

@@ -5,7 +5,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.misc.eventlog.api.EventLogger;
+import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
@@ -24,7 +24,7 @@ public final class HealerImpl extends AbstractNPC implements Healer {
     }
 
     @Override
-    public void handleInteraction(final Player player, final EventLogger logger) {
+    public void handleInteraction(final Player player, final InteractionLogger logger) {
         logger.log(this.getName() + " has healed " + player.getName() + "'s party completely.");
         this.healTeam(player.getObjectmonParty());
     }

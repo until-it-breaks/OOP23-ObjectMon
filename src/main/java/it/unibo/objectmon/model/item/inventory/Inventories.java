@@ -22,7 +22,7 @@ public final class Inventories {
      * @return an instance of InventoryImpl with basic initial items
      */
     public static InventoryImpl createWithBasicInitialItems() {
-        final InventoryImpl inventory = new InventoryImpl();
+        final InventoryImpl inventory = new InventoryImpl(1000);
         inventory.addItem(new BallItemImpl(BallEnum.OBJECTBALL), BASIC_COUNT);
         inventory.addItem(new HealItemImpl(HealEnum.POTION), BASIC_COUNT);
         return inventory;
@@ -34,7 +34,7 @@ public final class Inventories {
      * @return an instance of InventoryImpl with one of each type of item
      */
     public static InventoryImpl createWithOneOfEachItem() {
-        final InventoryImpl inventory = new InventoryImpl();
+        final InventoryImpl inventory = new InventoryImpl(5000);
         inventory.addItem(new BallItemImpl(BallEnum.OBJECTBALL), 1);
         inventory.addItem(new BallItemImpl(BallEnum.ULTRABALL), 1);
         inventory.addItem(new BallItemImpl(BallEnum.MASTERBALL), 1);

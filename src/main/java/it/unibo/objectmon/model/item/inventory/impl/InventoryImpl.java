@@ -16,12 +16,15 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
 public final class InventoryImpl implements Inventory {
 
     private final Map<Item, Integer> items;
+    private int credits;
 
     /**
      * Constructs the inventory.
+     * @param credits credits of the player
      */
-    public InventoryImpl() {
+    public InventoryImpl(final int credits) {
         this.items = new LinkedHashMap<>();
+        this.credits = credits;
     }
 
     @Override
@@ -77,5 +80,25 @@ public final class InventoryImpl implements Inventory {
         return items.keySet().stream()
             .mapToInt(item -> item.getValue())
             .sum();
+    }
+
+    @Override
+    public int getCredits() {
+        return this.credits;
+    }
+
+    @Override
+    public int addCredits(final int amount) {
+        credits += amount;
+        return credits;
+    }
+
+    @Override
+    public boolean withdrawCredits(final int amount) {
+        if (credits >= amount) {
+            credits -= amount; 
+            return true;
+        }
+        return false;
     }
 }

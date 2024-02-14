@@ -3,19 +3,19 @@ package it.unibo.objectmon.model.entities.api;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 
 /**
- * Models an entity capable of fighting with its Objectmon team.
+ * Represents an {@link Entity} capable of fighting with its {@link ObjectmonParty}.
  */
 public interface Trainer extends Entity {
 
     /**
-     * Returns the Trainer is capable of fighting again.
+     * Retrieves whether the Trainer is willing to fight.
      * 
      * @return The trainer's will to fight.
      */
     boolean isDefeated();
 
     /**
-     * Returns the Trainer's team of Objectmons.
+     * Retrieves the Trainer's team of Objectmons.
      * 
      * @return The Trainer's team of Objectmons.
      */

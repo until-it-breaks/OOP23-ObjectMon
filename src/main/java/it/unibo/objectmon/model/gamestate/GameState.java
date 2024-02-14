@@ -17,6 +17,11 @@ public enum GameState {
     BATTLE,
 
     /**
+     * Trade mode.
+     */
+    TRADE,
+
+    /**
      * Pause mode.
      */
     PAUSE,

@@ -5,6 +5,7 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
@@ -72,4 +73,10 @@ public interface Model {
      * @return logger of battle
      */
     BattleLogger getBattleLogger();
+
+    /**
+     * Get trade manager.
+     * @return tradeManager
+     */
+    TradeManager getTradeManager();
 }
