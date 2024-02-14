@@ -8,6 +8,7 @@ import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
+import it.unibo.objectmon.model.encounters.impl.RandomEncounterManagerImpl;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
@@ -40,13 +41,13 @@ public final class ModelImpl implements Model {
     @SuppressFBWarnings(value = "EI2", justification = "Allowing mutable objects to be stored for flexibility")
     public ModelImpl(final GameContext gameContext, final InteractionManager interactionManager,
             final CollisionManager collisionManager, final BattleManager battleManager,
-            final GameStateManager gameStateManager, final RandomEncounterManager randomEncounterManager) {
+            final GameStateManager gameStateManager, final RandomEncounterManager randomEncounterManagerImpl) {
         this.gameContext = gameContext;
         this.interactionManager = interactionManager;
         this.collisionManager = collisionManager;
         this.battleManager = battleManager;
         this.gameStateManager = gameStateManager;
-        this.randomEncounterManager = randomEncounterManager;
+        this.randomEncounterManager = randomEncounterManagerImpl;
     }
 
     @Override
