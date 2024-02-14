@@ -209,6 +209,9 @@ public final class BattleManagerImpl implements BattleManager {
 
     private void runAway() {
         if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
+            if (this.battle.get().getCurrentObjectmon().getCurrentHp() <= 0) {
+                this.removeCurrentAndSwitch(battle.get().getPlayerTeam());
+            }
             setResult(Result.END);
             this.logger.log("player run away");
             this.endBattleAction();
