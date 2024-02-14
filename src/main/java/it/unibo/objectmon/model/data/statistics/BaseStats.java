@@ -9,7 +9,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
  * This implementation is used for storing the base Stats of the Objectmon
  * and so can only be read for comparison or to generate an Objectmon.
  */
-public class BaseStats extends StatsImpl implements Serializable {
+public class BaseStats extends StatsAbs implements Serializable {
     private static final long serialVersionUID = 2005L;
 
     /**
