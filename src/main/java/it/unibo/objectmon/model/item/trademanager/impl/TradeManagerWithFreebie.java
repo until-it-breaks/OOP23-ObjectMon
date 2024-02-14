@@ -3,8 +3,8 @@ package it.unibo.objectmon.model.item.trademanager.impl;
 import java.util.Map;
 import java.util.HashMap;
 
-import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.item.api.Item;
+import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 
 /**
@@ -28,12 +28,12 @@ public final class TradeManagerWithFreebie implements TradeManager {
     }
 
     @Override
-    public boolean buyItem(final Player player, final Item item) {
-        if (tradeManager.buyItem(player, item)) {
+    public boolean buyItem(final Inventory inventory, final Item item) {
+        if (tradeManager.buyItem(inventory, item)) {
             final int count = itemCountMap.getOrDefault(item, 0) + 1;
             itemCountMap.put(item, count);
             if (count % freebieTrigger == 0) {
-                player.getInventory().addItem(item, 1);
+                inventory.addItem(item, 1);
             }
             return true;
         }
@@ -41,7 +41,7 @@ public final class TradeManagerWithFreebie implements TradeManager {
     }
 
     @Override
-    public boolean sellItem(final Player player, final Item item) {
-        return tradeManager.sellItem(player, item);
+    public boolean sellItem(final Inventory inventory, final Item item) {
+        return tradeManager.sellItem(inventory, item);
     }
 }

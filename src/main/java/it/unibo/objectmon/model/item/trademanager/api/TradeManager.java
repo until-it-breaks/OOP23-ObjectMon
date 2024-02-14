@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.item.trademanager.api;
 
-import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.item.api.Item;
+import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
 /**
  * Models the TRADE mode.
@@ -14,7 +14,7 @@ public interface TradeManager {
      * @param item the item being bought
      * @return true if the transaction is successfull, false otherwise
      */
-    boolean buyItem(Player player, Item item);
+    boolean buyItem(Inventory inventory, Item item);
 
     /**
      * Allows a player to sell an item during a trade session.
@@ -22,5 +22,5 @@ public interface TradeManager {
      * @param item the item being sold
      * @return true if the transaction is successfull, false otherwise
      */
-    boolean sellItem(Player player, Item item);
+    boolean sellItem(Inventory inventory, Item item);
 }
