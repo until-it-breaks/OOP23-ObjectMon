@@ -42,7 +42,7 @@ public final class ControllerImpl implements Controller {
 
     private static final int COMMAND_LIMIT = 16;
     private final Queue<Command> commandQueue;
-    private final Model model;
+    private Model model;
     private final View view;
 
     /**
@@ -50,9 +50,21 @@ public final class ControllerImpl implements Controller {
      */
     public ControllerImpl() {
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
-
-        // Create and initialize necessary dependencies
         final GameStateManager gameStateManager = new GameStateManagerImpl();
+        this.model = inizializeModel(gameStateManager);
+
+        // Initialize the view
+        this.view = new SwingViewImpl(this);
+        gameStateManager.registerObserver(view);
+        gameStateManager.setGameState(GameState.EXPLORATION);
+    }
+
+    /**
+     * Inizializes the Model.
+     * @param gameStateManager the gameStateManager for inizialization.
+     * @return The new Model.
+     */
+    public Model inizializeModel(final GameStateManager gameStateManager) {
         final BattleManager battleManager = new BattleManagerImpl(gameStateManager);
         final BattleStartListener battleStartListener = (player, trainer, objectmon) -> {
             battleManager.startBattle(player, trainer, objectmon);
@@ -61,15 +73,14 @@ public final class ControllerImpl implements Controller {
         final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
         final InteractionManager interactionManager = new InteractionManagerImpl();
         final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleManager);
-
-        // Create the model with initialized dependencies
-        this.model = new ModelImpl(gameContext, interactionManager, collisionManager,
-            battleManager, gameStateManager, randomEncounterManager);
-
-        // Initialize the view
-        this.view = new SwingViewImpl(this);
-        gameStateManager.registerObserver(view);
-        gameStateManager.setGameState(GameState.EXPLORATION);
+        return new ModelImpl(
+            gameContext,
+            interactionManager,
+            collisionManager,
+            battleManager,
+            gameStateManager,
+            randomEncounterManager
+        );
     }
 
     @Override
@@ -84,12 +95,23 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void execute() {
-        this.commandQueue.poll().execute(model);
+        final Command command = commandQueue.poll();
+        if (command != null) {
+            command.execute(model);
+        }
+    }
+
+    @Override
+    public void restart() {
+        final GameStateManager gameStateManager = new GameStateManagerImpl();
+        this.model = inizializeModel(gameStateManager);
+        gameStateManager.registerObserver(view);
+        gameStateManager.setGameState(GameState.EXPLORATION);
     }
 
     @Override
     public void startGame() {
-        final GameLoop gameLoop = new GameLoopImpl(model, view, this);
+        final GameLoop gameLoop = new GameLoopImpl(view, this);
         gameLoop.start();
     }
 
@@ -129,4 +151,5 @@ public final class ControllerImpl implements Controller {
     public BattleLogger getBattleLogger() {
         return model.getBattleLogger();
     }
+
 }

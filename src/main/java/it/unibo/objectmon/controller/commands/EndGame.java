@@ -15,14 +15,18 @@ public final class EndGame implements Command {
     @Override
     public void execute(final Model model) {
         final GameContext gc = model.getGameContext();
+
+        // Checks if the player lost all of their Objectmons
         final boolean isLoss = gc.getPlayer().getObjectmonParty().getParty().size() == 0;
         boolean isWin = true;
+        // Checks if all Trainers have been defeate
         for (final AbstractNPC npc : gc.getNPCs()) {
             if (npc instanceof Trainer) {
                 final TrainerImpl trainer = (TrainerImpl) npc;
                 isWin = isWin ? trainer.getObjectmonParty().getParty().size() == 0 : isWin;
             }
         }
+
         if (isLoss) {
             model.setGameState(GameState.LOSS);
         } else if (isWin) {

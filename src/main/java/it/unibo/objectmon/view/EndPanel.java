@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.controller.commands.Restart;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 import it.unibo.objectmon.model.gamestate.GameState;
@@ -51,19 +50,18 @@ public final class EndPanel extends JPanel {
 
             @Override
             public void keyTyped(final KeyEvent e) {
-                            }
+            }
 
             @Override
             public void keyPressed(final KeyEvent e) {
                 final int keyCode = e.getKeyCode();
                 if (keyCode == KeyEvent.VK_ENTER) {
-                    controller.notifyCommand(new Restart());
+                    controller.restart();
                 }
             }
 
             @Override
             public void keyReleased(final KeyEvent e) {
-
             }
 
         });
@@ -99,7 +97,6 @@ public final class EndPanel extends JPanel {
         final int offsetY = center.y() * TILE_SIZE;
         final int textsize = TILE_SIZE - 60;
 
-        drawWorld(g);
         drawPlayer(g);
         if (!isWin) {
             final int offsetX = center.x() * TILE_SIZE - TILE_SIZE;
@@ -111,20 +108,11 @@ public final class EndPanel extends JPanel {
             final int offsetX = center.x() * TILE_SIZE - (objectmonList.size() - 1) * TILE_SIZE / 2;
             drawParty(g, offsetX, offsetY, objectmonList);
             g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
-            g.setColor(Color.BLACK);
+            g.setColor(Color.WHITE);
             g.drawString("YOU WIN !", offsetX + TILE_SIZE, offsetY - TILE_SIZE * 2);
             g.drawString("PRESS ENTER TO PLAY AGAIN", offsetX + textsize, offsetY - TILE_SIZE * 2 + FONT_SIZE);
         }
 
-    }
-    private void drawWorld(final Graphics2D g) {
-        final String location = isWin ? "/tiles/win.png" : "/tiles/loss.png";
-        for (final var entry : controller.getWorld().getMap().entrySet()) {
-            final BufferedImage image = imageLoader.getImage(location);
-            final int tileX = entry.getKey().x();
-            final int tileY = entry.getKey().y();
-            g.drawImage(image, tileX  * TILE_SIZE, tileY * TILE_SIZE, null);
-        }
     }
 
     private void drawPlayer(final Graphics2D g) {

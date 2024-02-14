@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
+import it.unibo.objectmon.controller.commands.EndGame;
 import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.view.utility.RenderingUtils;
 
@@ -88,5 +89,7 @@ public final class SwingViewImpl implements View {
                 "Game Paused",
                 JOptionPane.PLAIN_MESSAGE);
         setCurrentPanel(new OverWorldPanel(controller));
+        //Check if the game has ended
+        controller.notifyCommand(new EndGame());
     }
 }
