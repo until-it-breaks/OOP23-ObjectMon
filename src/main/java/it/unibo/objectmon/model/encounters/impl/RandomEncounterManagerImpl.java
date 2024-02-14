@@ -42,7 +42,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     @Override
     public void performCheck() {
         final Coord position = gameContext.getPlayer().getPosition();
-        if (gameContext.getWorld().getMap().get(position).isTriggerEncounter() && encountersOccurs()) {
+        if (gameContext.getWorld().getMap().get(position).isTriggersEncounters() && encountersOccurs()) {
             startRandomEncounter();
         }
     }
