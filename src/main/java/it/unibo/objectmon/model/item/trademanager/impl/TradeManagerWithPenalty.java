@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.item.trademanager.impl;
 
-import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.item.api.Item;
+import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 
 /**
@@ -23,14 +23,14 @@ public final class TradeManagerWithPenalty implements TradeManager {
     }
 
     @Override
-    public boolean buyItem(final Player player, final Item item) {
-       return tradeManager.buyItem(player, item);
+    public boolean buyItem(final Inventory inventory, final Item item) {
+       return tradeManager.buyItem(inventory, item);
     }
 
     @Override
-    public boolean sellItem(final Player player, final Item item) {
-        if (tradeManager.sellItem(player, item)) {
-            player.getInventory().withdrawCredits((int) (item.getValue() * penaltyRatio));
+    public boolean sellItem(final Inventory inventory, final Item item) {
+        if (tradeManager.sellItem(inventory, item)) {
+            inventory.withdrawCredits((int) (item.getValue() * penaltyRatio));
             return true;
         }
         return false;

@@ -20,11 +20,11 @@ import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerImpl;
 import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithPenalty;
 
 class TradeManagerTest {
-    
+
     private TradeManager tradeManager;
     private GameStateManager gameStateManager;
     private Inventory inventory;
-    
+
     @BeforeEach
     void init() {
         inventory = new InventoryImpl(1000);
@@ -48,10 +48,10 @@ class TradeManagerTest {
         gameStateManager.setGameState(GameState.TRADE);
         final Item item = new HealItemImpl(HealEnum.HYPERPOTION);
         inventory.addItem(item, 2);
-        //assertEquals(1000, inventory.getCredits());
+        assertEquals(1000, inventory.getCredits());
         assertEquals(2, inventory.getHealItemCount());
         tradeManager.sellItem(inventory, item);
         assertEquals(1, inventory.getHealItemCount());
-        //assertEquals(1100, inventory.getCredits());
-    }    
+        assertEquals(1100, inventory.getCredits());
+    }
 }
