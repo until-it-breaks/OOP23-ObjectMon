@@ -4,6 +4,7 @@ package it.unibo.objectmon.model.world.api;
  * An enum containing information about each world.
  */
 public enum Worlds {
+
     /**
      * The DEMO world.
      */

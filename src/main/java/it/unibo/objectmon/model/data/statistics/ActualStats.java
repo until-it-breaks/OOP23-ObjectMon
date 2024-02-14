@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.data.api.statistics.StatId;
  * because leveling should be an action that rarely happens and
  * so creating a new object shouldn't be too taxing on the program.
  */
-public class ActualStats extends StatsImpl implements Serializable {
+public class ActualStats extends StatsAbs implements Serializable {
 
     private static final long serialVersionUID = 2004L;
     private static final double STATGROWTHVARIATION = 0.15;

@@ -22,7 +22,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
 
     private final ObjectmonParty objectmonParty;
     private final Inventory inventory;
-    private List<Observer> observers;
+    private final List<Observer> observers;
 
     /**
      * Constructs a new Player.
@@ -79,7 +79,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
      * Method to notify observers.
      */
     private void notifyObserver() {
-        for (Observer observer : observers) {
+        for (final Observer observer : observers) {
             observer.update();
         }
     }

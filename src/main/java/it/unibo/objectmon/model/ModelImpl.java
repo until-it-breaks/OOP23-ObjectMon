@@ -30,11 +30,12 @@ public final class ModelImpl implements Model {
     /**
      * Constructs a ModelImpl instance with the provided dependencies.
      *
-     * @param gameContext           The game context containing information about the game world and entities.
-     * @param interactionManager    The manager responsible for handling interactions within the game.
-     * @param collisionManager      The manager responsible for collision detection.
-     * @param battleManager         The manager responsible for handling battles between entities.
-     * @param gameStateManager      The manager responsible for managing the game state.
+     * @param gameContext               The game context containing information about the game world and entities.
+     * @param interactionManager        The manager responsible for handling interactions within the game.
+     * @param collisionManager          The manager responsible for collision detection.
+     * @param battleManager             The manager responsible for handling battles between entities.
+     * @param gameStateManager          The manager responsible for managing the game state.
+     * @param randomEncounterManager    The manager responsible for triggering random encounters
      */
     @SuppressFBWarnings(value = "EI2", justification = "Allowing mutable objects to be stored for flexibility")
     public ModelImpl(final GameContext gameContext, final InteractionManager interactionManager,
@@ -71,10 +72,6 @@ public final class ModelImpl implements Model {
     @Override
     public GameState getGameState() {
         return gameStateManager.getGameState();
-    }
-
-    public RandomEncounterManager getRandomEncounterManager() {
-        return this.randomEncounterManager;
     }
 
     @Override
