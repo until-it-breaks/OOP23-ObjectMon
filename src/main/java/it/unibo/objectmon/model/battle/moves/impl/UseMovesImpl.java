@@ -4,14 +4,15 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.catchsystem.CatchSystem;
 import it.unibo.objectmon.model.battle.catchsystem.CatchSystemImpl;
+import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
-/**
- * execute moves chosen by player or AI.
- */
 
-public class UseMoves {
+/**
+ * an implementation to execute moves chosen by player or AI.
+ */
+public final class UseMovesImpl implements UseMoves {
     private final Battle battle;
     private final BattleLogger logger;
 
@@ -22,18 +23,12 @@ public class UseMoves {
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
     justification = "using dependency injection")
-    public UseMoves(final Battle battle, final BattleLogger logger) {
+    public UseMovesImpl(final Battle battle, final BattleLogger logger) {
         this.battle = battle;
         this.logger = logger;
     }
 
-    /**
-     * exeute attack move (use the skill of index of the objectmon).
-     * @param index index of skill in the list.
-     * @param userSkill objectmon use the skill
-     * @param target objectmon to be attacked
-     * @return the damage hit to the target
-     */
+    @Override
     public double useSkill(final int index, final Objectmon userSkill, final Objectmon target) {
         final AttackMove attack = new AttackMove(userSkill.getSkills().get(index));
         if (userSkill.getSkills().get(index).getCurrentUses() > 0) {
@@ -47,10 +42,7 @@ public class UseMoves {
         return 0;
     }
 
-    /**
-     * player leave the battle if is possible.
-     * @return true if the enemy is a wild objectmon
-     */
+    @Override
     public boolean runAway() {
         if (this.battle.getTrainer().isEmpty()) {
             if (this.battle.getCurrentObjectmon().getCurrentHp() <= 0) {
@@ -63,10 +55,7 @@ public class UseMoves {
         return false;
     }
 
-    /**
-     * switch objectmon when the current one is dead, which is going to be removed.
-     * @param team the team that current objectmon is dead and will be removed
-     */
+    @Override
     public void removeCurrentAndSwitch(final ObjectmonParty team) {
         if (this.isDead(team.getParty().get(0))) {
             this.logger.log(
@@ -77,11 +66,7 @@ public class UseMoves {
         }
     }
 
-    /**
-     * switch the current objectmon.
-     * @param index the new current objectmon
-     * @param team objectmon party of player/AI
-     */
+    @Override
     public void switchObjectmon(final int index, final ObjectmonParty team) {
         team.switchPosition(team.getParty().get(0), team.getParty().get(index));
         this.logger.log(
@@ -100,22 +85,13 @@ public class UseMoves {
         return objectmon.getCurrentHp() <= 0;
     }
 
-    /**
-     * use heal item to cure objectmon.
-     * @param healHP HP to add on objectmon.
-     * @param objectmon objectmon to be treated.
-     */
+    @Override
     public void useHeal(final int healHP, final Objectmon objectmon) {
         objectmon.setCurrentHp(healHP);
         this.logger.log(objectmon.getName() + " heals with " + healHP + "HP");
     }
 
-    /**
-     * use Ball to catch wild objectmon.
-     * @param multiplier multiplier of the ball to have more probability to catch.
-     * @param objectmon target to be caught.
-     * @return if it is caught or not.
-     */
+    @Override
     public boolean useBall(final double multiplier, final Objectmon objectmon) {
         final CatchSystem catchObjctmon = new CatchSystemImpl();
         if (catchObjctmon.isCaught(multiplier, objectmon)) {
