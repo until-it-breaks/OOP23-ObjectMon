@@ -31,13 +31,7 @@ public final class PlayerTurn implements ExecuteTurn {
     @Override
     public void execute(final Move type, final int index, final UseMoves useMoves, final BattleManager battleManager) {
         if (this.isDead(this.battle.getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
-            if (this.battle.getPlayerTeam().getParty().size() > 1) {
-                useMoves.removeCurrentAndSwitch(this.battle.getPlayerTeam());
-            } else {
-                this.remove(this.battle.getPlayerTeam());
-                battleManager.setResult(BattleManager.Result.LOSE);
-                battleManager.endBattleAction();
-            }
+            actionAfterDead(useMoves, battleManager);
         } else {
             switch (type) {
                 case ATTACK:
@@ -71,6 +65,16 @@ public final class PlayerTurn implements ExecuteTurn {
                 default:
                     break;
             }
+        }
+    }
+
+    private void actionAfterDead(final UseMoves useMoves, final BattleManager battleManager) {
+        if (this.battle.getPlayerTeam().getParty().size() > 1) {
+            useMoves.removeCurrentAndSwitch(this.battle.getPlayerTeam());
+        } else {
+            this.remove(this.battle.getPlayerTeam());
+            battleManager.setResult(BattleManager.Result.LOSE);
+            battleManager.endBattleAction();
         }
     }
 
