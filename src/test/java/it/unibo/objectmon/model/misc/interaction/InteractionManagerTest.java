@@ -3,6 +3,7 @@ package it.unibo.objectmon.model.misc.interaction;
 import java.util.Set;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -44,8 +45,10 @@ class InteractionManagerTest {
     void testTriggerInteraction() {
         player.setPosition(new Coord(0, 0));
         player.setDirection(Direction.RIGHT);
+        //There is an NPC to the right.
         assertTrue(interactionManager.triggerInteraction(npcs, player));
         player.setDirection(Direction.LEFT);
+        //There isn't one at the left.
         assertFalse(interactionManager.triggerInteraction(npcs, player));
     }
 
