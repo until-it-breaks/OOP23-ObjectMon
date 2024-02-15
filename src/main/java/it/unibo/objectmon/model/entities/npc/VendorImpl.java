@@ -19,7 +19,7 @@ public final class VendorImpl extends AbstractNPC implements Seller {
      * 
      * @param name The name of the seller.
      * @param coord The starting position of the seller.
-     * @param tradeInitiator A listener responsible for starting a trade session.
+     * @param tradeInitiator The notifier of a trade session start.
      */
     public VendorImpl(final String name, final Coord coord, final TradeInitiator tradeInitiator) {
         super(name, coord);
@@ -34,6 +34,6 @@ public final class VendorImpl extends AbstractNPC implements Seller {
 
     @Override
     public void trade() {
-        tradeInitiator.onTradeStart();
+        tradeInitiator.startTrade();
     }
 }

@@ -6,14 +6,12 @@ import it.unibo.objectmon.model.entities.api.Trainer;
 import java.util.Optional;
 
 /**
- * A listener interface for handling events related to the start of battles.
- * Implementations of this interface can be used to receive notifications when
- * battles are initiated.
+ * A functional interface used to start a battle.
  */
 public interface BattleInitiator {
 
     /**
-     * Called when a battle is about to start.
+     * Called when a battle needs to be started.
      *
      * @param player    The player initiating the battle.
      * @param trainer   An optional Trainer involved in the battle. If present, it represents
@@ -21,5 +19,5 @@ public interface BattleInitiator {
      * @param objectmon An optional Objectmon involved in the battle. If present, it represents
      *                  a wild encounter. If empty, the trainer has its own Objectmons.
      */
-    void onStartBattle(Player player, Optional<Trainer> trainer, Optional<Objectmon> objectmon);
+    void startBattle(Player player, Optional<Trainer> trainer, Optional<Objectmon> objectmon);
 }
