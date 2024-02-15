@@ -7,9 +7,8 @@ import it.unibo.objectmon.model.ai.EasyAiTrainer;
 import it.unibo.objectmon.model.ai.api.AiTrainer;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
-import it.unibo.objectmon.model.battle.catchsystem.CatchSystem;
-import it.unibo.objectmon.model.battle.catchsystem.CatchSystemImpl;
-import it.unibo.objectmon.model.battle.moves.impl.AttackMove;
+import it.unibo.objectmon.model.battle.moves.UseMoves;
+import it.unibo.objectmon.model.battle.moves.impl.UseMovesImpl;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.battle.turn.StatTurn;
 import it.unibo.objectmon.model.battle.turn.Turn;
@@ -32,6 +31,7 @@ public final class BattleManagerImpl implements BattleManager {
 
     private Optional<Battle> battle;
     private Optional<Result> result;
+    private UseMoves useMoves;
     private final Turn turn;
     private final AiTrainer aiTrainer;
     private final GameStateManager gameStateManager;
@@ -64,11 +64,13 @@ public final class BattleManagerImpl implements BattleManager {
             t -> {
                 this.battle = Optional.of(new BattleImpl(player, t));
                 this.gameStateManager.setGameState(GameState.BATTLE);
+                this.useMoves = new UseMovesImpl(this.battle.get(), this.logger);
                 this.logger.log("battle started with trainer: " + t.getName());
             },
             () -> objectMon.ifPresentOrElse(o -> {
                     this.battle = Optional.of(new BattleImpl(player, o));
                     this.gameStateManager.setGameState(GameState.BATTLE);
+                    this.useMoves = new UseMovesImpl(this.battle.get(), this.logger);
                     this.logger.log("battle started with " + o.getName());
                 }, 
                 () -> {
@@ -121,7 +123,7 @@ public final class BattleManagerImpl implements BattleManager {
                     this.battle.get().getTrainerTeam().ifPresent(
                         t -> {
                             if (t.getParty().size() > 1) {
-                                this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
+                                this.useMoves.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
                             } else {
                                 remove(t);
                                 this.setResult(Result.WIN);
@@ -130,7 +132,7 @@ public final class BattleManagerImpl implements BattleManager {
                         }
                     );
                 } else {
-                    useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
+                    this.useMoves.useSkill(index, this.battle.get().getEnemyObjectmon(), this.battle.get().getCurrentObjectmon());
                     if (this.isDead(this.battle.get().getCurrentObjectmon()) 
                             && this.battle.get().getPlayerTeam().getParty().size() <= 1
                         ) {
@@ -141,7 +143,7 @@ public final class BattleManagerImpl implements BattleManager {
                 }
                 break;
             case SWITCH_OBJECTMON :
-                this.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
+                this.useMoves.removeCurrentAndSwitch(this.battle.get().getTrainerTeam().get());
                 break;
             default :
                 break;
@@ -156,7 +158,7 @@ public final class BattleManagerImpl implements BattleManager {
     private void executePlayerTurn(final Move type, final int index) {
         if (this.isDead(this.battle.get().getCurrentObjectmon()) && !type.equals(Move.RUN_AWAY)) {
             if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
-                this.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
+                this.useMoves.removeCurrentAndSwitch(this.battle.get().getPlayerTeam());
             } else {
                 this.remove(this.battle.get().getPlayerTeam());
                 setResult(Result.LOSE);
@@ -165,23 +167,28 @@ public final class BattleManagerImpl implements BattleManager {
         } else {
             switch (type) {
                 case ATTACK:
-                        this.useSkill(index, this.battle.get().getCurrentObjectmon(), this.battle.get().getEnemyObjectmon());
+                        this.useMoves.useSkill(
+                            index, this.battle.get().getCurrentObjectmon(), 
+                            this.battle.get().getEnemyObjectmon()
+                        );
                     break;
                 case SWITCH_OBJECTMON:
                     if (this.battle.get().getPlayerTeam().getParty().size() > 1) {
-                        this.switchPlayerObjectmon(index);
+                        this.useMoves.switchObjectmon(index, this.battle.get().getPlayerTeam());
                     }
                     break;
                 case RUN_AWAY:
-                    this.runAway();
+                    if (this.useMoves.runAway()) {
+                        endBattleAction();
+                    }
                     break;
                 case USE_HEAL:
-                    this.useHeal(getHeal(index).getHealPoints(), this.battle.get().getCurrentObjectmon());
+                    this.useMoves.useHeal(getHeal(index).getHealPoints(), this.battle.get().getCurrentObjectmon());
                     this.useItem(index);
                     break;
                 case USE_BALL:
                     useItem(index);
-                    if (this.useBall(getBall(index).getCatchMultiplier(), this.battle.get().getEnemyObjectmon())) {
+                    if (this.useMoves.useBall(getBall(index).getCatchMultiplier(), this.battle.get().getEnemyObjectmon())) {
                         this.setResult(Result.WIN);
                         this.endBattleAction();
                     }
@@ -190,6 +197,14 @@ public final class BattleManagerImpl implements BattleManager {
                     break;
             }
         }
+    }
+
+    private void useItem(final int index) {
+        this.battle.get().getPlayer().getInventory().useItem(this.getItem(index));
+    }
+
+    private void remove(final ObjectmonParty team) {
+        team.remove(team.getParty().get(0));
     }
 
     @Override
@@ -205,81 +220,6 @@ public final class BattleManagerImpl implements BattleManager {
     @Override
     public boolean isOver() {
         return !this.result.get().equals(Result.IN_BATTLE);
-    }
-
-    private void runAway() {
-        if (this.battle.isPresent() && this.battle.get().getTrainer().isEmpty()) {
-            if (this.battle.get().getCurrentObjectmon().getCurrentHp() <= 0) {
-                this.removeCurrentAndSwitch(battle.get().getPlayerTeam());
-            }
-            setResult(Result.END);
-            this.logger.log("player run away");
-            this.endBattleAction();
-        } else {
-            this.logger.log("you cannot run away!");
-        }
-    }
-
-    /**
-     * 
-     * @param index index of skill in the list.
-     * @param userSkill objectmon use the skill
-     * @param target objectmon to be attacked
-     */
-    private void useSkill(final int index, final Objectmon userSkill, final Objectmon target) {
-        final AttackMove attack = new AttackMove(userSkill.getSkills().get(index));
-        final int damage = attack.action(userSkill, target);
-        this.logger.log(
-            userSkill.getName() + " uses " + userSkill.getSkills().get(index).getName()
-            + "\n" + target.getName() + " takes " + damage + " damage."
-            );
-    }
-
-    private void useHeal(final int healHP, final Objectmon objectmon) {
-        objectmon.setCurrentHp(healHP);
-        this.logger.log(objectmon.getName() + " heals with " + healHP + "HP");
-    }
-
-    private boolean useBall(final double multiplier, final Objectmon objectmon) {
-        final CatchSystem catchObjctmon = new CatchSystemImpl();
-        this.logger.log("player uses ball");
-        if (catchObjctmon.isCaught(multiplier, objectmon)) {
-            this.battle.get().getPlayerTeam().add(objectmon);
-            this.logger.log("congratulation, you catch " + objectmon.getName());
-            return true;
-        }
-        this.logger.log("miss catching " + objectmon.getName());
-        return false;
-    }
-
-    private void useItem(final int index) {
-        this.battle.get().getPlayer().getInventory().useItem(this.getItem(index));
-    }
-
-    private void switchPlayerObjectmon(final int index) {
-        final var team = this.battle.get().getPlayerTeam().getParty();
-        this.battle.get().getPlayerTeam().switchPosition(team.get(0), team.get(index));
-        this.logger.log(
-            "player change current objectmon from " + team.get(index).getName() + " to " + team.get(0).getName()
-        );
-    }
-
-    /**
-     * switch objectmon when the current one is dead, which is going to be removed.
-     * @param team the team that current objectmon is dead and will be removed
-     */
-    private void removeCurrentAndSwitch(final ObjectmonParty team) {
-        if (this.isDead(team.getParty().get(0))) {
-            this.logger.log(
-                team.getParty().get(0).getName() + " is dead " 
-                + "\n next pokemon will be " + team.getParty().get(1).getName()
-                );
-            this.remove(team);
-        }
-    }
-
-    private void remove(final ObjectmonParty team) {
-            team.remove(team.getParty().get(0));
     }
 
     @Override
