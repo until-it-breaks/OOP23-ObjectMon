@@ -4,6 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.gamestate.GameState;
@@ -33,10 +35,21 @@ public final class SwingViewImpl implements View {
         final ImageIcon icon = new ImageIcon(this.getClass().getResource(GAME_ICON));
         frame.setIconImage(icon.getImage());
         this.frame.setPreferredSize(RenderingUtils.getPreferredResolution());
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.frame.setResizable(true);
         this.frame.setLocationByPlatform(true);
         this.frame.pack();
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(final WindowEvent e) {
+                final int choice = JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to exit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    controller.shutdown();
+                }
+            }
+        });
         this.frame.setVisible(true);
     }
 

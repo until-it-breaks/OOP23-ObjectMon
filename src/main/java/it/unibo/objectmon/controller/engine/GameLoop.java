@@ -19,6 +19,7 @@ public interface GameLoop {
 
     /**
      * Retrieves the game loop status.
+     * 
      * @return Whether the game loop is running.
      */
     boolean isRunning();

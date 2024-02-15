@@ -13,5 +13,4 @@ public final class ExitShop implements Command {
     public void execute(final Model model) {
         model.setGameState(GameState.EXPLORATION);
     }
-
 }

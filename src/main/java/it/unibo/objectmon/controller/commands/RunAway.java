@@ -3,6 +3,7 @@ package it.unibo.objectmon.controller.commands;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.battle.moves.type.Move;
+
 /**
  * Attemps to run away from the battle.
  */

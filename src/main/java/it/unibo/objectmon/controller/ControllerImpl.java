@@ -5,6 +5,9 @@ import java.util.Set;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.stream.Collectors;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.util.Optional;
 
 import it.unibo.objectmon.controller.commands.api.Command;
@@ -53,6 +56,7 @@ public final class ControllerImpl implements Controller {
     private final Queue<Command> commandQueue;
     private Model model;
     private final View view;
+    private final GameLoop gameLoop;
 
     /**
      * Constructs the controller and initializes the model dependencies.
@@ -60,6 +64,7 @@ public final class ControllerImpl implements Controller {
     public ControllerImpl() {
         this.commandQueue = new ArrayBlockingQueue<>(COMMAND_LIMIT);
         this.view = new SwingViewImpl(this);
+        this.gameLoop = new GameLoopImpl(view, this);
         initializeModel();
     }
 
@@ -89,8 +94,10 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
+    @SuppressFBWarnings(value = "RV_RETURN_VALUE_IGNORED_BAD_PRACTICE", 
+                        justification = "Ignoring the return value of offer() is intended in this case.")
     public void notifyCommand(final Command command) {
-        this.commandQueue.add(command);
+        this.commandQueue.offer(command);
     }
 
     @Override
@@ -113,8 +120,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void startGame() {
-        final GameLoop gameLoop = new GameLoopImpl(view, this);
-        gameLoop.start();
+        this.gameLoop.start();
     }
 
     @Override
@@ -172,4 +178,8 @@ public final class ControllerImpl implements Controller {
         return this.model.getGameContext().getPlayer().getObjectmonParty().getParty().size() == 0;
     }
 
+    @Override
+    public void shutdown() {
+        this.gameLoop.stop();
+    }
 }

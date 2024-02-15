@@ -13,6 +13,7 @@ public final class SellItem implements Command {
 
     /**
      * Construct the item selling.
+     * 
      * @param item item to be sold.
      */
     public SellItem(final Item item) {

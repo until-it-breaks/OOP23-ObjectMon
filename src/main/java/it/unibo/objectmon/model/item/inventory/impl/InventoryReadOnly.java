@@ -73,13 +73,11 @@ public final class InventoryReadOnly implements Inventory {
 
     @Override
     public int addCredits(final int amount) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addCredits'");
     }
 
     @Override
     public boolean withdrawCredits(final int amount) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'withdrawCredits'");
     }
 }

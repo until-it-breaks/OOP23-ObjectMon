@@ -8,8 +8,11 @@ import it.unibo.objectmon.model.battle.moves.type.Move;
  * Attemps to switch objectmon in the battle.
  */
 public final class SwitchObjectmon implements Command {
+
     private final int index;
+
     /**
+     * Constructs the command with an index.
      * 
      * @param index index of objectmon to be switched to fight.
      */

@@ -13,7 +13,8 @@ public final class BuyItem implements Command {
 
     /**
      * Construct the item buying.
-     * @param item item to be bought
+     * 
+     * @param item item to be bought.
      */
     public BuyItem(final Item item) {
         this.item = item;

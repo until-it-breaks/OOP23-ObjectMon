@@ -43,14 +43,14 @@ public interface Controller {
     void startGame();
 
     /**
-     * Returns the npcs in the game.
+     * Retrieves the npcs in the game.
      *
      * @return The npc in the game.
      */
     Set<EntityReadOnly> getNPCSet();
 
     /**
-     * Returns the world in the game.
+     * Retrieves the world in the game.
      *
      * @return The world in the game.
      */
@@ -71,19 +71,22 @@ public interface Controller {
     List<String> getInteractionLog();
 
     /**
-     * informations of the battle.
+     * Retrieves informations of the battle.
+     * 
      * @return contains the informations of the battle.
      */
     Optional<Battle> getBattleStats();
 
     /**
      * Retrieves the current game state.
+     * 
      * @return The game state.
      */
     GameState getGameState();
 
     /**
      * return logger of battle to attach observers.
+     * 
      * @return logger of battle.
      */
     BattleLogger getBattleLogger();
@@ -95,13 +98,20 @@ public interface Controller {
 
     /**
      * Checks if the player won the game.
+     * 
      * @return true if all Trainers have been defeated, false otherwise.
      */
     boolean isWin();
 
     /**
      * Checks if the player lost the game.
+     * 
      * @return true if all the Player's Objectmon are dead. false otherwise.
      */
     boolean isLoss();
+
+    /**
+     * Shuts down the game.
+     */
+    void shutdown();
 }

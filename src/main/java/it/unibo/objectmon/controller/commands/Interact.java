@@ -8,6 +8,7 @@ import it.unibo.objectmon.model.core.GameContext;
  * Calls for an interaction check.
  */
 public final class Interact implements Command {
+
     @Override
     public void execute(final Model model) {
         final GameContext gc = model.getGameContext();

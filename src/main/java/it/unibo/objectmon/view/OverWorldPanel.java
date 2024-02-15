@@ -113,26 +113,20 @@ public final class OverWorldPanel extends JPanel {
         final List<String> messages = controller.getInteractionLog();
         final int lineHeight = 20;
         final int boxHeight = InteractionLoggerImpl.LIMIT * lineHeight;
-
         //Calculate the position and size of the black box at the bottom left of the panel
         final int boxX = 0;
         final int boxY = getHeight() - boxHeight;
         final int boxWidth = getWidth() / 2; //Adjusted to cover half of the panel width
-
         //Draw the border
         g.setColor(Color.LIGHT_GRAY);
         g.drawRect(boxX, boxY, boxWidth, boxHeight);
-
         //Fill the black box
         g.setColor(Color.BLACK);
         g.fillRect(boxX + 1, boxY + 1, boxWidth - 1, boxHeight - 1);
-
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
-
         //Adjustment to draw text a little higher
         final int startY = boxY + lineHeight - 5; 
-
         //Draw messages from the top to the bottom.
         for (int i = 0; i < messages.size(); i++) {
             final String message = messages.get(i);
