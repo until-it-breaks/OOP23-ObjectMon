@@ -12,7 +12,7 @@ public enum BallEnum {
     /**
      * An average objectball.
      */
-    GREATBALL("Great Ball", 500, 1.5, "/items/objectball.png", 
+    GREATBALL("Great Ball", 500, 1.5, "/items/greatball.png", 
     "An average objectball, but still slighty superior to the standard one."),
     /**
      * The strongest objectball available commercially.
