@@ -32,13 +32,20 @@ public class ShopPanel extends JPanel {
     private static final long serialVersionUID = 5L;
     private static final int WIDTH_SCROLLPANE = 200;
     private static final int HEIGHT_SCROLLPANE = 80;
+    /**
+     * The master panel that contains all the item panels.
+     */
     private final JPanel itemContainerPanel;
+    /**
+     * The label that holds the player's credits.
+     */
     private final JLabel moneyLabel = new JLabel();
     private final transient Controller controller;
 
     /**
      * Constructs a shop panel.
-     * @param controller
+     * 
+     * @param controller the controller to update and poll from.
      */
     public ShopPanel(final Controller controller) {
         this.controller = controller;
