@@ -21,7 +21,7 @@ public class ActualStats extends StatsAbs implements Serializable {
 
     /**
      * Constructor of the class.
-     * 
+     *
      * @param stats Map of all the stats.
      */
     public ActualStats(final Map<StatId, Integer> stats) {
@@ -30,22 +30,40 @@ public class ActualStats extends StatsAbs implements Serializable {
 
     /**
      * Constuctor of the class with BaseStats.
-     * 
+     *
      * @param stats Stats of the Objectmon.
      */
     public ActualStats(final BaseStats stats) {
         super(stats.getStats());
     }
 
+    /**
+     * Calculates all the new stats of an Objectmon after level up.
+     * Should only be called when an Objectmon levels up.
+     *
+     * @return Returns the new Stats of the Objectmon after level up.
+     * @param level How many level ups are done in a row.
+     */
+    public ActualStats calcNewStats(final int level) {
+        final Map<StatId, Integer> newStats = new HashMap<>();
+            for (final StatId singleStatId : StatId.values()) {
+
+                final int newSingleStat = calcSingleStat(singleStatId, level);
+                newStats.put(singleStatId, newSingleStat);
+            }
+        return new ActualStats(newStats);
+    }
+
      /**
      * Calculates the new single stat.
      * It's an utility method.
-     * 
+     *
      * Should only be called by the method calcNewStat.
-     * 
+     *
      * @param id Id of the statistic to increase.
      * @param level How many level ups are done in a row.
-     * @return Returns the new singleStat, which is between 1-5. 1 If the stat is already high, 5 if it's low
+     * @return Returns the new singleStat, which is between 1-5. 1 If the stat is already high, 5 if it's low.
+     * This was made for "balancing" reasons.
      */
     private int calcSingleStat(final StatId id, final int level) {
         int newSingleStat = getSingleStat(id);
@@ -62,21 +80,6 @@ public class ActualStats extends StatsAbs implements Serializable {
         return newSingleStat;
     }
 
-    /**
-     * Calculates all the new stats of an Objectmon after level up.
-     * Should only be called when an Objectmon levels up.
-     * 
-     * @return Returns the new Stats of the Objectmon after level up.
-     * @param level How many level ups are done in a row.
-     */
-    public ActualStats calcNewStats(final int level) {
-        final Map<StatId, Integer> newStats = new HashMap<>();
-            for (final StatId singleStatId : StatId.values()) {
 
-                final int newSingleStat = calcSingleStat(singleStatId, level);
-                newStats.put(singleStatId, newSingleStat);
-            }
-        return new ActualStats(newStats);
-    }
 
 }
