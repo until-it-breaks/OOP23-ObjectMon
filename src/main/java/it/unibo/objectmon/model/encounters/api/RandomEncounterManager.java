@@ -9,4 +9,15 @@ public interface RandomEncounterManager {
      * Assess conditions for a random encounter.
      */
     void performCheck();
+
+    /**
+     * Gives immunity to random encounters.
+     */
+    void activateGracePeriod();
+
+    /**
+     * Returns wheter the grace state is active.
+     * @return the grace state
+     */
+    boolean isGracePeriodActive();
 }
