@@ -37,7 +37,7 @@ class CollisionManagerTest {
     }
 
     @Test 
-    void testCollision() {
+    void testCollisionWithNPCsAndTiles() {
         assertTrue(collisionChecker.isCollision(new Coord(0, 0)));
         assertTrue(collisionChecker.isCollision(new Coord(2, 2)));
         assertFalse(collisionChecker.isCollision(new Coord(0, 1)));
