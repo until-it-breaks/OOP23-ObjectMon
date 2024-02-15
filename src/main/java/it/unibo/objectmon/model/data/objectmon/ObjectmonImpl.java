@@ -28,7 +28,7 @@ public final class ObjectmonImpl implements Objectmon {
 
     /**
      * Constructor of the class ObjectmonImpl.java.
-     * 
+     *
      * @param name The name of the Objectmon.
      * @param aspects The aspects of the Objectmon.
      * @param skills The skills of the Objectmon.
@@ -54,7 +54,7 @@ public final class ObjectmonImpl implements Objectmon {
 
     /**
      * Constructor of the class ObjectmonImpl with a ObjectmonEnum.
-     * 
+     *
      * @param objEnum The ObjectmonEnum.
      * @param level The Objectmon's level.
      */
@@ -71,8 +71,8 @@ public final class ObjectmonImpl implements Objectmon {
 
     /**
      * Constructor of the class ObjectmonImpl with Objectmon.
-     * 
-     * 
+     *
+     *
      * @param objectmon The Objectmon.
      */
     public ObjectmonImpl(final Objectmon objectmon) {
@@ -120,27 +120,6 @@ public final class ObjectmonImpl implements Objectmon {
         return this.exp;
     }
 
-    /**
-     * Method that adds a level to an Objectmon.
-     * It's an utility method.
-     * Should only be called by the method levelUp.
-     * Adds a level to the Objectmon, max 100.
-     */
-    private void addLevel() {
-        if (getLevel() < 100) {
-            this.level++;
-        }
-    }
-
-    /**
-     * Setter of the Objectmon's exp.
-     * 
-     * @param exp New quantity of exp.
-     */
-    private void setExp(final int exp) {
-        this.exp = exp;
-    }
-
     @Override
     public void calcExp(final int gainedExp) {
         setExp(gainedExp);
@@ -148,19 +127,6 @@ public final class ObjectmonImpl implements Objectmon {
             setExp(getExp() - MAX_EXP);
             levelUp();
         }
-    }
-
-    /**
-     * Method that levels up an Objectmon and grows its stats.
-     * It's an utility method.
-     * Should only be called by calcExp.
-     */
-    private void levelUp() {
-        addLevel();
-        final ActualStats newStats = getStats().calcNewStats(1);
-        final int growth = newStats.getSingleStat(StatId.HP) - this.stats.getSingleStat(StatId.HP);
-        this.stats = newStats;
-        setCurrentHp(growth);
     }
 
     @Override
@@ -201,4 +167,39 @@ public final class ObjectmonImpl implements Objectmon {
         result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
         return result;
     }
+
+    /**
+     * Method that adds a level to an Objectmon.
+     * It's an utility method.
+     * Should only be called by the method levelUp.
+     * Adds a level to the Objectmon, max 100.
+     */
+    private void addLevel() {
+        if (getLevel() < 100) {
+            this.level++;
+        }
+    }
+
+    /**
+     * Setter of the Objectmon's exp.
+     *
+     * @param exp New quantity of exp.
+     */
+    private void setExp(final int exp) {
+        this.exp = exp;
+    }
+
+    /**
+     * Method that levels up an Objectmon and grows its stats.
+     * It's an utility method.
+     * Should only be called by calcExp.
+     */
+    private void levelUp() {
+        addLevel();
+        final ActualStats newStats = getStats().calcNewStats(1);
+        final int growth = newStats.getSingleStat(StatId.HP) - this.stats.getSingleStat(StatId.HP);
+        this.stats = newStats;
+        setCurrentHp(growth);
+    }
+
 }
