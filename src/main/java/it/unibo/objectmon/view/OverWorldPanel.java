@@ -31,13 +31,16 @@ import it.unibo.objectmon.view.utility.RenderingUtils;
  * This panel displays the game world, including the player character, NPCs, and terrain tiles.
  */
 public final class OverWorldPanel extends JPanel {
-    private static final int FONT_SIZE = 13;
     private static final long serialVersionUID = 1L;
     private static final int TILE_SIZE = 48;
-    private final transient Controller controller;
-    private final transient ImageLoader imageLoader;
     private static final int INVENTORY_X_OFFSET = 20;
     private static final int INVENTORY_Y_OFFSET = 20;
+    private static final int FPS_Y_OFFSET = 20;
+    private static final int FPS_X_OFFSET = 60;
+    private static final int FONT_SIZE = 13;
+    private static final String FONT_NAME = "Arial";
+    private final transient Controller controller;
+    private final transient ImageLoader imageLoader;
 
     /**
      * Constructs a new {@link OverWorldPanel}, initializing its properties and attaching it to the provided {@link Controller}.
@@ -85,6 +88,7 @@ public final class OverWorldPanel extends JPanel {
         drawInventory(g);
         drawEventLog(g);
         drawParty(g);
+        drawFPS(g);
     }
 
     private void drawNPCs(final Graphics2D g) {
@@ -124,7 +128,7 @@ public final class OverWorldPanel extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(boxX + 1, boxY + 1, boxWidth - 1, boxHeight - 1);
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
+        g.setFont(new Font(FONT_NAME, Font.PLAIN, FONT_SIZE));
         //Adjustment to draw text a little higher
         final int startY = boxY + lineHeight - 5; 
         //Draw messages from the top to the bottom.
@@ -143,7 +147,7 @@ public final class OverWorldPanel extends JPanel {
             final BufferedImage image = imageLoader.getImage("/hud/objectmons/" + objectmon.getName() + ".png");
             //Draw the objectmon portrait
             g.drawImage(image, offsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
-            g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
+            g.setFont(new Font(FONT_NAME, Font.PLAIN, FONT_SIZE));
             g.setColor(Color.WHITE);
             //Draw level text above the health counter
             g.drawString("Lv." + objectmon.getLevel(), offsetX, offsetY - TILE_SIZE / 2);
@@ -160,11 +164,17 @@ public final class OverWorldPanel extends JPanel {
         int offsetY = INVENTORY_Y_OFFSET;
         for (final var entry : inventory.entrySet()) {
             final Item item = entry.getKey();
-            g.setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
+            g.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
             g.setColor(Color.WHITE);
             g.drawString(item.getName() + ": " + entry.getValue(), offsetX, offsetY);
             offsetY += FONT_SIZE;
         }
+    }
+
+    private void drawFPS(final Graphics2D g) {
+        g.setColor(Color.WHITE);
+        g.setFont(new Font(FONT_NAME, Font.PLAIN, FONT_SIZE));
+        g.drawString("FPS: " + controller.getFPS(), getWidth() - FPS_X_OFFSET, FPS_Y_OFFSET);
     }
 
     private BufferedImage getNPCImage(final EntityReadOnly npc) {
