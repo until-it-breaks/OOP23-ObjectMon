@@ -415,7 +415,7 @@ public enum PotencyChart {
 
     /**
      * Constructor of the enum PotencyChart.
-     * 
+     *
      * @param skillAspect Aspect of the associated Skill.
      * @param multipliers Map of the relation with other Aspects and the Potency.
      */
@@ -425,17 +425,8 @@ public enum PotencyChart {
     }
 
     /**
-     * Getter of a Skill's Aspect.
-     * 
-     * @return Returns the Skill's Aspect.
-     */
-    protected Aspect getSkillAspect() {
-        return this.skillAspect;
-    }
-
-    /**
      * Getter of the PotencyChart.
-     * 
+     *
      * @param aspect Aspect of the Skill.
      * @return Returns the PotencyChart of the associated Aspect.
      */
@@ -449,17 +440,8 @@ public enum PotencyChart {
     }
 
     /**
-     * Getter of the multiplier of a PotencyChart.
-     * 
-     * @return Returns a copy of the Multiplier chart.
-     */
-    protected Map<Aspect, Potency> getMultiplierChart() {
-        return Map.copyOf(this.multiplierChart);
-    }
-
-    /**
      * Calculates the multiplier of a Skill against the opposing Objectmon.
-     * 
+     *
      * @param userAspects The Aspects of the Objectmon that uses the Skill.
      * @param defenderAspects The Aspects of the target Objectmon.
      * @return Returns the final multiplier after checking all defenderAspects.
@@ -470,5 +452,23 @@ public enum PotencyChart {
             mult *= getMultiplierChart().get(singleAspect).getMultiplier();
         }
         return mult;
+    }
+
+    /**
+     * Getter of the multiplier of a PotencyChart.
+     *
+     * @return Returns a copy of the Multiplier chart.
+     */
+    protected Map<Aspect, Potency> getMultiplierChart() {
+        return Map.copyOf(this.multiplierChart);
+    }
+
+    /**
+     * Getter of a Skill's Aspect.
+     *
+     * @return Returns the Skill's Aspect.
+     */
+    protected Aspect getSkillAspect() {
+        return this.skillAspect;
     }
 }
