@@ -41,9 +41,7 @@ public final class AiTurn implements ExecuteTurn {
                 }
                 break;
             case SWITCH_OBJECTMON :
-                if (battle.getTrainerTeam().get().getParty().size() > 1) {
-                    useMoves.switchObjectmon(index, battle.getTrainerTeam().get());
-                }
+                useMoves.removeCurrentAndSwitch(battle.getTrainerTeam().get());
                 break;
             default :
                 break;

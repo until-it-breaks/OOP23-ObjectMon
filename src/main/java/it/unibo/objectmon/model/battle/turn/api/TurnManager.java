@@ -15,6 +15,7 @@ public interface TurnManager {
      * @param battleManager manager of battle.
      * @param useMoves execute all type of moves.
      * @param logger logger that send message.
+     * @param count current number of turn in the current battle
      */
-    void startTurn(Move type, int index, BattleManager battleManager, UseMoves useMoves, BattleLogger logger);
+    void startTurn(Move type, int index, BattleManager battleManager, UseMoves useMoves, BattleLogger logger, int count);
 }

@@ -19,7 +19,6 @@ import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 public final class TurnManagerImpl implements TurnManager {
 
     private final Turn turn;
-    private int count;
     private final ChooseMoveImpl aiMove;
 
     /**
@@ -30,7 +29,6 @@ public final class TurnManagerImpl implements TurnManager {
     justification = "collaborating with battle manager")
     public TurnManagerImpl(final Turn turn) {
         this.turn = turn;
-        this.count = 0;
         this.aiMove = new ChooseMoveImpl();
     }
 
@@ -55,7 +53,8 @@ public final class TurnManagerImpl implements TurnManager {
         final int index, 
         final BattleManager battleManager, 
         final UseMoves useMoves,
-        final BattleLogger logger
+        final BattleLogger logger,
+        final int count
     ) {
         final Optional<Battle> battle = battleManager.getBattleStats();
         this.turn.setTurn(StatTurn.TURN_STARTED);
@@ -65,7 +64,7 @@ public final class TurnManagerImpl implements TurnManager {
         final int aiIndex = this.aiMove.chooseAiMove(battle.get()).right;
         final Move aiType = this.aiMove.chooseAiMove(battle.get()).left;
         battle.get().setPlayerMove(type);
-        logger.log("turn " + (++this.count) + "started");
+        logger.log("turn " + count + "started");
         final ExecuteTurn playerTurn = new PlayerTurn(battle.get());
         final ExecuteTurn aiTurn = new AiTurn();
             switch (this.turn.whichFirst(

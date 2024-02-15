@@ -33,6 +33,7 @@ public final class BattleManagerImpl implements BattleManager {
     private final BattleLogger logger;
     private UseMoves useMoves;
     private final TurnManager turnManager;
+    private int count;
     /**
      * Constructor of BattleManagerImpl.
      * 
@@ -47,6 +48,7 @@ public final class BattleManagerImpl implements BattleManager {
         this.gameStateManager = gameStateManager;
         this.logger = new BattleLogger();
         this.turnManager = new TurnManagerImpl(turn);
+        this.count = 0;
     }
 
     @Override
@@ -72,6 +74,7 @@ public final class BattleManagerImpl implements BattleManager {
         this.useMoves = new UseMovesImpl(this.battle.get(), this.logger);
         this.setResult(Result.IN_BATTLE);
         this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
+        this.count = 0;
     }
 
     @Override
@@ -95,7 +98,7 @@ public final class BattleManagerImpl implements BattleManager {
             && this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE) 
             && isCommandValid(type, index)) {
             this.turn.setTurn(StatTurn.TURN_STARTED);
-            turnManager.startTurn(type, index, this, useMoves, logger);
+            turnManager.startTurn(type, index, this, useMoves, logger, ++count);
         }
     }
 
