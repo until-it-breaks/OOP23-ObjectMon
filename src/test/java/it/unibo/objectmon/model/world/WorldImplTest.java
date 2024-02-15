@@ -2,7 +2,6 @@ package it.unibo.objectmon.model.world;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
@@ -28,7 +27,7 @@ class WorldImplTest {
     @Test
     void testMapLoading() {
         final Map<Coord, Tile> map = world.getMap();
-        assertNotNull(map, "Map should not be null");
+        assertFalse(map.isEmpty(), "Map should not be null");
     }
 
     /**
