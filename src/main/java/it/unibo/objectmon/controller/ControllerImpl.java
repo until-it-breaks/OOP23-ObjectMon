@@ -175,7 +175,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public boolean isLoss() {
-        return this.model.getGameContext().getPlayer().getObjectmonParty().getParty().size() == 0;
+        return this.model.getGameContext().getPlayer().isDefeated();
     }
 
     @Override
