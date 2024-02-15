@@ -59,9 +59,7 @@ public final class WorldImpl implements World {
             for (int j = 0; j < mapData.getHeight(); j++) {
                 final int tileId = mapData.getData().get(i).get(j);
                 final Tile tile = tileSet.getTileById(tileId);
-                if (tile != null) {
-                    map.put(new Coord(j, i), tile);
-                }
+                map.put(new Coord(j, i), tile);
             }
         }
     }
