@@ -179,6 +179,7 @@ public final class BattleManagerImpl implements BattleManager {
                     break;
                 case RUN_AWAY:
                     if (this.useMoves.runAway()) {
+                        setResult(Result.LOSE);
                         endBattleAction();
                     }
                     break;
