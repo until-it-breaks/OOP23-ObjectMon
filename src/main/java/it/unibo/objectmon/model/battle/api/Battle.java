@@ -71,9 +71,4 @@ public interface Battle {
      * @return get trainer team if trainer is present.
      */
     Optional<ObjectmonParty> getTrainerTeam();
-    /**
-     * 
-     * @return EXP to be add if player win the battle.
-     */
-    int upgradeEXP();
 }

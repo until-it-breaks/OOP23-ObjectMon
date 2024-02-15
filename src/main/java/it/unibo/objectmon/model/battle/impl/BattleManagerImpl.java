@@ -5,6 +5,7 @@ import java.util.Optional;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.api.Reward;
 import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.battle.moves.impl.UseMovesImpl;
 import it.unibo.objectmon.model.battle.moves.type.Move;
@@ -131,8 +132,7 @@ public final class BattleManagerImpl implements BattleManager {
         if (this.isOver()) {
             switch (this.result.get()) {
                 case WIN:
-                    this.battle.get().getPlayerTeam().getParty()
-                        .stream().forEach(o -> o.calcExp(this.battle.get().upgradeEXP()));
+                    rewardIfWin();
                     this.logger.log("YOU WIN");
                     break;
                 case LOSE:
@@ -143,6 +143,19 @@ public final class BattleManagerImpl implements BattleManager {
             }
             gameStateManager.setGameState(GameState.PAUSE);
             this.battle = Optional.empty();
+        }
+    }
+
+    private void rewardIfWin() {
+        if (getResult().equals(Result.WIN)) {
+            final Reward reward = new RewardImpl();
+            this.battle.get().getPlayerTeam().getParty()
+                .stream().forEach(o -> o.calcExp(
+                    this.battle.get().getTrainer().isPresent() 
+                    ? reward.upgradeEXP(this.battle.get().getTrainerTeam().get()) 
+                    : reward.upgradeEXP()
+                ));
+            this.battle.get().getPlayer().getInventory().addCredits(reward.getCredits());
         }
     }
 
