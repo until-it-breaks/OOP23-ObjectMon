@@ -1,6 +1,7 @@
 package it.unibo.objectmon.model.battle.turn.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.impl.ReadOnlyBattle;
 import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.battle.moves.type.Move;
@@ -25,7 +26,7 @@ public final class AiTurn implements ExecuteTurn {
     }
 
     @Override
-    public void execute(final Move type, final int index, final UseMoves useMoves) {
+    public void execute(final Move type, final int index, final UseMoves useMoves, final BattleManager battleManager) {
         switch (type) {
             case ATTACK :
                 if (this.isDead(this.battle.getEnemyObjectmon())) {
@@ -35,6 +36,8 @@ public final class AiTurn implements ExecuteTurn {
                                 useMoves.removeCurrentAndSwitch(this.battle.getTrainerTeam().get());
                             } else {
                                 remove(t);
+                                battleManager.setResult(BattleManager.Result.WIN);
+                                battleManager.endBattleAction();
                             }
                         }
                     );
@@ -43,7 +46,9 @@ public final class AiTurn implements ExecuteTurn {
                     if (this.isDead(this.battle.getCurrentObjectmon()) 
                         && this.battle.getPlayerTeam().getParty().size() <= 1
                     ) {
-                            this.remove(this.battle.getPlayerTeam());
+                        this.remove(this.battle.getPlayerTeam());
+                        battleManager.setResult(BattleManager.Result.LOSE);
+                        battleManager.endBattleAction();
                     }
                 }
                 break;

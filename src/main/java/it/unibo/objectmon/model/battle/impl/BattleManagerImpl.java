@@ -305,7 +305,8 @@ public final class BattleManagerImpl implements BattleManager {
         } 
     }
 
-    private void endBattleAction() {
+    @Override
+    public void endBattleAction() {
         if (this.isOver()) {
             switch (this.result.get()) {
                 case WIN:
