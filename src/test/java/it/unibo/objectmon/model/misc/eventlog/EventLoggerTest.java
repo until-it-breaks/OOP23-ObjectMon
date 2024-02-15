@@ -49,4 +49,16 @@ class EventLoggerTest {
         logger.log("test66");
         assertEquals(List.of("test33", "test44", "test55", "test66"), logger.getMessages());
     }
+
+    @Test
+    void testEmptyString() {
+        logger.log("");
+        assertEquals(List.of(""), logger.getMessages());
+    }
+
+    @Test
+    void testSpecialCharacters() {
+        logger.log("test%$#@!^&*()");
+        assertEquals(List.of("test%$#@!^&*()"), logger.getMessages());
+    }
 }
