@@ -59,7 +59,11 @@ public final class TurnManagerImpl implements TurnManager {
     ) {
         final Optional<Battle> battle = battleManager.getBattleStats();
         this.turn.setTurn(StatTurn.TURN_STARTED);
-        final int aiIndex = this.aiMove.chooseAiMove(battle.get());
+        if (battle.isEmpty()) {
+            throw new IllegalStateException("no battle found");
+        }
+        final int aiIndex = this.aiMove.chooseAiMove(battle.get()).right;
+        final Move aiType = this.aiMove.chooseAiMove(battle.get()).left;
         battle.get().setPlayerMove(type);
         logger.log("turn " + (++this.count) + "started");
         final ExecuteTurn playerTurn = new PlayerTurn(battle.get());
@@ -71,7 +75,7 @@ public final class TurnManagerImpl implements TurnManager {
                 battle.get().getEnemyObjectmon()
             )) {
                 case AI_TURN :
-                    aiTurn.execute(type, aiIndex, useMoves, battleManager);
+                    aiTurn.execute(aiType, aiIndex, useMoves, battleManager);
                     if (battle.isPresent()) {
                         playerTurn.execute(type, index, useMoves, battleManager);
                     }
@@ -79,7 +83,7 @@ public final class TurnManagerImpl implements TurnManager {
                 case PLAYER_TURN :
                     playerTurn.execute(type, index, useMoves, battleManager);
                     if (battle.isPresent()) {
-                        aiTurn.execute(type, aiIndex, useMoves, battleManager);
+                        aiTurn.execute(aiType, aiIndex, useMoves, battleManager);
                     }
                     break;
                 default :
