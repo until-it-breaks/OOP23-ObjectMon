@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.turn.impl;
 
 import java.util.Optional;
 
+import it.unibo.objectmon.model.ai.ChooseMoveImpl;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.turn.api.ExecuteTurn;
 import it.unibo.objectmon.model.battle.turn.api.Turn;
@@ -12,15 +13,22 @@ import it.unibo.objectmon.model.battle.turn.StatTurn;
 import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.battle.turn.api.TurnManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
-
-public class TurnManagerImpl implements TurnManager {
+/**
+ * implementation of a turn manager.
+ */
+public final class TurnManagerImpl implements TurnManager {
 
     private final Turn turn;
     private int count;
+    private final ChooseMoveImpl aiMove;
 
+    /**
+     * constructor of turn manager.
+     */
     public TurnManagerImpl() {
         this.turn = new TurnImpl();
         this.count = 0;
+        this.aiMove = new ChooseMoveImpl();
     }
 
     private void endTurnAction(final BattleManager battleManager) {
@@ -48,7 +56,7 @@ public class TurnManagerImpl implements TurnManager {
     ) {
         final Optional<Battle> battle = battleManager.getBattleStats();
         this.turn.setTurn(StatTurn.TURN_STARTED);
-        final int aiIndex = chooseAiMove();
+        final int aiIndex = this.aiMove.chooseAiMove(battle.get());
         battle.get().setPlayerMove(type);
         logger.log("turn " + (++this.count) + "started");
         final ExecuteTurn playerTurn = new PlayerTurn(battle.get());
@@ -75,9 +83,5 @@ public class TurnManagerImpl implements TurnManager {
                     throw new IllegalArgumentException();
             }
         this.endTurnAction(battleManager);
-    }
-    
-    private int chooseAiMove() {
-        return 0;
     }
 }
