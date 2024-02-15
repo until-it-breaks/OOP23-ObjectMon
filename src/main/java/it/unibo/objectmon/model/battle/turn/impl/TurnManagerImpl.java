@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.turn.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.ai.ChooseMoveImpl;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.turn.api.ExecuteTurn;
@@ -10,7 +11,6 @@ import it.unibo.objectmon.model.battle.api.BattleManager;
 import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.battle.turn.StatTurn;
-import it.unibo.objectmon.model.battle.turn.TurnImpl;
 import it.unibo.objectmon.model.battle.turn.api.TurnManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 /**
@@ -24,9 +24,12 @@ public final class TurnManagerImpl implements TurnManager {
 
     /**
      * constructor of turn manager.
+     * @param turn current stat of turn.
      */
-    public TurnManagerImpl() {
-        this.turn = new TurnImpl();
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "collaborating with battle manager")
+    public TurnManagerImpl(final Turn turn) {
+        this.turn = turn;
         this.count = 0;
         this.aiMove = new ChooseMoveImpl();
     }
