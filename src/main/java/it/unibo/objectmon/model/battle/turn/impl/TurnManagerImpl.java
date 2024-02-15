@@ -76,13 +76,13 @@ public final class TurnManagerImpl implements TurnManager {
             )) {
                 case AI_TURN :
                     aiTurn.execute(aiType, aiIndex, useMoves, battleManager);
-                    if (battle.isPresent()) {
+                    if (battleManager.getBattleStats().isPresent()) {
                         playerTurn.execute(type, index, useMoves, battleManager);
                     }
                     break;
                 case PLAYER_TURN :
                     playerTurn.execute(type, index, useMoves, battleManager);
-                    if (battle.isPresent()) {
+                    if (battleManager.getBattleStats().isPresent()) {
                         aiTurn.execute(aiType, aiIndex, useMoves, battleManager);
                     }
                     break;
