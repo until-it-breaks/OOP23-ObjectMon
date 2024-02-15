@@ -109,7 +109,8 @@ public final class BattleManagerImpl implements BattleManager {
                 return this.battle.isPresent() && this.battle.get().getTrainer().isEmpty();
             case ATTACK:
                 return index >= 0 && index < this.battle.get().getCurrentObjectmon().getSkills().size()
-                    && this.battle.get().getCurrentObjectmon().getCurrentHp() > 0;
+                    && this.battle.get().getCurrentObjectmon().getCurrentHp() > 0
+                    && this.battle.get().getCurrentObjectmon().getSkills().get(index).getCurrentUses() > 0;
             case SWITCH_OBJECTMON:
                 return index > 0 && index < this.battle.get().getPlayerTeam().getParty().size()
                     && this.battle.get().getPlayerTeam().getParty().size() > 1;
@@ -152,10 +153,13 @@ public final class BattleManagerImpl implements BattleManager {
             this.battle.get().getPlayerTeam().getParty()
                 .stream().forEach(o -> o.calcExp(
                     this.battle.get().getTrainer().isPresent() 
-                    ? reward.upgradeEXP(this.battle.get().getTrainerTeam().get()) 
+                    ? reward.upgradeEXP(this.battle.get().getPlayerTeam()) 
                     : reward.upgradeEXP()
                 ));
-            this.battle.get().getPlayer().getInventory().addCredits(reward.getCredits());
+                System.out.println(reward.upgradeEXP(this.battle.get().getPlayerTeam()));
+            if (this.battle.get().getTrainer().isPresent()) {
+                this.battle.get().getPlayer().getInventory().addCredits(reward.getCredits());
+            }
         }
     }
 

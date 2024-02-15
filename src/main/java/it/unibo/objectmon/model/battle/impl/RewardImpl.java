@@ -10,8 +10,8 @@ public final class RewardImpl implements Reward {
     private static final int CREDITS = 1000;
 
     @Override
-    public int upgradeEXP(final ObjectmonParty enemParty) {
-        return enemParty.getParty().stream().mapToInt(o -> o.getLevel() * EXP).sum();
+    public int upgradeEXP(final ObjectmonParty myParty) {
+        return myParty.getParty().stream().mapToInt(o -> o.getLevel() * EXP).sum();
     }
 
     @Override
