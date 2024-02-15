@@ -1,8 +1,8 @@
 package it.unibo.objectmon.model.battle.turn.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
-import it.unibo.objectmon.model.battle.impl.ReadOnlyBattle;
 import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.battle.turn.api.ExecuteTurn;
@@ -16,7 +16,7 @@ import it.unibo.objectmon.model.item.api.Item;
  */
 public final class PlayerTurn implements ExecuteTurn {
 
-    private final ReadOnlyBattle battle;
+    private final Battle battle;
 
     /**
      * constructor of ai turn.
@@ -24,7 +24,7 @@ public final class PlayerTurn implements ExecuteTurn {
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
     justification = "managed by manager to execute specifically some tasks.")
-    public PlayerTurn(final ReadOnlyBattle battle) {
+    public PlayerTurn(final Battle battle) {
         this.battle = battle;
     }
 
