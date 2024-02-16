@@ -29,12 +29,14 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     private boolean gracePeriodActive;
 
     /**
-     * Constructs a RandomEncounterManager.
-     * 
-     * @param gameContext the game context
-     * @param battleStartListener the manager used to start the battle
+     * Constructs a RandomEncounterManagerImpl instance.
+     * @param gameContext the game context providing informations about the game state
+     * @param battleInitiator the manager responsible to start the battle
+     * @param graceDuration the duration of the grace period
      */
-    public RandomEncounterManagerImpl(final GameContext gameContext, final BattleInitiator battleInitiator, final int graceDuration) {
+    public RandomEncounterManagerImpl(final GameContext gameContext, 
+        final BattleInitiator battleInitiator, 
+        final int graceDuration) {
         this.gameContext = gameContext;
         this.battleInitiator = battleInitiator;
         this.graceDuration = graceDuration;
@@ -66,7 +68,8 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
         return random.nextDouble() <= ENCOUNTER_RATE;
     }
 
-    // Stars a random encounter by selecting a wild Objectmon with an average level based on the player's party and initiates a battle.
+    // Stars a random encounter by selecting a wild Objectmon with an average level 
+    // based on the player's party and initiates a battle.
     private void startRandomEncounter() {
         final int wildLevel = (int) gameContext.getPlayer().getObjectmonParty().getParty().stream()
             .mapToInt(Objectmon::getLevel)
