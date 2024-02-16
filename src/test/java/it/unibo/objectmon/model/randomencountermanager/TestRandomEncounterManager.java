@@ -24,7 +24,7 @@ import it.unibo.objectmon.model.entities.player.PlayerImpl;
 /**
  * Tests for the {@link RandomEncounterManagerImpl}.
  */
-class RandomEncounterManagerImplTest {
+class TestRandomEncounterManager {
 
     private static final int DEFAULT_GRACE_DURATION = 5;
     private GameContext gameContext;
