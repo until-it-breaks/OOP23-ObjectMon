@@ -90,7 +90,6 @@ public final class ControllerImpl implements Controller {
         gameStateManager, tradeManager, randomEncounterManager, endGameManager);
         gameStateManager.registerObserver(this.view);
         gameStateManager.setGameState(GameState.EXPLORATION);
-        gameStateManager.notifyObservers();
     }
 
     @Override
