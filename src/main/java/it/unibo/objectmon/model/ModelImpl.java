@@ -5,6 +5,7 @@ import java.util.Optional;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.impl.ReadOnlyBattle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
@@ -73,7 +74,9 @@ public final class ModelImpl implements Model {
 
     @Override
     public Optional<Battle> getBattleStats() {
-        return this.battleManager.getBattleStats();
+        return this.battleManager.getBattleStats().isPresent() 
+        ? Optional.of(new ReadOnlyBattle(this.battleManager.getBattleStats().get()))
+        : Optional.empty();
     }
 
     @Override

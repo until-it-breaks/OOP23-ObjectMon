@@ -22,7 +22,7 @@ public final class UseMovesImpl implements UseMoves {
      * @param logger logger to comunicate to view.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "using dependency injection")
+    justification = "UseMoves executes concrete moves, encapsulated by the battle manager")
     public UseMovesImpl(final Battle battle, final LoggerAction logger) {
         this.battle = battle;
         this.logger = logger;

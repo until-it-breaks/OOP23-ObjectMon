@@ -27,7 +27,7 @@ public final class TurnManagerImpl implements TurnManager {
      * @param turn current stat of turn.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "collaborating with battle manager")
+    justification = "turn manager manage turns and it collaborates with battle manager")
     public TurnManagerImpl(final Turn turn) {
         this.turn = turn;
         this.aiMove = new ChooseMoveImpl();

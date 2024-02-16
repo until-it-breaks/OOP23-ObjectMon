@@ -23,7 +23,7 @@ public final class PlayerTurn implements ExecuteTurn {
      * @param battle current battle.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "managed by manager to execute specifically some tasks.")
+    justification = "managed by manager to execute specifically some tasks in the battle.")
     public PlayerTurn(final Battle battle) {
         this.battle = battle;
     }

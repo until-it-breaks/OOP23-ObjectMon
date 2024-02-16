@@ -9,6 +9,7 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 /**
  * Represents a read-only view of a {@link Battle} instance.
  * This class wraps a {@link Battle} object and provides read-only access to its properties,
@@ -81,7 +82,7 @@ public final class ReadOnlyBattle implements Battle {
 
     @Override
     public Player getPlayer() {
-        return this.battle.getPlayer();
+        return new ReadOnlyPlayer(this.battle.getPlayer());
     }
 
     @Override
