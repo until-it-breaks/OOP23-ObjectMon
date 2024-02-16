@@ -63,7 +63,7 @@ class RandomEncounterManagerImplTest {
         assertFalse(randomEncounterManager.isGracePeriodActive());
     }
 
-    //
+    // Testing if all the available Objectmons are selected at least once.
     @SuppressWarnings("PMD.DoNotUseReflectionForFieldAccess")
     @Test
     //NOPMD
@@ -92,6 +92,7 @@ class RandomEncounterManagerImplTest {
         }
     }
 
+    // Testing if out of all checks on suitable tiles the encounter rate is the expected one.
     @Test
     void testEncounterSuccessRate() {
         final RandomEncounterManagerImpl randomEncounterManager = new RandomEncounterManagerImpl(
@@ -101,13 +102,13 @@ class RandomEncounterManagerImplTest {
         final double tolerance = 0.05;
 
         try {
-            final Method encounterOccursMethod = RandomEncounterManagerImpl.class.getDeclaredMethod("encounterOccurs");
-            encounterOccursMethod.setAccessible(true); //NOPMD reflection needed.
+            final Method encountersOccursMethod = RandomEncounterManagerImpl.class.getDeclaredMethod("encountersOccurs");
+            encountersOccursMethod.setAccessible(true); //NOPMD reflection needed.
 
             // Perform checks and count success
             int successfulChecks = 0;
             for (int i = 0; i < totalChecks; i++) {
-                final boolean result = (boolean) encounterOccursMethod.invoke(randomEncounterManager);
+                final boolean result = (boolean) encountersOccursMethod.invoke(randomEncounterManager);
                 if (result) {
                     successfulChecks++;
                 }
@@ -122,7 +123,7 @@ class RandomEncounterManagerImplTest {
                     expectedSuccessRate, actualSuccessRate));
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             Logger.getLogger(this.getClass().getName()).log(Level.WARNING, 
-            "Failed to access encounterOccurs method via reflection", e);;
+            "Failed to access encounterOccurs method via reflection", e);
         }
     }
 }

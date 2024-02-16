@@ -22,7 +22,10 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
 
     private final GameContext gameContext;
     private final BattleInitiator battleInitiator;
-    public static final double ENCOUNTER_RATE = 0.2; //the chance of triggering a random encounter on a suitable tile.
+    /**
+     * The chance of triggering a random encounter on a suitable tile.
+     */
+    public static final double ENCOUNTER_RATE = 0.2;
     private final Random random = new Random();
     private final int graceDuration;
     private int gracePeriodCounter;
