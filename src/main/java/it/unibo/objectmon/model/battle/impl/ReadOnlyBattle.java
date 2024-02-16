@@ -7,8 +7,10 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
+import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyReadOnly;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
+import it.unibo.objectmon.model.entities.npc.ReadOnlyTrainer;
 import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
 /**
  * Represents a read-only view of a {@link Battle} instance.
@@ -51,13 +53,13 @@ public final class ReadOnlyBattle implements Battle {
     @Deprecated
     @Override
     public void setPlayerMove(final Move move) {
-        throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
+        throw new UnsupportedOperationException("this is read only class, cannot execute this method");
     }
 
     @Deprecated
     @Override
     public void setEnemyMove(final Move move) {
-        throw new UnsupportedOperationException("Unimplemented method 'setEnemyMove'");
+        throw new UnsupportedOperationException("this is read only class, cannot execute this method");
     }
 
     @Override
@@ -67,17 +69,21 @@ public final class ReadOnlyBattle implements Battle {
 
     @Override
     public Objectmon getCurrentObjectmon() {
-        return this.battle.getCurrentObjectmon();
+        return this.getPlayerTeam().getParty().get(0);
     }
 
     @Override
     public Objectmon getEnemyObjectmon() {
-        return this.battle.getEnemyObjectmon();
+        return this.getTrainerTeam().isPresent()
+            ? this.getTrainerTeam().get().getParty().get(0)
+            : this.battle.getEnemyObjectmon();
     }
 
     @Override
     public Optional<Trainer> getTrainer() {
-        return this.battle.getTrainer();
+        return this.getTrainerTeam().isPresent() 
+        ? Optional.of(new ReadOnlyTrainer(this.battle.getTrainer().get()))
+        : Optional.empty();
     }
 
     @Override
@@ -87,11 +93,13 @@ public final class ReadOnlyBattle implements Battle {
 
     @Override
     public ObjectmonParty getPlayerTeam() {
-        return this.battle.getPlayerTeam();
+        return new ObjectmonPartyReadOnly(this.battle.getPlayerTeam());
     }
 
     @Override
     public Optional<ObjectmonParty> getTrainerTeam() {
-        return this.battle.getTrainerTeam();
+        return this.battle.getTrainerTeam().isPresent()
+        ? Optional.of(new ObjectmonPartyReadOnly(this.battle.getTrainerTeam().get()))
+        : Optional.empty();
     }
 }
