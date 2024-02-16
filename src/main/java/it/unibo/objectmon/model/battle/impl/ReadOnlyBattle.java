@@ -8,6 +8,7 @@ import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyReadOnly;
+import it.unibo.objectmon.model.data.objectmon.ReadOnlyObjectmon;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.ReadOnlyTrainer;
@@ -76,7 +77,7 @@ public final class ReadOnlyBattle implements Battle {
     public Objectmon getEnemyObjectmon() {
         return this.getTrainerTeam().isPresent()
             ? this.getTrainerTeam().get().getParty().get(0)
-            : this.battle.getEnemyObjectmon();
+            : new ReadOnlyObjectmon(this.battle.getEnemyObjectmon());
     }
 
     @Override
