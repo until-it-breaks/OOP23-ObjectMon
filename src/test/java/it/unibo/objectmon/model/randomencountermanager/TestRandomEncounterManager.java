@@ -92,7 +92,7 @@ class TestRandomEncounterManager {
         }
     }
 
-    // Testing if out of all checks on suitable tiles the encounter rate is the expected one.f
+    // Testing if out of all checks on suitable tiles the encounter rate is the expected one.
     @Test
     void testEncounterSuccessRate() {
         final RandomEncounterManagerImpl randomEncounterManager = new RandomEncounterManagerImpl(
