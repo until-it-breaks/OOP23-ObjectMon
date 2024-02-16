@@ -23,7 +23,8 @@ public enum BallEnum {
      * An sure-fire objectball, one of a kind.
      */
     MASTERBALL("Master Ball", 3000, Double.POSITIVE_INFINITY, "/items/masterball.png", 
-    "The best of the best, capture is guaranteed but it's prohibitively expensive.");
+    "The best of the best, capture is guaranteed according to the seller but it's prohibitively expensive."
+    + " Word's on the street that the batch of masterballs being sold here are faulty.");
 
     private final String name;
     private final int value;

@@ -20,7 +20,7 @@ import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithPenalty;
 /**
  * Tests for the various {@link TradeManager} decorations.
  */
-class TradeManagerTest {
+class TestTradeManager {
 
     private static final int STARTING_CREDITS = 1000;
     private static final double PENALTY = 0.5;

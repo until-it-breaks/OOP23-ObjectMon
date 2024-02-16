@@ -47,11 +47,11 @@ public final class UseMovesImpl implements UseMoves {
         if (this.battle.getTrainer().isEmpty()) {
             if (this.battle.getCurrentObjectmon().getCurrentHp() <= 0) {
                 this.removeCurrentAndSwitch(battle.getPlayerTeam());
-                this.logger.log("player run away");
+                this.logger.log("Player run away");
             }
             return true;
         }
-        this.logger.log("you cannot run away!");
+        this.logger.log("You cannot run away!");
         return false;
     }
 
@@ -60,7 +60,7 @@ public final class UseMovesImpl implements UseMoves {
         if (this.isDead(team.getParty().get(0))) {
             this.logger.log(
                 team.getParty().get(0).getName() + " is dead " 
-                + "\n next pokemon will be " + team.getParty().get(1).getName()
+                + "\nThe next pokemon will be " + team.getParty().get(1).getName()
             );
             this.remove(team);
         }
@@ -71,7 +71,7 @@ public final class UseMovesImpl implements UseMoves {
         team.switchPosition(team.getParty().get(0), team.getParty().get(index));
         this.logger.log(
             (team.equals(this.battle.getPlayerTeam()) ? "Player " : "Trainer ") 
-            + "change current objectmon from " 
+            + "switched current objectmon from " 
             + team.getParty().get(index).getName() + " to " 
             + team.getParty().get(0).getName()
         );
@@ -96,10 +96,10 @@ public final class UseMovesImpl implements UseMoves {
         final CatchSystem catchObjctmon = new CatchSystemImpl();
         if (catchObjctmon.isCaught(multiplier, objectmon)) {
             this.battle.getPlayerTeam().add(objectmon);
-            this.logger.log("congratulation, you catch " + objectmon.getName());
+            this.logger.log("Congratulation, you caught " + objectmon.getName());
             return true;
         }
-        this.logger.log("miss catching " + objectmon.getName());
+        this.logger.log("Miss catching " + objectmon.getName());
         return false;
     }
 }

@@ -7,17 +7,17 @@ public enum HealEnum {
     /**
      * This potion heals a moderate amount of HP to an Objectmon.
      */
-    POTION("Potion", 50, 50, "/items/potion.png", 
+    POTION("Potion", 100, 50, "/items/potion.png", 
     "The least powerful healing item. Popular among novice trainers."),
     /**
      * This super potion heals a considerable amount of HP to an Objectmon.
      */
-    SUPERPOTION("Super Potion", 100, 500, "/items/superpotion.png", 
+    SUPERPOTION("Super Potion", 200, 100, "/items/superpotion.png", 
     "Balanced in price and performance, this is the best seller in the market right now."),
     /**
      * This hyper potion heals a large amount of HP to an Objectmon.
      */
-    HYPERPOTION("Hyper Potion", 200, 1000, "/items/hyperpotion.png", 
+    HYPERPOTION("Hyper Potion", 500, 200, "/items/hyperpotion.png", 
     "The latest healing item developed by the Objectmon Corporation. Highly effective but quite expensive.");
 
     private final String name;
