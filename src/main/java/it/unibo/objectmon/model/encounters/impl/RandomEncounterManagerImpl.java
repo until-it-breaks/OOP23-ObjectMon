@@ -22,7 +22,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
 
     private final GameContext gameContext;
     private final BattleInitiator battleInitiator;
-    private static final double ENCOUNTER_RATE = 0.2; //the chance of triggering a random encounter on a suitable tile.
+    public static final double ENCOUNTER_RATE = 0.2; //the chance of triggering a random encounter on a suitable tile.
     private final Random random = new Random();
     private final int graceDuration;
     private int gracePeriodCounter;
@@ -83,7 +83,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
 
     private ObjectmonEnum selectRandomObjectmon() {
         final ObjectmonEnum[] avaiableObjectmon = ObjectmonEnum.values();
-        final int randomIndex = random.nextInt(avaiableObjectmon.length - 1);
+        final int randomIndex = random.nextInt(avaiableObjectmon.length);
         return avaiableObjectmon[randomIndex];
     }
 
