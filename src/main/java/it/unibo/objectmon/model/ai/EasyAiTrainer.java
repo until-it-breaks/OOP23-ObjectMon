@@ -12,12 +12,12 @@ public final class EasyAiTrainer extends EasyAiObjectmon implements AiTrainer {
      * Constructor.
      */
     public EasyAiTrainer() {
-        this.index = 1;
+        this.index = 0;
     }
 
     @Override
     public int switchObjectmon(final ObjectmonParty team) {
         this.index++;
-        return this.index < team.getParty().size() ? this.index : -1;
+        return this.index < team.getParty().size() ? this.index : 0;
     }
 }
