@@ -98,7 +98,7 @@ public final class BattleManagerImpl implements BattleManager {
     }
 
     @Override
-    public void bufferCommand(final Move type, final int index) {
+    public boolean bufferCommand(final Move type, final int index) {
         if (this.battle.isPresent()
             && this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE) 
             && isCommandValid(type, index)) {
@@ -113,7 +113,9 @@ public final class BattleManagerImpl implements BattleManager {
                 }, 
                 ++count
             );
+            return true;
         }
+        return false;
     }
 
     private boolean isCommandValid(final Move type, final int index) {

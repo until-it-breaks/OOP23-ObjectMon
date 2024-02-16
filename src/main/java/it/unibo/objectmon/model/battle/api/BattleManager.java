@@ -58,8 +58,9 @@ public interface BattleManager {
      * receive commands from player and give it to turn when it is necessary.
      * @param type type of move
      * @param index index of the e-th element in the list.
+     * @return if command is execute successfully.
      */
-    void bufferCommand(Move type, int index);
+    boolean bufferCommand(Move type, int index);
     /**
      * get information of battle which it has read only access.
      * @return informations of battle.
