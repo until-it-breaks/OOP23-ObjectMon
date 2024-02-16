@@ -34,6 +34,7 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
     public boolean add(final Objectmon objectmon) {
         if (this.party.size() < ObjectmonPartyImpl.MAX_SIZE) {
            this.party.add(objectmon);
+           return true;
         }
         return false; 
     }
