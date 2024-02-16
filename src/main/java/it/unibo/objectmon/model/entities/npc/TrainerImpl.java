@@ -57,7 +57,7 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
             logger.log(this.getName() + " challenges " + player.getName());
             this.battleInitiator.startBattle(player, Optional.of(this), Optional.empty());
         } else {
-            logger.log(this.getName() + "has already been defeated.");
+            logger.log(this.getName() + " has already been defeated.");
         }
     }
 }
