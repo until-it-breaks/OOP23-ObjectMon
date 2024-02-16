@@ -8,11 +8,12 @@ import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.turn.api.ExecuteTurn;
 import it.unibo.objectmon.model.battle.turn.api.Turn;
 import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.api.LoggerAction;
 import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.battle.turn.StatTurn;
 import it.unibo.objectmon.model.battle.turn.api.TurnManager;
-import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
+
 /**
  * implementation of a turn manager.
  */
@@ -53,7 +54,7 @@ public final class TurnManagerImpl implements TurnManager {
         final int index, 
         final BattleManager battleManager, 
         final UseMoves useMoves,
-        final BattleLogger logger,
+        final LoggerAction logger,
         final int count
     ) {
         final Optional<Battle> battle = battleManager.getBattleStats();

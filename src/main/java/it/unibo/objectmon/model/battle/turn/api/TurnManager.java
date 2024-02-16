@@ -1,9 +1,9 @@
 package it.unibo.objectmon.model.battle.turn.api;
 
 import it.unibo.objectmon.model.battle.api.BattleManager;
+import it.unibo.objectmon.model.battle.api.LoggerAction;
 import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.battle.moves.type.Move;
-import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 /**
  * manager of turns in the battle.
  */
@@ -17,5 +17,5 @@ public interface TurnManager {
      * @param logger logger that send message.
      * @param count current number of turn in the current battle
      */
-    void startTurn(Move type, int index, BattleManager battleManager, UseMoves useMoves, BattleLogger logger, int count);
+    void startTurn(Move type, int index, BattleManager battleManager, UseMoves useMoves, LoggerAction logger, int count);
 }

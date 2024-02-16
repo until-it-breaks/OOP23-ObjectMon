@@ -2,19 +2,19 @@ package it.unibo.objectmon.model.battle.moves.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.Battle;
+import it.unibo.objectmon.model.battle.api.LoggerAction;
 import it.unibo.objectmon.model.battle.catchsystem.CatchSystem;
 import it.unibo.objectmon.model.battle.catchsystem.CatchSystemImpl;
 import it.unibo.objectmon.model.battle.moves.UseMoves;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 
 /**
  * an implementation to execute moves chosen by player or AI.
  */
 public final class UseMovesImpl implements UseMoves {
     private final Battle battle;
-    private final BattleLogger logger;
+    private final LoggerAction logger;
 
     /**
      * constructor of UseMoves.
@@ -23,7 +23,7 @@ public final class UseMovesImpl implements UseMoves {
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
     justification = "using dependency injection")
-    public UseMovesImpl(final Battle battle, final BattleLogger logger) {
+    public UseMovesImpl(final Battle battle, final LoggerAction logger) {
         this.battle = battle;
         this.logger = logger;
     }
