@@ -15,7 +15,7 @@ import it.unibo.objectmon.model.world.api.Worlds;
 /**
  * Tests for {@link WorldImpl}.
  */
-class WorldImplTest {
+class TestWorldImpl {
     private WorldImpl world;
 
     @BeforeEach
