@@ -60,11 +60,11 @@ public final class BattleManagerImpl implements BattleManager {
         trainer.ifPresentOrElse(
             t -> {
                 this.battle = Optional.of(new BattleImpl(player, t));
-                this.logger.log("battle started with trainer: " + t.getName());
+                this.logger.log("Battle started with trainer: " + t.getName());
             },
             () -> objectMon.ifPresentOrElse(o -> {
                     this.battle = Optional.of(new BattleImpl(player, o));
-                    this.logger.log("battle started with " + o.getName());
+                    this.logger.log("Battle started with " + o.getName());
                 }, 
                 () -> {
                     throw new IllegalStateException("Cannot start battle: No trainer or objectmon present.");
