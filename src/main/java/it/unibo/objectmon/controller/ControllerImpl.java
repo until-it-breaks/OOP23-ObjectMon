@@ -77,7 +77,7 @@ public final class ControllerImpl implements Controller {
             new TradeManagerWithPenalty(0.5, 
             new TradeManagerImpl()));
         final TradeInitiator tradeInitiator = () -> gameStateManager.setGameState(GameState.TRADE);
-        final BattleManager battleManager = new BattleManagerImpl(gameStateManager);
+        final BattleManager battleManager = new BattleManagerImpl((gameState) -> gameStateManager.setGameState(gameState));
         final BattleInitiator battleInitiator = (player, trainer, objectmon) -> {
             battleManager.startBattle(player, trainer, objectmon);
         };

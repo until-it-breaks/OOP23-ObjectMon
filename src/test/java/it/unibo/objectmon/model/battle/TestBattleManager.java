@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.TrainerImpl;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
-import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
+import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
 import java.util.List;
@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -40,7 +41,8 @@ class TestBattleManager {
      * constructor.
      */
     TestBattleManager() {
-        this.battleManager = new BattleManagerImpl(new GameStateManagerImpl());
+        final GameStateManager gameStateManager = mock(GameStateManager.class);
+        this.battleManager = new BattleManagerImpl((gameState) -> gameStateManager.setGameState(gameState));
         final Coord position = new Coord(5, 5);
         player = new PlayerImpl(
             "yous",

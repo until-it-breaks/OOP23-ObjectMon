@@ -17,7 +17,7 @@ import it.unibo.objectmon.model.battle.turn.impl.TurnManagerImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.GameStateSetter;
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.gamestate.GameState;
@@ -30,7 +30,7 @@ public final class BattleManagerImpl implements BattleManager {
     private Optional<Battle> battle;
     private Optional<Result> result;
     private final Turn turn;
-    private final GameStateManager gameStateManager;
+    private final GameStateSetter gameStateSetter;
     private final BattleLogger logger;
     private UseMoves useMoves;
     private final TurnManager turnManager;
@@ -38,15 +38,15 @@ public final class BattleManagerImpl implements BattleManager {
     /**
      * Constructor of BattleManagerImpl.
      * 
-     * @param gameStateManager The game state manager.
+     * @param gameStateSetter The game state setter of game state manager.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "Temporary")
-    public BattleManagerImpl(final GameStateManager gameStateManager) {
+    justification = "it only update the gamestate, could not find a better way")
+    public BattleManagerImpl(final GameStateSetter gameStateSetter) {
         this.battle = Optional.empty();
         this.result = Optional.empty();
         this.turn = new TurnImpl();
-        this.gameStateManager = gameStateManager;
+        this.gameStateSetter = gameStateSetter;
         this.logger = new BattleLogger();
         this.turnManager = new TurnManagerImpl(turn);
         this.count = 0;
@@ -71,7 +71,7 @@ public final class BattleManagerImpl implements BattleManager {
                 }
             )
         );
-        this.gameStateManager.setGameState(GameState.BATTLE);
+        this.gameStateSetter.setGameState(GameState.BATTLE);
         this.useMoves = new UseMovesImpl(
             this.battle.get(), 
             (message) -> { 
@@ -157,7 +157,7 @@ public final class BattleManagerImpl implements BattleManager {
                 default:
                     break;
             }
-            gameStateManager.setGameState(GameState.PAUSE);
+            gameStateSetter.setGameState(GameState.PAUSE);
             this.battle = Optional.empty();
         }
     }
