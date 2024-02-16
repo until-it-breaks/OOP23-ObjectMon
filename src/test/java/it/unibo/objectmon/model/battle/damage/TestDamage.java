@@ -1,8 +1,7 @@
-package it.unibo.objectmon.model.battle;
+package it.unibo.objectmon.model.battle.damage;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.objectmon.model.battle.damage.DamageCalculator;
-import it.unibo.objectmon.model.battle.damage.DamageCalculatorImpl;
+
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;

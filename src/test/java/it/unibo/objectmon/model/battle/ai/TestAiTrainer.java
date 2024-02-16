@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.battle;
+package it.unibo.objectmon.model.battle.ai;
 
 import org.junit.jupiter.api.Test;
 
