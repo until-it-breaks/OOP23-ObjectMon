@@ -9,7 +9,7 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonEnum;
 import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.entities.npc.NPCGenerator;
+import it.unibo.objectmon.model.entities.factories.NPCGenerator;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
 import it.unibo.objectmon.model.item.trademanager.api.TradeInitiator;
 import it.unibo.objectmon.model.world.WorldImpl;
