@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.world.api;
 
 /**
- * An enum containing information about each world.
+ * An enum containing information about each world available.
  */
 public enum Worlds {
 

@@ -52,7 +52,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
 
     private void startRandomEncounter() {
         final Objectmon wildObjectmon = ObjectmonFactory.createObjectmon(selectRandomObjectmon(), DEFAULT_LEVEL);
-        battleStartListener.onStartBattle(gameContext.getPlayer(), Optional.empty(), Optional.of(wildObjectmon));
+        battleStartListener.startBattle(gameContext.getPlayer(), Optional.empty(), Optional.of(wildObjectmon));
     }
 
     private ObjectmonEnum selectRandomObjectmon() {

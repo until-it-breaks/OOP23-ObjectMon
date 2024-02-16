@@ -77,8 +77,8 @@ public final class InventoryImpl implements Inventory {
 
     @Override
     public int getInventoryValue() {
-        return items.keySet().stream()
-            .mapToInt(item -> item.getValue())
+        return items.entrySet().stream()
+            .mapToInt(entry -> entry.getKey().getValue() * entry.getValue())
             .sum();
     }
 

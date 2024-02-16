@@ -76,6 +76,26 @@ public final class Tile {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Tile)) {
+            return false;
+        }
+        final Tile other = (Tile) obj;
+        return id == other.id;
+    }
+
+    @Override
     public String toString() {
         return "Tile [id=" + id + ", type=" + type + ", imagePath=" + imagePath + "]";
     }

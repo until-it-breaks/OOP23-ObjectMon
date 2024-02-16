@@ -1,53 +1,84 @@
 package it.unibo.objectmon.model.trademanager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.objectmon.model.item.api.BallEnum;
-import it.unibo.objectmon.model.item.api.HealEnum;
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.impl.BallItemImpl;
-import it.unibo.objectmon.model.item.impl.HealItemImpl;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.item.inventory.impl.InventoryImpl;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerImpl;
+import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithFreebie;
 import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerWithPenalty;
 
+/**
+ * Tests for the various {@link TradeManager} decorations.
+ */
 class TradeManagerTest {
 
-    private static final int INITIAL_AMOUNT = 1000;
-    private static final int EXPECTED_1 = 750;
-    private static final int EXPECTED_2 = 1100;
+    private static final int STARTING_CREDITS = 1000;
+    private static final double PENALTY = 0.5;
     private TradeManager tradeManager;
     private Inventory inventory;
 
     @BeforeEach
     void init() {
-        inventory = new InventoryImpl(1000);
-        tradeManager = new TradeManagerWithPenalty(0.5, new TradeManagerImpl());
+        inventory = new InventoryImpl(STARTING_CREDITS);
     }
 
     @Test
-    void testBuyItem() {
-        final Item item = new BallItemImpl(BallEnum.OBJECTBALL);
-        assertEquals(INITIAL_AMOUNT, inventory.getCredits());
+    void testBuyItemNoCreditsWithoutDecoration() {
+        inventory = new InventoryImpl(0);
+        final Item item = new BallItemImpl(BallEnum.GREATBALL);
+        tradeManager = new TradeManagerImpl();
+        assertFalse(tradeManager.buyItem(inventory, item));
+        assertEquals(0, inventory.getCredits());
         assertEquals(0, inventory.getBallItemCount());
-        tradeManager.buyItem(inventory, item);
-        assertEquals(1, inventory.getBallItemCount());
-        assertEquals(EXPECTED_1, inventory.getCredits());
     }
 
     @Test
-    void testSellItem() {
-        final Item item = new HealItemImpl(HealEnum.HYPERPOTION);
-        inventory.addItem(item, 2);
-        assertEquals(INITIAL_AMOUNT, inventory.getCredits());
-        assertEquals(2, inventory.getHealItemCount());
-        tradeManager.sellItem(inventory, item);
-        assertEquals(1, inventory.getHealItemCount());
-        assertEquals(EXPECTED_2, inventory.getCredits());
+    void testBuyItemEnoughCreditsWithoutDecoration() {
+        final Item item = new BallItemImpl(BallEnum.OBJECTBALL);
+        tradeManager = new TradeManagerImpl();
+        assertTrue(tradeManager.buyItem(inventory, item));
+        assertEquals(STARTING_CREDITS - item.getValue(), inventory.getCredits());
+        assertEquals(1, inventory.getBallItemCount());
+    }
+
+    @Test
+    void testSellItemWithoutDecoration() {
+        final Item item = new BallItemImpl(BallEnum.OBJECTBALL);
+        tradeManager = new TradeManagerImpl();
+        inventory.addItem(item, 1);
+        assertTrue(tradeManager.sellItem(inventory, item));
+        assertEquals(STARTING_CREDITS + item.getValue(), inventory.getCredits());
+        assertEquals(0, inventory.getBallItemCount());
+    }
+
+    @Test
+    void testSellItemWithPenaltyDecoration() {
+        final Item item = new BallItemImpl(BallEnum.OBJECTBALL);
+        tradeManager = new TradeManagerWithPenalty(PENALTY, new TradeManagerImpl());
+        inventory.addItem(item, 1);
+        assertTrue(tradeManager.sellItem(inventory, item));
+        assertEquals(STARTING_CREDITS + item.getValue() * PENALTY, inventory.getCredits());
+        assertEquals(0, inventory.getBallItemCount());
+    }
+
+    @Test
+    void testBuyItemWithFreebieDecoration() {
+        final Item item = new BallItemImpl(BallEnum.OBJECTBALL);
+        tradeManager = new TradeManagerWithFreebie(2, new TradeManagerImpl());
+        assertTrue(tradeManager.buyItem(inventory, item));
+        assertEquals(STARTING_CREDITS - item.getValue(), inventory.getCredits());
+        assertTrue(tradeManager.buyItem(inventory, item));
+        assertEquals(STARTING_CREDITS - item.getValue() * 2, inventory.getCredits());
+        assertEquals(3, inventory.getBallItemCount());
     }
 }

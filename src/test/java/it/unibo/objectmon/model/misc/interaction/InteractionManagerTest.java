@@ -44,8 +44,10 @@ class InteractionManagerTest {
     void testTriggerInteraction() {
         player.setPosition(new Coord(0, 0));
         player.setDirection(Direction.RIGHT);
+        //There is an NPC to the right.
         assertTrue(interactionManager.triggerInteraction(npcs, player));
         player.setDirection(Direction.LEFT);
+        //There isn't one at the left.
         assertFalse(interactionManager.triggerInteraction(npcs, player));
     }
 

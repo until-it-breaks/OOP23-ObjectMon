@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-import org.apache.commons.collections4.list.UnmodifiableList;
-
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 
@@ -55,6 +53,6 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
 
     @Override
     public List<Objectmon> getParty() {
-        return new UnmodifiableList<>(this.party);
+        return Collections.unmodifiableList(this.party);
     }
 }

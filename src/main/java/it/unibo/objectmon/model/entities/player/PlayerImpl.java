@@ -68,20 +68,22 @@ public final class PlayerImpl extends AbstractEntity implements Player {
     }
 
     /**
-     * Method to add observers.
-     * @param observer to add
+     * Attaches an observer.
+     * 
+     * @param observer The observer to be added.
      */
     public void addObserver(final Observer observer) {
         this.observers.add(observer);
     }
 
     /**
-     * Method to notify observers.
+     * Notifies the observers.
      */
     private void notifyObserver() {
         for (final Observer observer : observers) {
-            observer.update();
+            if (observer != null) {
+                observer.update();
+            }
         }
     }
-
 }

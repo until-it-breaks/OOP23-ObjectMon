@@ -28,7 +28,7 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
      * @param name The name of the Trainer.
      * @param coord The starting position of the Trainer.
      * @param team The team of Objectmons of the Trainer.
-     * @param battleInitiator the listener that will notify the BattleManager.
+     * @param battleInitiator the notifier of a battle start.
      */
     public TrainerImpl(final String name,
             final Coord coord,
@@ -55,7 +55,7 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
     public void handleInteraction(final Player player, final InteractionLogger logger) {
         if (!isDefeated()) {
             logger.log(this.getName() + " challenges " + player.getName());
-            this.battleInitiator.onStartBattle(player, Optional.of(this), Optional.empty());
+            this.battleInitiator.startBattle(player, Optional.of(this), Optional.empty());
         } else {
             logger.log(this.getName() + "has already been defeated.");
         }

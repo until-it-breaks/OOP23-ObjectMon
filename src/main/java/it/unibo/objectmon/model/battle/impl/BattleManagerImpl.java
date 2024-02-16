@@ -72,7 +72,11 @@ public final class BattleManagerImpl implements BattleManager {
             )
         );
         this.gameStateManager.setGameState(GameState.BATTLE);
-        this.useMoves = new UseMovesImpl(this.battle.get(), (message) -> { logger.log(message); });
+        this.useMoves = new UseMovesImpl(
+            this.battle.get(), 
+            (message) -> { 
+                logger.log(message); 
+            });
         this.setResult(Result.IN_BATTLE);
         this.turn.setTurn(StatTurn.IS_WAITING_MOVE);
         this.count = 0;
@@ -99,7 +103,16 @@ public final class BattleManagerImpl implements BattleManager {
             && this.turn.getStat().equals(StatTurn.IS_WAITING_MOVE) 
             && isCommandValid(type, index)) {
             this.turn.setTurn(StatTurn.TURN_STARTED);
-            turnManager.startTurn(type, index, this, useMoves, (message) -> { logger.log(message); }, ++count);
+            turnManager.startTurn(
+                type, 
+                index, 
+                this, 
+                useMoves, 
+                (message) -> { 
+                    logger.log(message); 
+                }, 
+                ++count
+            );
         }
     }
 
@@ -156,7 +169,6 @@ public final class BattleManagerImpl implements BattleManager {
                     ? reward.upgradeEXP(this.battle.get().getPlayerTeam()) 
                     : reward.upgradeEXP()
                 ));
-                System.out.println(reward.upgradeEXP(this.battle.get().getPlayerTeam()));
             if (this.battle.get().getTrainer().isPresent()) {
                 this.battle.get().getPlayer().getInventory().addCredits(reward.getCredits());
             }
@@ -170,7 +182,7 @@ public final class BattleManagerImpl implements BattleManager {
 
     @Override
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
-    justification = "Temporary")
+    justification = "logger to comunicate view")
     public BattleLogger getLogger() { 
         return this.logger;
     }
