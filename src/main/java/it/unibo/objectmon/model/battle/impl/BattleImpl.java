@@ -12,8 +12,6 @@ import it.unibo.objectmon.model.entities.api.Trainer;
  * A simple battle that implements Battle.
  */
 public final class BattleImpl implements Battle {
-    private static final int EXP = 20;
-    private final int upgradeEXP;
     private final Player player;
     private final Optional<Trainer> trainer;
     private final Optional<Objectmon> wildObjectmon;
@@ -24,15 +22,13 @@ public final class BattleImpl implements Battle {
      * @param player player in the battle.
      * @param trainer trainer to be defeated by player
      * @param objectmon wild objectmon
-     * @param xp xp to upgrade when player win.
      */
-    public BattleImpl(final Player player, final Optional<Trainer> trainer, final Optional<Objectmon> objectmon, final int xp) {
+    public BattleImpl(final Player player, final Optional<Trainer> trainer, final Optional<Objectmon> objectmon) {
         this.player = player;
         this.trainer = trainer;
         this.wildObjectmon = objectmon;
         this.playerMove = Move.NOT_IN_FIGHT;
         this.enemyMove = Move.NOT_IN_FIGHT;
-        this.upgradeEXP = xp;
     }
     /**
      * constructor of battle between the player and trainer.
@@ -43,9 +39,7 @@ public final class BattleImpl implements Battle {
         this(
             player, 
             Optional.of(trainer), 
-            Optional.empty(),
-            trainer.getObjectmonParty().getParty().stream()
-            .mapToInt(o -> o.getLevel() * EXP).sum()
+            Optional.empty()
             );
     }
     /**
@@ -54,7 +48,7 @@ public final class BattleImpl implements Battle {
      * @param objectmon wild objectmon
      */
     public BattleImpl(final Player player, final Objectmon objectmon) {
-        this(player, Optional.empty(), Optional.of(objectmon), objectmon.getLevel() * EXP);
+        this(player, Optional.empty(), Optional.of(objectmon));
     }
 
     @Override
@@ -120,10 +114,5 @@ public final class BattleImpl implements Battle {
     @Override
     public Player getPlayer() {
         return this.player;
-    }
-
-    @Override
-    public int upgradeEXP() {
-        return this.upgradeEXP;
     }
 }

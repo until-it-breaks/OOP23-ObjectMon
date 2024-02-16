@@ -23,4 +23,11 @@ public interface GameLoop {
      * @return Whether the game loop is running.
      */
     boolean isRunning();
+
+    /**
+     * Retrieves the last calculated FPS.
+     * 
+     * @return The FPS.
+     */
+    int getFPS();
 }

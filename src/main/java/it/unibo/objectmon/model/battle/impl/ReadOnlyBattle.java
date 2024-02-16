@@ -93,9 +93,4 @@ public final class ReadOnlyBattle implements Battle {
     public Optional<ObjectmonParty> getTrainerTeam() {
         return this.battle.getTrainerTeam();
     }
-
-    @Override
-    public int upgradeEXP() {
-        return this.battle.upgradeEXP();
-    }
 }

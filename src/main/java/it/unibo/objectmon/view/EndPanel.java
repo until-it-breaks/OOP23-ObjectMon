@@ -30,6 +30,9 @@ public final class EndPanel extends JPanel {
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
     private final transient ImageLoader imageLoader;
+    /**
+     * Holds whether the play has won or lost.
+     */
     private final boolean isWin;
 
     /**

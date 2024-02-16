@@ -182,4 +182,9 @@ public final class ControllerImpl implements Controller {
     public void shutdown() {
         this.gameLoop.stop();
     }
+
+    @Override
+    public int getFPS() {
+        return this.gameLoop.getFPS();
+    }
 }

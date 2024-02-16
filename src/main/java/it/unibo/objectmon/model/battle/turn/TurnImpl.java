@@ -2,6 +2,7 @@ package it.unibo.objectmon.model.battle.turn;
 
 
 import it.unibo.objectmon.model.battle.moves.type.Move;
+import it.unibo.objectmon.model.battle.turn.api.Turn;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
 /**
