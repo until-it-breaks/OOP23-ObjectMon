@@ -70,4 +70,8 @@ public interface BattleManager {
      * @return logger of battle.
      */
     BattleLogger getLogger();
+    /**
+     * action to do when the battle is termited.
+     */
+    void endBattleAction();
 }

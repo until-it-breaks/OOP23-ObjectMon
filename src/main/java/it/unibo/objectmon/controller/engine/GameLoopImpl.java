@@ -10,7 +10,7 @@ import it.unibo.objectmon.view.View;
 /**
  * A basic implementation of a game loop.
  */
-public class GameLoopImpl implements GameLoop {
+public final class GameLoopImpl implements GameLoop {
     /**
      * The target frame rate.
      */
@@ -19,7 +19,7 @@ public class GameLoopImpl implements GameLoop {
     private static final int PERIOD = SECOND_IN_MILLIS / TARGET_FPS;
     private final Logger logger = Logger.getLogger(this.getClass().getName());
     private final View view;
-    private long fps;
+    private int fps;
     private final Controller controller;
     private boolean keepRunning;
 
@@ -45,17 +45,17 @@ public class GameLoopImpl implements GameLoop {
     @Override
     public void start() {
         long previousTime = System.currentTimeMillis();
-        while (keepRunning) {
-            final long currentTime = System.currentTimeMillis();
-            final long elapsed = currentTime - previousTime;
-            updateFPS(elapsed);
-            processInput();
-            render();
-            waitForNextFrame(currentTime);
-            previousTime = currentTime;
+            while (keepRunning) {
+                final long currentTime = System.currentTimeMillis();
+                final long elapsed = currentTime - previousTime;
+                updateFPS(elapsed);
+                processInput();
+                render();
+                waitForNextFrame(currentTime);
+                previousTime = currentTime;
+            }
+            view.destroy();
         }
-        view.destroy();
-    }
 
     /**
      * Stops the game loop, causing it to exit the main loop.
@@ -71,7 +71,7 @@ public class GameLoopImpl implements GameLoop {
      * 
      * @param startTime the time when the current frame started rendering.
      */
-    protected void waitForNextFrame(final long startTime) {
+    private void waitForNextFrame(final long startTime) {
         final long delta = System.currentTimeMillis() - startTime;
         if (delta < PERIOD) {
             try {
@@ -87,32 +87,28 @@ public class GameLoopImpl implements GameLoop {
      * 
      * @param elapsed the time elapsed since the start of the current frame.
      */
-    protected void updateFPS(final long elapsed) {
+    private void updateFPS(final long elapsed) {
         if (elapsed > 0) {
-            this.fps = SECOND_IN_MILLIS / elapsed;
+            this.fps = (int) (SECOND_IN_MILLIS / elapsed);
         }
     }
 
-    /**
-     * Retrieves the latest calculate fps.
-     * 
-     * @return The fps.
-     */
-    protected long getFPS() {
+    @Override
+    public int getFPS() {
         return this.fps;
     }
 
     /**
      * Processes user input by polling commands from the controller and executing them on the model.
      */
-    protected void processInput() {
+    private void processInput() {
         controller.execute();
     }
 
     /**
      * Renders the current state of the game using the view.
      */
-    protected void render() {
+    private void render() {
         this.view.render();
     }
 

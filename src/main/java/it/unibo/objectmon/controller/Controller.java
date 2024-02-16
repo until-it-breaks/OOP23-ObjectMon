@@ -114,4 +114,11 @@ public interface Controller {
      * Shuts down the game.
      */
     void shutdown();
+
+    /**
+     * Retrieves the frames per second from the game engine.
+     * 
+     * @return The frames per second.
+     */
+    int getFPS();
 }

@@ -85,7 +85,7 @@ public final class ControllerImpl implements Controller {
         final CollisionManager collisionManager = new CollisionManagerImpl(gameContext.getWorld(), gameContext.getNPCs());
         final InteractionManager interactionManager = new InteractionManagerImpl();
         final EndGameManager endGameManager = new EndGameManagerImpl(gameStateManager);
-        final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleInitiator);
+        final RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImpl(gameContext, battleInitiator, 5);
         this.model = new ModelImpl(gameContext, interactionManager, collisionManager, battleManager,
         gameStateManager, tradeManager, randomEncounterManager, endGameManager);
         gameStateManager.registerObserver(this.view);
@@ -181,5 +181,10 @@ public final class ControllerImpl implements Controller {
     @Override
     public void shutdown() {
         this.gameLoop.stop();
+    }
+
+    @Override
+    public int getFPS() {
+        return this.gameLoop.getFPS();
     }
 }
