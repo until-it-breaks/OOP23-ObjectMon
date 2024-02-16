@@ -13,7 +13,7 @@ import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
  * Unit tests for the {@link InteractionLoggerImpl} class.
  * These tests cover various aspects of the EventLogger functionality.
  */
-class EventLoggerTest {
+class TestInteractionLogger {
 
     private InteractionLogger logger;
 

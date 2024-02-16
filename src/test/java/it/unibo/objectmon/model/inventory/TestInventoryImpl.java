@@ -19,7 +19,7 @@ import it.unibo.objectmon.model.item.inventory.impl.InventoryImpl;
  */
 //CHECKSTYLE: MagicNumber OFF
 //Using arbitary values for testing.
-class InventoryImplTest {
+class TestInventoryImpl {
 
     private InventoryImpl inventory;
 

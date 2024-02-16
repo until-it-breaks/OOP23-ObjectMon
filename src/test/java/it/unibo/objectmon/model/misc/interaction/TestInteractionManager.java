@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the {@link InteractionManagerImpl} class.
 */
-class InteractionManagerTest {
+class TestInteractionManager {
 
     private InteractionManager interactionManager;
     private Set<AbstractNPC> npcs;

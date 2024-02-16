@@ -21,7 +21,7 @@ import it.unibo.objectmon.model.world.api.Worlds;
 /**
  * Unit tests for the {@link CollisionManagerImpl} class.
  */
-class CollisionManagerTest {
+class TestCollisionManager {
 
     private World world;
     private CollisionManager collisionChecker;
