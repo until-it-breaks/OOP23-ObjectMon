@@ -9,7 +9,6 @@ import it.unibo.objectmon.controller.commands.MoveDown;
 import it.unibo.objectmon.controller.commands.MoveLeft;
 import it.unibo.objectmon.controller.commands.MoveRight;
 import it.unibo.objectmon.controller.commands.MoveUp;
-import it.unibo.objectmon.controller.commands.EndGame;
 
 /**
  * Handles key events for controlling the player character in the overworld.
@@ -52,9 +51,6 @@ public final class OverWorldControls implements KeyListener {
                 break;
             case KeyEvent.VK_J:
                 controller.notifyCommand(new Interact());
-                break;
-            case KeyEvent.VK_0:
-                controller.notifyCommand(new EndGame());
                 break;
             default:
                 // No action for other keys.
