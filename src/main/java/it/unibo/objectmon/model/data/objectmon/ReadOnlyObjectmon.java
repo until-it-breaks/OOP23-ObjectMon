@@ -17,7 +17,7 @@ public final class ReadOnlyObjectmon implements Objectmon {
 
     /**
      * constructs a read only objectmon.
-     * @param objectmon
+     * @param objectmon the objectmon to be wrapped
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
     justification = "take the objectmon just for read, this class garantee no modification on objectmon")

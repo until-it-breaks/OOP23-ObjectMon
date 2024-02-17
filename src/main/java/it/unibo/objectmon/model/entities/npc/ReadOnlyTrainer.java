@@ -15,7 +15,7 @@ public final class ReadOnlyTrainer extends AbstractNPC implements Trainer {
 
     /**
      * constructs with a given trainer.
-     * @param trainer
+     * @param trainer the trainer to be wrapped
      */
     public ReadOnlyTrainer(final Trainer trainer) {
         this(trainer.getName(), trainer.getPosition(), trainer);
