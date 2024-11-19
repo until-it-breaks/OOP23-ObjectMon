@@ -3,18 +3,19 @@ package it.unibo.objectmon.view.battleview;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogObserver;
 
 /**
- * A ScrollPane used to display textual information about the battle.
+ * A ScrollPane used to display text information about the battle.
  */
 public final class BattleLog extends JScrollPane implements BattleLogObserver {
 
     private static final long serialVersionUID = 3L;
     /**
-     * The area on which the battle progress is printed.
+     * The area on which the battle progress is logged.
      */
     private final JTextArea textArea;
 
@@ -41,6 +42,8 @@ public final class BattleLog extends JScrollPane implements BattleLogObserver {
 
     @Override
     public void update(final String logEntry) {
-        textArea.append(logEntry);
+        SwingUtilities.invokeLater(() -> {
+            textArea.append(logEntry);
+        });
     }
 }

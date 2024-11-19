@@ -40,7 +40,7 @@ public final class CommandPanel extends JPanel {
      */
     private final JButton fleeButton = new JButton("Run away");
     /**
-     * The button that allows to rethink your move.
+     * The button that allows the player to rethink their move.
      */
     private final JButton backButton = new JButton("Back");
 

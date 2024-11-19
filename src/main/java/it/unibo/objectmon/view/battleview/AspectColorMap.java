@@ -31,7 +31,7 @@ public final class AspectColorMap {
     /**
      * Retrieves the color corresponding to a specific {@link Aspect}.
      * 
-     * @param aspect The aspect of which the color is sought.
+     * @param aspect The aspect of which color is sought.
      * @return The correponding color.
      */
     public static Color getColor(final Aspect aspect) {
