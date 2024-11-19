@@ -20,8 +20,7 @@ import it.unibo.objectmon.view.utility.ImageLoaderImpl;
 import it.unibo.objectmon.view.utility.RenderingUtils;
 
 /**
- * A {@link JPanel} responsible for rendering the End screen.
- * This panel displays the including the player character and, if they won, also their party.
+ * A {@link JPanel} responsible for rendering the ending screen.
  */
 public final class EndPanel extends JPanel {
 
@@ -30,9 +29,6 @@ public final class EndPanel extends JPanel {
     private static final int TILE_SIZE = 48;
     private final transient Controller controller;
     private final transient ImageLoader imageLoader;
-    /**
-     * Holds whether the play has won or lost.
-     */
     private final boolean isWin;
 
     /**
@@ -51,6 +47,7 @@ public final class EndPanel extends JPanel {
 
             @Override
             public void keyTyped(final KeyEvent e) {
+                // Unused
             }
 
             @Override
@@ -63,8 +60,8 @@ public final class EndPanel extends JPanel {
 
             @Override
             public void keyReleased(final KeyEvent e) {
+                // Unused
             }
-
         });
     }
 
@@ -79,19 +76,16 @@ public final class EndPanel extends JPanel {
         if (g instanceof Graphics2D) {
             final Graphics2D graphics2d = (Graphics2D) g;
             RenderingUtils.configureRenderingHints(graphics2d);
-            //Computes the offset needed to center the camera.
+            // Computes the offset needed to center the camera.
             final double cameraX = getWidth() / 2 - controller.getPlayer().getPosition().x() * TILE_SIZE;
             final double cameraY = getHeight() / 2 - controller.getPlayer().getPosition().y() * TILE_SIZE;
-            //Centers the camera.
+            // Centers the camera.
             graphics2d.translate(cameraX, cameraY);
             drawAll(graphics2d);
             graphics2d.dispose();
         }
     }
-    /**
-     *
-     * @param g
-     */
+
     private void drawAll(final Graphics2D g) {
         final List<Objectmon> objectmonList = controller.getPlayer().getObjectmonParty().getParty();
         final Coord center = controller.getPlayer().getPosition();
@@ -135,9 +129,9 @@ public final class EndPanel extends JPanel {
             g.drawImage(image, myOffsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
             g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
             g.setColor(Color.BLACK);
-            //Draw level text above the health counter
+            // Draw level text above the health counter
             g.drawString("Lv." + objectmon.getLevel(), myOffsetX, offsetY - TILE_SIZE / 2);
-            //Draw health counter above the image
+            // Draw health counter above the image
             g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
             myOffsetX, offsetY - TILE_SIZE / FONT_SIZE);
             myOffsetX += TILE_SIZE;

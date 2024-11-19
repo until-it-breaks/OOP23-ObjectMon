@@ -4,6 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -15,7 +17,7 @@ import it.unibo.objectmon.controller.commands.EndGame;
 /**
  * Represents the main GUI frame of the game.
  * This class serves as the main container
- * for displaying various panel.
+ * for displaying various panels.
  */
 public final class SwingViewImpl implements View {
     private static final String GAME_NAME = "Objectmon";
@@ -60,13 +62,15 @@ public final class SwingViewImpl implements View {
 
     @Override
     public void setCurrentPanel(final JPanel panel) {
-        this.frame.getContentPane().removeAll();
-        this.frame.getContentPane().add(panel);
-        this.frame.setVisible(true);
-        frame.revalidate();
-        frame.repaint();
-        //Very important, otherwise the panel's keyListener won't work.
-        panel.requestFocusInWindow();
+        SwingUtilities.invokeLater(() -> {
+            this.frame.getContentPane().removeAll();
+            this.frame.getContentPane().add(panel);
+            this.frame.setVisible(true);
+            frame.revalidate();
+            frame.repaint();
+            // Very important, otherwise the panel's keyListener won't work.
+            panel.requestFocusInWindow();
+        });
     }
 
     @Override
@@ -104,7 +108,7 @@ public final class SwingViewImpl implements View {
                 "Game Paused",
                 JOptionPane.PLAIN_MESSAGE);
         setCurrentPanel(new OverWorldPanel(controller));
-        //Check if the game has ended
+        // Check if the game has ended
         if (controller.isLoss() || controller.isWin()) {
             controller.notifyCommand(new EndGame());
         }

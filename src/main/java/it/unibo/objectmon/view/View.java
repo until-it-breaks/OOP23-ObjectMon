@@ -11,12 +11,12 @@ public interface View extends Observer {
 
     /**
      * Triggers the painting mechanism that updates the GUI components
-     * according to the latest data retrieved from the underlying model.
+     * with the latest data retrieved from the underlying model.
      */
     void render();
 
     /**
-     * Sets up the necessary panels to the view,
+     * Sets up the necessary panels in the view,
      * to render the game content.
      *
      * @param panel The panel to be shown.

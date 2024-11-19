@@ -32,7 +32,7 @@ public class BattlePanel extends JPanel {
         this.setDoubleBuffered(true);
         this.setLayout(new BorderLayout());
 
-        //Left panel (CombatPanel and CommandPanel)
+        // Left panel (CombatPanel and CommandPanel)
         final JPanel leftPanel = new JPanel(new GridBagLayout());
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = 1.0;

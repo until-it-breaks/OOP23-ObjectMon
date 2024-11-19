@@ -51,14 +51,15 @@ public class ShopPanel extends JPanel {
         this.controller = controller;
         setLayout(new BorderLayout());
 
-        //player info panel
+        // Player info panel
         final JPanel playerInfoPanel = new JPanel(new BorderLayout());
         moneyLabel.setText("Player credits: " + controller.getPlayer().getInventory().getCredits());
         playerInfoPanel.add(moneyLabel, BorderLayout.CENTER);
 
-        //back button
+        // Back button
         final JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(final ActionEvent e) {
                 controller.notifyCommand(new ExitShop());
@@ -68,7 +69,7 @@ public class ShopPanel extends JPanel {
 
         this.add(playerInfoPanel, BorderLayout.NORTH);
 
-        //item container panel
+        // Item container panel
         itemContainerPanel = new JPanel();
         itemContainerPanel.setLayout(new BoxLayout(itemContainerPanel, BoxLayout.Y_AXIS));
 
@@ -83,7 +84,6 @@ public class ShopPanel extends JPanel {
             final String description = ball.getDescription() + "\nCatch multiplier : " + ball.getCatchRateMultiplier();
             addItemPanel(ball.getImagePath(), description, new BallItemImpl(ball));
         }
-
         for (final HealEnum heal : HealEnum.values()) {
             final String description = heal.getDescription() + "\nHealing amount : " + heal.getHealingAmount();
             addItemPanel(heal.getImagePath(), description, new HealItemImpl(heal));
@@ -91,21 +91,19 @@ public class ShopPanel extends JPanel {
     }
 
     private void addItemPanel(final String imagePath, final String description, final Item item) {
-
         final JPanel itemPanel = new JPanel(new BorderLayout());
-        //Icon
         final URL resourceUrl = ShopPanel.class.getResource(imagePath);
         final ImageIcon icon = new ImageIcon(resourceUrl);
         final JLabel iconLabel = new JLabel(icon);
         itemPanel.add(iconLabel, BorderLayout.WEST);
-        //Right side panel
+        // Right side panel
         final JPanel rightPanel = new JPanel(new BorderLayout());
-        //Info Panel(Name, Description)
+        // Info Panel(Name, Description)
         final JPanel infoPanel = new JPanel(new BorderLayout());
-        //Name
+        // Name
         final JLabel nameLabel = new JLabel(item.getName());
         infoPanel.add(nameLabel, BorderLayout.NORTH);
-        //Description
+        // Description
         final JTextArea descriptionTextArea = new JTextArea(description);
         descriptionTextArea.setLineWrap(true);
         descriptionTextArea.setWrapStyleWord(true);
@@ -115,45 +113,44 @@ public class ShopPanel extends JPanel {
         infoPanel.add(descriptionScrollPane, BorderLayout.CENTER);
         rightPanel.add(infoPanel, BorderLayout.CENTER);
 
-        //Owned Amount
+        // Owned Amount
         final JPanel buttonPanel = new JPanel(new FlowLayout());
         final int quantity = controller.getPlayer().getInventory().getItems().getOrDefault(item, 0);
         final JLabel quantityLabel = new JLabel("Owned: " + quantity);
         buttonPanel.add(quantityLabel);
-        //Buy button
+        // Buy button
         final JButton buyButton = new JButton("Buy (" + item.getValue() + " credits)");
         buyButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent e) {
                 controller.notifyCommand(new BuyItem(item));
-                //Tells the controller to execute it immediately.
+                // Tells the controller to execute it immediately.
                 controller.execute();
-                //Update the player credits label
+                // Update the player credits label
                 moneyLabel.setText("Player credits: " + controller.getPlayer().getInventory().getCredits());
-                //Update the owned quantity label
+                // Update the owned quantity label
                 quantityLabel.setText("Owned: " + controller.getPlayer().getInventory().getItems().getOrDefault(item, 0));
             }
         });
         buttonPanel.add(buyButton);
 
-        //Sell button
+        // Sell button
         final JButton sellButton = new JButton("Sell");
         sellButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent e) {
                 controller.notifyCommand(new SellItem(item));
-                //Tells the controller to execute it immediately
+                // Tells the controller to execute it immediately
                 controller.execute();
-                //Update the player credits label
+                // Update the player credits label
                 moneyLabel.setText("Player credits: " + controller.getPlayer().getInventory().getCredits());
-                //Update the owned quantity label
+                // Update the owned quantity label
                 quantityLabel.setText("Owned: " + controller.getPlayer().getInventory().getItems().getOrDefault(item, 0));
             }
         });
         buttonPanel.add(sellButton);
-
         rightPanel.add(buttonPanel, BorderLayout.SOUTH);
         itemPanel.add(rightPanel, BorderLayout.CENTER);
         itemContainerPanel.add(itemPanel);
