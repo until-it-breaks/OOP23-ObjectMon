@@ -5,46 +5,52 @@ import java.util.Map;
 import it.unibo.objectmon.model.item.api.Item;
 
 /**
- * Models the player Inventory.
+ * Models the player's inventory.
  */
 public interface Inventory {
 
     /**
-     * add items in the inventory.
-     * @param item item to be added
-     * @param count count of items
+     * Adds items to the inventory.
+     * 
+     * @param item The item to be added.
+     * @param count The amount to be added.
      */
     void addItem(Item item, int count);
 
     /**
-     * Consume an item of the inventory.
-     * @param <T> The type of item to be used. Must be a subtype of {@link Item}
-     * @param item item to be used
-     * @return True if the item is present and successfully used
+     * Consumes an item in the inventory.
+     * 
+     * @param <T> The type of item to be used. Must be a subtype of {@link Item}.
+     * @param item The item to be used.
+     * @return true if the item is present and successfully used, false otherwise.
      */
     <T extends Item> boolean useItem(T item);
 
     /**
-     * Returns number of heal items in the inventory.
-     * @return heal count
+     * Retrieves the amount of healing items in the inventory.
+     * 
+     * @return The amount of healing items.
      */
-    int getHealItemCount();
+    int getHealingItemCount();
 
     /**
-     * Returns number of ball items in the inventory.
-     * @return ball count
+     * Retrieves number of objectballs in the inventory.
+     * 
+     * @return The amount of objectballs.
      */
-    int getBallItemCount();
+    int getObjectballCount();
 
     /**
-     * Returns number of total items in the inventory.
-     * @return total item count
+     * Retrieves the total amount of items in the inventory.
+     * 
+     * @return The total item count.
      */
     int getTotalItemCount();
 
     /**
-     * Returns the map of items.
-     * @return a map of items
+     * Retrieves a map of the items.
+     * 
+     * @return A map of the items.
      */
     Map<Item, Integer> getItems();
 
@@ -55,27 +61,31 @@ public interface Inventory {
 
     /**
      * Returns the total value of the inventory.
-     * @return total inventory value
+     * 
+     * @return The total inventory value.
      */
     int getInventoryValue();
 
     /**
-     * Returns credits of the player.
-     * @return credits
+     * Returns the credits owned by the player.
+     * 
+     * @return The credits owned.
      */
     int getCredits();
 
     /**
-     * Returns credits of the player increased by an item selling.
-     * @param amount value of item
-     * @return credits
+     * Adds credits.
+     * 
+     * @param amount The amount to be added.
+     * @return true if the operation is performed successfully, false otherwise.
      */
     int addCredits(int amount);
 
     /**
-     * Returns true if is possibile to buy the item, which costs 'amount'.
-     * @param amount cost of the item
-     * @return true if possible to buy
+     * Attempts to withdraw credits to pay items with.
+     * 
+     * @param amount The amount needed.
+     * @return true if the operation is performed successfully, false otherwise.
      */
     boolean withdrawCredits(int amount);
 }

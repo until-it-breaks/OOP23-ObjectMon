@@ -5,7 +5,7 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 
 /**
- * Models trade manager with penalty for selling items.
+ * Models a trade manager capable of applying penalties for selling items.
  */
 public final class TradeManagerWithPenalty implements TradeManager {
 
@@ -13,9 +13,10 @@ public final class TradeManagerWithPenalty implements TradeManager {
     private final double penaltyRatio;
 
     /**
-     * Construct trade manager with penalty.
-     * @param penaltyRatio ratio of credits refunded
-     * @param tradeManager trade manager
+     * Creates a trade manager with a penalty.
+     * 
+     * @param penaltyRatio The ratio of credits refunded.
+     * @param tradeManager The trade manager.
      */
     public TradeManagerWithPenalty(final double penaltyRatio, final TradeManager tradeManager) {
         this.tradeManager = tradeManager;
@@ -35,5 +36,4 @@ public final class TradeManagerWithPenalty implements TradeManager {
         }
         return false;
     }
-
 }

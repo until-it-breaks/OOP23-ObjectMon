@@ -31,7 +31,7 @@ public interface World {
     int getHeight();
 
     /**
-     * Retrives the starting position of the player.
+     * Retrieves the starting position of the player.
      * 
      * @return A coord representing the starting position of the player.
      */

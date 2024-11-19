@@ -8,7 +8,7 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 
 /**
- * Models Trade manager with freebie for buying items.
+ * Models a trade manager with capable of giving away freebies when many items of the same kind are bought.
  */
 public final class TradeManagerWithFreebie implements TradeManager {
 
@@ -17,9 +17,10 @@ public final class TradeManagerWithFreebie implements TradeManager {
     private final Map<Item, Integer> itemCountMap;
 
     /**
-     * Constructs trade manager with freebie.
-     * @param freebieTrigger count of many items to buy to obtain freebie
-     * @param tradeManager trade manager
+     * Creates a trade manager that allows freebies.
+     * 
+     * @param freebieTrigger The item count required.
+     * @param tradeManager The trade manager
      */
     public TradeManagerWithFreebie(final int freebieTrigger, final TradeManager tradeManager) {
         this.tradeManager = tradeManager;

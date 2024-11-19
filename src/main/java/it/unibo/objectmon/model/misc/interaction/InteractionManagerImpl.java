@@ -12,14 +12,14 @@ import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
- * Models a interaction manager that triggers an npc's interaction if the npc is right in front of the player.
+ * Models an interaction manager that triggers interactions if the npc is right in front of the player.
  */
 public final class InteractionManagerImpl implements InteractionManager {
 
     private final InteractionLogger logger;
 
     /**
-     * Costructs an interaction manager.
+     * Creates an interaction manager.
      */
     public InteractionManagerImpl() {
         this.logger = new InteractionLoggerImpl();

@@ -7,7 +7,6 @@ import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Player;
 
 /**
- * An interface for managing interactions with NPCs.
  * Implementations of this interface are responsible for triggering NPC behavior upon successful checks.
  */
 public interface InteractionManager {

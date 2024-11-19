@@ -3,8 +3,8 @@ package it.unibo.objectmon.controller.commands;
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
 import it.unibo.objectmon.model.battle.moves.type.Move;
-import it.unibo.objectmon.model.item.api.BallItem;
-import it.unibo.objectmon.model.item.api.HealItem;
+import it.unibo.objectmon.model.item.api.Objectball;
+import it.unibo.objectmon.model.item.api.HealingItem;
 
 /**
  * Attemps to use an item.
@@ -28,9 +28,9 @@ public final class UseItem implements Command {
             b -> b.getPlayer().getInventory().getItems().keySet()
             .stream().skip(index).findFirst().ifPresent(
                 item -> {
-                    if (item instanceof HealItem) {
+                    if (item instanceof HealingItem) {
                         model.bufferCommand(Move.USE_HEAL, index);
-                    } else if (item instanceof BallItem) {
+                    } else if (item instanceof Objectball) {
                         model.bufferCommand(Move.USE_BALL, index);
                     } else {
                         throw new IllegalStateException();

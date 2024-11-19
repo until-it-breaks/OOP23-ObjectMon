@@ -1,11 +1,13 @@
 package it.unibo.objectmon.model.misc.battlelog.api;
+
 /**
- * Interface defining the behavior of a battle logger observer.
+ * Battle log observer interface.
  */
 public interface BattleLogObserver {
     /**
-     * Method called when the battle logger updates the log with a new message.
-     * @param logEntry The new message added to the battle log.
+     * A method called when the battle logger updates the log with a new message.
+     * 
+     * @param logEntry The message to be added to the battle log.
      */
     void update(String logEntry);
 }

@@ -1,9 +1,9 @@
 package it.unibo.objectmon.model.item.api;
 
 /**
- * Enum Item Ball.
+ * The objectballs in the game.
  */
-public enum BallEnum {
+public enum ObjectballEnum {
     /**
      * The most common objectball.
      */
@@ -18,13 +18,13 @@ public enum BallEnum {
      * The strongest objectball available commercially.
      */
     ULTRABALL("Ultra Ball", 1000, 2.0, "/items/ultraball.png", 
-    "The most reliable objectball available out there, has great performance but it's pricey."),
+    "The most reliable objectball available out there, performance is great but it's quite expensive."),
     /**
      * An sure-fire objectball, one of a kind.
      */
     MASTERBALL("Master Ball", 3000, Double.POSITIVE_INFINITY, "/items/masterball.png", 
     "The best of the best, capture is guaranteed according to the seller but it's prohibitively expensive."
-    + " Word's on the street that the batch of masterballs being sold here are faulty.");
+    + " Word's on the street that the batch of masterballs sold here is full of duds.");
 
     private final String name;
     private final int value;
@@ -32,7 +32,7 @@ public enum BallEnum {
     private final String imagePath;
     private final String description;
 
-    BallEnum(final String name, 
+    ObjectballEnum(final String name, 
         final int value, 
         final double catchRateMultiplier, 
         final String imagePath, 
@@ -45,44 +45,47 @@ public enum BallEnum {
     }
 
     /**
-     * return value of item.
-     * @return value
+     * Retrieves the value of the objectball.
+     * 
+     * @return The value of the objectball.
      */
     public int getValue() {
         return value;
     }
 
     /**
-     * returns catch rate multiplier.
-     * @return catchRateMultiplier
+     * Retrieves the catch rate multiplier of the objectball.
+     * 
+     * @return The catch rate multiplier of the objectball.
      */
     public double getCatchRateMultiplier() {
         return catchRateMultiplier;
     }
 
     /**
-     * returns name of item.
-     * @return name
+     * Retrieves the name of the objectball.
+     * 
+     * @return The name of the objectball.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * returns the image path of the objectball.
-     * @return imagePath
+     * Retrives the image path of the objectball.
+     * 
+     * @return The image path of the objectball.
      */
     public String getImagePath() {
         return this.imagePath;
     }
 
     /**
-     * returns the description of the objectball.
-     * @return description
+     * Retrives the description of the objectball.
+     * 
+     * @return The description of the objectball.
      */
     public String getDescription() {
         return this.description;
     }
-
 }
-

@@ -13,8 +13,7 @@ import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 
 /**
- * Represents the game model.
- * It's responsible for managing entities, interactions, collisions,
+ * Responsible for managing entities, interactions, collisions,
  * and battles within the game.
  * The model initializes with default settings and
  * provides access to various managers for handling different aspects of the game.
@@ -47,49 +46,57 @@ public interface Model {
 
     /**
      * Retrieves the current game state.
+     * 
      * @return The game state.
      */
     GameState getGameState();
 
     /**
      * Updates the game state.
+     * 
      * @param gameState The new game state.
      */
     void setGameState(GameState gameState);
 
     /**
-     * informations of the battle.
-     * @return contains the informations of the battle.
+     * Returns information about a battle.
+     * 
+     * @return The information of a battle.
      */
     Optional<Battle> getBattleStats();
 
     /**
-     * Stores a battle move.
+     * Stores a battle related move.
+     * 
      * @param move The move to be stored.
-     * @param index The index of that move type.
+     * @param index The index indicating the move type.
      */
     void bufferCommand(Move move, int index);
 
     /**
-     * get Battle logger.
-     * @return logger of battle
+     * Retrieves the battle logger.
+     * 
+     * @return The battle logger.
      */
     BattleLogger getBattleLogger();
 
     /**
-     * Get trade manager.
-     * @return tradeManager
+     * Retrieves the trade manager.
+     * 
+     * @return The trade manager
      */
     TradeManager getTradeManager();
 
     /**
-     * Get the endgame manager.
-     * @return Returns the endGameManager.
+     * Retrieves the endgame manager.
+     * 
+     * @return Returns the end game manager.
      */
     EndGameManager getEndGameManager();
 
     /**
-     * Get random encounter manager.
+     * Retrieves the random encounter manager.
+     * 
      * @return The random encounter manager.
      */
     RandomEncounterManager getRandomEncounterManager();

@@ -30,7 +30,7 @@ public final class TileSet {
     /**
      * Creates the {@link TileSet} by loading data from JSON.
      * 
-     * @param path the path to the atlas file.
+     * @param path The path to the atlas file.
      */
     public TileSet(final String path) {
         this.tileAtlas = loadFromJson(path);

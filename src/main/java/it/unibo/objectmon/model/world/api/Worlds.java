@@ -21,7 +21,7 @@ public enum Worlds {
     /**
      * Returns a string representing the map path.
      * 
-     * @return the path corresponding to the map location.
+     * @return The path corresponding to the map location.
      */
     public String getWorldPath() {
         return this.worldPath;
@@ -30,7 +30,7 @@ public enum Worlds {
     /**
      * Returns a string representing the map atlas.
      * 
-     * @return the path corresponding to the map atlas,
+     * @return The path corresponding to the map atlas,
      */
     public String getAtlasPath() {
         return this.atlasPath;

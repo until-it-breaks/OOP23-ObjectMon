@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Class representing a battle logger to store information related to the battle.
+ * A battle logger used to store information related to battles.
  */
 public class BattleLogger {
     private final List<BattleLogObserver> observers;
 
     /**
-     * Constructor to create a new battle logger.
+     * Creates a new battle logger.
      */
     public BattleLogger() {
         this.observers = new ArrayList<>();
@@ -18,15 +18,17 @@ public class BattleLogger {
 
     /**
      * Adds an observer to the battle logger.
-     * @param observer The observer to add.
+     * 
+     * @param observer The observer to be added.
      */
     public void addObserver(final BattleLogObserver observer) {
         this.observers.add(observer);
     }
 
     /**
-     * Records a new message in the battle log and notifies the observers.
-     * @param message The message to add to the battle log.
+     * Adds a new message in the battle log and notifies the observers.
+     * 
+     * @param message The message to be added to the battle log.
      */
     public void log(final String message) {
         notifyObservers(message + "\n");

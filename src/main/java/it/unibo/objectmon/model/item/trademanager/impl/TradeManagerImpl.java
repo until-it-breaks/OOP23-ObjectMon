@@ -5,7 +5,7 @@ import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 
 /**
- * Models TRADE mode.
+ * Models a manager responsible for the TRADE mode.
  */
 public final class TradeManagerImpl implements TradeManager {
 

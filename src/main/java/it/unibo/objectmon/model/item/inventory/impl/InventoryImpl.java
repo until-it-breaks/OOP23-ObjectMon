@@ -11,7 +11,7 @@ import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
 /**
- * Models the player inventory using a map that accepts the item istance as key.
+ * Models the player's inventory using a map that accepts the item istance as key.
  */
 public final class InventoryImpl implements Inventory {
 
@@ -19,8 +19,9 @@ public final class InventoryImpl implements Inventory {
     private int credits;
 
     /**
-     * Constructs the inventory.
-     * @param credits credits of the player
+     * Creates the inventory.
+     * 
+     * @param credits The initial credits of the player.
      */
     public InventoryImpl(final int credits) {
         this.items = new LinkedHashMap<>();

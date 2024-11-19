@@ -33,15 +33,15 @@ public final class ModelImpl implements Model {
     private final RandomEncounterManager randomEncounterManager;
 
     /**
-     * Constructs a ModelImpl instance with the provided dependencies.
+     * Creates a ModelImpl instance with the provided dependencies.
      *
      * @param gameContext                   The game context containing information about the game world and entities.
-     * @param interactionManager            The manager responsible for handling interactions within the game.
+     * @param interactionManager            The manager responsible for handling interactions in the overworld.
      * @param collisionManager              The manager responsible for collision detection.
      * @param battleManager                 The manager responsible for handling battles between entities.
      * @param gameStateManager              The manager responsible for managing the game state.
      * @param tradeManager                  The manager responsible for managing the trade mode.
-     * @param endGameManager                The manager responsible for triggering the END game state.
+     * @param endGameManager                The manager responsible for triggering the game ending.
      * @param randomEncounterManagerImpl    The manager responsible for triggering random encounters.
      * 
      */

@@ -19,11 +19,11 @@ import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.commands.BuyItem;
 import it.unibo.objectmon.controller.commands.ExitShop;
 import it.unibo.objectmon.controller.commands.SellItem;
-import it.unibo.objectmon.model.item.api.BallEnum;
-import it.unibo.objectmon.model.item.api.HealEnum;
+import it.unibo.objectmon.model.item.api.ObjectballEnum;
+import it.unibo.objectmon.model.item.api.HealingItemEnum;
 import it.unibo.objectmon.model.item.api.Item;
-import it.unibo.objectmon.model.item.impl.BallItemImpl;
-import it.unibo.objectmon.model.item.impl.HealItemImpl;
+import it.unibo.objectmon.model.item.impl.ObjectballImpl;
+import it.unibo.objectmon.model.item.impl.HealingItemImpl;
 
 /**
  * GUI for the item buying system.
@@ -80,13 +80,13 @@ public class ShopPanel extends JPanel {
     }
 
     private void addItemsToContainerPanel() {
-        for (final BallEnum ball : BallEnum.values()) {
+        for (final ObjectballEnum ball : ObjectballEnum.values()) {
             final String description = ball.getDescription() + "\nCatch multiplier : " + ball.getCatchRateMultiplier();
-            addItemPanel(ball.getImagePath(), description, new BallItemImpl(ball));
+            addItemPanel(ball.getImagePath(), description, new ObjectballImpl(ball));
         }
-        for (final HealEnum heal : HealEnum.values()) {
+        for (final HealingItemEnum heal : HealingItemEnum.values()) {
             final String description = heal.getDescription() + "\nHealing amount : " + heal.getHealingAmount();
-            addItemPanel(heal.getImagePath(), description, new HealItemImpl(heal));
+            addItemPanel(heal.getImagePath(), description, new HealingItemImpl(heal));
         }
     }
 

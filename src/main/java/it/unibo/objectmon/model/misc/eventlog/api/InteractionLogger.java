@@ -9,6 +9,7 @@ public interface InteractionLogger {
 
     /**
      * Stores a message.
+     * 
      * @param string The message to be stored.
      */
     void log(String string);
@@ -20,6 +21,7 @@ public interface InteractionLogger {
 
     /**
      * Returns a list-like representation of the latest strings logged.
+     * 
      * @return An unmodifiable list of string.
      */
     List<String> getMessages();

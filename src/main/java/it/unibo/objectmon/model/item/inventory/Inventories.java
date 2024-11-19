@@ -1,9 +1,9 @@
 package it.unibo.objectmon.model.item.inventory;
 
-import it.unibo.objectmon.model.item.api.BallEnum;
-import it.unibo.objectmon.model.item.api.HealEnum;
-import it.unibo.objectmon.model.item.impl.BallItemImpl;
-import it.unibo.objectmon.model.item.impl.HealItemImpl;
+import it.unibo.objectmon.model.item.api.ObjectballEnum;
+import it.unibo.objectmon.model.item.api.HealingItemEnum;
+import it.unibo.objectmon.model.item.impl.ObjectballImpl;
+import it.unibo.objectmon.model.item.impl.HealingItemImpl;
 import it.unibo.objectmon.model.item.inventory.impl.InventoryImpl;
 
 /**
@@ -18,29 +18,29 @@ public final class Inventories {
 
     /**
      * Creates an inventory with basic initial items.
-     * Each basic item (OBJECTBALL/POTION) is added with a count of {@value BASIC_COUNT}.
-     * @return an instance of InventoryImpl with basic initial items
+     * 
+     * @return An instance of InventoryImpl with basic initial items.
      */
     public static InventoryImpl createWithBasicInitialItems() {
         final InventoryImpl inventory = new InventoryImpl(1000);
-        inventory.addItem(new BallItemImpl(BallEnum.OBJECTBALL), BASIC_COUNT);
-        inventory.addItem(new HealItemImpl(HealEnum.POTION), BASIC_COUNT);
+        inventory.addItem(new ObjectballImpl(ObjectballEnum.OBJECTBALL), BASIC_COUNT);
+        inventory.addItem(new HealingItemImpl(HealingItemEnum.POTION), BASIC_COUNT);
         return inventory;
     }
 
     /**
-     * Creates an inventory with one of each item.
-     * Each item (Ball/Heal) is added with a count of 1.
-     * @return an instance of InventoryImpl with one of each type of item
+     * Creates an inventory with one of each item type.
+     * 
+     * @return An instance of InventoryImpl with one of each type of item.
      */
     public static InventoryImpl createWithOneOfEachItem() {
         final InventoryImpl inventory = new InventoryImpl(5000);
-        inventory.addItem(new BallItemImpl(BallEnum.OBJECTBALL), 1);
-        inventory.addItem(new BallItemImpl(BallEnum.ULTRABALL), 1);
-        inventory.addItem(new BallItemImpl(BallEnum.MASTERBALL), 1);
-        inventory.addItem(new HealItemImpl(HealEnum.POTION), 1);
-        inventory.addItem(new HealItemImpl(HealEnum.SUPERPOTION), 1);
-        inventory.addItem(new HealItemImpl(HealEnum.HYPERPOTION), 1);
+        inventory.addItem(new ObjectballImpl(ObjectballEnum.OBJECTBALL), 1);
+        inventory.addItem(new ObjectballImpl(ObjectballEnum.ULTRABALL), 1);
+        inventory.addItem(new ObjectballImpl(ObjectballEnum.MASTERBALL), 1);
+        inventory.addItem(new HealingItemImpl(HealingItemEnum.POTION), 1);
+        inventory.addItem(new HealingItemImpl(HealingItemEnum.SUPERPOTION), 1);
+        inventory.addItem(new HealingItemImpl(HealingItemEnum.HYPERPOTION), 1);
         return inventory;
     }
 }

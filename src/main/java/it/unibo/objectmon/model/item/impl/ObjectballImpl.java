@@ -2,38 +2,40 @@ package it.unibo.objectmon.model.item.impl;
 
 import java.util.Objects;
 
-import it.unibo.objectmon.model.item.api.BallEnum;
-import it.unibo.objectmon.model.item.api.BallItem;
+import it.unibo.objectmon.model.item.api.ObjectballEnum;
+import it.unibo.objectmon.model.item.api.Objectball;
 
 /**
- * Models Ball item usable by player.
+ * Models objectballs used by the player.
  */
-public final class BallItemImpl implements BallItem {
+public final class ObjectballImpl implements Objectball {
 
     private final String name;
     private final int value;
     private final double catchMultiplier;
 
     /**
-     * Creates a new Ball.
-     * @param name the ball name
-     * @param value the ball value
-     * @param catchMultiplier the ball catch multiplier
+     * Creates a new objectball.
+     * 
+     * @param name The name of the objectball.
+     * @param value The value of the objectball.
+     * @param catchMultiplier The catch rate multiplier of the objectball.
      */
-    public BallItemImpl(final String name, final int value, final double catchMultiplier) {
+    public ObjectballImpl(final String name, final int value, final double catchMultiplier) {
         this.name = name;
         this.value = value;
         this.catchMultiplier = catchMultiplier;
     }
 
     /**
-     * Constructs a new Ball based on information from BallEnum.
-     * @param ball enum name
+     * Creates a new objectball based on information from ObjectballEnum.
+     * 
+     * @param objectball The objectball to be created.
      */
-    public BallItemImpl(final BallEnum ball) {
-        this.name = ball.getName();
-        this.value = ball.getValue();
-        this.catchMultiplier = ball.getCatchRateMultiplier();
+    public ObjectballImpl(final ObjectballEnum objectball) {
+        this.name = objectball.getName();
+        this.value = objectball.getValue();
+        this.catchMultiplier = objectball.getCatchRateMultiplier();
     }
 
     @Override
@@ -71,7 +73,7 @@ public final class BallItemImpl implements BallItem {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final BallItemImpl other = (BallItemImpl) obj;
+        final ObjectballImpl other = (ObjectballImpl) obj;
         return Double.compare(other.catchMultiplier, catchMultiplier) == 0
             && value == other.value
             && Objects.equals(name, other.name);

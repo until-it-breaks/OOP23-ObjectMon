@@ -60,7 +60,7 @@ public final class Tile {
     /**
      * Retrieves whether the tile can be walked over.
      * 
-     * @return The ability of the tile of preventing the player from walking over.
+     * @return The ability of the tile to prevent the player from walking over it.
      */
     public boolean isPassable() {
         return passable;

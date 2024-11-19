@@ -19,7 +19,7 @@ public final class InteractionLoggerImpl implements InteractionLogger {
     private final Queue<String> messages;
 
     /**
-     * Constructs a logger with limits.
+     * Creates a logger with limits.
      */
     public InteractionLoggerImpl() {
         this.messages = new ArrayBlockingQueue<>(LIMIT);

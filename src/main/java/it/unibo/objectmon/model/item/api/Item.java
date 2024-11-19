@@ -1,20 +1,21 @@
 package it.unibo.objectmon.model.item.api;
 
 /**
- * Item interface models a player usable item.
+ * Models a player usable item.
  */
 public interface Item {
 
     /**
-     * returns the item name.
-     * @return itemName
+     * Retrieves the item's name.
+     * 
+     * @return The item's name.
      */
     String getName();
 
     /**
-     * return the item value.
-     * @return itemValue
+     * Retrieves the item's value.
+     * 
+     * @return The item's value.
      */
     int getValue();
-
 }

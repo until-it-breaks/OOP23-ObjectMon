@@ -84,9 +84,9 @@ public interface Controller {
     GameState getGameState();
 
     /**
-     * return logger of battle to attach observers.
+     * Returns the battle logger.
      * 
-     * @return logger of battle.
+     * @return The battle logger.
      */
     BattleLogger getBattleLogger();
 
@@ -96,14 +96,14 @@ public interface Controller {
     void restart();
 
     /**
-     * Checks if the player won the game.
+     * Checks if the player has won the game.
      * 
      * @return true if all Trainers have been defeated, false otherwise.
      */
     boolean gameWon();
 
     /**
-     * Checks if the player lost the game.
+     * Checks if the player has lost the game.
      * 
      * @return true if all the Player's Objectmon are dead. false otherwise.
      */

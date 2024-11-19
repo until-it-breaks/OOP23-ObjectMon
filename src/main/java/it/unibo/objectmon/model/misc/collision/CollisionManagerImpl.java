@@ -18,7 +18,7 @@ public class CollisionManagerImpl implements CollisionManager {
     private final Set<AbstractNPC> npcs;
 
     /**
-     * Constructs a new {@link CollisionManagerImpl} instance with the specified world and set of NPCs.
+     * Creates a new {@link CollisionManagerImpl} instance with the specified world and set of NPCs.
      *
      * @param world the game world in which collisions are checked.
      * @param npcs  the set of non-player characters in the game.

@@ -14,8 +14,8 @@ import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
-import it.unibo.objectmon.model.item.api.BallItem;
-import it.unibo.objectmon.model.item.api.HealItem;
+import it.unibo.objectmon.model.item.api.Objectball;
+import it.unibo.objectmon.model.item.api.HealingItem;
 
 /**
  * The panel responsible for sending the player choices to the model.
@@ -132,11 +132,11 @@ public final class CommandPanel extends JPanel {
         final int[] itemCounter = {0};
         for (final var entry : controller.getPlayer().getInventory().getItems().entrySet()) {
             final JButton itemButton = new JButton(entry.getKey().getName() + ": " + entry.getValue());
-            if (entry.getKey() instanceof HealItem) {
-                final HealItem heal = (HealItem) entry.getKey();
-                itemButton.setToolTipText("Restores: " + heal.getHealPoints() + " HP");
-            } else if (entry.getKey() instanceof BallItem) {
-                final BallItem ball = (BallItem) entry.getKey();
+            if (entry.getKey() instanceof HealingItem) {
+                final HealingItem heal = (HealingItem) entry.getKey();
+                itemButton.setToolTipText("Restores: " + heal.getHealedHPs() + " HP");
+            } else if (entry.getKey() instanceof Objectball) {
+                final Objectball ball = (Objectball) entry.getKey();
                 itemButton.setToolTipText("Catch rate multiplier : " + ball.getCatchMultiplier());
             }
             final int currentItemCount = itemCounter[0];

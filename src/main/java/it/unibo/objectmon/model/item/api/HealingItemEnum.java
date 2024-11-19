@@ -1,21 +1,21 @@
 package it.unibo.objectmon.model.item.api;
 
 /**
- * Enum item Heal.
+ * The healing items in the game.
  */
-public enum HealEnum {
+public enum HealingItemEnum {
     /**
-     * This potion heals a moderate amount of HP to an Objectmon.
+     * The potion heals a moderate amount of HP.
      */
     POTION("Potion", 100, 50, "/items/potion.png", 
     "The least powerful healing item. Popular among novice trainers."),
     /**
-     * This super potion heals a considerable amount of HP to an Objectmon.
+     * The super potion heals a considerable amount of HP.
      */
     SUPERPOTION("Super Potion", 200, 100, "/items/superpotion.png", 
-    "Balanced in price and performance, this is the best seller in the market right now."),
+    "The is the best seller in the market right now."),
     /**
-     * This hyper potion heals a large amount of HP to an Objectmon.
+     * The hyper potion heals a large amount of HP.
      */
     HYPERPOTION("Hyper Potion", 500, 200, "/items/hyperpotion.png", 
     "The latest healing item developed by the Objectmon Corporation. Highly effective but quite expensive.");
@@ -26,7 +26,7 @@ public enum HealEnum {
     private final String imagePath;
     private final String description;
 
-    HealEnum(final String name, 
+    HealingItemEnum(final String name, 
         final int value, 
         final int healingAmount, 
         final String imagePath, 
@@ -39,40 +39,45 @@ public enum HealEnum {
     }
 
     /**
-     * returns the name of the item.
-     * @return name
+     * Retrieves the name of the heal.
+     * 
+     * @return The name of the heal.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * returns the cost of the item.
-     * @return value
+     * Retrieves the value of the heal.
+     * 
+     * @return The value of the heal.
      */
     public int getValue() {
         return this.value;
     }
 
     /**
-     * returns the healing amount of the item.
-     * @return healPoint
+     * Retrieves the amount healed by the item.
+     * 
+     * @return The amount of HP the item is capable of healing.
      */
     public int getHealingAmount() {
         return this.healingAmount;
     }
 
     /**
-     * Returns the image path of the ite,m.
-     * @return imagePath
+     * Retrieves the image path of the heal.
+     * 
+     * @return The image path of the heal.
      */
     public String getImagePath() {
         return this.imagePath;
     }
 
     /**
-     * Returns the description of the item.
-     * @return description
+     * Retrieves the description of the heal.
+     * 
+     * @return The description of the heal.
      */
     public String getDescription() {
         return this.description;

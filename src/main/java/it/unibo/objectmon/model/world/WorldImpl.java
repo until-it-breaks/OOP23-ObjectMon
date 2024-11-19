@@ -20,7 +20,7 @@ public final class WorldImpl implements World {
     private Coord startingPosition;
 
     /**
-     * Constructs a new World and initializes it by loading tiles from a config.
+     * Creates a new world and initializes it by loading tiles from a config.
      * 
      * @param config The config from which default settings are taken.
      */

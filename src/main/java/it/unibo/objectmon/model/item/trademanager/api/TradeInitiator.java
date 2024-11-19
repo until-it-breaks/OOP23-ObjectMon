@@ -8,5 +8,5 @@ public interface TradeInitiator {
     /**
      * Signals the start of a trade session.
      */
-    void startTrade();
+    void tradeStarted();
 }

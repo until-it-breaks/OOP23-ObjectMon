@@ -9,7 +9,7 @@ import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
 /**
- * A {@link Inventory} wrapper that only expose getters.
+ * An {@link Inventory} wrapper that only exposes getters.
  */
 @SuppressFBWarnings(
     value = "EI_EXPOSE_REP2", 
@@ -19,7 +19,8 @@ public final class InventoryReadOnly implements Inventory {
     private final Inventory inventory;
 
     /**
-     * Constructs a new read-only Inventory instance that wraps the given {@link Inventory} object.
+     * Creates a new read-only Inventory instance that wraps the given {@link Inventory} object.
+     * 
      * @param inventory The inventory to be wrapped.
      */
     public InventoryReadOnly(final Inventory inventory) {

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import com.google.gson.Gson;
 
 /**
- * Represents map data loaded from a JSON file for use in the game environment.
+ * Represents map data loaded from a JSON file.
  * This class provides methods for deserializing map data and accessing its properties.
  */
 public final class MapData {
@@ -25,7 +25,7 @@ public final class MapData {
     private final int startingY;
 
     /**
-     * Constructs a MapData object with the given map dimensions and data.
+     * Creates a MapData object with the given map dimensions and data.
      * This constructor is private and is used internally for creating MapData instances.
      *
      * @param height The height of the map.
@@ -93,7 +93,7 @@ public final class MapData {
      * 
      * @param path the path that points to the map file.
      * @return A MapData object representing the loaded map data.
-     * @throws IllegalStateException If an error occurs while loading map data.
+     * @throws IllegalStateException When an error occurs while loading map data.
      */
     public static MapData loadFromJson(final String path) {
         try (InputStream inputStream = MapData.class.getResourceAsStream(path);
