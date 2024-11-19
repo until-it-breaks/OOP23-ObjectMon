@@ -14,7 +14,7 @@ public final class UseItem implements Command {
     private final int index;
 
     /**
-     * Uses an item in the inventory.
+     * Saves the index of the item to be used.
      * 
      * @param index Index of the item to be used.
      */

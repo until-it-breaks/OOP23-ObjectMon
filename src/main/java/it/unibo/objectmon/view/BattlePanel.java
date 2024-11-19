@@ -32,7 +32,7 @@ public class BattlePanel extends JPanel {
         this.setDoubleBuffered(true);
         this.setLayout(new BorderLayout());
 
-        // Left panel (CombatPanel and CommandPanel)
+        // Left panel (CombatPanel and CommandPanel).
         final JPanel leftPanel = new JPanel(new GridBagLayout());
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = 1.0;
@@ -51,14 +51,14 @@ public class BattlePanel extends JPanel {
         gbc.weighty = COMMAND_PANEL_RATIO;
         leftPanel.add(commandPanel, gbc);
 
-        // Right panel (BattleLog)
+        // Right panel (BattleLog).
         final JPanel rightPanel = new JPanel(new BorderLayout());
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final int width = (int) (screenSize.width * RIGHT_PANEL_RATIO);
         rightPanel.setPreferredSize(new Dimension(width, 0));
         this.add(rightPanel, BorderLayout.EAST);
 
-        // Log Panel
+        // Log Panel.
         final BattleLog battleLog = new BattleLog(controller);
         rightPanel.add(battleLog, BorderLayout.CENTER);
     }

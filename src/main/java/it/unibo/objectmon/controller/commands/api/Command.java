@@ -8,7 +8,7 @@ import it.unibo.objectmon.model.Model;
 public interface Command {
 
     /**
-     * The tasks to be executed.
+     * The task to be executed.
      * @param model the model on which to execute.
      */
     void execute(Model model);

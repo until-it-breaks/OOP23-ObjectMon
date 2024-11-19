@@ -12,7 +12,7 @@ public final class SellItem implements Command {
     private final Item item;
 
     /**
-     * Construct the item selling.
+     * Saves the item to be sold.
      * 
      * @param item item to be sold.
      */

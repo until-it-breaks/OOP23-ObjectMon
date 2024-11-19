@@ -11,7 +11,7 @@ public final class UseSkill implements Command {
     private final int index;
 
     /**
-     * Construct a command with an index.
+     * Saves the index of the skill to be used.
      * 
      * @param index index of the skill in the List.
      */

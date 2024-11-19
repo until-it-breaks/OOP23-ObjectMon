@@ -108,7 +108,7 @@ public final class SwingViewImpl implements View {
                 "Game Paused",
                 JOptionPane.PLAIN_MESSAGE);
         setCurrentPanel(new OverWorldPanel(controller));
-        // Check if the game has ended
+        // Check if the game has ended.
         if (controller.isLoss() || controller.isWin()) {
             controller.notifyCommand(new EndGame());
         }

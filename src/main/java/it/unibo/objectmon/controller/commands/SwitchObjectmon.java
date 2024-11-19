@@ -12,9 +12,9 @@ public final class SwitchObjectmon implements Command {
     private final int index;
 
     /**
-     * Constructs the command with an index.
+     * Saves the index of the objectmon to be switched.
      * 
-     * @param index index of objectmon to be switched to fight.
+     * @param index index of objectmon to be switched into the fight.
      */
     public SwitchObjectmon(final int index) {
         this.index = index;
