@@ -8,7 +8,6 @@ public enum GameState {
     /**
      * Exploration mode.
      */
-
     EXPLORATION,
 
     /**
@@ -27,12 +26,12 @@ public enum GameState {
     PAUSE,
 
     /**
-     * When game ends.
+     * Victory or defeat resolution mode.
      */
-    END,
+    ENDING,
 
     /**
-     * The default mode.
+     * Unused mode.
      */
     NONE,
 }

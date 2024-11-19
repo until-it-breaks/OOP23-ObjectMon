@@ -14,7 +14,7 @@ import it.unibo.objectmon.view.utility.RenderingUtils;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.gamestate.GameState;
@@ -92,7 +92,7 @@ public final class CombatPanel extends JPanel {
         final int levelWidth = fm.stringWidth(levelText);
         g.drawString(levelText, x + (getWidth() / 4) - (levelWidth / 2), y + Y_OFFSET * 2);
         // Draws the objectmon health.
-        final String healthText = "Health: " + objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP);
+        final String healthText = "Health: " + objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatEnum.HP);
         final int healthWidth = fm.stringWidth(healthText);
         g.drawString(healthText, x + (getWidth() / 4) - (healthWidth / 2), y + Y_OFFSET * 3);
     }

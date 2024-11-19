@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class responsible for managing game state.
+ * A class responsible for managing the game state.
  */
 public final class GameStateManagerImpl implements GameStateManager {
 
@@ -12,7 +12,7 @@ public final class GameStateManagerImpl implements GameStateManager {
     private final List<Observer> observers;
 
     /**
-     * Constructs a game state manager.
+     * Creates a new game state manager.
      */
     public GameStateManagerImpl() {
         this.gameState = GameState.NONE;

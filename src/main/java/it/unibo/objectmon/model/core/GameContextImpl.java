@@ -18,7 +18,7 @@ public final class GameContextImpl implements GameContext {
     private final Set<AbstractNPC> npcs;
 
     /**
-     * Constructs a GameContextImpl instance with the specified world, player, and NPC manager.
+     * Creates a GameContextImpl instance with the specified world, player and NPC manager.
      * 
      * @param world The game world associated with the context.
      * @param player The player associated with the context.

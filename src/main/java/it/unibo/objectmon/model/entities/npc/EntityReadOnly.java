@@ -18,7 +18,7 @@ public class EntityReadOnly {
     private final AbstractNPC npc;
 
     /**
-     * Constructs a read-only view of the specified NPC.
+     * Creates a read-only view of the specified NPC.
      * 
      * @param npc The NPC for which a read-only view is created.
      */

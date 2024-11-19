@@ -94,7 +94,7 @@ public final class SwingViewImpl implements View {
             case PAUSE:
                 showResumeDialog();
                 break;
-            case END:
+            case ENDING:
                 setCurrentPanel(new EndPanel(controller));
                 break;
             default:

@@ -15,10 +15,10 @@ public abstract class AbstractEntity implements Entity {
     private final UUID id;
 
     /**
-     * Constructs a simple entity.
+     * Creates a simple entity.
      * 
-     * @param name the name of the entity.
-     * @param coord the starting position of the entity.
+     * @param name The name of the entity.
+     * @param coord The starting position of the entity.
      */
     public AbstractEntity(final String name, final Coord coord) {
         this.name = name;
@@ -76,9 +76,9 @@ public abstract class AbstractEntity implements Entity {
 
     /**
      * Indicates whether some other object is equal to this NPC.
-     * The {@link UUID} is also used to make the comparison.
+     * The {@link UUID} is also used for the comparison.
      * 
-     * @param obj The reference object with which to compare.
+     * @param obj The reference object to compare with.
      * @return {@code true} if this NPC is the same as the obj argument; {@code false} otherwise.
      */
     @Override

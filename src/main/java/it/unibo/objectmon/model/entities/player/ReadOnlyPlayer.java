@@ -17,9 +17,9 @@ public final class ReadOnlyPlayer implements Player {
     private final Player player;
 
     /**
-     * Constructs a new read-only player instance that wraps the given {@link Player} object.
+     * Creates a new read-only player instance that wraps the given {@link Player} object.
      *
-     * @param player The player instance to wrap.
+     * @param player The player instance to be wrapped.
      */
     public ReadOnlyPlayer(final Player player) {
         this.player = player;

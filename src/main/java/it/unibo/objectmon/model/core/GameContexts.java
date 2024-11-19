@@ -18,7 +18,6 @@ import it.unibo.objectmon.model.world.api.Worlds;
 
 /**
  * Utility class for creating default instances of {@link GameContext}.
- * This class provides a method to create a default game context with predefined settings.
  */
 public final class GameContexts {
 
@@ -27,7 +26,7 @@ public final class GameContexts {
 
     /**
      * Creates a default game context with predefined settings, including a default world,
-     * player, and a set of NPCs.
+     * player and a set of NPCs.
      * 
      * @param battleInitiator A listener responsible for starting battles.
      * @param tradeInitiator A listener responsible for starting a trade session.

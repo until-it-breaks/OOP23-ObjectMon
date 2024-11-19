@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Seller;
 import it.unibo.objectmon.model.entities.api.Trainer;
@@ -152,7 +152,7 @@ public final class OverWorldPanel extends JPanel {
             // Draws the level above the health counter.
             g.drawString("Lv." + objectmon.getLevel(), offsetX, offsetY - TILE_SIZE / 2);
             // Draws the health counter above the image.
-            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
+            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatEnum.HP),
             offsetX, offsetY - TILE_SIZE / FONT_SIZE);
             offsetX += TILE_SIZE;
         }

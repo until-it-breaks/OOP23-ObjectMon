@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.entities.npc;
 
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.entities.api.AbstractNPC;
 import it.unibo.objectmon.model.entities.api.Healer;
 import it.unibo.objectmon.model.entities.api.Player;
@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.world.api.Coord;
 public final class HealerImpl extends AbstractNPC implements Healer {
 
     /**
-     * Constructs a new Healer NPC.
+     * Creates a new Healer NPC.
      * 
      * @param name The name of the healer NPC.
      * @param coord The starting position of the healer NPC.
@@ -32,7 +32,7 @@ public final class HealerImpl extends AbstractNPC implements Healer {
     @Override
     public void healTeam(final ObjectmonParty team) {
         for (final var objectmon : team.getParty()) {
-            objectmon.setCurrentHp(objectmon.getStats().getSingleStat(StatId.HP));
+            objectmon.setCurrentHp(objectmon.getStats().getSingleStat(StatEnum.HP));
         }
     }
 }

@@ -1,11 +1,13 @@
 package it.unibo.objectmon.model.gamestate;
+
 /**
- * functional interface: it only set the gamestate.
+ * Functional interface that only sets the gamestate.
  */
 public interface GameStateSetter {
     /**
+     * Sets the new game state
      * 
-     * @param gameState new gamestate to set.
+     * @param gameState The new gamestate to be set.
      */
     void setGameState(GameState gameState);
 }

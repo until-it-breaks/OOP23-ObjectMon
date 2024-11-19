@@ -3,7 +3,7 @@ package it.unibo.objectmon.model.entities.api;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
 
 /**
- * Represents an {@link Entity} capable of fighting with its {@link ObjectmonParty}.
+ * Represents an {@link Entity} capable of battling with its {@link ObjectmonParty}.
  */
 public interface Trainer extends Entity {
 

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.world.api.Coord;
 import it.unibo.objectmon.view.utility.ImageLoader;
 import it.unibo.objectmon.view.utility.ImageLoaderImpl;
@@ -132,7 +132,7 @@ public final class EndPanel extends JPanel {
             // Draws level text above the health counter.
             g.drawString("Lv." + objectmon.getLevel(), myOffsetX, offsetY - TILE_SIZE / 2);
             // Draw health counter above the image.
-            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
+            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatEnum.HP),
             myOffsetX, offsetY - TILE_SIZE / FONT_SIZE);
             myOffsetX += TILE_SIZE;
         }

@@ -6,7 +6,7 @@ package it.unibo.objectmon.model.gamestate;
 public interface Observer {
 
     /**
-     * The reaction of the notified object.
+     * Reaction of the notified object.
      */
     void update();
 }

@@ -13,7 +13,7 @@ import it.unibo.objectmon.controller.commands.UseItem;
 import it.unibo.objectmon.controller.commands.UseSkill;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.item.api.Objectball;
 import it.unibo.objectmon.model.item.api.HealingItem;
 
@@ -116,7 +116,7 @@ public final class CommandPanel extends JPanel {
                     drawStartingButtons();
             });
             switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspects().toString()
-            + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatId.HP));
+            + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatEnum.HP));
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;
             gbc.gridx++;

@@ -12,7 +12,7 @@ public final class EndGame implements Command {
     @Override
     public void execute(final Model model) {
         if (model.getGameState().equals(GameState.PAUSE)) {
-           model.getEndGameManager().startEnd();
+           model.getEndGameManager().startEnding();
         }
     }
 }

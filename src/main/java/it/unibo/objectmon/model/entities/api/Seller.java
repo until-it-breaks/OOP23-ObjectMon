@@ -1,7 +1,7 @@
 package it.unibo.objectmon.model.entities.api;
 
 /**
- * Defines a seller NPC behaviour.
+ * Defines a seller NPC's behaviour.
  */
 public interface Seller {
 

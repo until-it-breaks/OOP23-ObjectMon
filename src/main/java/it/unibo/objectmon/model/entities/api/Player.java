@@ -11,8 +11,8 @@ public interface Player extends Trainer {
     /**
      * Attempts to move the player towards a direction.
      * 
-     * @param direction the direction to move towards.
-     * @param collisionChecker the collision checker that will determine whether the player is able to move.
+     * @param direction The direction to move towards.
+     * @param collisionChecker The collision checker that will determine whether the player is able to move through.
      */
     void move(Direction direction, CollisionManager collisionChecker);
 

@@ -16,7 +16,7 @@ import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
- * This will be the implementation of {@link Player}.
+ * The concrete implementation of {@link Player}.
  */
 public final class PlayerImpl extends AbstractEntity implements Player {
 
@@ -25,7 +25,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
     private final List<Observer> observers;
 
     /**
-     * Constructs a new Player.
+     * Creates a new Player.
      * 
      * @param name The name of the player.
      * @param coord The starting position of the player.

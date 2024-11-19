@@ -23,7 +23,7 @@ public final class TrainerImpl extends AbstractNPC implements Trainer {
     private final BattleInitiator battleInitiator;
 
     /**
-     * Constructs a new Trainer.
+     * Creates a new Trainer.
      * 
      * @param name The name of the Trainer.
      * @param coord The starting position of the Trainer.

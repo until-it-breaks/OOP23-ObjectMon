@@ -22,9 +22,6 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
 
     private final GameContext gameContext;
     private final BattleInitiator battleInitiator;
-    /**
-     * The chance of triggering a random encounter on a suitable tile.
-     */
     public static final double ENCOUNTER_RATE = 0.2;
     private final Random random = new Random();
     private final int graceDuration;
@@ -32,10 +29,11 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
     private boolean gracePeriodActive;
 
     /**
-     * Constructs a RandomEncounterManagerImpl instance.
-     * @param gameContext the game context providing informations about the game state
-     * @param battleInitiator the manager responsible to start the battle
-     * @param graceDuration the duration of the grace period
+     * Creates a RandomEncounterManagerImpl instance.
+     * 
+     * @param gameContext The game context providing informations about the game state.
+     * @param battleInitiator The manager responsible to start the battle.
+     * @param graceDuration The duration of the grace period.
      */
     public RandomEncounterManagerImpl(final GameContext gameContext, 
         final BattleInitiator battleInitiator, 
@@ -71,7 +69,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
         return random.nextDouble() <= ENCOUNTER_RATE;
     }
 
-    // Stars a random encounter by selecting a wild Objectmon with an average level 
+    // Stars a random encounter by selecting a wild Objectmon with an average level
     // based on the player's party and initiates a battle.
     private void startRandomEncounter() {
         final int wildLevel = (int) gameContext.getPlayer().getObjectmonParty().getParty().stream()
@@ -80,7 +78,7 @@ public final class RandomEncounterManagerImpl implements Observer, RandomEncount
             .getAsDouble();
         final Objectmon wildObjectmon = ObjectmonFactory.createObjectmon(selectRandomObjectmon(), wildLevel);
         battleInitiator.startBattle(gameContext.getPlayer(), Optional.empty(), Optional.of(wildObjectmon));
-        // Activate grace period after encountering.
+        // Activate grace period after the encounter.
         activateGracePeriod();
     }
 

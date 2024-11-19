@@ -16,8 +16,9 @@ public interface RandomEncounterManager {
     void activateGracePeriod();
 
     /**
-     * Returns wheter the grace state is active.
-     * @return the grace state
+     * Returns whether the grace state is active.
+     * 
+     * @return true if grace is active, false otherwise.
      */
     boolean isGracePeriodActive();
 }

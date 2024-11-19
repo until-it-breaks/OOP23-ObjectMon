@@ -3,82 +3,82 @@ package it.unibo.objectmon.model.data.api.aspect;
 import java.util.List;
 
 /**
- *  Aspect correspond to Pokémon's Type.
- *  Aspects are used on Objectmon (List of max 2 Aspects) and
- *  In a Skill (A Skill has only one Aspect).
+ *  An objectmon may have up to 2 elemental types.
+ *  Its skills may only have 1.
  */
-public enum Aspect {
+public enum ElementalType {
 
     /**
-     * Aspect of Normal.
+     * Normal type.
      */
     NORMAL("Normal"),
 
     /**
-     * Aspect of Grass.
+     * Grass type.
      */
     GRASS("Grass"),
 
     /**
-     * Aspect of Fire.
+     * Fire type.
      */
     FIRE("Fire"),
 
     /**
-     * Aspect of Water.
+     * Water type.
      */
     WATER("Water"),
 
     /**
-     * Aspect of Flying.
+     * Flying type.
      */
     FLYING("Flying"),
 
     /**
-     * Aspect of Poison.
+     * Poison type.
      */
     POISON("Poison"),
 
     /**
-     * Aspect of Ground.
+     * Ground type.
      */
     GROUND("Ground"),
 
     /**
-     * Aspect of Rock.
+     * Rock type.
      */
     ROCK("Rock"),
 
     /**
-     * Aspect of Fighting.
+     * Fighting type.
      */
     FIGHTING("Fighting"),
 
     /**
-     * Aspect of Bug.
+     * Bug type.
      */
     BUG("Bug");
 
     private final String aspectName;
 
     /**
-     * Constructor of the enum Aspect.
+     * Creates an elemental type.
      * 
-     * @param name Name of the Aspect.
+     * @param name The name of the elemental type.
      */
-    Aspect(final String name) {
+    ElementalType(final String name) {
         this.aspectName = name;
     }
 
     /**
-     * Getter of the name of the Aspect.
+     * Retrieves the name of the elemental type.
      * 
-     * @return Returns the name of the Aspect.
+     * @return The name of the elemental type.
      */
     public String getAspectName() {
         return this.aspectName;
     }
 
+    // TODO
     /**
      * Method that checks if the Aspect of an Objectmon are the same of a move.
      * To check if an aspect is the same as another equals should be used.
@@ -86,9 +86,9 @@ public enum Aspect {
      * @param objectmonAspects The Aspect of the Objectmon
      * @return  Returns true if it's the same, false otherwise.
      */
-    public boolean sameAspect(final List<Aspect> objectmonAspects) {
+    public boolean sameAspect(final List<ElementalType> objectmonAspects) {
         boolean isSame = false;
-        for (final Aspect singleAspect : objectmonAspects) {
+        for (final ElementalType singleAspect : objectmonAspects) {
             isSame = isSame || this.equals(singleAspect);
         }
         return isSame;

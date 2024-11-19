@@ -1,12 +1,12 @@
 package it.unibo.objectmon.model.gamestate;
 
 /**
- * Models the WIN or LOSS mode.
+ * Models the game ending.
  */
 public interface EndGameManager {
 
     /**
-     * Starts the END mode.
+     * Starts the ending
      */
-    void startEnd();
+    void startEnding();
 }

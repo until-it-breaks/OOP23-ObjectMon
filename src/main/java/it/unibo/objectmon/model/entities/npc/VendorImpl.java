@@ -15,7 +15,7 @@ public final class VendorImpl extends AbstractNPC implements Seller {
     private final TradeInitiator tradeInitiator;
 
     /**
-     * Constructs a new Seller NPC.
+     * Creates a new Seller NPC.
      * 
      * @param name The name of the seller.
      * @param coord The starting position of the seller.

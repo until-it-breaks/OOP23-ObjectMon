@@ -7,25 +7,28 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.misc.eventlog.api.InteractionLogger;
 import it.unibo.objectmon.model.world.api.Coord;
+
 /**
- * read only: Models an NPC capable of battling.
+ * Read only wrapper for NPCs capable of battling.
  */
 public final class ReadOnlyTrainer extends AbstractNPC implements Trainer {
     private final Trainer trainer;
 
     /**
-     * constructs with a given trainer.
-     * @param trainer the trainer to be wrapped
+     * Creates a wrapper for a given trainer.
+     * 
+     * @param trainer The trainer to be wrapped.
      */
     public ReadOnlyTrainer(final Trainer trainer) {
         this(trainer.getName(), trainer.getPosition(), trainer);
     }
 
     /**
-     * super constructor.
-     * @param name name of trainer.
-     * @param coord coord of trainer.
-     * @param trainer existing trainer.
+     * Alternative constructor.
+     * 
+     * @param name The name of trainer.
+     * @param coord The position of a trainer.
+     * @param trainer The trainer to be wrapped.
      */
     public ReadOnlyTrainer(final String name, final Coord coord, final Trainer trainer) {
         super(name, coord);

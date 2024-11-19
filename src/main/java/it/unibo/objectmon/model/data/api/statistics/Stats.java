@@ -4,32 +4,25 @@ import java.util.Map;
 
 /**
  * Interface of Statistics.
- * <br>An Objectmon has 6 Stats:
- * <br>Hp, that determines the max Heal Points of an Objectmon;
- * <br>Atk, that determines the attack of an Objectmon;
- * <br>Def, that determines the defense of an Objectmon;
- * <br>SpAtk, that determines the special attack of an Objectmon;
- * <br>SpDef, that determines the special defense of an Objectmon;
- * <br>Spd, that determines the speed of an Objectmon.
- * <br>
- * <br>The Stats of an Objectmon are modified when leveling up.
- * <br>An Objectmon levels up when their Exp reaches 100 or more.
- * <br>When they do, each stat is multiplied by the STATGROWTHVARIATION.
+ * An Objectmon has 6 Stats:
+ * HP, Attack, Defense, SpecialAttack, SpecialDefense and Speed.
+ * 
+ * The stats of an Objectmon are modified once leveled up.
  */
 public interface Stats {
 
     /**
-     * Getter of the Map of the Stats.
+     * Retrieves the map of stats.
      * 
-     * @return Returns the Map of the stats.
+     * @return Returns the map of stats.
      */
-    Map<StatId, Integer> getStats();
+    Map<StatEnum, Integer> getStats();
 
     /**
-     * Getter of a single stat of Stats.
+     * Retrieves a single stat.
      * 
-     * @param id Id of the Statistic
-     * @return The value of the Statistic
+     * @param stat The stat of interest.
+     * @return The value of the stat.
      */
-    int getSingleStat(StatId id);
+    int getSingleStat(StatEnum stat);
 }
