@@ -12,9 +12,8 @@ import it.unibo.objectmon.model.world.api.World;
 import java.util.Optional;
 
 /**
- * The Controller interface.
- * It defines methods for managing game commands,
- * controlling game state, retrieving game entities.
+ * Defines methods for managing game commands,
+ * controlling game state and retrieving game entities.
  */
 public interface Controller {
 
@@ -101,14 +100,14 @@ public interface Controller {
      * 
      * @return true if all Trainers have been defeated, false otherwise.
      */
-    boolean isWin();
+    boolean gameWon();
 
     /**
      * Checks if the player lost the game.
      * 
      * @return true if all the Player's Objectmon are dead. false otherwise.
      */
-    boolean isLoss();
+    boolean gameLost();
 
     /**
      * Shuts down the game.

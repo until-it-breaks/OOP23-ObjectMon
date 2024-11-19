@@ -37,7 +37,7 @@ public final class EndPanel extends JPanel {
      * @param controller The {@link Controller} responsible for managing inputs and providing game data.
      */
     public EndPanel(final Controller controller) {
-        this.isWin = controller.isWin();
+        this.isWin = controller.gameWon();
         this.setDoubleBuffered(true);
         this.setBackground(Color.BLACK);
         this.controller = controller;

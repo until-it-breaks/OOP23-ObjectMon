@@ -12,7 +12,8 @@ import it.unibo.objectmon.view.View;
  */
 public final class GameLoopImpl implements GameLoop {
     /**
-     * The target frame rate.
+     * 30 FPS seems to be the most stable.
+     * 60 and above is unstable due to Thread.sleep() being unreliable.
      */
     public static final int TARGET_FPS = 30;
     private static final int SECOND_IN_MILLIS = 1_000;
@@ -27,7 +28,7 @@ public final class GameLoopImpl implements GameLoop {
      * Constructs a new Game Loop.
      *
      * @param view The view where the game will be rendered.
-     * @param controller The controller where the commands are polled.
+     * @param controller The controller where the commands are polled from.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP",
     justification = "The game engine has the ability to shut down the view")
@@ -38,9 +39,8 @@ public final class GameLoopImpl implements GameLoop {
     }
 
     /**
-     * The methods that starts the game loop.
-     * It updates the game state and rendering frames until stopped.
-     * This method should be called once to begin the game loop.
+     * Starts the game loop.
+     * This method should be called only once.
      */
     @Override
     public void start() {

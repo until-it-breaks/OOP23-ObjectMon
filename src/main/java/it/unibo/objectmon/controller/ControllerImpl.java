@@ -160,7 +160,7 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public boolean isWin() {
+    public boolean gameWon() {
         for (final var npc : this.model.getGameContext().getNPCs()) {
             if (npc instanceof Trainer) {
                 final Trainer trainer = (TrainerImpl) npc;
@@ -173,7 +173,7 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public boolean isLoss() {
+    public boolean gameLost() {
         return this.model.getGameContext().getPlayer().isDefeated();
     }
 

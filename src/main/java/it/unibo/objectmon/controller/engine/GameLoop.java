@@ -1,9 +1,8 @@
 package it.unibo.objectmon.controller.engine;
 
 /**
- * A game loop interface responsible for managing the main loop of a game.
- * Implementations of this interface control the flow of the game,
- * including starting and stopping the continuous update and rendering cycle.
+ * Implementations of this interface allow control the flow of the game,
+ * including starting and stopping the updates and rendering cycle.
  */
 public interface GameLoop {
 

@@ -109,7 +109,7 @@ public final class SwingViewImpl implements View {
                 JOptionPane.PLAIN_MESSAGE);
         setCurrentPanel(new OverWorldPanel(controller));
         // Check if the game has ended.
-        if (controller.isLoss() || controller.isWin()) {
+        if (controller.gameLost() || controller.gameWon()) {
             controller.notifyCommand(new EndGame());
         }
     }
