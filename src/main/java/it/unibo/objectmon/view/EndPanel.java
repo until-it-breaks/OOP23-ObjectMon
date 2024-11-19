@@ -123,15 +123,15 @@ public final class EndPanel extends JPanel {
         int myOffsetX = offsetX;
         for (final Objectmon objectmon : objectmonList) {
             final BufferedImage image = imageLoader.getImage("/hud/objectmons/" + objectmon.getName() + ".png");
-            //Draw the objectmon portrait
+            // Draws the objectmon portrait.
 
-            //g.drawImage(image, playerCoord.x() * TILE_SIZE, playerCoord.y() * TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
+            // g.drawImage(image, playerCoord.x() * TILE_SIZE, playerCoord.y() * TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
             g.drawImage(image, myOffsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
             g.setFont(new Font("Arial", Font.PLAIN, FONT_SIZE));
             g.setColor(Color.BLACK);
-            // Draw level text above the health counter
+            // Draws level text above the health counter.
             g.drawString("Lv." + objectmon.getLevel(), myOffsetX, offsetY - TILE_SIZE / 2);
-            // Draw health counter above the image
+            // Draw health counter above the image.
             g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
             myOffsetX, offsetY - TILE_SIZE / FONT_SIZE);
             myOffsetX += TILE_SIZE;

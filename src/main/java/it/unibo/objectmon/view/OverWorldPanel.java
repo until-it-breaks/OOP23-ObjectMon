@@ -67,17 +67,17 @@ public final class OverWorldPanel extends JPanel {
         if (g instanceof Graphics2D) {
             final Graphics2D graphics2d = (Graphics2D) g;
             RenderingUtils.configureRenderingHints(graphics2d);
-            //Computes the offset needed to center the camera.
+            // Computes the offset needed to center the camera.
             final int playerX = controller.getPlayer().getPosition().x() * TILE_SIZE;
             final int playerY = controller.getPlayer().getPosition().y() * TILE_SIZE;
             final double cameraX = getWidth() / 2 - playerX;
             final double cameraY = getHeight() / 2 - playerY;
-            //Centers the camera.
+            // Centers the camera.
             graphics2d.translate(cameraX, cameraY);
             drawWorld(graphics2d);
             drawNPCs(graphics2d);
             drawPlayer(graphics2d);
-            //Reverts to the previous position.
+            // Reverts to the previous position.
             graphics2d.translate(-cameraX, -cameraY);
             drawHUD(graphics2d);
             graphics2d.dispose();
@@ -117,21 +117,21 @@ public final class OverWorldPanel extends JPanel {
         final List<String> messages = controller.getInteractionLog();
         final int lineHeight = 20;
         final int boxHeight = InteractionLoggerImpl.LIMIT * lineHeight;
-        //Calculate the position and size of the black box at the bottom left of the panel
+        // Calculates the position and size of the black box at the bottom left of the panel.
         final int boxX = 0;
         final int boxY = getHeight() - boxHeight;
-        final int boxWidth = getWidth() / 2; //Adjusted to cover half of the panel width
-        //Draw the border
+        final int boxWidth = getWidth() / 2; // Adjusted to cover half of the panel width.
+        // Draws the border.
         g.setColor(Color.LIGHT_GRAY);
         g.drawRect(boxX, boxY, boxWidth, boxHeight);
-        //Fill the black box
+        // Fills the black box.
         g.setColor(Color.BLACK);
         g.fillRect(boxX + 1, boxY + 1, boxWidth - 1, boxHeight - 1);
         g.setColor(Color.WHITE);
         g.setFont(new Font(FONT_NAME, Font.PLAIN, FONT_SIZE));
-        //Adjustment to draw text a little higher
+        // Adjustment to draw the text a little higher.
         final int startY = boxY + lineHeight - 5; 
-        //Draw messages from the top to the bottom.
+        // Draws messages from the top to the bottom.
         for (int i = 0; i < messages.size(); i++) {
             final String message = messages.get(i);
             g.drawString(message, boxX + 10, startY + (i * lineHeight));
@@ -145,13 +145,13 @@ public final class OverWorldPanel extends JPanel {
 
         for (final Objectmon objectmon : objectmonList) {
             final BufferedImage image = imageLoader.getImage("/hud/objectmons/" + objectmon.getName() + ".png");
-            //Draw the objectmon portrait
+            // Draws the objectmon portrait.
             g.drawImage(image, offsetX, offsetY, TILE_SIZE, TILE_SIZE, null);
             g.setFont(new Font(FONT_NAME, Font.PLAIN, FONT_SIZE));
             g.setColor(Color.WHITE);
-            //Draw level text above the health counter
+            // Draws the level above the health counter.
             g.drawString("Lv." + objectmon.getLevel(), offsetX, offsetY - TILE_SIZE / 2);
-            //Draw health counter above the image
+            // Draws the health counter above the image.
             g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatId.HP),
             offsetX, offsetY - TILE_SIZE / FONT_SIZE);
             offsetX += TILE_SIZE;
