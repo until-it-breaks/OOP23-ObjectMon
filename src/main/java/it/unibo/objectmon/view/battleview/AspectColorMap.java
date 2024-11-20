@@ -3,7 +3,8 @@ package it.unibo.objectmon.view.battleview;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
-import it.unibo.objectmon.model.data.api.aspect.ElementalType;
+
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
 
 /**
  * A utility class used to determine the {@link Color} corresponding to an {@link ElementalType}.

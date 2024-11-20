@@ -5,13 +5,15 @@ import java.util.Optional;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.battle.api.BattleManager;
-import it.unibo.objectmon.model.battle.impl.ReadOnlyBattle;
 import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
+import it.unibo.objectmon.model.gamestate.api.GameState;
+import it.unibo.objectmon.model.gamestate.api.GameStateManager;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
+import it.unibo.objectmon.model.misc.ending.EndGameManager;
 import it.unibo.objectmon.model.misc.interaction.api.InteractionManager;
 
 /**
@@ -72,7 +74,7 @@ public final class ModelImpl implements Model {
     @Override
     public Optional<Battle> getBattleStats() {
         return this.battleManager.getBattleStats().isPresent() 
-        ? Optional.of(new ReadOnlyBattle(this.battleManager.getBattleStats().get()))
+        ? Optional.of(this.battleManager.getBattleStats().get())
         : Optional.empty();
     }
 

@@ -14,7 +14,7 @@ import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.TrainerImpl;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
-import it.unibo.objectmon.model.gamestate.GameStateManager;
+import it.unibo.objectmon.model.gamestate.api.GameStateManager;
 import it.unibo.objectmon.model.world.api.Coord;
 
 import java.util.List;

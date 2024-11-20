@@ -1,7 +1,8 @@
 package it.unibo.objectmon.model.battle.catchsystem;
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
+
 /**
  * a first version of catch system.
  */
@@ -13,7 +14,7 @@ public final class CatchSystemImpl implements CatchSystem {
         return random <= calculateCatchProbability(
                 catchRateMultiplier, 
                 objectmon.getCurrentHp(), 
-                objectmon.getStats().getStat(StatId.HP)
+                objectmon.getStats().getStat(StatEnum.HP)
             );
     }
 

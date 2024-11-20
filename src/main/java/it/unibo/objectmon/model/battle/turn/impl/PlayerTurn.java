@@ -8,9 +8,9 @@ import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.battle.turn.api.ExecuteTurn;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
-import it.unibo.objectmon.model.item.api.BallItem;
-import it.unibo.objectmon.model.item.api.HealItem;
+import it.unibo.objectmon.model.item.api.HealingItem;
 import it.unibo.objectmon.model.item.api.Item;
+import it.unibo.objectmon.model.item.api.Objectball;
 /**
  * execute move of player.
  */
@@ -46,7 +46,7 @@ public final class PlayerTurn implements ExecuteTurn {
                     }
                     break;
                 case USE_HEAL:
-                    useMoves.useHeal(getHeal(index).getHealPoints(), this.battle.getCurrentObjectmon());
+                    useMoves.useHeal(getHeal(index).getHealedHPs(), this.battle.getCurrentObjectmon());
                     this.useItem(index);
                     break;
                 case USE_BALL:
@@ -95,16 +95,16 @@ public final class PlayerTurn implements ExecuteTurn {
             .keySet().stream().skip(index).findFirst().get();
     }
 
-    private HealItem getHeal(final int index) {
-        if (getItem(index) instanceof HealItem) {
-            return (HealItem) getItem(index);
+    private HealingItem getHeal(final int index) {
+        if (getItem(index) instanceof HealingItem) {
+            return (HealingItem) getItem(index);
         }
         throw new IllegalStateException();
     }
 
-    private BallItem getBall(final int index) {
-        if (getItem(index) instanceof BallItem) {
-            return (BallItem) getItem(index);
+    private Objectball getBall(final int index) {
+        if (getItem(index) instanceof Objectball) {
+            return (Objectball) getItem(index);
         }
         throw new IllegalStateException();
     }

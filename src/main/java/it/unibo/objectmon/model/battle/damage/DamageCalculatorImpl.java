@@ -2,9 +2,10 @@ package it.unibo.objectmon.model.battle.damage;
 
 
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
-import it.unibo.objectmon.model.data.api.skill.PotencyChart;
+import it.unibo.objectmon.model.data.api.skill.EfficiencyTableEnum;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
+
 /**
  * a damage calculator calculate the damage in a simple way.
  */
@@ -22,12 +23,12 @@ public class DamageCalculatorImpl implements DamageCalculator {
 
     @Override
     public final double damage(final Objectmon myObjectmon, final Objectmon target) {
-        final PotencyChart potencyChart = PotencyChart.getChart(this.skill.getElementalType());
+        final EfficiencyTableEnum potencyChart = EfficiencyTableEnum.getChart(this.skill.getElementalType());
         final double multiplier = potencyChart.getEffectivenessMultiplier(myObjectmon.getElementalTypes(), target.getElementalTypes());
             return calculateDamage(
                 multiplier,
-                myObjectmon.getStats().getStat(StatId.ATK),
-                target.getStats().getStat(StatId.DEF)
+                myObjectmon.getStats().getStat(StatEnum.ATK),
+                target.getStats().getStat(StatEnum.DEF)
             );
     }
 

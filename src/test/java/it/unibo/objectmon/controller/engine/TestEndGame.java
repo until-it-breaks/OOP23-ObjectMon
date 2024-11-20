@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import it.unibo.objectmon.controller.Controller;
 import it.unibo.objectmon.controller.ControllerImpl;
 import it.unibo.objectmon.controller.commands.EndGame;
-import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.gamestate.api.GameState;
 
 /**
  * Unit tests for the {@link GameLoopImpl} class.
@@ -20,8 +20,8 @@ class TestEndGame {
      */
     @Test
     void testEndGame() {
-        assertFalse(controller.isWin());
-        assertFalse(controller.isLoss());
+        assertFalse(controller.gameLost());
+        assertFalse(controller.gameWon());
 
         // Check that game can't reach end state if not paused.
         controller.notifyCommand(new EndGame());

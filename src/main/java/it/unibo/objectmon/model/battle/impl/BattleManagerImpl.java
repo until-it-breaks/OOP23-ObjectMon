@@ -17,10 +17,10 @@ import it.unibo.objectmon.model.battle.turn.impl.TurnManagerImpl;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.gamestate.GameStateSetter;
+import it.unibo.objectmon.model.gamestate.api.GameState;
+import it.unibo.objectmon.model.gamestate.api.GameStateSetter;
 import it.unibo.objectmon.model.item.api.Item;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
-import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
  * an implementation of battle manager.
