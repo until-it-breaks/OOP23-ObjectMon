@@ -30,7 +30,7 @@ public enum EffectivenessEnum {
     private final double multiplier;
 
     /**
-     * Creates a new efficiency,
+     * Creates a new efficiency.
      * 
      * @param name The name of the efficiency.
      * @param multiplier The damage multiplier assigned to the outcome.

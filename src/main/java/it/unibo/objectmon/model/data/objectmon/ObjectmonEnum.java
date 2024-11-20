@@ -10,7 +10,6 @@ import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 import it.unibo.objectmon.model.data.skill.SkillFactory;
-import it.unibo.objectmon.model.data.skill.SkillImpl;
 
 /**
  * Enum of Objectmon in the game.

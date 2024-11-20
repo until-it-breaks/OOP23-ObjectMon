@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.unibo.objectmon.model.gamestate.api.GameState;
 import it.unibo.objectmon.view.SwingViewImpl;
 
 /**
@@ -46,7 +47,7 @@ private GameStateManagerImpl gameStateManager;
         // Unregister one observer
         gameStateManager.unregisterObserver(observer);
         // Set the game state
-        gameStateManager.setGameState(GameState.END);
+        gameStateManager.setGameState(GameState.ENDING);
         // Verify that only one observer was notified
         verify(observer, never()).update();
     }

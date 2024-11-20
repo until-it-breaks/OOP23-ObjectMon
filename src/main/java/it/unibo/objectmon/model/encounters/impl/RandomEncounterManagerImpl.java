@@ -22,6 +22,9 @@ public final class RandomEncounterManagerImpl implements PlayerObserver, RandomE
 
     private final GameContext gameContext;
     private final BattleInitiator battleInitiator;
+    /**
+     * The chance of encounter at each check.
+     */
     public static final double ENCOUNTER_RATE = 0.2;
     private final Random random = new Random();
     private final int graceDuration;

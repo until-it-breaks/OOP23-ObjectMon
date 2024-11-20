@@ -47,6 +47,6 @@ class TestNPC {
         final TradeInitiator tradeInitiator = mock(TradeInitiator.class);
         final VendorImpl vendor = new VendorImpl("Vendor1", new Coord(0, 0), tradeInitiator);
         vendor.handleInteraction(player, logger);
-        verify(tradeInitiator).startTrade();
+        verify(tradeInitiator).tradeStarted();
     }
 }

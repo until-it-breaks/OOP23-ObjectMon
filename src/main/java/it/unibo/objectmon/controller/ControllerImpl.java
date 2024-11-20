@@ -23,6 +23,7 @@ import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.core.GameContexts;
 import it.unibo.objectmon.model.gamestate.api.GameStateManager;
 import it.unibo.objectmon.model.misc.ending.EndGameManager;
+import it.unibo.objectmon.model.misc.ending.EndGameManagerImpl;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
 import it.unibo.objectmon.model.encounters.impl.RandomEncounterManagerImpl;
 import it.unibo.objectmon.model.entities.api.Player;

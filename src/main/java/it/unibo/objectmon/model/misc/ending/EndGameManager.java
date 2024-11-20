@@ -6,7 +6,7 @@ package it.unibo.objectmon.model.misc.ending;
 public interface EndGameManager {
 
     /**
-     * Starts the ending
+     * Starts the ending.
      */
     void startEnding();
 }

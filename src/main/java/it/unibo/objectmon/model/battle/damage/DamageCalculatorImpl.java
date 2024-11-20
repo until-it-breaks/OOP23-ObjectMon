@@ -24,12 +24,14 @@ public class DamageCalculatorImpl implements DamageCalculator {
     @Override
     public final double damage(final Objectmon myObjectmon, final Objectmon target) {
         final EfficiencyTableEnum potencyChart = EfficiencyTableEnum.getChart(this.skill.getElementalType());
-        final double multiplier = potencyChart.getEffectivenessMultiplier(myObjectmon.getElementalTypes(), target.getElementalTypes());
-            return calculateDamage(
-                multiplier,
-                myObjectmon.getStats().getStat(StatEnum.ATK),
-                target.getStats().getStat(StatEnum.DEF)
-            );
+        final double multiplier = potencyChart.getEffectivenessMultiplier(
+            myObjectmon.getElementalTypes(),
+            target.getElementalTypes());
+        return calculateDamage(
+            multiplier,
+            myObjectmon.getStats().getStat(StatEnum.ATK),
+            target.getStats().getStat(StatEnum.DEF)
+        );
     }
 
     private double calculateDamage(final double multiplier, final int attack, final int defense) {

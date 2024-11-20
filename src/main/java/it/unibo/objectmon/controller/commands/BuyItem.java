@@ -12,7 +12,7 @@ public final class BuyItem implements Command {
     private final Item item;
 
     /**
-     * Saves the item to be bought
+     * Saves the item to be bought.
      * 
      * @param item item to be bought.
      */
