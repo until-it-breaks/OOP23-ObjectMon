@@ -51,7 +51,7 @@ import it.unibo.objectmon.view.SwingViewImpl;
  */
 public final class ControllerImpl implements Controller {
 
-    private static final int COMMAND_LIMIT = 16;
+    private static final int COMMAND_LIMIT = 100;
     private final Queue<Command> commandQueue;
     private Model model;
     private final View view;
