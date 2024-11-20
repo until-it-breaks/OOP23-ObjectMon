@@ -3,8 +3,7 @@ package it.unibo.objectmon.model.data.api.skill;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
-import it.unibo.objectmon.model.data.api.aspect.ElementalType;
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
 
 import java.util.List;
 
@@ -17,37 +16,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a NORMAL.
      */
     NORMAL(
-        Aspect.NORMAL,
+        ElementalType.NORMAL,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.EFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.EFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.EFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.EFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.EFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.EFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.NOTEFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.EFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.EFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.EFFECTIVE
         )
     ),
 
@@ -55,37 +54,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a GRASS.
      */
     GRASS(
-        Aspect.GRASS,
+        ElementalType.GRASS,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.NOTEFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.NOTEFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.EFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.NOTEFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.NOT_EFFECTIVE
         )
     ),
 
@@ -93,37 +92,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a FIRE.
      */
     FIRE(
-        Aspect.FIRE,
+        ElementalType.FIRE,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.NOTEFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.EFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.EFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.EFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.NOTEFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.EFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.SUPEREFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.SUPER_EFFECTIVE
         )
     ),
 
@@ -131,37 +130,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a WATER.
      */
     WATER(
-        Aspect.WATER,
+        ElementalType.WATER,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.NOTEFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.NOTEFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.EFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.EFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.EFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.EFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.EFFECTIVE
         )
     ),
 
@@ -169,37 +168,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a FLYING.
      */
     FLYING(
-        Aspect.FLYING,
+        ElementalType.FLYING,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.EFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.EFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.EFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.EFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.NOTEFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.NOTEFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.EFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.EFFECTIVE
         )
     ),
 
@@ -207,37 +206,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a POISON.
      */
     POISON(
-        Aspect.POISON,
+        ElementalType.POISON,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.EFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.EFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.EFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.NOTEFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.NOTEFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.NOTEFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.EFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.EFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.EFFECTIVE
         )
     ),
 
@@ -245,37 +244,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a GROUND.
      */
     GROUND(
-        Aspect.GROUND,
+        ElementalType.GROUND,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.NOTEFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.EFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.NULL,
+            ElementalType.FLYING,
+            EffectivenessEnum.NULL,
 
-            Aspect.POISON,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.EFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.EFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.NOTEFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.NOT_EFFECTIVE
         )
     ),
 
@@ -283,37 +282,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a ROCK.
      */
     ROCK(
-        Aspect.ROCK,
+        ElementalType.ROCK,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.EFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.EFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.EFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.NOTEFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.NOTEFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.SUPEREFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.SUPER_EFFECTIVE
         )
     ),
 
@@ -321,37 +320,37 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a FIGHTING.
      */
     FIGHTING(
-        Aspect.FIGHTING,
+        ElementalType.FIGHTING,
         Map.of(
-            Aspect.NORMAL,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.EFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.EFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.EFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.NOTEFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.EFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.EFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.NOTEFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.NOT_EFFECTIVE
         )
     ),
 
@@ -359,53 +358,53 @@ public enum EfficiencyTableEnum {
      * The EfficiencyTable of a BUG.
      */
     BUG(
-        Aspect.BUG,
+        ElementalType.BUG,
         Map.of(
-            Aspect.NORMAL,
-            Potency.EFFECTIVE,
+            ElementalType.NORMAL,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.GRASS,
-            Potency.SUPEREFFECTIVE,
+            ElementalType.GRASS,
+            EffectivenessEnum.SUPER_EFFECTIVE,
 
-            Aspect.FIRE,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FIRE,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.WATER,
-            Potency.EFFECTIVE,
+            ElementalType.WATER,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FLYING,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FLYING,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.POISON,
-            Potency.NOTEFFECTIVE,
+            ElementalType.POISON,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.GROUND,
-            Potency.EFFECTIVE,
+            ElementalType.GROUND,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.ROCK,
-            Potency.EFFECTIVE,
+            ElementalType.ROCK,
+            EffectivenessEnum.EFFECTIVE,
 
-            Aspect.FIGHTING,
-            Potency.NOTEFFECTIVE,
+            ElementalType.FIGHTING,
+            EffectivenessEnum.NOT_EFFECTIVE,
 
-            Aspect.BUG,
-            Potency.EFFECTIVE
+            ElementalType.BUG,
+            EffectivenessEnum.EFFECTIVE
         )
     );
 
     private static final double SAME_TYPE_BONUS = 1.5;
 
-    private final Aspect skillAspect;
-    private final Map<Aspect, Efficiency> multiplierChart = new HashMap<>();
+    private final ElementalType skillElementalType;
+    private final Map<ElementalType, EffectivenessEnum> multiplierChart = new HashMap<>();
 
     /**
      * Creates a new EfficiencyTable.
      *
-     * @param skillAspect The ElementalType of the associated Skill.
+     * @param skillElementalType The ElementalType of the associated Skill.
      * @param multipliers The map of related efficiencies.
      */
-    EfficiencyTableEnum(final Aspect skillAspect, final Map<Aspect, Efficiency> multipliers) {
-        this.skillAspect = skillAspect;
+    EfficiencyTableEnum(final ElementalType skillElementalType, final Map<ElementalType, EffectivenessEnum> multipliers) {
+        this.skillElementalType = skillElementalType;
         this.multiplierChart.putAll(multipliers);
     }
 
@@ -417,7 +416,7 @@ public enum EfficiencyTableEnum {
      */
     public static EfficiencyTableEnum getChart(final ElementalType elementalType) {
         for (final EfficiencyTableEnum chart : EfficiencyTableEnum.values()) {
-            if (chart.getSkillAspect().equals(elementalType)) {
+            if (chart.getSkillElementalType().equals(elementalType)) {
                 return chart;
             }
         }
@@ -431,9 +430,9 @@ public enum EfficiencyTableEnum {
      * @param defenderAspects The Aspects of the target Objectmon.
      * @return Returns the final multiplier after checking all defenderAspects.
      */
-    public double potencyMultiplier(final List<Aspect> userAspects, final List<Aspect> defenderAspects) {
-        double mult = getSkillAspect().sameAspect(userAspects) ? SAME_TYPE_BONUS : 1.0;
-        for (final Aspect singleAspect : defenderAspects) {
+    public double getEffectivenessMultiplier(final List<ElementalType> userAspects, final List<ElementalType> defenderAspects) {
+        double mult = getSkillElementalType().sameAspect(userAspects) ? SAME_TYPE_BONUS : 1.0;
+        for (final ElementalType singleAspect : defenderAspects) {
             mult *= getMultiplierChart().get(singleAspect).getMultiplier();
         }
         return mult;
@@ -444,16 +443,16 @@ public enum EfficiencyTableEnum {
      *
      * @return Returns a copy of the Multiplier chart.
      */
-    protected Map<Aspect, Potency> getMultiplierChart() {
+    protected Map<ElementalType, EffectivenessEnum> getMultiplierChart() {
         return Map.copyOf(this.multiplierChart);
     }
 
     /**
-     * Getter of a Skill's Aspect.
+     * Getter of a Skill's ElementalType.
      *
-     * @return Returns the Skill's Aspect.
+     * @return Returns the Skill's ElementalType.
      */
-    protected Aspect getSkillAspect() {
-        return this.skillAspect;
+    protected ElementalType getSkillElementalType() {
+        return this.skillElementalType;
     }
 }

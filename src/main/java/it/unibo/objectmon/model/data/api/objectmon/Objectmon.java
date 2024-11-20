@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.data.api.objectmon;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 import java.util.List;
@@ -45,7 +45,7 @@ public interface Objectmon {
      * 
      * @return Returns the Objectmon's Aspects.
      */
-    List<Aspect> getAspects();
+    List<ElementalType> getElementalTypes();
     /**
      * Getter of an Objectmon's Skill.
      * 

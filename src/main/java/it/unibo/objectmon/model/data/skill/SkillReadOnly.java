@@ -1,8 +1,8 @@
 package it.unibo.objectmon.model.data.skill;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.Aspect;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.skill.SkillCategory;
+import it.unibo.objectmon.model.data.api.skill.SkillType;
 
 /**
  * A Skill wrapper that only expose getters.
@@ -56,8 +56,8 @@ public final class SkillReadOnly implements Skill {
     }
 
     @Override
-    public SkillCategory getCategory() {
-        return skill.getCategory();
+    public SkillType getType() {
+        return skill.getType();
     }
 
     @Override

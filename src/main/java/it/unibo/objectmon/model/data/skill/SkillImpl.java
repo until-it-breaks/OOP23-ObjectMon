@@ -3,9 +3,9 @@ package it.unibo.objectmon.model.data.skill;
 import java.io.Serializable;
 import java.util.Objects;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.Aspect;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.skill.SkillCategory;
+import it.unibo.objectmon.model.data.api.skill.SkillType;
 
 /**
  * Implementation of the interface Skill.
@@ -43,7 +43,7 @@ public class SkillImpl implements Serializable, Skill {
     /**
      * The skill's category.
      */
-    private final SkillCategory category;
+    private final SkillType category;
 
     /**
      * Constructor of the SkillImpl.
@@ -63,7 +63,7 @@ public class SkillImpl implements Serializable, Skill {
         final int basePower,
         final int accuracy,
         final int maxUses,
-        final SkillCategory category
+        final SkillType category
         ) {
         this.name = name;
         this.id = id;
@@ -111,7 +111,7 @@ public class SkillImpl implements Serializable, Skill {
     }
 
     @Override
-    public final SkillCategory getCategory() {
+    public final SkillType getType() {
         return this.category;
     }
 

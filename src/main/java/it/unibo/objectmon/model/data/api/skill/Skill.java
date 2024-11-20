@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.data.api.skill;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
 
 /**
  * The interface of a Skill.
@@ -28,7 +28,7 @@ public interface Skill {
      * @return Returns the Aspect of an Objectmon.
      * {@see #it.unibo.objectmon.data.skill.SkillStrenght}
      */
-    Aspect getAspect();
+    ElementalType getAspect();
 
     /**
      * Getter of the Accuracy of a Skill.
@@ -76,7 +76,7 @@ public interface Skill {
      * Skill will use the user's SpAtk and the SpDef of the target Objectmon.
      * {@see #it.unibo.objectmon.api.data.skill.SkillCategory}
      */
-    SkillCategory getCategory();
+    SkillType getType();
 
     /**
      *  Resets the value of CurrentUses to the MaxUses.

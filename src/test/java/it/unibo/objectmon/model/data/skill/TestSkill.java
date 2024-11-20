@@ -1,8 +1,8 @@
 package it.unibo.objectmon.model.data.skill;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.Aspect;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.skill.SkillCategory;
+import it.unibo.objectmon.model.data.api.skill.SkillType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
  * Test of Skills.
  */
 class TestSkill {
-    private final Skill normal = new SkillImpl("Tackle", 0, Aspect.NORMAL, 40, 100, 35, SkillCategory.PHYS);
-    private final Skill ground = new SkillImpl("Earth Power", 3, Aspect.GROUND, 90, 100, 10, SkillCategory.SPEC);
+    private final Skill normal = new SkillImpl("Tackle", 0, Aspect.NORMAL, 40, 100, 35, SkillType.PHYSICAL);
+    private final Skill ground = new SkillImpl("Earth Power", 3, Aspect.GROUND, 90, 100, 10, SkillType.SPECIAL);
 
     /**
      * Test of the various Skills.
@@ -24,8 +24,8 @@ class TestSkill {
         assertEquals(Aspect.GROUND, ground.getAspect());
 
         //Check if SkillCategory is correct
-        assertEquals(SkillCategory.PHYS, normal.getCategory());
-        assertEquals(SkillCategory.SPEC, ground.getCategory());
+        assertEquals(SkillType.PHYSICAL, normal.getType());
+        assertEquals(SkillType.SPECIAL, ground.getType());
 
         //Check if methods that use currentUses work correctly
         for (int i = 0; i < ground.getMaxUses() + 1; i++) {
@@ -42,7 +42,7 @@ class TestSkill {
     void testSkillBuilder() {
         final int basePower = 40;
         final int maxUses = 35;
-        final Skill skill = new SkillImpl("Tackle",  0, Aspect.NORMAL, basePower, 100, maxUses, SkillCategory.PHYS);
+        final Skill skill = new SkillImpl("Tackle",  0, Aspect.NORMAL, basePower, 100, maxUses, SkillType.PHYSICAL);
 
         assertEquals(normal.getId(), skill.getId());
         assertEquals(normal.getName(), skill.getName());
@@ -50,6 +50,6 @@ class TestSkill {
         assertEquals(normal.getBasePower(), skill.getBasePower());
         assertEquals(normal.getAccuracy(), skill.getAccuracy());
         assertEquals(normal.getMaxUses(), skill.getMaxUses());
-        assertEquals(normal.getCategory(), skill.getCategory());
+        assertEquals(normal.getType(), skill.getType());
     }
 }

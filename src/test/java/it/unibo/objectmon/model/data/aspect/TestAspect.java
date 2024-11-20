@@ -22,7 +22,7 @@ class TestAspect {
         Aspect aspect;
         for (final Aspect singleAspect : Aspect.values()) {
             aspect = singleAspect;
-            assertEquals(singleAspect.getAspectName(), aspect.getAspectName());
+            assertEquals(singleAspect.getElementalTypeName(), aspect.getElementalTypeName());
             assertEquals(singleAspect, aspect);
         }
         aspect = Aspect.NORMAL;

@@ -87,7 +87,7 @@ public final class CommandPanel extends JPanel {
             });
             attackButton.setToolTipText("Power: " + skill.getBasePower()
                 + " Accuracy: " + skill.getAccuracy() + "% "
-                + "Type: " + skill.getCategory().getName()
+                + "Type: " + skill.getType().getName()
             );
             this.add(attackButton, gbc);
             gbc.gridx++;
@@ -115,7 +115,7 @@ public final class CommandPanel extends JPanel {
                     controller.notifyCommand(new SwitchObjectmon(currentObjectmonIndex));
                     drawStartingButtons();
             });
-            switchObjectmon.setToolTipText("Aspects: " + objectmon.getAspects().toString()
+            switchObjectmon.setToolTipText("Aspects: " + objectmon.getElementalTypes().toString()
             + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatEnum.HP));
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;

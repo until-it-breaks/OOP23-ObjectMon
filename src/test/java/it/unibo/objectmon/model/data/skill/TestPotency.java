@@ -1,6 +1,6 @@
 package it.unibo.objectmon.model.data.skill;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.Aspect;
 import it.unibo.objectmon.model.data.api.skill.Potency;
 import it.unibo.objectmon.model.data.api.skill.PotencyChart;
 
@@ -36,31 +36,31 @@ class TestPotency {
         // user isn't sameAspect and POISON is NOTEFFECTIVE against ROCK and GROUND, so 1*0.5*2 = 0.25
         PotencyChart testPotency = PotencyChart.POISON;
         final double veryNotEffective = 0.25;
-        assertEquals(veryNotEffective, testPotency.potencyMultiplier(List.of(Aspect.NORMAL), defenderAspects));
+        assertEquals(veryNotEffective, testPotency.getEffectivenessMultiplier(List.of(Aspect.NORMAL), defenderAspects));
 
         // user isn't sameAspect and NORMAL is NOTEFFECTIVE against ROCK and EFFECTIVE against GROUND, so 1*0.5*1 = 0.5
         final double notEffective = 0.50;
         testPotency = PotencyChart.NORMAL;
-        assertEquals(notEffective, testPotency.potencyMultiplier(List.of(Aspect.POISON), defenderAspects));
+        assertEquals(notEffective, testPotency.getEffectivenessMultiplier(List.of(Aspect.POISON), defenderAspects));
 
         // user isn't sameAspect and BUG is EFFECTIVE against ROCK and GROUND, so 1^3 = 1
         final double effective = 1.00;
         testPotency = PotencyChart.BUG;
-        assertEquals(effective, testPotency.potencyMultiplier(List.of(Aspect.NORMAL), defenderAspects));
+        assertEquals(effective, testPotency.getEffectivenessMultiplier(List.of(Aspect.NORMAL), defenderAspects));
 
         // user isn't sameAspect and GROUND is SUPEREFFECTIVE against ROCK and EFFECTIVE against GROUND, so 1*2*1 = 2
         final double superEffective = 2.00;
         testPotency = PotencyChart.GROUND;
-        assertEquals(superEffective, testPotency.potencyMultiplier(List.of(Aspect.NORMAL), defenderAspects));
+        assertEquals(superEffective, testPotency.getEffectivenessMultiplier(List.of(Aspect.NORMAL), defenderAspects));
 
         // user isn't sameAspect and GRASS is SUPEREFFECTIVE against ROCK and GROUND, so 1*2*2 = 4
         final double verySuperEffective = 4.00;
         testPotency = PotencyChart.GRASS;
-        assertEquals(verySuperEffective, testPotency.potencyMultiplier(List.of(Aspect.NORMAL), defenderAspects));
+        assertEquals(verySuperEffective, testPotency.getEffectivenessMultiplier(List.of(Aspect.NORMAL), defenderAspects));
 
         // user is sameAspect and GRASS is SUPEREFFECTIVE against ROCK and GROUND, so 1.5*2*2 = 6
         final double veryVerySuperEffective = 6.00;
         testPotency = PotencyChart.GRASS;
-        assertEquals(veryVerySuperEffective, testPotency.potencyMultiplier(List.of(Aspect.GRASS), defenderAspects));
+        assertEquals(veryVerySuperEffective, testPotency.getEffectivenessMultiplier(List.of(Aspect.GRASS), defenderAspects));
     }
 }

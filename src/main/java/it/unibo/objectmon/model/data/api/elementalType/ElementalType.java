@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.data.api.aspect;
+package it.unibo.objectmon.model.data.api.elementalType;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public enum ElementalType {
      */
     BUG("Bug");
 
-    private final String aspectName;
+    private final String elementalTypeName;
 
     /**
      * Creates an elemental type.
@@ -66,7 +66,7 @@ public enum ElementalType {
      * @param name The name of the elemental type.
      */
     ElementalType(final String name) {
-        this.aspectName = name;
+        this.elementalTypeName = name;
     }
 
     /**
@@ -74,8 +74,8 @@ public enum ElementalType {
      * 
      * @return The name of the elemental type.
      */
-    public String getAspectName() {
-        return this.aspectName;
+    public String getElementalTypeName() {
+        return this.elementalTypeName;
     }
 
     // TODO
@@ -83,13 +83,13 @@ public enum ElementalType {
      * Method that checks if the Aspect of an Objectmon are the same of a move.
      * To check if an aspect is the same as another equals should be used.
      * 
-     * @param objectmonAspects The Aspect of the Objectmon
+     * @param elementalTypes The Aspect of the Objectmon
      * @return  Returns true if it's the same, false otherwise.
      */
-    public boolean sameAspect(final List<ElementalType> objectmonAspects) {
+    public boolean sameAspect(final List<ElementalType> elementalTypes) {
         boolean isSame = false;
-        for (final ElementalType singleAspect : objectmonAspects) {
-            isSame = isSame || this.equals(singleAspect);
+        for (final ElementalType elementalType : elementalTypes) {
+            isSame = isSame || this.equals(elementalType);
         }
         return isSame;
     }

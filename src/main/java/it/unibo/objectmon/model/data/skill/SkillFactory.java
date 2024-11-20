@@ -2,8 +2,9 @@ package it.unibo.objectmon.model.data.skill;
 
 import java.util.LinkedList;
 import java.util.List;
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
-import it.unibo.objectmon.model.data.api.skill.SkillCategory;
+
+import it.unibo.objectmon.model.data.api.elementalType.Aspect;
+import it.unibo.objectmon.model.data.api.skill.SkillType;
 
 /**
  * A factory of Skills.
@@ -30,17 +31,17 @@ public final class SkillFactory {
         final List<SkillImpl> skillList = new LinkedList<>();
         int id = 0;
         for (final Aspect aspect : Aspect.values()) {
-            String name = aspect.getAspectName() + " Tackle";
-            skillList.add(new SkillImpl(name, id, aspect, BASE_40, ACC_100, MAX_40, SkillCategory.PHYS));
+            String name = aspect.getElementalTypeName() + " Tackle";
+            skillList.add(new SkillImpl(name, id, aspect, BASE_40, ACC_100, MAX_40, SkillType.PHYSICAL));
             id++;
-            name = aspect.getAspectName() + " Kick";
-            skillList.add(new SkillImpl(name, id, aspect, BASE_60, ACC_90, MAX_25, SkillCategory.PHYS));
+            name = aspect.getElementalTypeName() + " Kick";
+            skillList.add(new SkillImpl(name, id, aspect, BASE_60, ACC_90, MAX_25, SkillType.PHYSICAL));
             id++;
-            name = aspect.getAspectName() + " Ray";
-            skillList.add(new SkillImpl(name, id, aspect, BASE_40, ACC_100, MAX_40, SkillCategory.SPEC));
+            name = aspect.getElementalTypeName() + " Ray";
+            skillList.add(new SkillImpl(name, id, aspect, BASE_40, ACC_100, MAX_40, SkillType.SPECIAL));
             id++;
-            name = aspect.getAspectName() + " Spirit";
-            skillList.add(new SkillImpl(name, id, aspect, BASE_60, ACC_90, MAX_25, SkillCategory.SPEC));
+            name = aspect.getElementalTypeName() + " Spirit";
+            skillList.add(new SkillImpl(name, id, aspect, BASE_60, ACC_90, MAX_25, SkillType.SPECIAL));
             id++;
         }
         return skillList;

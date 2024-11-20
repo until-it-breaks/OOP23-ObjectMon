@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.skill.SkillReadOnly;
@@ -52,8 +52,8 @@ public class ObjectmonReadOnly implements Objectmon {
     }
 
     @Override
-    public final List<Aspect> getAspects() {
-        return this.objectmon.getAspects();
+    public final List<Aspect> getElementalTypes() {
+        return this.objectmon.getElementalTypes();
     }
 
     @Override

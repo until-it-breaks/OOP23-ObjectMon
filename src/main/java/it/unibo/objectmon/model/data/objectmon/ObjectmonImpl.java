@@ -3,7 +3,7 @@ package it.unibo.objectmon.model.data.objectmon;
 import java.util.List;
 import java.util.UUID;
 
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.Aspect;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.statistics.StatId;
@@ -78,7 +78,7 @@ public final class ObjectmonImpl implements Objectmon {
     public ObjectmonImpl(final Objectmon objectmon) {
         this.uuid = UUID.randomUUID();
         this.name = objectmon.getName();
-        this.aspects = List.copyOf(objectmon.getAspects());
+        this.aspects = List.copyOf(objectmon.getElementalTypes());
         this.skills = List.copyOf(objectmon.getSkills());
         this.level = objectmon.getLevel();
         this.stats = objectmon.getStats().calcNewStats(level);
@@ -106,7 +106,7 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public List<Aspect> getAspects() {
+    public List<Aspect> getElementalTypes() {
         return List.copyOf(this.aspects);
     }
 

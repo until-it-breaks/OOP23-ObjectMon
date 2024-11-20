@@ -3,7 +3,7 @@ package it.unibo.objectmon.model.data.api.skill;
 /**
  * An enumeration of possible outcomes when ElementalTypes are compared.
  */
-public enum Efficiency {
+public enum EffectivenessEnum {
 
     /**
      * Effective.
@@ -13,14 +13,15 @@ public enum Efficiency {
     /**
      * Super Effective.
      */
-    SUPEREFFECTIVE("Super effective", 2.0),
+    SUPER_EFFECTIVE("Super effective", 2.0),
 
     /**
      * Not Very Effective.
      */
-    NOTEFFECTIVE("Not very effective", 0.5),
+    NOT_EFFECTIVE("Not very effective", 0.5),
 
     /**
+     * TODO
      * Null.
      */
     NULL("Null", 0.0);
@@ -34,7 +35,7 @@ public enum Efficiency {
      * @param name The name of the efficiency.
      * @param multiplier The damage multiplier assigned to the outcome.
      */
-    Efficiency(final String name, final double multiplier) {
+    EffectivenessEnum(final String name, final double multiplier) {
         this.name = name;
         this.multiplier = multiplier;
     }
