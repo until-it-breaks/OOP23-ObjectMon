@@ -1,10 +1,12 @@
 package it.unibo.objectmon.model.data.objectmon;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import it.unibo.objectmon.model.data.api.aspect.Aspect;
+
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 import it.unibo.objectmon.model.data.skill.SkillFactory;
@@ -20,15 +22,15 @@ public enum ObjectmonEnum {
      */
     ZIGZAGOON(
         "Zigzagoon",
-        List.of(Aspect.NORMAL),
+        List.of(ElementalType.NORMAL),
         new BaseStats(
             Map.of(
-                StatId.HP, 38,
-                StatId.ATK, 30,
-                StatId.DEF, 41,
-                StatId.SPATK, 30,
-                StatId.SPDEF, 41,
-                StatId.SPD, 60
+                StatEnum.HP, 38,
+                StatEnum.ATK, 30,
+                StatEnum.DEF, 41,
+                StatEnum.SPATK, 30,
+                StatEnum.SPDEF, 41,
+                StatEnum.SPD, 60
             )
         )
     ),
@@ -38,15 +40,15 @@ public enum ObjectmonEnum {
      */
     TAILLOW(
         "Taillow",
-        List.of(Aspect.NORMAL, Aspect.FLYING),
+        List.of(ElementalType.NORMAL, ElementalType.FLYING),
         new BaseStats(
             Map.of(
-                StatId.HP, 40,
-                StatId.ATK, 55,
-                StatId.DEF, 30,
-                StatId.SPATK, 30,
-                StatId.SPDEF, 30,
-                StatId.SPD, 85
+                StatEnum.HP, 40,
+                StatEnum.ATK, 55,
+                StatEnum.DEF, 30,
+                StatEnum.SPATK, 30,
+                StatEnum.SPDEF, 30,
+                StatEnum.SPD, 85
             )
         )
     ),
@@ -56,15 +58,15 @@ public enum ObjectmonEnum {
      */
     ODDISH(
         "Oddish",
-        List.of(Aspect.GRASS, Aspect.POISON),
+        List.of(ElementalType.GRASS, ElementalType.POISON),
         new BaseStats(
             Map.of(
-                StatId.HP, 45,
-                StatId.ATK, 50,
-                StatId.DEF, 55,
-                StatId.SPATK, 75,
-                StatId.SPDEF, 65,
-                StatId.SPD, 30
+                StatEnum.HP, 45,
+                StatEnum.ATK, 50,
+                StatEnum.DEF, 55,
+                StatEnum.SPATK, 75,
+                StatEnum.SPDEF, 65,
+                StatEnum.SPD, 30
             )
         )
     ),
@@ -74,15 +76,15 @@ public enum ObjectmonEnum {
      */
     KECLEON(
         "Kecleon",
-        List.of(Aspect.NORMAL),
+        List.of(ElementalType.NORMAL),
         new BaseStats(
             Map.of(
-                StatId.HP, 60,
-                StatId.ATK, 90,
-                StatId.DEF, 70,
-                StatId.SPATK, 60,
-                StatId.SPDEF, 120,
-                StatId.SPD, 40
+                StatEnum.HP, 60,
+                StatEnum.ATK, 90,
+                StatEnum.DEF, 70,
+                StatEnum.SPATK, 60,
+                StatEnum.SPDEF, 120,
+                StatEnum.SPD, 40
             )
         )
     ),
@@ -92,15 +94,15 @@ public enum ObjectmonEnum {
      */
     TREECKO(
         "Treecko",
-        List.of(Aspect.GRASS),
+        List.of(ElementalType.GRASS),
         new BaseStats(
             Map.of(
-            StatId.HP, 40,
-            StatId.ATK, 45,
-            StatId.DEF, 35,
-            StatId.SPATK, 65,
-            StatId.SPDEF, 55,
-            StatId.SPD, 70
+            StatEnum.HP, 40,
+            StatEnum.ATK, 45,
+            StatEnum.DEF, 35,
+            StatEnum.SPATK, 65,
+            StatEnum.SPDEF, 55,
+            StatEnum.SPD, 70
             )
         )
     ),
@@ -110,15 +112,15 @@ public enum ObjectmonEnum {
      */
     SHROOMISH(
         "Shroomish",
-        List.of(Aspect.GRASS),
+        List.of(ElementalType.GRASS),
         new BaseStats(
             Map.of(
-                StatId.HP, 60,
-                StatId.ATK, 40,
-                StatId.DEF, 60,
-                StatId.SPATK, 40,
-                StatId.SPDEF, 60,
-                StatId.SPD, 35
+                StatEnum.HP, 60,
+                StatEnum.ATK, 40,
+                StatEnum.DEF, 60,
+                StatEnum.SPATK, 40,
+                StatEnum.SPDEF, 60,
+                StatEnum.SPD, 35
             )
         )
     ),
@@ -128,15 +130,15 @@ public enum ObjectmonEnum {
      */
     VOLBEAT(
         "Volbeat",
-        List.of(Aspect.BUG),
+        List.of(ElementalType.BUG),
         new BaseStats(
             Map.of(
-                StatId.HP, 65,
-                StatId.ATK, 73,
-                StatId.DEF, 55,
-                StatId.SPATK, 47,
-                StatId.SPDEF, 75,
-                StatId.SPD, 85
+                StatEnum.HP, 65,
+                StatEnum.ATK, 73,
+                StatEnum.DEF, 55,
+                StatEnum.SPATK, 47,
+                StatEnum.SPDEF, 75,
+                StatEnum.SPD, 85
             )
         )
     ),
@@ -146,15 +148,15 @@ public enum ObjectmonEnum {
      */
     ILLUMISE(
         "Illumise",
-        List.of(Aspect.BUG),
+        List.of(ElementalType.BUG),
         new BaseStats(
             Map.of(
-                StatId.HP, 65,
-                StatId.ATK, 47,
-                StatId.DEF, 55,
-                StatId.SPATK, 73,
-                StatId.SPDEF, 75,
-                StatId.SPD, 85
+                StatEnum.HP, 65,
+                StatEnum.ATK, 47,
+                StatEnum.DEF, 55,
+                StatEnum.SPATK, 73,
+                StatEnum.SPDEF, 75,
+                StatEnum.SPD, 85
             )
         )
     ),
@@ -164,15 +166,15 @@ public enum ObjectmonEnum {
      */
     TROPIUS(
         "Tropius",
-        List.of(Aspect.GRASS, Aspect.FLYING),
+        List.of(ElementalType.GRASS, ElementalType.FLYING),
         new BaseStats(
             Map.of(
-                StatId.HP, 99,
-                StatId.ATK, 68,
-                StatId.DEF, 83,
-                StatId.SPATK, 72,
-                StatId.SPDEF, 87,
-                StatId.SPD, 51
+                StatEnum.HP, 99,
+                StatEnum.ATK, 68,
+                StatEnum.DEF, 83,
+                StatEnum.SPATK, 72,
+                StatEnum.SPDEF, 87,
+                StatEnum.SPD, 51
             )
         )
     ),
@@ -182,15 +184,15 @@ public enum ObjectmonEnum {
      */
     MUDKIP(
         "Mudkip",
-        List.of(Aspect.WATER, Aspect.GROUND),
+        List.of(ElementalType.WATER, ElementalType.GROUND),
         new BaseStats(
             Map.of(
-                StatId.HP, 50,
-                StatId.ATK, 70,
-                StatId.DEF, 50,
-                StatId.SPATK, 50,
-                StatId.SPDEF, 50,
-                StatId.SPD, 40
+                StatEnum.HP, 50,
+                StatEnum.ATK, 70,
+                StatEnum.DEF, 50,
+                StatEnum.SPATK, 50,
+                StatEnum.SPDEF, 50,
+                StatEnum.SPD, 40
             )
         )
     ),
@@ -200,15 +202,15 @@ public enum ObjectmonEnum {
      */
     GOLDEEN(
         "Goldeen",
-        List.of(Aspect.WATER),
+        List.of(ElementalType.WATER),
         new BaseStats(
             Map.of(
-                StatId.HP, 45,
-                StatId.ATK, 67,
-                StatId.DEF, 60,
-                StatId.SPATK, 35,
-                StatId.SPDEF, 50,
-                StatId.SPD, 63
+                StatEnum.HP, 45,
+                StatEnum.ATK, 67,
+                StatEnum.DEF, 60,
+                StatEnum.SPATK, 35,
+                StatEnum.SPDEF, 50,
+                StatEnum.SPD, 63
             )
         )
     ),
@@ -218,15 +220,15 @@ public enum ObjectmonEnum {
      */
     STARYU(
         "Staryu",
-        List.of(Aspect.WATER),
+        List.of(ElementalType.WATER),
         new BaseStats(
             Map.of(
-                StatId.HP, 35,
-                StatId.ATK, 45,
-                StatId.DEF, 55,
-                StatId.SPATK, 70,
-                StatId.SPDEF, 55,
-                StatId.SPD, 85
+                StatEnum.HP, 35,
+                StatEnum.ATK, 45,
+                StatEnum.DEF, 55,
+                StatEnum.SPATK, 70,
+                StatEnum.SPDEF, 55,
+                StatEnum.SPD, 85
             )
         )
     ),
@@ -236,15 +238,15 @@ public enum ObjectmonEnum {
      */
     RELICANTH(
         "Relicanth",
-        List.of(Aspect.WATER, Aspect.ROCK),
+        List.of(ElementalType.WATER, ElementalType.ROCK),
         new BaseStats(
             Map.of(
-                StatId.HP, 100,
-                StatId.ATK, 90,
-                StatId.DEF, 130,
-                StatId.SPATK, 45,
-                StatId.SPDEF, 65,
-                StatId.SPD, 55
+                StatEnum.HP, 100,
+                StatEnum.ATK, 90,
+                StatEnum.DEF, 130,
+                StatEnum.SPATK, 45,
+                StatEnum.SPDEF, 65,
+                StatEnum.SPD, 55
             )
         )
     ),
@@ -254,15 +256,15 @@ public enum ObjectmonEnum {
      */
     TORCHIC(
         "Torchic",
-        List.of(Aspect.FIRE),
+        List.of(ElementalType.FIRE),
         new BaseStats(
             Map.of(
-                StatId.HP, 45,
-                StatId.ATK, 60,
-                StatId.DEF, 40,
-                StatId.SPATK, 70,
-                StatId.SPDEF, 50,
-                StatId.SPD, 45
+                StatEnum.HP, 45,
+                StatEnum.ATK, 60,
+                StatEnum.DEF, 40,
+                StatEnum.SPATK, 70,
+                StatEnum.SPDEF, 50,
+                StatEnum.SPD, 45
             )
         )
     ),
@@ -272,15 +274,15 @@ public enum ObjectmonEnum {
      */
     SLUGMA(
         "Slugma",
-        List.of(Aspect.FIRE),
+        List.of(ElementalType.FIRE),
         new BaseStats(
             Map.of(
-                StatId.HP, 40,
-                StatId.ATK, 40,
-                StatId.DEF, 40,
-                StatId.SPATK, 70,
-                StatId.SPDEF, 40,
-                StatId.SPD, 20
+                StatEnum.HP, 40,
+                StatEnum.ATK, 40,
+                StatEnum.DEF, 40,
+                StatEnum.SPATK, 70,
+                StatEnum.SPDEF, 40,
+                StatEnum.SPD, 20
             )
         )
     ),
@@ -290,15 +292,15 @@ public enum ObjectmonEnum {
      */
     NUMEL(
         "Numel",
-        List.of(Aspect.FIRE, Aspect.GROUND),
+        List.of(ElementalType.FIRE, ElementalType.GROUND),
         new BaseStats(
             Map.of(
-                StatId.HP, 60,
-                StatId.ATK, 60,
-                StatId.DEF, 40,
-                StatId.SPATK, 65,
-                StatId.SPDEF, 45,
-                StatId.SPD, 35
+                StatEnum.HP, 60,
+                StatEnum.ATK, 60,
+                StatEnum.DEF, 40,
+                StatEnum.SPATK, 65,
+                StatEnum.SPDEF, 45,
+                StatEnum.SPD, 35
             )
         )
     ),
@@ -308,15 +310,15 @@ public enum ObjectmonEnum {
      */
     TORKOAL(
         "Torkoal",
-        List.of(Aspect.FIRE),
+        List.of(ElementalType.FIRE),
         new BaseStats(
             Map.of(
-                StatId.HP, 70,
-                StatId.ATK, 85,
-                StatId.DEF, 140,
-                StatId.SPATK, 85,
-                StatId.SPDEF, 70,
-                StatId.SPD, 20
+                StatEnum.HP, 70,
+                StatEnum.ATK, 85,
+                StatEnum.DEF, 140,
+                StatEnum.SPATK, 85,
+                StatEnum.SPDEF, 70,
+                StatEnum.SPD, 20
             )
         )
     ),
@@ -326,15 +328,15 @@ public enum ObjectmonEnum {
      */
     GEODUDE(
         "Geodude",
-        List.of(Aspect.ROCK, Aspect.GROUND),
+        List.of(ElementalType.ROCK, ElementalType.GROUND),
         new BaseStats(
             Map.of(
-                StatId.HP, 40,
-                StatId.ATK, 80,
-                StatId.DEF, 100,
-                StatId.SPATK, 30,
-                StatId.SPDEF, 30,
-                StatId.SPD, 20
+                StatEnum.HP, 40,
+                StatEnum.ATK, 80,
+                StatEnum.DEF, 100,
+                StatEnum.SPATK, 30,
+                StatEnum.SPDEF, 30,
+                StatEnum.SPD, 20
             )
         )
     ),
@@ -344,15 +346,15 @@ public enum ObjectmonEnum {
      */
     LILEEP(
         "Lileep",
-        List.of(Aspect.ROCK, Aspect.GRASS),
+        List.of(ElementalType.ROCK, ElementalType.GRASS),
         new BaseStats(
             Map.of(
-                StatId.HP, 66,
-                StatId.ATK, 41,
-                StatId.DEF, 77,
-                StatId.SPATK, 61,
-                StatId.SPDEF, 87,
-                StatId.SPD, 23
+                StatEnum.HP, 66,
+                StatEnum.ATK, 41,
+                StatEnum.DEF, 77,
+                StatEnum.SPATK, 61,
+                StatEnum.SPDEF, 87,
+                StatEnum.SPD, 23
             )
         )
     ),
@@ -362,15 +364,15 @@ public enum ObjectmonEnum {
      */
     ANORITH(
         "Anorith",
-        List.of(Aspect.ROCK, Aspect.BUG),
+        List.of(ElementalType.ROCK, ElementalType.BUG),
         new BaseStats(
             Map.of(
-                StatId.HP, 45,
-                StatId.ATK, 95,
-                StatId.DEF, 50,
-                StatId.SPATK, 40,
-                StatId.SPDEF, 50,
-                StatId.SPD, 75
+                StatEnum.HP, 45,
+                StatEnum.ATK, 95,
+                StatEnum.DEF, 50,
+                StatEnum.SPATK, 40,
+                StatEnum.SPDEF, 50,
+                StatEnum.SPD, 75
             )
         )
     ),
@@ -380,15 +382,15 @@ public enum ObjectmonEnum {
      */
     SANDSHREW(
         "Sandshrew",
-        List.of(Aspect.GROUND),
+        List.of(ElementalType.GROUND),
         new BaseStats(
             Map.of(
-                StatId.HP, 50,
-                StatId.ATK, 75,
-                StatId.DEF, 85,
-                StatId.SPATK, 20,
-                StatId.SPDEF, 30,
-                StatId.SPD, 40
+                StatEnum.HP, 50,
+                StatEnum.ATK, 75,
+                StatEnum.DEF, 85,
+                StatEnum.SPATK, 20,
+                StatEnum.SPDEF, 30,
+                StatEnum.SPD, 40
             )
         )
     ),
@@ -398,40 +400,40 @@ public enum ObjectmonEnum {
      */
     NOSEPASS(
         "Nosepass",
-        List.of(Aspect.ROCK),
+        List.of(ElementalType.ROCK),
         new BaseStats(
             Map.of(
-                StatId.HP, 30,
-                StatId.ATK, 45,
-                StatId.DEF, 135,
-                StatId.SPATK, 45,
-                StatId.SPDEF, 90,
-                StatId.SPD, 30
+                StatEnum.HP, 30,
+                StatEnum.ATK, 45,
+                StatEnum.DEF, 135,
+                StatEnum.SPATK, 45,
+                StatEnum.SPDEF, 90,
+                StatEnum.SPD, 30
             )
         )
     );
 
     private final String name;
-    private final List<Aspect> aspects;
-    private final List<SkillImpl> skills;
+    private final List<ElementalType> elementalTypes;
+    private final List<Skill> skills;
     private final ActualStats stats;
 
     /**
      * Constructor of ObjectmonEnum.
      * 
      * @param name Name of the Objectmon
-     * @param aspects Aspects of the Objectmon.
+     * @param elementalTypes Aspects of the Objectmon.
      * @param stats Stats of the Objectmon.
      */
-    ObjectmonEnum(final String name, final List<Aspect> aspects, final BaseStats stats) {
+    ObjectmonEnum(final String name, final List<ElementalType> elementalTypes, final BaseStats stats) {
         this.name = name;
-        this.aspects = List.copyOf(aspects);
+        this.elementalTypes = List.copyOf(elementalTypes);
 
-        final List<SkillImpl> skills = SkillFactory.createSkills().stream()
-        .filter(skill -> skill.getAspect().sameAspect(aspects))
+        final List<Skill> skills = SkillFactory.createSkills().stream()
+        .filter(skill -> skill.getElementalType().sameAspect(elementalTypes))
         .toList();
 
-        if (aspects.size() > 1) {
+        if (elementalTypes.size() > 1) {
             final int firstAspectIndex = 2;
             final int lastAspectIndex = 6;
             this.skills = skills.subList(firstAspectIndex, lastAspectIndex);
@@ -455,8 +457,8 @@ public enum ObjectmonEnum {
      * 
      * @return Returns the Aspects.
      */
-    public List<Aspect> getAspects() {
-        return List.copyOf(this.aspects);
+    public List<ElementalType> getElementalTypes() {
+        return Collections.unmodifiableList(this.elementalTypes);
     }
 
     /**
@@ -474,6 +476,6 @@ public enum ObjectmonEnum {
      * @return Returns the Skills.
      */
     public List<Skill> getSkills() {
-        return List.copyOf(this.skills);
+        return Collections.unmodifiableList(this.skills);
     }
 }

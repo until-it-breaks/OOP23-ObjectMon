@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.gamestate;
+package it.unibo.objectmon.model.gamestate.api;
 
 /**
  * Models a game state manager.
@@ -24,14 +24,14 @@ public interface GameStateManager {
      *
      * @param observer The observer to be notified.
      */
-    void registerObserver(Observer observer);
+    void registerObserver(PlayerObserver observer);
 
     /**
      * Unregisters an observer.
      *
      * @param observer The observer to be unregistered.
      */
-    void unregisterObserver(Observer observer);
+    void unregisterObserver(PlayerObserver observer);
 
     /**
      * Notifies all the observers.

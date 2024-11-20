@@ -152,7 +152,7 @@ public final class OverWorldPanel extends JPanel {
             // Draws the level above the health counter.
             g.drawString("Lv." + objectmon.getLevel(), offsetX, offsetY - TILE_SIZE / 2);
             // Draws the health counter above the image.
-            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatEnum.HP),
+            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getStat(StatEnum.HP),
             offsetX, offsetY - TILE_SIZE / FONT_SIZE);
             offsetX += TILE_SIZE;
         }

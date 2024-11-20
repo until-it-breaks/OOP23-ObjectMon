@@ -10,9 +10,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import it.unibo.objectmon.controller.Controller;
-import it.unibo.objectmon.model.gamestate.GameState;
 import it.unibo.objectmon.view.utility.RenderingUtils;
 import it.unibo.objectmon.controller.commands.EndGame;
+import it.unibo.objectmon.model.gamestate.api.GameState;
 
 /**
  * Represents the main GUI frame of the game.

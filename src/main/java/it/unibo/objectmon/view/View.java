@@ -2,12 +2,12 @@ package it.unibo.objectmon.view;
 
 import javax.swing.JPanel;
 
-import it.unibo.objectmon.model.gamestate.Observer;
+import it.unibo.objectmon.model.gamestate.api.PlayerObserver;
 
 /**
  * Represents the main GUI of the game.
  */
-public interface View extends Observer {
+public interface View extends PlayerObserver {
 
     /**
      * Triggers the painting mechanism that updates the GUI components

@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.Collections;
 
-import it.unibo.objectmon.model.item.api.BallItem;
-import it.unibo.objectmon.model.item.api.HealItem;
 import it.unibo.objectmon.model.item.api.Item;
+import it.unibo.objectmon.model.item.impl.HealingItemImpl;
+import it.unibo.objectmon.model.item.impl.ObjectballImpl;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 
 /**
@@ -44,17 +44,17 @@ public final class InventoryImpl implements Inventory {
     }
 
     @Override
-    public int getHealItemCount() {
+    public int getHealingItemCount() {
         return items.entrySet().stream()
-            .filter(entry -> entry.getKey() instanceof HealItem)
+            .filter(entry -> entry.getKey() instanceof HealingItemImpl)
             .mapToInt(count -> count.getValue())
             .sum();
     }
 
     @Override
-    public int getBallItemCount() {
+    public int getObjectballCount() {
         return items.entrySet().stream()
-            .filter(entry -> entry.getKey() instanceof BallItem)
+            .filter(entry -> entry.getKey() instanceof ObjectballImpl)
             .mapToInt(count -> count.getValue())
             .sum();
     }

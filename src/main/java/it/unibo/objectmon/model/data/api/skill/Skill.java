@@ -28,7 +28,7 @@ public interface Skill {
      * @return Returns the Aspect of an Objectmon.
      * {@see #it.unibo.objectmon.data.skill.SkillStrenght}
      */
-    ElementalType getAspect();
+    ElementalType getElementalType();
 
     /**
      * Getter of the Accuracy of a Skill.

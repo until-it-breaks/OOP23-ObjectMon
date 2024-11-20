@@ -34,6 +34,6 @@ public final class VendorImpl extends AbstractNPC implements Seller {
 
     @Override
     public void trade() {
-        tradeInitiator.startTrade();
+        tradeInitiator.tradeStarted();
     }
 }

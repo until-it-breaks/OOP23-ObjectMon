@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.gamestate;
+package it.unibo.objectmon.model.misc.ending;
 
 /**
  * Models the game ending.

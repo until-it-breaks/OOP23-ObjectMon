@@ -13,7 +13,7 @@ public final class CatchSystemImpl implements CatchSystem {
         return random <= calculateCatchProbability(
                 catchRateMultiplier, 
                 objectmon.getCurrentHp(), 
-                objectmon.getStats().getSingleStat(StatId.HP)
+                objectmon.getStats().getStat(StatId.HP)
             );
     }
 

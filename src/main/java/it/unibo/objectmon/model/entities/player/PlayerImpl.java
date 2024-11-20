@@ -9,7 +9,7 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonPartyImpl;
 import it.unibo.objectmon.model.entities.api.Direction;
 import it.unibo.objectmon.model.entities.api.AbstractEntity;
 import it.unibo.objectmon.model.entities.api.Player;
-import it.unibo.objectmon.model.gamestate.Observer;
+import it.unibo.objectmon.model.gamestate.api.PlayerObserver;
 import it.unibo.objectmon.model.item.inventory.Inventories;
 import it.unibo.objectmon.model.item.inventory.api.Inventory;
 import it.unibo.objectmon.model.misc.collision.api.CollisionManager;
@@ -22,7 +22,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
 
     private final ObjectmonParty objectmonParty;
     private final Inventory inventory;
-    private final List<Observer> observers;
+    private final List<PlayerObserver> observers;
 
     /**
      * Creates a new Player.
@@ -72,7 +72,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
      * 
      * @param observer The observer to be added.
      */
-    public void addObserver(final Observer observer) {
+    public void addObserver(final PlayerObserver observer) {
         this.observers.add(observer);
     }
 
@@ -80,7 +80,7 @@ public final class PlayerImpl extends AbstractEntity implements Player {
      * Notifies the observers.
      */
     private void notifyObserver() {
-        for (final Observer observer : observers) {
+        for (final PlayerObserver observer : observers) {
             if (observer != null) {
                 observer.update();
             }

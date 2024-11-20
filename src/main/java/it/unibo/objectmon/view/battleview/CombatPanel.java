@@ -17,7 +17,6 @@ import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
-import it.unibo.objectmon.model.gamestate.GameState;
 
 /**
  * A panel used to display the flow of the battle.
@@ -92,7 +91,7 @@ public final class CombatPanel extends JPanel {
         final int levelWidth = fm.stringWidth(levelText);
         g.drawString(levelText, x + (getWidth() / 4) - (levelWidth / 2), y + Y_OFFSET * 2);
         // Draws the objectmon health.
-        final String healthText = "Health: " + objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatEnum.HP);
+        final String healthText = "Health: " + objectmon.getCurrentHp() + "/" + objectmon.getStats().getStat(StatEnum.HP);
         final int healthWidth = fm.stringWidth(healthText);
         g.drawString(healthText, x + (getWidth() / 4) - (healthWidth / 2), y + Y_OFFSET * 3);
     }

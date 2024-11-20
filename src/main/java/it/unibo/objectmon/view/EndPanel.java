@@ -132,7 +132,7 @@ public final class EndPanel extends JPanel {
             // Draws level text above the health counter.
             g.drawString("Lv." + objectmon.getLevel(), myOffsetX, offsetY - TILE_SIZE / 2);
             // Draw health counter above the image.
-            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getSingleStat(StatEnum.HP),
+            g.drawString(objectmon.getCurrentHp() + "/" + objectmon.getStats().getStat(StatEnum.HP),
             myOffsetX, offsetY - TILE_SIZE / FONT_SIZE);
             myOffsetX += TILE_SIZE;
         }

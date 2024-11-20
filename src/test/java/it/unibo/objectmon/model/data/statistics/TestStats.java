@@ -67,7 +67,7 @@ class TestStats {
     void testValues() {
         //baseStat test
         for (final var singleStat : StatId.values()) {
-            assertEquals(STATS.get(singleStat), base.getSingleStat(singleStat));
+            assertEquals(STATS.get(singleStat), base.getStat(singleStat));
         }
 
         //ActualStats test
@@ -100,7 +100,7 @@ class TestStats {
         //Evolution test
         ActualStats evolution = new ActualStats(STATS);
         for (final var singleStat : StatId.values()) {
-            assertEquals(STATS.get(singleStat), evolution.getSingleStat(singleStat));
+            assertEquals(STATS.get(singleStat), evolution.getStat(singleStat));
         }
         evolution = new ActualStats(EVOLUTION);
         for (final var singleStat : StatId.values()) {

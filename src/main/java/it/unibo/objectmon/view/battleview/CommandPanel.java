@@ -78,7 +78,7 @@ public final class CommandPanel extends JPanel {
         for (final Skill skill : controller.getBattleStats().get().getCurrentObjectmon().getSkills()) {
             final JButton attackButton = new JButton(skill.getName());
             attackButton.setForeground(Color.WHITE);
-            attackButton.setBackground(AspectColorMap.getColor(skill.getAspect()));
+            attackButton.setBackground(AspectColorMap.getColor(skill.getElementalType()));
             final int currentSkillIndex = skillCounter[0];
             attackButton.addActionListener(e -> {
                     removeAll();
@@ -116,7 +116,7 @@ public final class CommandPanel extends JPanel {
                     drawStartingButtons();
             });
             switchObjectmon.setToolTipText("Aspects: " + objectmon.getElementalTypes().toString()
-            + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getSingleStat(StatEnum.HP));
+            + " HP: " + objectmon.getCurrentHp() + " / " + objectmon.getStats().getStat(StatEnum.HP));
             this.add(switchObjectmon, gbc);
             objectmonCounter[0]++;
             gbc.gridx++;

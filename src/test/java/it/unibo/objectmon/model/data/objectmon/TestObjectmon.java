@@ -52,7 +52,7 @@ class TestObjectmon {
 
         // Attacking another Objectmon that's the same.
         final double multi = 2.00;
-        final PotencyChart potency = PotencyChart.getChart(objectmon.getSkills().get(skillid).getAspect());
+        final PotencyChart potency = PotencyChart.getChart(objectmon.getSkills().get(skillid).getElementalType());
         assertEquals(multi, potency.getEffectivenessMultiplier(objectmon.getElementalTypes(), objectmon.getElementalTypes()));
     }
 
@@ -65,9 +65,9 @@ class TestObjectmon {
         final Objectmon torchic = ObjectmonFactory.createObjectmon(ObjectmonEnum.TORCHIC, level);
 
         final int exp = 100;
-        assertEquals(torchic.getStats().getSingleStat(StatId.HP), torchic.getCurrentHp());
+        assertEquals(torchic.getStats().getStat(StatId.HP), torchic.getCurrentHp());
         torchic.calcExp(exp);
-        assertEquals(torchic.getStats().getSingleStat(StatId.HP), torchic.getCurrentHp());
+        assertEquals(torchic.getStats().getStat(StatId.HP), torchic.getCurrentHp());
         assertEquals("Fire Tackle", torchic.getSkills().get(0).getName());
 
         final Objectmon mudkip = ObjectmonFactory.createObjectmon(ObjectmonEnum.MUDKIP, level);

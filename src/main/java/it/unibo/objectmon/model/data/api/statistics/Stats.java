@@ -24,5 +24,5 @@ public interface Stats {
      * @param stat The stat of interest.
      * @return The value of the stat.
      */
-    int getSingleStat(StatEnum stat);
+    int getStat(StatEnum stat);
 }

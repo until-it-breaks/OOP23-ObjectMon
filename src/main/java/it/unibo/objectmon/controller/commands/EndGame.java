@@ -2,7 +2,7 @@ package it.unibo.objectmon.controller.commands;
 
 import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.Model;
-import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.gamestate.api.GameState;
 
 /**
  * End game Command.

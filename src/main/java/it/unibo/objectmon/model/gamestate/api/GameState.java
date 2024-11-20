@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.gamestate;
+package it.unibo.objectmon.model.gamestate.api;
 
 /**
  * An enumeration of possible game states.

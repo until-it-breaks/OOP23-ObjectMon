@@ -12,7 +12,7 @@ import it.unibo.objectmon.model.data.api.objectmon.ObjectmonParty;
  * A simple objectmon party.
  */
 public final class ObjectmonPartyImpl implements ObjectmonParty {
-    private static final int MAX_SIZE = 6;
+    private static final int MAX_PARTY_SIZE = 6;
     private final List<Objectmon> party;
 
     /**
@@ -30,9 +30,10 @@ public final class ObjectmonPartyImpl implements ObjectmonParty {
     public ObjectmonPartyImpl(final List<Objectmon> party) {
         this.party = new ArrayList<>(party);
     }
+
     @Override
     public boolean add(final Objectmon objectmon) {
-        if (this.party.size() < ObjectmonPartyImpl.MAX_SIZE) {
+        if (this.party.size() < ObjectmonPartyImpl.MAX_PARTY_SIZE) {
            this.party.add(objectmon);
            return true;
         }

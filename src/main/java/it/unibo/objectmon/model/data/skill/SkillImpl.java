@@ -1,17 +1,15 @@
 package it.unibo.objectmon.model.data.skill;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-import it.unibo.objectmon.model.data.api.elementalType.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
 import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.skill.SkillType;
 
 /**
  * Implementation of the interface Skill.
  */
-public class SkillImpl implements Serializable, Skill {
-    private static final long serialVersionUID = 2006L;
+public class SkillImpl implements Skill {
     /**
      * The skill's name.
      */
@@ -23,7 +21,7 @@ public class SkillImpl implements Serializable, Skill {
     /**
      * The skill's aspect.
      */
-    private final Aspect aspect;
+    private final ElementalType elementalType;
     /**
      * The skill's base power.
      */
@@ -59,7 +57,7 @@ public class SkillImpl implements Serializable, Skill {
     public SkillImpl(
         final String name,
         final int id,
-        final Aspect aspect,
+        final ElementalType aspect,
         final int basePower,
         final int accuracy,
         final int maxUses,
@@ -67,7 +65,7 @@ public class SkillImpl implements Serializable, Skill {
         ) {
         this.name = name;
         this.id = id;
-        this.aspect = aspect;
+        this.elementalType = aspect;
         this.basePower = basePower;
         this.accuracy = accuracy;
         this.maxUses = maxUses;
@@ -81,8 +79,8 @@ public class SkillImpl implements Serializable, Skill {
     }
 
     @Override
-    public final Aspect getAspect() {
-        return this.aspect;
+    public final ElementalType getElementalType() {
+        return this.elementalType;
     }
 
     @Override
@@ -144,7 +142,7 @@ public class SkillImpl implements Serializable, Skill {
             return true;
         }
 
-        final Skill skill = (Skill) obj;
+        final SkillImpl skill = (SkillImpl) obj;
         return Integer.valueOf(getId()).equals(skill.getId())
         && getName().equals(skill.getName());
     }

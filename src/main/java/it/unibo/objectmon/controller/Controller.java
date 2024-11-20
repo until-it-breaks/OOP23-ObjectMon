@@ -6,7 +6,7 @@ import it.unibo.objectmon.controller.commands.api.Command;
 import it.unibo.objectmon.model.battle.api.Battle;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
-import it.unibo.objectmon.model.gamestate.GameState;
+import it.unibo.objectmon.model.gamestate.api.GameState;
 import it.unibo.objectmon.model.misc.battlelog.api.BattleLogger;
 import it.unibo.objectmon.model.world.api.World;
 import java.util.Optional;

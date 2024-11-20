@@ -1,13 +1,13 @@
 package it.unibo.objectmon.model.data.objectmon;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import it.unibo.objectmon.model.data.api.elementalType.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
 import it.unibo.objectmon.model.data.api.skill.Skill;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
-import it.unibo.objectmon.model.data.skill.SkillImpl;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
 import it.unibo.objectmon.model.data.statistics.ActualStats;
 import it.unibo.objectmon.model.data.statistics.BaseStats;
 
@@ -18,7 +18,7 @@ public final class ObjectmonImpl implements Objectmon {
 
     private final UUID uuid;
     private final String name;
-    private final List<Aspect> aspects;
+    private final List<ElementalType> aspects;
     private final List<Skill> skills;
     private ActualStats stats;
     private int currentHp;
@@ -37,8 +37,8 @@ public final class ObjectmonImpl implements Objectmon {
      */
     public ObjectmonImpl(
         final String name,
-        final List<Aspect> aspects,
-        final List<SkillImpl> skills,
+        final List<ElementalType> aspects,
+        final List<Skill> skills,
         final BaseStats stats,
         final int level
         ) {
@@ -47,7 +47,7 @@ public final class ObjectmonImpl implements Objectmon {
         this.aspects = List.copyOf(aspects);
         this.skills = List.copyOf(skills);
         this.stats = new ActualStats(stats);
-        this.currentHp = this.stats.getSingleStat(StatId.HP);
+        this.currentHp = this.stats.getStat(StatEnum.HP);
         this.level = level;
         this.exp = 0;
     }
@@ -61,10 +61,10 @@ public final class ObjectmonImpl implements Objectmon {
     public ObjectmonImpl(final ObjectmonEnum objEnum, final int level) {
         this.uuid = UUID.randomUUID();
         this.name = objEnum.getName();
-        this.aspects = List.copyOf(objEnum.getAspects());
+        this.aspects = List.copyOf(objEnum.getElementalTypes());
         this.skills = List.copyOf(objEnum.getSkills());
         this.stats = objEnum.getStats();
-        this.currentHp = this.stats.getSingleStat(StatId.HP);
+        this.currentHp = this.stats.getStat(StatEnum.HP);
         this.level = level;
         this.exp = 0;
     }
@@ -106,13 +106,13 @@ public final class ObjectmonImpl implements Objectmon {
     }
 
     @Override
-    public List<Aspect> getElementalTypes() {
-        return List.copyOf(this.aspects);
+    public List<ElementalType> getElementalTypes() {
+        return Collections.unmodifiableList(this.aspects);
     }
 
     @Override
     public List<Skill> getSkills() {
-        return List.copyOf(this.skills);
+        return Collections.unmodifiableList(this.skills);
     }
 
     @Override
@@ -137,7 +137,7 @@ public final class ObjectmonImpl implements Objectmon {
     @Override
     public void setCurrentHp(final int quantity) {
         final int value = this.currentHp + quantity;
-        final int maxHp = getStats().getSingleStat(StatId.HP);
+        final int maxHp = getStats().getStat(StatEnum.HP);
 
         if (value > maxHp) {
             this.currentHp = maxHp;
@@ -197,9 +197,8 @@ public final class ObjectmonImpl implements Objectmon {
     private void levelUp() {
         addLevel();
         final ActualStats newStats = getStats().calcNewStats(1);
-        final int growth = newStats.getSingleStat(StatId.HP) - this.stats.getSingleStat(StatId.HP);
+        final int growth = newStats.getStat(StatEnum.HP) - this.stats.getStat(StatEnum.HP);
         this.stats = newStats;
         setCurrentHp(growth);
     }
-
 }

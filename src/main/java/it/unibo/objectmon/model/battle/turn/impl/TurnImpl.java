@@ -5,7 +5,8 @@ import it.unibo.objectmon.model.battle.moves.type.Move;
 import it.unibo.objectmon.model.battle.turn.StatTurn;
 import it.unibo.objectmon.model.battle.turn.api.Turn;
 import it.unibo.objectmon.model.data.api.objectmon.Objectmon;
-import it.unibo.objectmon.model.data.api.statistics.StatId;
+import it.unibo.objectmon.model.data.api.statistics.StatEnum;
+
 /**
  * implementation of turn.
  */
@@ -36,8 +37,8 @@ public final class TurnImpl implements Turn {
     }
 
     private StatTurn whichUseSkillFirst(final Objectmon playerObjectmon, final Objectmon aiObjectmon) {
-        return playerObjectmon.getStats().getSingleStat(StatId.SPD) 
-            >= aiObjectmon.getStats().getSingleStat(StatId.SPD)
+        return playerObjectmon.getStats().getStat(StatEnum.SPD) 
+            >= aiObjectmon.getStats().getStat(StatEnum.SPD)
             ? StatTurn.PLAYER_TURN
             : StatTurn.AI_TURN;
     }

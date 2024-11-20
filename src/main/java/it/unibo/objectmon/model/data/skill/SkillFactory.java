@@ -3,7 +3,8 @@ package it.unibo.objectmon.model.data.skill;
 import java.util.LinkedList;
 import java.util.List;
 
-import it.unibo.objectmon.model.data.api.elementalType.Aspect;
+import it.unibo.objectmon.model.data.api.elementalType.ElementalType;
+import it.unibo.objectmon.model.data.api.skill.Skill;
 import it.unibo.objectmon.model.data.api.skill.SkillType;
 
 /**
@@ -27,10 +28,10 @@ public final class SkillFactory {
      * 
      * @return Returns the complete list of all the Skills.
      */
-    public static List<SkillImpl> createSkills() {
-        final List<SkillImpl> skillList = new LinkedList<>();
+    public static List<Skill> createSkills() {
+        final List<Skill> skillList = new LinkedList<>();
         int id = 0;
-        for (final Aspect aspect : Aspect.values()) {
+        for (final ElementalType aspect : ElementalType.values()) {
             String name = aspect.getElementalTypeName() + " Tackle";
             skillList.add(new SkillImpl(name, id, aspect, BASE_40, ACC_100, MAX_40, SkillType.PHYSICAL));
             id++;

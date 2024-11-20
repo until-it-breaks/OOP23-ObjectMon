@@ -3,13 +3,17 @@ package it.unibo.objectmon.model.gamestate;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unibo.objectmon.model.gamestate.api.GameState;
+import it.unibo.objectmon.model.gamestate.api.GameStateManager;
+import it.unibo.objectmon.model.gamestate.api.PlayerObserver;
+
 /**
  * A class responsible for managing the game state.
  */
 public final class GameStateManagerImpl implements GameStateManager {
 
     private GameState gameState;
-    private final List<Observer> observers;
+    private final List<PlayerObserver> observers;
 
     /**
      * Creates a new game state manager.
@@ -33,18 +37,18 @@ public final class GameStateManagerImpl implements GameStateManager {
     }
 
     @Override
-    public void registerObserver(final Observer observer) {
+    public void registerObserver(final PlayerObserver observer) {
         observers.add(observer);
     }
 
     @Override
-    public void unregisterObserver(final Observer observer) {
+    public void unregisterObserver(final PlayerObserver observer) {
         observers.remove(observer);
     }
 
     @Override
     public void notifyObservers() {
-        for (final Observer observer : observers) {
+        for (final PlayerObserver observer : observers) {
             observer.update();
         }
     }

@@ -21,18 +21,16 @@ import it.unibo.objectmon.model.battle.api.BattleInitiator;
 import it.unibo.objectmon.model.battle.impl.BattleManagerImpl;
 import it.unibo.objectmon.model.core.GameContext;
 import it.unibo.objectmon.model.core.GameContexts;
+import it.unibo.objectmon.model.gamestate.api.GameStateManager;
+import it.unibo.objectmon.model.misc.ending.EndGameManager;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
 import it.unibo.objectmon.model.encounters.impl.RandomEncounterManagerImpl;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.api.Trainer;
 import it.unibo.objectmon.model.entities.npc.EntityReadOnly;
 import it.unibo.objectmon.model.entities.npc.TrainerImpl;
-import it.unibo.objectmon.model.entities.player.ReadOnlyPlayer;
-import it.unibo.objectmon.model.gamestate.EndGameManager;
-import it.unibo.objectmon.model.gamestate.EndGameManagerImpl;
-import it.unibo.objectmon.model.gamestate.GameState;
-import it.unibo.objectmon.model.gamestate.GameStateManager;
 import it.unibo.objectmon.model.gamestate.GameStateManagerImpl;
+import it.unibo.objectmon.model.gamestate.api.GameState;
 import it.unibo.objectmon.model.item.trademanager.api.TradeManager;
 import it.unibo.objectmon.model.item.trademanager.api.TradeInitiator;
 import it.unibo.objectmon.model.item.trademanager.impl.TradeManagerImpl;
@@ -136,7 +134,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public Player getPlayer() {
-        return new ReadOnlyPlayer(model.getGameContext().getPlayer());
+        return this.model.getGameContext().getPlayer();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package it.unibo.objectmon.model.gamestate;
+package it.unibo.objectmon.model.gamestate.api;
 
 /**
  * Functional interface that only sets the gamestate.

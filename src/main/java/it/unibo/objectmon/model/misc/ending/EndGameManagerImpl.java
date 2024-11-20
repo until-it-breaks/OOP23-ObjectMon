@@ -1,6 +1,8 @@
-package it.unibo.objectmon.model.gamestate;
+package it.unibo.objectmon.model.misc.ending;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.objectmon.model.gamestate.api.GameState;
+import it.unibo.objectmon.model.gamestate.api.GameStateManager;
 
 /**
  * Implementation of the EndGameManager.
@@ -20,7 +22,7 @@ public final class EndGameManagerImpl implements EndGameManager {
     }
 
     @Override
-    public void startEnd() {
+    public void startEnding() {
         this.endGameStateManager.setGameState(GameState.ENDING);
     }
 }

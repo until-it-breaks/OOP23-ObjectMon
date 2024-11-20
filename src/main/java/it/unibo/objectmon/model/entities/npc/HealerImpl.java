@@ -32,7 +32,7 @@ public final class HealerImpl extends AbstractNPC implements Healer {
     @Override
     public void healTeam(final ObjectmonParty team) {
         for (final var objectmon : team.getParty()) {
-            objectmon.setCurrentHp(objectmon.getStats().getSingleStat(StatEnum.HP));
+            objectmon.setCurrentHp(objectmon.getStats().getStat(StatEnum.HP));
         }
     }
 }

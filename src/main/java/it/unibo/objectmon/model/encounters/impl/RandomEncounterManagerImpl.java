@@ -10,7 +10,7 @@ import it.unibo.objectmon.model.data.objectmon.ObjectmonFactory;
 import it.unibo.objectmon.model.encounters.api.RandomEncounterManager;
 import it.unibo.objectmon.model.entities.api.Player;
 import it.unibo.objectmon.model.entities.player.PlayerImpl;
-import it.unibo.objectmon.model.gamestate.Observer;
+import it.unibo.objectmon.model.gamestate.api.PlayerObserver;
 import it.unibo.objectmon.model.world.api.Coord;
 
 /**
@@ -18,7 +18,7 @@ import it.unibo.objectmon.model.world.api.Coord;
  * It observes changes in the game context and triggers encounters based on certain conditions.
  * This class implements the Observer interface to receive updates when the {@link Player} moves.
  */
-public final class RandomEncounterManagerImpl implements Observer, RandomEncounterManager {
+public final class RandomEncounterManagerImpl implements PlayerObserver, RandomEncounterManager {
 
     private final GameContext gameContext;
     private final BattleInitiator battleInitiator;
